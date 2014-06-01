@@ -1,0 +1,331 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="author">Author: <b>Nurlan Mukhanov</b> aka <a href="mailto:nurike@gmail.com">Falseclock</a></string>
+    <string name="app_name">HTC One Tweaker</string>
+    <string name="RecordingFilterKeysIn">in</string>
+    <string name="RecordingFilterKeysOut">out</string>
+    <string name="zero">0</string>
+    <string name="one">1</string>
+    <string name="two">2</string>
+    <string name="three">3</string>
+    <string name="four">4</string>
+    <string name="five">5</string>
+    <string name="six">6</string>
+    <string name="seven">7</string>
+    <string name="eight">8</string>
+    <string name="nine">9</string>
+    <string name="ten">10</string>
+    <string name="fourteen">14</string>
+    <string name="thirty">30</string>
+    <string name="sixty">60</string>
+    <string name="one_eighty">180</string>
+    <string name="three_sixty">160</string>
+    <string name="twenty">20</string>
+    <string name="fifty">50</string>
+    <string name="hundred1">100</string>
+    <string name="hundred2">200</string>
+    <string name="hundred3">300</string>
+    <string name="hundred5">500</string>
+    <string name="nine3">999</string>
+    <string name="systemBuildProperties">Firmware settings</string>
+    <string name="enableCallRecordingTitle">Voice Call Recording</string>
+    <string name="enableCallRecordingSummary">Enables or disables voice call recording.</string>
+    <string name="callSettingsTitle">Calling &amp; Dialing settings</string>
+    <string name="enableAutoRecordingTitle">Call Auto Recording</string>
+    <string name="enableAutoRecordingSummary">Enables voice call auto recording.</string>
+    <string name="guiSettingsTitle">GUI settings</string>
+    <string name="otherSettingsTitle">All other settings</string>
+    <string name="allNotificationsExpandedTitle">All notifications expanded</string>
+    <string name="allNotificationsExpandedSummary">Expands all notifications inside the notification drawer.</string>
+    <string name="enableColoredSimLevelSummary">Colored GSM/WCDMA SIM signal level</string>
+    <string name="enableColoredSimLevelTitle">Colored SIM level</string>
+    <string name="enableColoredWiFiSummary">Blue WiFi level icon</string>
+    <string name="enableColoredWiFiTitle">Colored WiFi</string>
+    <string name="enableColoredWeatherSummary">Replaces B&amp;W weather icons from Sense 4+</string>
+    <string name="enableColoredWeatherTitle">Colored weather</string>
+    <string name="enableDialerHighLightSummary">Phonetic letters color</string>
+    <string name="enableDialerHighLightTitle">Highlight dialer buttons</string>
+    <string name="settingsAutoRecordingTitle">Autorecording settings</string>
+    <string name="AutoRecordingType">What should be recorded</string>
+    <string name="AutoRecordingPrune">Old records auto removal</string>
+    <string name="AutoRecordingPruneTitle">Select prune in days for old records</string>
+    <string name="AutoRecordingPrunePositive">Set</string>
+    <string name="AutoRecordingPruneNegative">Cancel</string>
+    <string name="AutoRecordingPruneDates">Days after records will be deleted: %1$d</string>
+    <string name="AutoRecordingPruneNone">Not set, all records will be saved</string>
+    <string name="AutoRecordingVibroTitle">Vibro confirmation</string>
+    <string name="AutoRecordingVibroSummary">Vibration when recording starts/stops</string>
+    <string name="enablePopupCharTitle">RUSSIAN keyboard top icons</string>
+    <string name="enablePopupCharSummary">add icons with popup options</string>
+    <string name="ColoredSimLevelPreferenceTitle">SIM color schemes</string>
+    <string name="ColoredSimLevelPreferenceSummary">Changing colors theme for icons</string>
+    <string name="ColoredSimLevelPreferenceTitle1">SIM1 color scheme</string>
+    <string name="ColoredSimLevelPreferenceTitle2">SIM2 color scheme</string>
+    <string name="NotificationScreenSummary">Status bar and slider</string>
+    <string name="NotificationScreenTitle">Notification suppress</string>
+    <string name="disableDeliveryNotificationTitle">SMS delivery notification</string>
+    <string name="disableDeliveryNotificationSummary">if delivery request is enabled</string>
+    <string name="disableADBNotificationTitle">USB debugging connected</string>
+    <string name="disableUSBNotificationTitle">USB connected</string>
+    <string name="disableSyncNotificationTitle">HTC Sync Manager</string>
+    <string name="disableMTPNotificationTitle">Media device [MTP] connected</string>
+    <string name="SystemScreenSummary">related to the whole device and software</string>
+    <string name="SystemScreenTitle">System wide tweaks</string>
+    <string name="LedScreenSummary">notifications &amp; charging</string>
+    <string name="LedScreenTitle">Front flashlight LED</string>
+    <string name="chargingLedSummary">removes only charging for charging</string>
+    <string name="chargingLedTitle">Disable charging flashlight</string>
+    <string name="flashlightDuringChargingSummary">notifications will have priority</string>
+    <string name="flashlightDuringChargingTitle">Flash notifications during charging</string>
+    <string name="flashlightTimeoutSummary">how long it will last</string>
+    <string name="flashlightTimeoutTitle">Flashlight timeout</string>
+    <string name="flashlightTimeoutHint">In minutes. 0 is no time-out</string>
+    <string name="GuiScreenSummary">color, size, etc&#8230;</string>
+    <string name="GuiScreenTitle">GUI settings</string>
+    <string name="hue_settings">Hue</string>
+    <string name="saturation_settings">Saturation</string>
+    <string name="light_settings">Lightness</string>
+    <string name="contrast_settings">Contrast</string>
+    <string name="qwerty_rus">Full Qwerty Russian</string>
+    <string name="land_qwerty_rus">Landscape Qwerty Russian</string>
+    <string name="alternates_label_backslash">\\</string>
+    <string name="alternates_label_equal">=</string>
+    <string name="alternates_for_euro">€</string>
+    <string name="alternates_for_dotcom">.com .net .org .edu</string>
+    <string name="alternates_for_a_lower">! à á â ã ä å æ ą</string>
+    <string name="alternates_for_b_lower">} ] > )</string>
+    <string name="alternates_for_c_lower">"' ` ç ć č"</string>
+    <string name="alternates_for_d_lower">\# ď</string>
+    <string name="alternates_for_e_lower">3 è é ê ë ę ě</string>
+    <string name="alternates_for_f_lower">$ € £ ¥ ¢</string>
+    <string name="alternates_for_g_lower">% ‰ ğ</string>
+    <string name="alternates_for_h_lower">&amp;</string>
+    <string name="alternates_for_i_lower">ı ï î í ì 8</string>
+    <string name="alternates_for_j_lower">* +</string>
+    <string name="alternates_for_k_lower">\?</string>
+    <string name="alternates_for_l_lower">ľ ĺ ł \\ /</string>
+    <string name="alternates_for_m_lower">; :</string>
+    <string name="alternates_for_n_lower">ň ń ñ — ~ -</string>
+    <string name="alternates_for_o_lower">ő ø œ ö õ ô ó ò 9</string>
+    <string name="alternates_for_p_lower">0</string>
+    <string name="alternates_for_q_lower">1</string>
+    <string name="alternates_for_r_lower">4 ř ŕ</string>
+    <string name="alternates_for_s_lower">\@ ß ś ş š</string>
+    <string name="alternates_for_t_lower">5 ţ ť</string>
+    <string name="alternates_for_u_lower">ű ů ü û ú ù 7</string>
+    <string name="alternates_for_v_lower">( &lt; [ {</string>
+    <string name="alternates_for_w_lower">2</string>
+    <string name="alternates_for_x_lower">\"</string>
+    <string name="alternates_for_y_lower">6 ý ÿ</string>
+    <string name="alternates_for_z_lower">_ ź ż ž</string>
+    <string name="recordingSeparateDir">In Incoming &amp; Outgoing dirs</string>
+    <string name="recordingFileFlag">Add IN &amp; OUT to the file name</string>
+    <string name="RecordingStorageSummary"></string>
+    <string name="RecordingStorageTitle">How to store records?</string>
+    <string name="LatinSet">Latin alphabet selected</string>
+    <string name="PhoneticSet">Phonetic alphabet selected</string>
+    <string name="DialerButtonToast">Use pinch zoom on color palette to change font size. Click on left button to switch alphabet.</string>
+    <string name="slot1_name_title">Slot 1 name</string>
+    <string name="slot2_name_title">Slot 2 name</string>
+    <string name="dual_settings_title">Dual network manager</string>
+    <string name="preferred_network_1">Slot 1</string>
+    <string name="preferred_network_2">Slot 2</string>
+    <string name="recordingFilterIncoming">All incoming calls</string>
+    <string name="recordingFilterOutgoing">All outgoing calls</string>
+    <string name="RecordingFilterTitle">Record calls by type</string>
+    <string name="RecordingCallerAll">All type of callers</string>
+    <string name="RecordingCallerKnown">Only from phonebook</string>
+    <string name="RecordingCallerUnknown">Only unknown numbers</string>
+    <string name="RecordingCallerTitle">Which callers to record?</string>
+    <string name="RecordingDeleteNone">Do not delete</string>
+    <string name="RecordingDeleteByCount">By total max count</string>
+    <string name="RecordingDeleteBySize">By total max size</string>
+    <string name="RecordingCallerByDate">Prune with days interval</string>
+    <string name="RecordingDeleteTitle">Autodelete settings</string>
+    <string name="quickPullDownSummary">Activate the quick settings by swiping right side of screen</string>
+    <string name="quickPullDownTitle">Settings quick pulldown</string>
+    <string name="incoming">Incoming</string>
+    <string name="outgoing">Outgoing</string>
+    <string name="messages_of">Messages</string>
+    <string name="save_last">Save last</string>
+    <string name="days_of">Days</string>
+    <string name="delete_after">Delete after</string>
+    <string name="dialog_cancel">Cancel</string>
+    <string name="dialog_download">Download</string>
+    <string name="dialog_weather_alert">To be able use this tweak you need to install additional icon package.</string>
+    <string name="dialog_weather_title">Weather pack download</string>
+    <string name="delete_after_summary">in days</string>
+    <string name="save_last_summary">records count</string>
+    <string name="RecordingDeleteCat">Autodelete options</string>
+    <string name="RecordingFilterCat">Filtering options</string>
+    <string name="RecordingSaveCat">Sorage options</string>
+    <string name="ColoredDataIconsSummary">tweak enabler</string>
+    <string name="ColoredDataIconsTitle">Data icons</string>
+    <string name="ColoredDataIconsColorSummary">color settings</string>
+    <string name="ColoredDataIconsColorTitle">Data transfer icons</string>
+    <string name="ColoredWiFiIconsColorSummary">color settings</string>
+    <string name="ColoredWiFiIconsColorTitle">WiFi signal icons</string>
+    <string name="RecordingTypesAll">Record all calls</string>
+    <string name="RecordingTypesKnown">Only from phonebook</string>
+    <string name="RecordingTypesUnknown">Only unknown calls</string>
+    <string name="DataScreenTitle">Data transfer and signal tweaks</string>
+    <string name="DataScreenSummary">WiFi, Signal Level, Data transfer</string>
+    <string name="ContactDialScreenTitle">Dialer and Contacts tweak</string>
+    <string name="ContactDialScreenSummary">interface, color, settings</string>
+    <string name="enableColorCallIndicatorTitle">Colored call indicator</string>
+    <string name="enableColorCallIndicatorSummary">In call history to identify incoming and outgoing</string>
+    <string name="enableUnreadHighLightTitle">Highlight unread message threads</string>
+    <string name="enableUnreadHighLightSummary">Dialor will have blue background</string>
+    <string name="MessagingScreenTitle">SMS and MMS settings</string>
+    <string name="MessagingScreenSummary"></string>
+    <string name="enableHideSMSBadgeSummary">only for SMS and MMS listings</string>
+    <string name="enableHideSMSBadgeTitle">Hide photo badge in dialogs</string>
+    <string name="enableSMSNotifyToDialogSummary">by default, when you clicking on notification, opens full listing instead of current dialog</string>
+    <string name="enableSMSNotifyToDialogTitle">SMS notification opens dialog</string>
+    <string name="sdcardPermissionTitle">Allow SD Card full access</string>
+    <string name="sdcardPermissionSummary">fix read and write permission</string>
+    <string name="app_about">About application</string>
+    <string name="about">About</string>
+    <string name="change_log">Changelog</string>
+    <string name="current_bugs">Current bugs</string>
+    <string name="thanks">Thanks</string>
+    <string name="implemented"><b>What currently implemented:</b>\n
+* Ability to record all voice calls directly from the line. Work with Bluetooth devices.\n
+* Voice call auto recording with stock Recorder.\n
+* Filtering auto recording by calling/called party type as well as call incoming/outgoing type\n
+* Automatic deletion of stored auto records with settings\n
+* Record button on call screen if auto recording switched off\n
+* Fast access to Stock QS by swiping left side of screen.\n
+* Disabling notifications of delivered SMS messages.\n
+* Fully expand all notifications in status bar slider.\n
+* Phonetic letter coloring &amp; sizing in dialer.\n
+* Front LED indicator settings\n
+* Ability to remove contact photo badge in SMS listing\n
+* Highlighted unread messages in SMS dialog listings\n
+* Unlimited length of SIM card name (for dual version)\n
+* Colored identification for incoming and outgoing calls in call journal\n
+* Colored SIM card signal level strength.\n
+* Colored WiFi signal icon with strength differentiation.\n
+* Colored weather icons from Sense 4+.\n
+* Clicking on SMS notification will open dialog with contact instead of show dialog listings\n
+* SIP settings in Dialer options for Dual version\n
+* Date preffix to the Camera shots filename
+</string>
+    <string name="google_play"><b>Google Play Market</b></string>
+    <string name="xda_support"><b>Support on XDA</b></string>
+    <string name="change_log_text">
+<big><b>Version 3.2.3</b></big>\n
+<font fgcolor="#FF009000"><b>*</b></font> nomedia file creating in autorecordind folder\n
+<font fgcolor="#FF009000"><b>*</b></font> SIP settings in Dialer options for Dual version\n
+<font fgcolor="#FF009000"><b>*</b></font> date preffix to the Camera shots filename\n
+<font fgcolor="#FF009000"><b>*</b></font> About intent added\n
+<font fgcolor="#FFFF0000"><b>*</b></font> (fix) SMS settings for Sense 6.0\n
+<font fgcolor="#FFFF0000"><b>*</b></font> (fix) Latin aplhabet on dialer button settings now default\n
+\n
+<big><b>Version 3.2.2</b></big>\n
+<font fgcolor="#FFFF0000"><b>*</b></font> fix application crash with Sense 6.0\n
+<font fgcolor="#FF009000"><b>*</b></font> ability to give full access to SD card\n
+<font fgcolor="#FFFF0000"><b>*</b></font> (fix) recording button still clickable with screen off\n
+\n
+<big><b>Version 3.2.1</b></big>\n
+<font fgcolor="#FF009000"><b>*</b></font> bigger weather icons for hourly and daily forecast\n
+<font fgcolor="#FF009000"><b>*</b></font> Record button on call screen if auto recording switched off\n
+<font fgcolor="#FF009000"><b>*</b></font> ability to remove contact photo badge in SMS listing\n
+<font fgcolor="#FF009000"><b>*</b></font> More highlighted unread messages in SMS dialog listings\n
+<font fgcolor="#FF009000"><b>*</b></font> Colored identification for incoming and outgoing calls in call journal\n
+<font fgcolor="#FF009000"><b>*</b></font> additional data icons for 802d model\n
+<font fgcolor="#FF009000"><b>*</b></font> Clicking on SMS notification will open dialog with contact instead of show dialog listings\n
+<font fgcolor="#FF009000"><b>*</b></font> Settings menu refactoring\n
+\n
+<big><b>Version 3.1.9</b></big>\n
+<font fgcolor="#FF009000"><b>*</b></font> weather for lockscreen and  BlinkFeed. For correct work need to update Weather Pack\n
+\n
+<big><b>Version 3.1.8</b></big>\n
+<font fgcolor="#FF009000"><b>*</b></font> data transfer tweak added\n
+<font fgcolor="#FF009000"><b>*</b></font> Network signal icons added for 802d\n
+<font fgcolor="#FF009000"><b>*</b></font> Network signal icons added for M7 and M8\n
+<font fgcolor="#FF009000"><b>*</b></font> ability to change color of WiFi icon\n
+<font fgcolor="#FF009000"><b>*</b></font> Spanish language added\n
+<font fgcolor="#FF009000"><b>*</b></font> Portuguese language added\n
+\n
+<big><b>Version 3.1.7</b></big>\n
+<font fgcolor="#FFFF0000"><b>*</b></font> records auto deletion after certain (configurable) days or by defined max records count\n
+\n
+<big><b>Version 3.1.6</b></big>\n
+<font fgcolor="#FFFF0000"><b>*</b></font>Weather icons in separate apk\n
+\n
+<big><b>Version 3.1.5</b></big>\n
+<font fgcolor="#FFFF0000"><b>*</b></font> fix with LED settings\n
+<font fgcolor="#FFFF0000"><b>*</b></font> design change for some settings\n
+<font fgcolor="#FFFF0000"><b>*</b></font> filter by call type added for auto recordings\n
+<font fgcolor="#FFFF0000"><b>*</b></font> filter by calling/called party added for auto recordings\n
+<font fgcolor="#FFFF0000"><b>*</b></font> all auto recordings now save under Auto Recordings folder\n
+<font fgcolor="#FFFF0000"><b>*</b></font> ability to invoke tweaker from stock settings\n
+<font fgcolor="#FFFF0000"><b>*</b></font> weather icon pack now in separate application to reduce tweaker size\n
+\n
+<big><b>Version 3.1.4</b></big>\n
+<font fgcolor="#FFFF0000"><b>*</b></font> ability to change color &amp; size for latin alphabet in dialer\n
+<font fgcolor="#FFFF0000"><b>*</b></font> ability to change SIM card name without string length limit\n
+<font fgcolor="#FFFF0000"><b>*</b></font> access to Quick Settings by swiping right side of screen\n
+<font fgcolor="#FFFF0000"><b>*</b></font> 3G icon fix for Sense 5 ToolBox\n
+<font fgcolor="#FFFF0000"><b>*</b></font> fix with Recording settings saving for new installations\n
+\n
+<big><b>Version 3.1.3</b></big>\n
+<font fgcolor="#FFFF0000"><b>*</b></font> latin alphabet color and size change in dialer\n
+<font fgcolor="#FFFFA500"><b>*</b></font> SIM name change without length restriction\n
+\n
+<big><b>Version 3.1.2</b></big>\n
+<font fgcolor="#FFFFA500"><b>*</b></font> fix with recording settings\n
+<font fgcolor="#FFFF0000"><b>*</b></font> notification flashlight during charging\n
+<font fgcolor="#FFFF0000"><b>*</b></font> flashlight timeout\n
+\n
+<big><b>Version 3.1.1</b></big>\n
+<font fgcolor="#FFFF0000"><b>*</b></font> menu re-factoring\n
+<font fgcolor="#FFFF0000"><b>*</b></font> disable flashlight for charging\n
+<font fgcolor="#FFFF0000"><b>*</b></font> autorecording settings: separate dirs or file flag\n
+<font fgcolor="#FFFF0000"><b>*</b></font> pinch zoom for dialer button text size fix\n
+<font fgcolor="#FFFF0000"><b>*</b></font> fix with min/max values in color settings\n
+<font fgcolor="#FFFF0000"><b>*</b></font> fix second sim card sprite\n
+<font fgcolor="#FFFF0000"><b>*</b></font> fix with values between sim cards\n
+\n
+<big><b>Version 3.1.0</b></big>\n
+<font fgcolor="#FFFF0000"><b>*</b></font> Automatic call records now stored in specific folder depends on call type:\n
+ - Automatic records/Incoming/ - for incoming calls\n
+ - Automatic records/Outgoing/ - for outgoing calls\n
+Manual records stored as default to My Recordings directory.\n
+<font fgcolor="#FFFF0000"><b>*</b></font> Ability to suppress notification:\n
+ - USB debugging connected\n
+ - USB connected\n
+ - HTC Sync Manager\n
+ - Media device [MTP] connected\n
+<font fgcolor="#FFFF0000"><b>*</b></font> minor fixes and additions\n
+\n
+<big><b>Version 3.0.8</b></big>\n
+<font fgcolor="#FFFF0000"><b>*</b></font> phonetic bux fix\n
+\n
+<big><b>Version 3.0.7</b></big>\n
+<font fgcolor="#FFFF0000"><b>*</b></font> pinch zoom for phonetic letter sizing\n
+\n
+<big><b>Version 3.0.6</b></big>\n
+<font fgcolor="#FFFF0000"><b>*</b></font> extended russian keyboard\n
+\n
+<big><b>Version 3.0.5</b></big>\n
+<font fgcolor="#FFFF0000"><b>*</b></font> fixed roaming SIM sprites for KitKat \n
+<font fgcolor="#FFFF0000"><b>*</b></font> added ability to setup highlight color for dialer phonetic letters.\n
+\n
+<big><b>Version 3.0.4</b></big>\n
+<font fgcolor="#FFFF0000"><b>*</b></font> fixed mistake with dialer highlighting.\n
+\n
+<big><b>Version 3.0.3</b></big>\n
+<font fgcolor="#FFFF0000"><b>*</b></font> Colored scheme for SIM cards\n
+\n
+<big><b>Version 3.0.2</b></big>\n
+<font fgcolor="#FFFF0000"><b>*</b></font> fully working settings
+</string>
+    <string name="enableSIPTitle">SIP Telephone on Dual SIM</string>
+    <string name="enableSIPSummary">Just enables it</string>
+    
+    <string name="enablePhotoPrefixTitle">Prefix to Camera shots</string>
+    <string name="enablePhotoPrefixSummary">IMAG0001.jpg</string>
+    
+</resources>

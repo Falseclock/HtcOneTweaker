@@ -1,0 +1,613 @@
+package kz.virtex.htc.tweaker;
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+
+import kz.virtex.htc.tweaker.preference.IconsColorPreference;
+import kz.virtex.htc.tweaker.preference.MultiCheckPreference;
+import kz.virtex.htc.tweaker.preference.MultiCheckPreference.Row;
+import kz.virtex.htc.tweaker.preference.NumberPickerPreference;
+import android.annotation.SuppressLint;
+import android.app.AlertDialog;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.PackageManager.NameNotFoundException;
+import android.net.Uri;
+import android.os.Build;
+import android.os.Bundle;
+import android.os.Vibrator;
+import android.provider.Settings;
+import android.text.TextUtils;
+import android.view.Menu;
+import android.view.MenuItem;
+import com.htc.preference.HtcEditTextPreference;
+import com.htc.preference.HtcPreference;
+import com.htc.preference.HtcPreference.OnPreferenceFirstBindViewListener;
+import com.htc.preference.HtcPreferenceActivity;
+import com.htc.preference.HtcPreferenceCategory;
+import com.htc.preference.HtcPreferenceScreen;
+import com.htc.preference.HtcSwitchPreference;
+
+@SuppressLint("DefaultLocale")
+public class Main extends HtcPreferenceActivity implements HtcPreference.OnPreferenceChangeListener
+{
+	public static SharedPreferences preferences;
+	private boolean dualPhoneEnable;
+	public static final String NOTIFICATION_DELETED_ACTION = "NOTIFICATION_DELETED";
+
+	public final static BroadcastReceiver receiver = new BroadcastReceiver()
+	{
+		@Override
+		public void onReceive(Context context, Intent intent)
+		{
+			Vibrator vibrator = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
+			vibrator.vibrate(2000);
+			context.unregisterReceiver(this);
+		}
+	};
+
+
+
+	@SuppressLint({ "WorldReadableFiles", "WorldWriteableFiles", "DefaultLocale" })
+	public void onCreate(Bundle paramBundle)
+	{
+		super.onCreate(paramBundle);
+
+		preferences = getSharedPreferences(Const.PREFERENCE_FILE, Context.MODE_WORLD_READABLE + Context.MODE_WORLD_WRITEABLE);
+		addPreferencesFromResource(R.xml.settings);
+		startService(new Intent(this, TweakerService.class).setAction(TweakerService.ACTION_CLEANUP_RECORDS));
+		dualPhoneEnable = Build.MODEL.toLowerCase().contains("dual");
+		
+		init();
+
+	
+		// new Test();
+
+		/*
+		 * Intent dismissIntent = new Intent(this, Main.class); PendingIntent
+		 * piDismiss = PendingIntent.getService(this, 0, dismissIntent, 0);
+		 * 
+		 * Intent testIntent = new Intent(this, Test.class); PendingIntent
+		 * piTest = PendingIntent.getService(this, 0, testIntent, 0);
+		 * 
+		 * Notification.Builder mBuilder = new
+		 * Notification.Builder(this).setSmallIcon
+		 * (R.drawable.ic_launcher).setContentTitle
+		 * ("+7 495 123 45 67").setContentText("setContentText!").setStyle( new
+		 * Notification.BigTextStyle().bigText(
+		 * "Здравствуйте. Это тестовое сообщение для 4pda. С помощью твикера можно сделать действия из шторки. Как считаете, будет удобно или нет?"
+		 * ))
+		 * 
+		 * .addAction(R.drawable.htc_sense_input_icon_arrow_right_dark,
+		 * "Удалить",
+		 * piDismiss).addAction(R.drawable.htc_sense_input_icon_arrow_up_dark,
+		 * "Закрыть",
+		 * piTest).addAction(R.drawable.htc_sense_input_icon_arrow_down_dark,
+		 * "Ответить", piTest);
+		 * 
+		 * NotificationManager mNotificationManager = (NotificationManager)
+		 * getSystemService(Context.NOTIFICATION_SERVICE); int mId = 1; //
+		 * mNotificationManager.notify(mId, mBuilder.build());
+		 * 
+		 * mBuilder = new
+		 * Notification.Builder(this).setSmallIcon(R.drawable.ic_launcher
+		 * ).setContentTitle
+		 * ("+7 495 123 45 67").setContentText("setContentText!"
+		 * ).setDeleteIntent(piDismiss).setStyle( new
+		 * Notification.BigTextStyle().bigText(
+		 * "А здесь вот второе оповещение, и шторка будет из-за него раздутой, поэтому предлагаю сделать только для одного сообщения, а если много непрочитанных, то как обычно."
+		 * )).addAction(R.drawable.htc_sense_input_icon_arrow_right_dark,
+		 * "Удалить",
+		 * piDismiss).addAction(R.drawable.htc_sense_input_icon_arrow_up_dark,
+		 * "Закрыть",
+		 * piTest).addAction(R.drawable.htc_sense_input_icon_arrow_down_dark,
+		 * "Ответить", piTest); mId = 2; mNotificationManager.notify(mId,
+		 * mBuilder.build());
+		 */
+	}
+
+	public boolean onCreateOptionsMenu(Menu paramMenu)
+	{
+		super.onCreateOptionsMenu(paramMenu);
+
+		paramMenu.add(Menu.NONE, 101, Menu.NONE, "Info").setIcon(R.drawable.ic_menu_info_details).setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+
+		return true;
+	}
+
+	public boolean onOptionsItemSelected(MenuItem paramMenuItem)
+	{
+		switch (paramMenuItem.getItemId())
+		{
+		case 101:
+			Intent intent = new Intent(this, AboutActivity.class);
+			startActivity(intent);
+			break;
+		}
+		return true;
+	}
+
+	private void init()
+	{
+		setupCallRecording();
+		setupRecordingTypeFilter();
+		setupRecordingAutoCaller();
+		setupRecordingDelete();
+
+		setupSimSettings();
+		setupDataIcons();
+		setupWeather();
+		setupWiFiIcons();
+		storeWeatherApkPath();
+		setupNetworkManager("slot_1_user_text", R.string.preferred_network_1);
+		setupNetworkManager("slot_2_user_text", R.string.preferred_network_2);
+		setupSIP();
+		setupCamera();
+		Misc.cleanUp();
+	}
+	
+	@SuppressLint("SimpleDateFormat")
+	private void setupCamera()
+	{
+		HtcSwitchPreference tweak = (HtcSwitchPreference) findPreference(Const.TWEAK_ENABLE_PHOTO_PREFIX);
+		CharSequence summ = tweak.getSummary();
+		String date = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
+		tweak.setSummary(date + "_" + summ);
+	}
+	
+	private void setupSIP()
+	{
+		if (!dualPhoneEnable)
+		{
+			HtcPreferenceScreen preferenceScreen = (HtcPreferenceScreen) findPreference(Const.OTHER_SETTINGS_SCREEN_KEY);
+			preferenceScreen.removePreference(findPreference(Const.TWEAK_ENABLE_SIP));
+		}
+	}
+	
+	private void storeWeatherApkPath()
+	{
+		PackageManager pm = getPackageManager();
+		ApplicationInfo ai;
+		try
+		{
+			ai = pm.getApplicationInfo(Const.WEATHER_PACKAGE_NAME, 0);
+			String sourceApk = ai.publicSourceDir;
+			preferences.edit().putString(Const.WEATHER_PACKAGE_APK, sourceApk).commit();
+
+		}
+		catch (NameNotFoundException e)
+		{
+			
+		}
+	}
+
+	protected void onResume()
+	{
+		super.onResume();
+
+		final HtcSwitchPreference weatherPref = (HtcSwitchPreference) findPreference(Const.TWEAK_COLORED_WEATHER);
+		if (Misc.isPackageInstalled(Const.WEATHER_PACKAGE_NAME, weatherPref.getContext()))
+		{
+			weatherPref.setChecked(true);
+			putBoolean(Const.TWEAK_COLORED_WEATHER, true);
+			storeWeatherApkPath();
+
+		}
+		else
+		{
+			weatherPref.setChecked(false);
+			putBoolean(Const.TWEAK_COLORED_WEATHER, false);
+		}
+	}
+
+	private void setupWeather()
+	{
+		final HtcSwitchPreference weatherPref = (HtcSwitchPreference) findPreference(Const.TWEAK_COLORED_WEATHER);
+
+		weatherPref.setOnPreferenceFirstBindViewListener(new OnPreferenceFirstBindViewListener()
+		{
+			public void onPreferenceFirstBindView(HtcPreference preference)
+			{
+				if (!Misc.isPackageInstalled(Const.WEATHER_PACKAGE_NAME, preference.getContext()))
+				{
+					// weatherPref.setEnabled(false);
+					weatherPref.setChecked(false);
+					putBoolean(Const.TWEAK_COLORED_WEATHER, false);
+				}
+				else
+				{
+					storeWeatherApkPath();
+				}
+			}
+		});
+
+		weatherPref.setOnPreferenceClickListener(new HtcPreference.OnPreferenceClickListener()
+		{
+			public boolean onPreferenceClick(HtcPreference preference)
+			{
+				if (!Misc.isPackageInstalled(Const.WEATHER_PACKAGE_NAME, preference.getContext()))
+				{
+					new AlertDialog.Builder(preference.getContext()).setTitle(R.string.dialog_weather_title).setMessage(R.string.dialog_weather_alert).setNeutralButton(R.string.dialog_download, new DialogInterface.OnClickListener()
+					{
+						public void onClick(DialogInterface arg0, int arg1)
+						{
+
+							Intent marketIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + Const.WEATHER_PACKAGE_NAME));
+							marketIntent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY | Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
+							startActivity(marketIntent);
+
+						}
+					}).setNegativeButton(R.string.dialog_cancel, new DialogInterface.OnClickListener()
+					{
+						public void onClick(DialogInterface arg0, int arg1)
+						{
+
+						}
+					}).show();
+
+					weatherPref.setChecked(false);
+					putBoolean(Const.TWEAK_COLORED_WEATHER, false);
+					return false;
+				}
+				return true;
+			}
+		});
+	}
+
+	@SuppressWarnings("unused")
+	private void setupRecordingDeleteCount()
+	{
+		final NumberPickerPreference saveLast = (NumberPickerPreference) findPreference(Const.TWEAK_CALL_REC_AUTO_DELETE_COUNT);
+	}
+
+	private void setupWiFiIcons()
+	{
+		Misc.applyTheme(findPreference(Const.TWEAK_COLORED_WIFI_COLOR).getIcon(), Const.TWEAK_COLORED_WIFI_COLOR);
+		Misc.applyTheme(findPreference(Const.TWEAK_COLORED_WIFI_COLOR).getIcon(), Const.TWEAK_COLORED_WIFI_COLOR);
+
+		final HtcPreferenceScreen preferenceScreen = (HtcPreferenceScreen) findPreference(Const.DATA_SCREEN_KEY);
+
+		HtcSwitchPreference wifiTweak = (HtcSwitchPreference) findPreference(Const.TWEAK_COLORED_WIFI);
+		final IconsColorPreference wifiTweakColor = (IconsColorPreference) findPreference(Const.TWEAK_COLORED_WIFI_COLOR);
+
+		wifiTweakColor.setColor("#FFFFFF");
+
+		if (!wifiTweak.isChecked())
+		{
+			preferenceScreen.removePreference(wifiTweakColor);
+		}
+
+		wifiTweak.setOnPreferenceChangeListener(new HtcPreference.OnPreferenceChangeListener()
+		{
+			public boolean onPreferenceChange(HtcPreference preference, Object object)
+			{
+				Integer value = 0;
+				if (object.toString() == "true")
+					value = 1;
+
+				if (value == 1)
+				{
+					preferenceScreen.addPreference(wifiTweakColor);
+				}
+				else
+				{
+					preferenceScreen.removePreference(wifiTweakColor);
+				}
+				return true;
+			}
+		});
+	}
+
+	private void setupSimSettings()
+	{
+		final HtcPreferenceScreen preferenceScreen = (HtcPreferenceScreen) findPreference(Const.DATA_SCREEN_KEY);
+		
+		final HtcPreferenceScreen colorSimScreen = (HtcPreferenceScreen) findPreference(Const.COLOR_SIM_SCREEN);
+		HtcSwitchPreference tweakColorSim = (HtcSwitchPreference) findPreference(Const.TWEAK_COLORED_SIM);
+
+		if (!tweakColorSim.isChecked())
+		{
+			preferenceScreen.removePreference(colorSimScreen);
+		}
+		else
+		{
+			Misc.applyTheme(findPreference(Const.COLOR_SIM_SCREEN).getIcon(), Const.TWEAK_COLOR_SIM1);
+			Misc.applyTheme(findPreference(Const.TWEAK_COLOR_SIM1).getIcon(), Const.TWEAK_COLOR_SIM1);
+			Misc.applyTheme(findPreference(Const.TWEAK_COLOR_SIM2).getIcon(), Const.TWEAK_COLOR_SIM2);
+		}
+		/*
+		 * findPreference(Const.TWEAK_COLOR_SIM1).setOnPreferenceChangeListener(new
+		 * HtcPreference.OnPreferenceChangeListener() {
+		 * 
+		 * @Override public boolean onPreferenceChange(HtcPreference arg0,
+		 * Object arg1) {
+		 * Misc.applyTheme(findPreference(Const.COLOR_SIM_SCREEN).getIcon(),
+		 * Const.TWEAK_COLOR_SIM1); return false; } });
+		 */
+		tweakColorSim.setOnPreferenceChangeListener(new HtcPreference.OnPreferenceChangeListener()
+		{
+			public boolean onPreferenceChange(HtcPreference preference, Object object)
+			{
+				Integer value = 0;
+				if (object.toString() == "true")
+					value = 1;
+
+				if (value == 1)
+				{
+					preferenceScreen.addPreference(colorSimScreen);
+				}
+				else
+				{
+					preferenceScreen.removePreference(colorSimScreen);
+				}
+				return true;
+			}
+		});
+	}
+
+	private void setupDataIcons()
+	{
+		Misc.applyTheme(findPreference(Const.TWEAK_DATA_ICONS_COLOR).getIcon(), Const.TWEAK_DATA_ICONS_COLOR);
+
+		final HtcPreferenceScreen preferenceScreen = (HtcPreferenceScreen) findPreference(Const.DATA_SCREEN_KEY);
+
+		HtcSwitchPreference dataTweak = (HtcSwitchPreference) findPreference(Const.TWEAK_DATA_ICONS);
+		final IconsColorPreference dataTweakColor = (IconsColorPreference) findPreference(Const.TWEAK_DATA_ICONS_COLOR);
+
+		dataTweakColor.setColor("#FFFFFF");
+
+		if (!dataTweak.isChecked())
+		{
+			preferenceScreen.removePreference(dataTweakColor);
+		}
+
+		dataTweak.setOnPreferenceChangeListener(new HtcPreference.OnPreferenceChangeListener()
+		{
+			public boolean onPreferenceChange(HtcPreference preference, Object object)
+			{
+				Integer value = 0;
+				if (object.toString() == "true")
+					value = 1;
+
+				if (value == 1)
+				{
+					preferenceScreen.addPreference(dataTweakColor);
+				}
+				else
+				{
+					preferenceScreen.removePreference(dataTweakColor);
+				}
+				return true;
+			}
+		});
+	}
+
+	private void setupRecordingDelete()
+	{
+		final NumberPickerPreference countPreference = (NumberPickerPreference) findPreference(Const.TWEAK_CALL_REC_AUTO_DELETE_COUNT);
+		final NumberPickerPreference intervalPreference = (NumberPickerPreference) findPreference(Const.TWEAK_CALL_REC_AUTO_DELETE_INTERVAL);
+
+		final HtcPreferenceCategory preferenceScreen = (HtcPreferenceCategory) findPreference(Const.TWEAK_CALL_REC_AUTO_DELETE_CAT);
+		preferenceScreen.removePreference(countPreference);
+		preferenceScreen.removePreference(intervalPreference);
+
+		int deleteValue = Integer.parseInt(preferences.getString(Const.TWEAK_CALL_REC_AUTO_DELETE, "0"));
+		final String[] RecordingDelete = getResources().getStringArray(R.array.RecordingDelete);
+		findPreference(Const.TWEAK_CALL_REC_AUTO_DELETE).setSummary(RecordingDelete[deleteValue]);
+
+		switch (deleteValue)
+		{
+		case 1:
+			preferenceScreen.addPreference(countPreference);
+			break;
+		case 2:
+			preferenceScreen.addPreference(intervalPreference);
+			break;
+		}
+
+		findPreference(Const.TWEAK_CALL_REC_AUTO_DELETE).setOnPreferenceChangeListener(new HtcPreference.OnPreferenceChangeListener()
+		{
+			public boolean onPreferenceChange(HtcPreference preference, Object object)
+			{
+				int index = Integer.parseInt(object.toString());
+				preference.setSummary(RecordingDelete[index]);
+				Settings.System.putInt(preference.getContext().getContentResolver(), Const.TWEAK_CALL_REC_AUTO_DELETE, index);
+
+				switch (index)
+				{
+				case 0:
+					preferenceScreen.removePreference(countPreference);
+					preferenceScreen.removePreference(intervalPreference);
+					break;
+
+				case 1:
+					preferenceScreen.addPreference(countPreference);
+					preferenceScreen.removePreference(intervalPreference);
+					break;
+
+				case 2:
+					preferenceScreen.removePreference(countPreference);
+					preferenceScreen.addPreference(intervalPreference);
+					break;
+				}
+				return true;
+			}
+		});
+	}
+
+	private void setupRecordingAutoCaller()
+	{
+		int caller = Integer.parseInt(preferences.getString(Const.TWEAK_CALL_REC_AUTO_CALLER, "0"));
+		final String[] RecordingCaller = getResources().getStringArray(R.array.RecordingCaller);
+		findPreference(Const.TWEAK_CALL_REC_AUTO_CALLER).setSummary(RecordingCaller[caller]);
+
+		findPreference(Const.TWEAK_CALL_REC_AUTO_CALLER).setOnPreferenceChangeListener(new HtcPreference.OnPreferenceChangeListener()
+		{
+			public boolean onPreferenceChange(HtcPreference preference, Object object)
+			{
+				int index = Integer.parseInt(object.toString());
+				preference.setSummary(RecordingCaller[index]);
+				Settings.System.putInt(preference.getContext().getContentResolver(), Const.TWEAK_CALL_REC_AUTO_CALLER, index);
+				return true;
+			}
+		});
+	}
+
+	private void setupCallRecording()
+	{
+		findPreference(Const.TWEAK_CALL_REC_AUTO).setDependency(Const.TWEAK_CALL_REC);
+
+		findPreference(Const.TWEAK_CALL_REC_AUTO).setOnPreferenceChangeListener(new HtcPreference.OnPreferenceChangeListener()
+		{
+			public boolean onPreferenceChange(HtcPreference preference, Object object)
+			{
+				Integer value = 0;
+				if (object.toString() == "true")
+					value = 1;
+				Settings.System.putInt(preference.getContext().getContentResolver(), Const.TWEAK_CALL_REC_AUTO, value);
+
+				findPreference(Const.TWEAK_CALL_REC_AUTO_SCREEN).setEnabled(object.toString() == "true");
+				return true;
+			}
+		});
+
+		final HtcSwitchPreference auto_rec = (HtcSwitchPreference) findPreference(Const.TWEAK_CALL_REC_AUTO);
+
+		findPreference(Const.TWEAK_CALL_REC_AUTO_SCREEN).setEnabled(auto_rec.isChecked());
+		if (!auto_rec.isEnabled())
+		{
+			findPreference(Const.TWEAK_CALL_REC_AUTO_SCREEN).setEnabled(false);
+		}
+
+		findPreference(Const.TWEAK_CALL_REC).setOnPreferenceChangeListener(new HtcPreference.OnPreferenceChangeListener()
+		{
+			public boolean onPreferenceChange(HtcPreference preference, Object object)
+			{
+				Integer value = 0;
+				if (object.toString() == "true")
+					value = 1;
+				Settings.System.putInt(preference.getContext().getContentResolver(), Const.TWEAK_CALL_REC, value);
+
+				findPreference(Const.TWEAK_CALL_REC_AUTO_SCREEN).setEnabled(object.toString() == "true");
+
+				if (value == 1)
+				{
+					findPreference(Const.TWEAK_CALL_REC_AUTO_SCREEN).setEnabled(auto_rec.isChecked());
+				}
+				return true;
+			}
+		});
+
+		int storage = Integer.parseInt(preferences.getString(Const.TWEAK_CALL_REC_AUTO_STORAGE, "1"));
+		final String[] RecordingStorage = getResources().getStringArray(R.array.RecordingStorage);
+
+		findPreference(Const.TWEAK_CALL_REC_AUTO_STORAGE).setSummary(RecordingStorage[storage]);
+
+		findPreference(Const.TWEAK_CALL_REC_AUTO_STORAGE).setOnPreferenceChangeListener(new HtcPreference.OnPreferenceChangeListener()
+		{
+			public boolean onPreferenceChange(HtcPreference preference, Object object)
+			{
+				int index = Integer.parseInt(object.toString());
+				preference.setSummary(RecordingStorage[index]);
+
+				Settings.System.putInt(getContentResolver(), Const.TWEAK_CALL_REC_AUTO_STORAGE, index);
+
+				return true;
+			}
+		});
+	}
+
+	private void setupRecordingTypeFilter()
+	{
+		final MultiCheckPreference pref = (MultiCheckPreference) findPreference(Const.TWEAK_CALL_REC_AUTO_FILTER);
+		changeFilterSummary(pref, pref.rows);
+
+		findPreference(Const.TWEAK_CALL_REC_AUTO_FILTER).setOnPreferenceChangeListener(new HtcPreference.OnPreferenceChangeListener()
+		{
+			@SuppressWarnings("unchecked")
+			public boolean onPreferenceChange(HtcPreference preference, Object object)
+			{
+				changeFilterSummary((MultiCheckPreference) preference, (ArrayList <Row>) object);
+
+				ArrayList <Row> rows = (ArrayList <Row>) object;
+
+				for (int i = 0; i < rows.size(); i++)
+				{
+					Settings.System.putInt(getContentResolver(), Const.TWEAK_CALL_REC_AUTO_FILTER + "_" + rows.get(i).getKey(), Misc.toInt(rows.get(i).getState()));
+				}
+
+				return false;
+			}
+		});
+	}
+
+	private void changeFilterSummary(MultiCheckPreference pref, ArrayList <Row> rows)
+	{
+		ArrayList <String> summs = new ArrayList <String>();
+
+		for (int i = 0; i < rows.size(); i++)
+		{
+			if (rows.get(i).getState() == true)
+			{
+				summs.add(rows.get(i).getSummary());
+			}
+		}
+		StringBuilder builder = new StringBuilder();
+		pref.setSummary(builder.append(summs));
+	}
+
+	private void setupNetworkManager(final String key, int standart)
+	{
+		HtcEditTextPreference slot = (HtcEditTextPreference) findPreference(key);
+
+		String slot_name = Settings.System.getString(getContentResolver(), key);
+		if (TextUtils.isEmpty(slot_name))
+			slot.setSummary(standart);
+		else
+			slot.setSummary(slot_name);
+
+		findPreference(key).setOnPreferenceChangeListener(new HtcPreference.OnPreferenceChangeListener()
+		{
+			public boolean onPreferenceChange(HtcPreference preference, Object object)
+			{
+				String name = object.toString();
+				preference.setSummary(name);
+				Settings.System.putString(getContentResolver(), key, name);
+				return true;
+			}
+		});
+	}
+
+	public static void putBoolean(String name, int value)
+	{
+		preferences.edit().putBoolean(name, Misc.toBoolean(value)).commit();
+	}
+
+	public static void putBoolean(String name, boolean value)
+	{
+		preferences.edit().putBoolean(name, value).commit();
+	}
+
+	public static void putInt(String name, int value)
+	{
+		preferences.edit().putInt(name, value).commit();
+	}
+
+	public static void putFloat(String name, float value)
+	{
+		preferences.edit().putFloat(name, value).commit();
+	}
+
+	@Override
+	public boolean onPreferenceChange(HtcPreference preference, Object object)
+	{
+		// TODO Auto-generated method stub
+		return false;
+	}
+}

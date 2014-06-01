@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="author">Автор: <b>Нурлан Муханов</b> он же <a href="mailto:nurike@gmail.com">Falseclock</a></string>
+    <string name="app_name">Твикер HTC One</string>
+    <string name="RecordingFilterKeysIn">in</string>
+    <string name="RecordingFilterKeysOut">out</string>
+    <string name="zero">0</string>
+    <string name="one">1</string>
+    <string name="two">2</string>
+    <string name="three">3</string>
+    <string name="four">4</string>
+    <string name="five">5</string>
+    <string name="six">6</string>
+    <string name="seven">7</string>
+    <string name="eight">8</string>
+    <string name="nine">9</string>
+    <string name="ten">10</string>
+    <string name="fourteen">14</string>
+    <string name="thirty">30</string>
+    <string name="sixty">60</string>
+    <string name="one_eighty">180</string>
+    <string name="three_sixty">160</string>
+    <string name="twenty">20</string>
+    <string name="fifty">50</string>
+    <string name="hundred1">100</string>
+    <string name="hundred2">200</string>
+    <string name="hundred3">300</string>
+    <string name="hundred5">500</string>
+    <string name="nine3">999</string>
+    <string name="systemBuildProperties">Настройки диктофона</string>
+    <string name="enableCallRecordingTitle">Запись телефонных разговоров</string>
+    <string name="enableCallRecordingSummary">Включает/отключает возможность записи</string>
+    <string name="callSettingsTitle">Настройки звонков и набора номера</string>
+    <string name="enableAutoRecordingTitle">Автоматическая запись</string>
+    <string name="enableAutoRecordingSummary">Включает автоматическую запись всех звонков</string>
+    <string name="guiSettingsTitle">Настройки интерфейса</string>
+    <string name="otherSettingsTitle">Все остальные настройки</string>
+    <string name="allNotificationsExpandedTitle">Раскрывать все оповещения</string>
+    <string name="allNotificationsExpandedSummary">Все оповещения в слайдере статус строки будет раскрытыми</string>
+    <string name="enableColoredSimLevelSummary">Цветные иконки в зависимости от уровня сигнала GSM/WCDMA</string>
+    <string name="enableColoredSimLevelTitle">Разноцветные иконки SIM карт</string>
+    <string name="enableColoredWiFiSummary">Иконка голубого цвета с уровнями сигнала</string>
+    <string name="enableColoredWiFiTitle">Цветная иконка WiFi</string>
+    <string name="enableColoredWeatherSummary">Замена черно-белых иконок погоды цветными из Sense 4+</string>
+    <string name="enableColoredWeatherTitle">Разноцветная погода</string>
+    <string name="enableDialerHighLightSummary">Фонетический алфавит в номеронабирателе</string>
+    <string name="enableDialerHighLightTitle">Подсветка букв</string>
+    <string name="settingsAutoRecordingTitle">Настройки автозаписи</string>
+    <string name="AutoRecordingType">Что должно записываться</string>
+    <string name="AutoRecordingPrune">Автоудаление старых записей</string>
+    <string name="AutoRecordingPruneTitle">Выберите через сколько дней удалять старые записи</string>
+    <string name="AutoRecordingPrunePositive">Установить</string>
+    <string name="AutoRecordingPruneNegative">Отмена</string>
+    <string name="AutoRecordingPruneDates">Дни, после которых происходит удаление: %1$d</string>
+    <string name="AutoRecordingPruneNone">Не установлено. Записи не удаляются</string>
+    <string name="AutoRecordingVibroTitle">Вибро подтверждение</string>
+    <string name="AutoRecordingVibroSummary">Вибрация при включении/отключении записи</string>
+    <string name="ColoredSimLevelPreferenceTitle">Цветовые схемы SIM</string>
+    <string name="ColoredSimLevelPreferenceTitle1">Цветовая схема SIM1</string>
+    <string name="ColoredSimLevelPreferenceTitle2">Цветовая схема SIM2</string>
+    <string name="ColoredSimLevelPreferenceSummary">Настройка цветов для сим карт</string>
+    <string name="enablePopupCharTitle">Расширенная русская клавиатуре</string>
+    <string name="enablePopupCharSummary">Добавить вторичные и всплывающие символы</string>
+    <string name="NotificationScreenSummary">в статус строке и слайдере</string>
+    <string name="NotificationScreenTitle">Подавление оповещений</string>
+    <string name="disableADBNotificationTitle">Отладка по USB разрешена</string>
+    <string name="disableUSBNotificationTitle">Установлено USB подключение</string>
+    <string name="disableSyncNotificationTitle">HTC Sync Manager</string>
+    <string name="disableMTPNotificationTitle">Мультимедийное устройство [MTP] подключено</string>
+    <string name="disableDeliveryNotificationTitle">Доставка SMS сообщений</string>
+    <string name="disableDeliveryNotificationSummary">если настроено уведомление о доставке</string>
+    <string name="SystemScreenSummary">влияющие на всю систему в целом</string>
+    <string name="SystemScreenTitle">Общесистемные твики</string>
+    <string name="LedScreenSummary">оповещения и зарядка</string>
+    <string name="LedScreenTitle">Передний LED индикатор</string>
+    <string name="chargingLedSummary">когда подключен кабель</string>
+    <string name="chargingLedTitle">Отключить индикацию зарядки</string>
+    <string name="flashlightDuringChargingSummary">оповещения будут иметь приоритет перед зарядкой</string>
+    <string name="flashlightDuringChargingTitle">Оповещения во время зарядки</string>
+    <string name="flashlightTimeoutSummary">как долго будет мигать LED</string>
+    <string name="flashlightTimeoutTitle">Тайм-аут для оповещения</string>
+    <string name="flashlightTimeoutHint">В минутах. 0 - без тайм-аута</string>
+    <string name="GuiScreenSummary">цвет, размер, и т.д.</string>
+    <string name="GuiScreenTitle">Настройки интерфейса</string>
+    <string name="hue_settings">Оттенок</string>
+    <string name="saturation_settings">Насыщенность</string>
+    <string name="light_settings">Яркость</string>
+    <string name="contrast_settings">Контраст</string>
+    <string name="qwerty_rus">Full Qwerty Russian</string>
+    <string name="land_qwerty_rus">Landscape Qwerty Russian</string>
+    <string name="alternates_label_backslash">\\</string>
+    <string name="alternates_label_equal">=</string>
+    <string name="alternates_for_euro">€</string>
+    <string name="alternates_for_dotcom">.ru .kz .ua .com</string>
+    <string name="alternates_for_a_lower">! à á â ã ä å æ ą</string>
+    <string name="alternates_for_b_lower">} ] > )</string>
+    <string name="alternates_for_c_lower">"' ` ç ć č"</string>
+    <string name="alternates_for_d_lower">\# ď</string>
+    <string name="alternates_for_e_lower">3 è é ê ë ę ě</string>
+    <string name="alternates_for_f_lower">$ € £ ¥ ¢</string>
+    <string name="alternates_for_g_lower">% ‰ ğ</string>
+    <string name="alternates_for_h_lower">&amp;</string>
+    <string name="alternates_for_i_lower">ı ï î í ì 8</string>
+    <string name="alternates_for_j_lower">* +</string>
+    <string name="alternates_for_k_lower">\?</string>
+    <string name="alternates_for_l_lower">ľ ĺ ł \\ /</string>
+    <string name="alternates_for_m_lower">; :</string>
+    <string name="alternates_for_n_lower">ň ń ñ — ~ -</string>
+    <string name="alternates_for_o_lower">ő ø œ ö õ ô ó ò 9</string>
+    <string name="alternates_for_p_lower">0</string>
+    <string name="alternates_for_q_lower">1</string>
+    <string name="alternates_for_r_lower">4 ř ŕ</string>
+    <string name="alternates_for_s_lower">\@ ß ś ş š</string>
+    <string name="alternates_for_t_lower">5 ţ ť</string>
+    <string name="alternates_for_u_lower">ű ů ü û ú ù 7</string>
+    <string name="alternates_for_v_lower">( &lt; [ {</string>
+    <string name="alternates_for_w_lower">2</string>
+    <string name="alternates_for_x_lower">\"</string>
+    <string name="alternates_for_y_lower">6 ý ÿ</string>
+    <string name="alternates_for_z_lower">_ ź ż ž</string>
+    <string name="recordingSeparateDir">В папках Incoming &amp; Outgoing</string>
+    <string name="recordingFileFlag">Добавлять IN &amp; OUT к файлу</string>
+    <string name="RecordingStorageSummary"></string>
+    <string name="RecordingStorageTitle">Как сохранять записи?</string>
+    <string name="LatinSet">Выбран латинский алфавит</string>
+    <string name="PhoneticSet">Выбран фонетический алфавит</string>
+    <string name="DialerButtonToast">Используйте пинч зум на цветовой палитре для изменения размера текста. Для смены алфавита нажмите левую кнопку номеронабирателя.</string>
+    <string name="slot1_name_title">Название слота №1</string>
+    <string name="slot2_name_title">Название слота №2</string>
+    <string name="dual_settings_title">Диспетчер сетей</string>
+    <string name="preferred_network_1">Слот №1</string>
+    <string name="preferred_network_2">Слот №1</string>
+    <string name="recordingFilterIncoming">Все входящие звонки</string>
+    <string name="recordingFilterOutgoing">Все исходящие звонки</string>
+    <string name="RecordingFilterTitle">Запись звонков по типу</string>
+    <string name="RecordingCallerAll">Любые звонки</string>
+    <string name="RecordingCallerKnown">Только из записной книжки</string>
+    <string name="RecordingCallerUnknown">Только неизвестные телефоны</string>
+    <string name="RecordingCallerTitle">Каких абонентов записывать?</string>
+    <string name="RecordingDeleteNone">Ничего не удалять</string>
+    <string name="RecordingDeleteByCount">По количеству записей</string>
+    <string name="RecordingDeleteBySize">По занимаемому размеру</string>
+    <string name="RecordingCallerByDate">По прошествию дней</string>
+    <string name="RecordingDeleteTitle">Настройка автоудаления</string>
+    <string name="quickPullDownSummary">Свайп по правой стороне экрана для раскрытия быстрых настроек</string>
+    <string name="quickPullDownTitle">Быстрый доступ к настройкам</string>
+    <string name="incoming">Входящие</string>
+    <string name="outgoing">Исходящие</string>
+    <string name="messages_of">Сообщение</string>
+    <string name="save_last">Сохранять последние</string>
+    <string name="days_of">Дней</string>
+    <string name="delete_after">Удалять через</string>
+    <string name="dialog_cancel">Отмена</string>
+    <string name="dialog_download">Скачать</string>
+    <string name="dialog_weather_alert">Для использования данного твика необходимо установить дополнительный пакет.</string>
+    <string name="dialog_weather_title">Пакет иконок погода</string>
+    <string name="delete_after_summary">в днях</string>
+    <string name="save_last_summary">количество записей</string>
+    <string name="RecordingDeleteCat">Настройки автоудаления</string>
+    <string name="RecordingFilterCat">Настройки фильтрации</string>
+    <string name="RecordingSaveCat">Настройки сохранения</string>
+    <string name="ColoredDataIconsSummary">включение твика</string>
+    <string name="ColoredDataIconsTitle">Иконки передачи данных</string>
+    <string name="ColoredDataIconsColorSummary">Настройка цвета иконок</string>
+    <string name="ColoredDataIconsColorTitle">Передача данных</string>
+    <string name="ColoredWiFiIconsColorSummary">Настройка цвета иконок</string>
+    <string name="ColoredWiFiIconsColorTitle">Уровень WiFi сигнала</string>
+    <string name="RecordingTypesAll">Записывать все звонки</string>
+    <string name="RecordingTypesKnown">Только из адресной книги</string>
+    <string name="RecordingTypesUnknown">Только неизвестные номера</string>
+    <string name="DataScreenTitle">Уровни сигналов и передача данных</string>
+    <string name="DataScreenSummary">WiFi, сим карты и т.п.</string>
+    <string name="ContactDialScreenTitle">Контакты и телефон</string>
+    <string name="ContactDialScreenSummary">интерфейс, цвета, настройки</string>
+    <string name="enableColorCallIndicatorTitle">Цветной индикатор звонка</string>
+    <string name="enableColorCallIndicatorSummary">в журнале вызовов</string>
+    <string name="enableUnreadHighLightTitle">Выделение непрочитанных сообщений</string>
+    <string name="enableUnreadHighLightSummary">Диалог будет иметь голубой оттенок</string>
+    <string name="MessagingScreenTitle">Настройки SMS and MMS</string>
+    <string name="MessagingScreenSummary"></string>
+    <string name="enableHideSMSBadgeSummary">только для SMS И MMS</string>
+    <string name="enableHideSMSBadgeTitle">Спратять фото в списке диалогов</string>
+    <string name="enableSMSNotifyToDialogSummary">по умолчанию открывается полный список вместо конкретного диалога</string>
+    <string name="enableSMSNotifyToDialogTitle">Открытие диалога через оповещение</string>
+    <string name="sdcardPermissionTitle">Полный доступ к SD карте</string>
+    <string name="sdcardPermissionSummary">разрешение на чтение и запись</string>
+    <string name="app_about">О приложении</string>
+    <string name="about">Описание</string>
+    <string name="change_log">Изменения</string>
+    <string name="current_bugs">Текущие баги</string>
+    <string name="thanks">Благодарности</string>
+    <string name="implemented"><b>Что реализовано:</b>\n
+* Возможность записи телефонных разговоров с линии. Работает и на Bluetooth девайсах. Проверено!\n
+* Возможность автоматической записи с настройками.\n
+* Фильтрация автоматических записей по типу звонка и по абоненту\n
+* Автоматическое удаление автоматических записей по прошествию дней или же по общему количеству\n
+* Раскрытие всех оповещений в слайдере статус бара.\n
+* Расширенная русская клавиатура\n
+* Быстрый доступ к настройками по свайпу правой части экрана\n
+* Настройка работы LED индикатора\n
+* Возможность задания названия сим карт без ограничения по длине\n
+* Подавление оповещений в статус строе (Отладка, USB подключение, HTC Sync, MTP)\n
+* Подсветка и изменение алфавита в номеронабирателе\n
+* Разноцветные иконки SIM карт\n
+* Цветная иконка WiFi\n
+* Цветная погода из Sense 4+.\n
+* Включение SIP настроек в настройках двухсимного телефона\n
+* Префикс в виде даты к названию файлов снятых камерой
+</string>
+    <string name="google_play"><b>Google Play Market</b></string>
+    <string name="xda_support"><b>Поддержка на XDA</b></string>
+    <string name="change_log_text">
+<big><b>Версия 3.2.3</b></big>\n
+<font fgcolor="#FF009000"><b>*</b></font> создание nomedia файла в папке с записями\n
+<font fgcolor="#FF009000"><b>*</b></font> включение SIP настроек в настройках двухсимного телефона\n
+<font fgcolor="#FF009000"><b>*</b></font> префикс в виде даты к названию файлов снятых камерой\n
+<font fgcolor="#FF009000"><b>*</b></font> окно с информацией о программе\n
+<font fgcolor="#FFFF0000"><b>*</b></font> (fix) настройки SMS для Sense 6.0\n
+<font fgcolor="#FFFF0000"><b>*</b></font> (fix) по умолчанию в настройках кнопки номеронабирателя выставлен латинский алфавит\n
+\n
+<big><b>Версия 3.2.2</b></big>\n
+<font fgcolor="#FFFF0000"><b>*</b></font> фикс запуска приложения при Sense 6.0\n
+<font fgcolor="#FF009000"><b>*</b></font> возможность разрешения полного доступа к SD карте\n
+<font fgcolor="#FFFF0000"><b>*</b></font> (fix) кнопка записи активна при включенном экране\n
+\n
+<big><b>Версия 3.2.1</b></big>\n<font fgcolor="#FF009000"><b>*</b></font> большие значки погоды в часовом и дневном прогнозе\n<font fgcolor="#FF009000"><b>*</b></font> кнопка записи на экране во время разговора если не включена автозапись\n<font fgcolor="#FF009000"><b>*</b></font> возможность отключать фотографии при листинге сообщений\n<font fgcolor="#FF009000"><b>*</b></font> более четкое выделение непрочитанных SMS сообщений\n<font fgcolor="#FF009000"><b>*</b></font> разноцветные иконки для индикации входящих и исходящих вызовов в журнале звонков\n<font fgcolor="#FF009000"><b>*</b></font> дополнительные иконки для 802d моделей\n<font fgcolor="#FF009000"><b>*</b></font> открытие SMS сообщения через уведомление в шторке открывает сразу диалог с контактом вместо открытия списка диалогов\n<font fgcolor="#FF009000"><b>*</b></font> переработано меню настроек\n
+\n<big><b>Версия 3.1.9</b></big>\n<font fgcolor="#FF009000"><b>*</b></font> погода для экрана блокировки и BlinkFeed.\n
+\n
+для корректной работы необходимо обновить Weather Pack\n
+\n<big><b>Версия 3.1.8</b></big>\n<font fgcolor="#FF009000"><b>*</b></font> добавлен твик иконок передачи данных с изменением цвета\n<font fgcolor="#FF009000"><b>*</b></font> добавлены иконки уровня сигнала сети для 802d\n<font fgcolor="#FF009000"><b>*</b></font> добавлены иконки уровня сигнала сети для M7 и M8\n<font fgcolor="#FF009000"><b>*</b></font> добавлено изменение цвета WiFi иконки\n<font fgcolor="#FF009000"><b>*</b></font> добавлен испанский язык\n<font fgcolor="#FF009000"><b>*</b></font> добавлен португальский язык\n
+\n<big><b>Версия 3.1.7</b></big>\n<font fgcolor="#FF009000"><b>*</b></font> автоудаление записей через промежуток дней или по общему задаваемому количеству\n<font fgcolor="#FF009000"><b>*</b></font> убрана принудительная замена иконок из Sense 5 ToolBox\n
+\n<big><b>Версия 3.1.6</b></big>\n<font fgcolor="#FF009000"><b>*</b></font> иконки погоды перенесены в отдельный скачиваемый пакет\n
+\n<big><b>Версия 3.1.5</b></big>\n<font fgcolor="#FFFF0000"><b>*</b></font> фикс доступа к настройкам LED\n<font fgcolor="#FFFF0000"><b>*</b></font> изменен дизайн некоторых настроек\n<font fgcolor="#FFFF0000"><b>*</b></font> добавлен фильтр по Входящим/Исходящим номерам для автозаписи\n<font fgcolor="#FFFF0000"><b>*</b></font> добавлен фильтр по типу абонента для автозаписи\n<font fgcolor="#FFFF0000"><b>*</b></font> все файлы автозаписи сохраняются в папке Auto Recordings\n<font fgcolor="#FFFF0000"><b>*</b></font> добавлена возможность вызова твикера из стоковых настроек\n
+\n<big><b>Версия 3.1.4</b></big>\n<font fgcolor="#FFFF0000"><b>*</b></font> доступ к быстрым настройкам по свайпу правой части экрана\n<font fgcolor="#FFFF0000"><b>*</b></font> фикс 3G иконки из Sense ToolBox\n<font fgcolor="#FFFF0000"><b>*</b></font> фикс с сохранением настроек записи звонков\n
+\n<big><b>Версия 3.1.3</b></big>\n<font fgcolor="#FFFF0000"><b>*</b></font> добавлена возможность изменять цвет и размер латинского алфавита в номеронабирателе\n<font fgcolor="#FFFF0000"><b>*</b></font> возможность изменения названия слотов сим карт без лимита длины строки\n
+\n<big><b>Версия 3.1.2</b></big>\n<font fgcolor="#FFFF0000"><b>*</b></font> фикс c настройками автозаписи\n<font fgcolor="#FFFF0000"><b>*</b></font> добавлена возможность включения индикации обовещений LED индикатором даже при зарядке\n<font fgcolor="#FFFF0000"><b>*</b></font> возможность настройки тайм-аута световой LED индикации. 0 - постоянная, пока не разблокируете телефон. По умолчанию на стоке 5 минут.\n
+\n<big><b>Версия 3.1.1</b></big>\n<font fgcolor="#FFFF0000"><b>*</b></font> фикс с крайними значениями при выборе яркости,контраста и т.п.\n<font fgcolor="#FFFF0000"><b>*</b></font> фикс изображений при настройке второй симкарты\n<font fgcolor="#FFFF0000"><b>*</b></font> фикс значений первой симкарты после настройки второй\n<font fgcolor="#FFFF0000"><b>*</b></font> выбор размера шрифта кнопки номеронабирателя pinch эффектом стал глаже\n<font fgcolor="#FFFF0000"><b>*</b></font> добавлена возможность отключения LED индикатора при зарядке\n<font fgcolor="#FFFF0000"><b>*</b></font> добавлена опция настроек автозаписи: по разным папкам или же с флагом в конце файла. Опция работает на лету без необходимости перезагрузки, как и все другие опция связанные с записью звонков.\n<font fgcolor="#FFFF0000"><b>*</b></font> переработано меню настроек\n
+\n<big><b>Версия 3.1.0</b></big>\n<font fgcolor="#FFFF0000"><b>*</b></font> Полностью переписан программный Java код\n<font fgcolor="#FFFF0000"><b>*</b></font> Файлы автоматической записи сохраняются в зависимости от типа звонка в следующие директории:\n
+- Automatic records/Incoming/ - для входящих звонков\n
+- Automatic records/Outgoing/ - для исходящих звонков\n
+Ручные записи звонков записываются по умолчанию в корень папки My Recordings\n<font fgcolor="#FFFF0000"><b>*</b></font> возможность отключения следующих оповещений в статус-строке\n
+- Отладка по USB разрешена\n
+- Установлено USB подключение\n
+- HTC Sync Manager\n
+- Мультимедийное устройство [MTP]\n<font fgcolor="#FFFF0000"><b>*</b></font> мелкие фиксы и доработки\n<big><b>Версия 3.0.8</b></big>\n<font fgcolor="#FFFF0000"><b>*</b></font> фикс с невидимым алфавитом в номеронабирателе\n<font fgcolor="#FFFF0000"><b>*</b></font> фикс с несохраняемой яркостью\n<font fgcolor="#FFFF0000"><b>*</b></font> удален пункт настроек автозаписи, так как пока не реализован\n
+\n<big><b>Версия 3.0.7</b></big>\n<font fgcolor="#FFFF0000"><b>*</b></font> pinch zoom для изменения размера фонетического алфавита\n
+\n<big><b>Версия 3.0.6</b></big>\n<font fgcolor="#FFFF0000"><b>*</b></font> расширенная клавиатура для русского языка\n
+\n<big><b>Версия 3.0.5</b></big>\n<font fgcolor="#FFFF0000"><b>*</b></font> исправлена ошибка с роуминг спрайтами сим карт на KitKat прошивках\n<font fgcolor="#FFFF0000"><b>*</b></font> добавлена возможность выбора подсветки кнопок номеронабирателя\n
+\n<big><b>Версия 3.0.4</b></big>\n<font fgcolor="#FFFF0000"><b>*</b></font> исправлена ошибка с цветовыделением кнопок \n<font fgcolor="#FFFF0000"><b>*</b></font> исправлена ошибка с настройками\n
+\n<big><b>Версия 3.0.3</b></big>\n<font fgcolor="#FFFF0000"><b>*</b></font> выбор цветовой схемы цвета сим карт\n
+\n<big><b>Версия 3.0.2</b></big>\n<font fgcolor="#FFFF0000"><b>*</b></font> полностью рабочие настройки.\n<font fgcolor="#FFFF0000"><b>*</b></font> настраиваемое вибро подтверждение при начале автозаписи.\n</string>
+    <string name="enableSIPTitle">SIP телефония на Dual версии</string>
+    <string name="enableSIPSummary">включение этой возможности</string>
+    <string name="enablePhotoPrefixTitle">Префикс к файлам Камеры</string>
+    <string name="enablePhotoPrefixSummary">IMAG0001.jpg</string>
+</resources>

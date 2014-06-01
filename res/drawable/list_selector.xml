@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android" android:variablePadding="true" android:dither="true">
+    <!-- touch down -->
+    <item 
+        android:color="#ffff0000"
+        android:drawable="@drawable/list_selector_pressed"
+        android:background="@drawable/list_background_unread"
+        android:state_pressed="true"/>
+    <!-- selected -->
+    <item
+        android:color="#ffff0000"
+        android:drawable="@drawable/list_selector_selected"
+        android:background="@drawable/list_background_unread"
+        android:state_selected="true"
+        android:state_focused="false"
+        android:state_pressed="false"/>
+</selector>

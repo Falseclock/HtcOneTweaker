@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="digit">80.0px</dimen>
+    <dimen name="workspace_cell_height_port6">108.159984dip</dimen>
+    <dimen name="workspace_cell_width_port5">72.0dip</dimen>
+    
+</resources>

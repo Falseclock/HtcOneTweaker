@@ -1,0 +1,133 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scroll"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#ffffff" >
+
+<LinearLayout
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="#ffffff"
+    android:orientation="vertical"
+    android:padding="5dp" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:gravity="top|left" >
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/app_name"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="#333333"
+                android:textSize="26sp"
+                android:textStyle="bold" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:gravity="top|right" >
+
+            <TextView
+                android:id="@+id/version"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="3.2.3"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#444444"
+                android:textSize="26sp"
+                android:textStyle="italic" />
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="5dp"
+        android:background="#dddddd"
+        android:orientation="vertical" >
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/author"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/author"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textColor="#444444" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="5dp"
+        android:background="#dddddd"
+        android:orientation="vertical" >
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/implemented"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:linksClickable="true"
+        android:text="@string/implemented"
+        android:textColor="#555555" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="5dp"
+        android:background="#dddddd"
+        android:orientation="vertical" >
+    </LinearLayout>
+
+   <Button
+       android:layout_width="match_parent"
+       android:layout_height="40dp"
+       android:layout_marginBottom="5dp"
+       android:layout_marginTop="5dp"
+       android:background="@drawable/btn_default_small"
+       android:clickable="true" android:autoLink="web"
+       android:linksClickable="true"
+       android:onClick="goToGoogle"
+       android:minHeight="40dp"
+       android:orientation="vertical"
+       android:text="@string/google_play"
+       android:textColor="#555555"
+       android:textSize="12sp" >
+
+    </Button>
+
+   <Button
+       android:layout_width="match_parent"
+       android:layout_height="40dp"
+       android:layout_marginBottom="5dp"
+       android:layout_marginTop="5dp"
+       android:background="@drawable/btn_default_small"
+       android:clickable="true" android:autoLink="web"
+       android:linksClickable="true"
+       android:onClick="goToXda"
+       android:minHeight="40dp"
+       android:orientation="vertical"
+       android:text="@string/xda_support"
+       android:textColor="#555555"
+       android:textSize="12sp" />
+
+</LinearLayout>
+</ScrollView>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<row width="64dp" height="35.5dp">
+    <key codes="0x0439" label="й" width="56.5dp" leftEdge="true" topLabel="1" popupCharacters="@string/alternates_for_q_lower" accentType="3" alignIndex="0" />
+    <key codes="0x0446" label="ц" topLabel="2" width="58dp" popupCharacters="@string/alternates_for_w_lower" accentType="3" alignIndex="0" />
+    <key codes="0x0443" label="у" topLabel="3" width="60dp" popupCharacters="@string/alternates_for_e_lower" accentType="3" alignIndex="0" />
+    <key codes="0x043A" label="к" topLabel="4" width="66dp" popupCharacters="@string/alternates_for_r_lower" accentType="3" alignIndex="0" />
+    <key codes="0x0435" label="е" topLabel="5" width="79.67dp" popupCharacters="@string/alternates_for_t_lower" accentType="3" alignIndex="0" />
+    <key codes="0x043D" label="н" topLabel="6" width="79.5dp" popupCharacters="@string/alternates_for_y_lower" accentType="3" alignIndex="0" />
+    <key codes="0x0433" label="г" topLabel="7" width="66dp" popupCharacters="@string/alternates_for_u_lower" accentType="3" alignIndex="6" />
+    <key codes="0x0448" label="ш" topLabel="8" width="60dp" popupCharacters="@string/alternates_for_i_lower" accentType="3" alignIndex="5" />
+    <key codes="0x0449" label="щ" topLabel="9" width="58dp" popupCharacters="@string/alternates_for_o_lower" accentType="3" alignIndex="8" />
+    <key codes="0x0437" label="з" topLabel="0" width="56.67dp" rightEdge="true" popupCharacters="@string/alternates_for_p_lower" accentType="3" alignIndex="0" />
+</row>

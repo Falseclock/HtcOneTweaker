@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<keyboard label="@string/land_qwerty_rus" keyTextSize="23dp" popupTextSize="37.5dp" topIconYOffset="2dp" topLabelTextSize="14.5dp" topLabelTextXOffset="-1.67dp" topLabelTextYOffset="1.67dp" previewTopLevel="false" keyboardPadding="0dp,0.67dp,0dp,0dp" totalRows="4">
+    <include xml="@xml/row_land_rus1" />
+    <row width="64dp" height="36dp">
+        <key codes="0x0444" label="ф" width="56.5dp" leftEdge="true" topLabel="!" popupCharacters="@string/alternates_for_a_lower" accentType="3" alignIndex="0" />
+        <key codes="0x044B" label="ы" width="58dp" topLabel="\@" topLabelTextScale="97%p" popupCharacters="@string/alternates_for_s_lower" accentType="3" alignIndex="0" />
+        <key codes="0x0432" label="в" width="60dp" topLabel="\#" topLabelTextScale="104%p" popupCharacters="@string/alternates_for_d_lower" accentType="3" alignIndex="0" />
+        <key codes="0x0430" label="а" width="66dp" topLabel="$" topLabelTextScale="90%p" popupCharacters="@string/alternates_for_f_lower" accentType="3" alignIndex="0" />
+        <key codes="0x043F" label="п" width="79.67dp" topLabel="%" topLabelTextScale="104%p" popupCharacters="@string/alternates_for_g_lower" accentType="3" alignIndex="0" />
+        <key codes="0x0440" label="р" width="79.5dp" topLabel="&amp;" topLabelTextScale="104%p" popupCharacters="@string/alternates_for_h_lower" accentType="3" alignIndex="0" />
+        <key codes="0x043E" label="о" width="66dp" topLabel="+" topLabelTextScale="125%p" popupCharacters="@string/alternates_for_j_lower" accentType="3" alignIndex="1" />
+        <key codes="0x043B" label="л" width="60dp" topLabel="\?" topLabelTextScale="104%p" popupCharacters="@string/alternates_for_k_lower" accentType="3" alignIndex="0" />
+        <key codes="0x0434" label="д" width="58dp" topLabel="/" topLabelTextScale="104%p" popupCharacters="@string/alternates_for_l_lower" accentType="3" alignIndex="4" />
+        <key codes="0x0436" label="ж" width="56.67dp" rightEdge="true" topLabel="\\" topLabelTextScale="104%p" popupCharacters="@string/alternates_label_backslash" accentType="3" alignIndex="0" />
+    </row>
+    <include xml="@xml/row_land_rus3" />
+    <row width="64dp" height="36dp">
+        <key codes="-1" width="70.5dp" modifier="true" sticky="true" function="true" leftEdge="true" icon="@drawable/key_icon_shift_toggle" showPreview="false" />
+        <key codes="0x0451" label="ё" width="63dp" />
+        <key codes="0x0021" label="!" width="67dp" />
+        <key codes="0x003F" label="\?" width="74dp" />
+        <key codes="0x002D" label="-" width="91dp" />
+        <key codes="0x044D" label="э" width="74dp" />
+        <key codes="0x0445" label="х" width="67dp" />
+        <key codes="0x044A" label="ъ" width="63dp" />
+        <key codes="0x0008" width="70.67dp" function="true" rightEdge="true" repeatable="true" icon="@drawable/htc_sense_input_icon_backspace_dark" showPreview="false" />
+    </row>
+    <include xml="@xml/row_land_rus5" />
+</keyboard>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<keyboard label="@string/qwerty_rus" keyTextSize="23sp" popupTextSize="37.5sp" topIconYOffset="1.67dp" upperCaseKeyTextYOffset="4dp" keyTextYOffset="1.67dp" topLabelTextSize="14.5dp" topLabelTextXOffset="-1.34dp" topLabelTextYOffset="3.5dp" previewTopLevel="false" keyboardPadding="0dp,0.67dp,0dp,0dp">
+    <include xml="@xml/row_rus1" />
+    <row width="36dp" height="44.5dp">
+        <key codes="0x0444" label="ф" leftEdge="true" topLabel="!" popupCharacters="@string/alternates_for_a_lower" accentType="3" alignIndex="0" />
+        <key codes="0x044B" label="ы" topLabel="\@" popupCharacters="@string/alternates_for_s_lower" accentType="3" alignIndex="0" />
+        <key codes="0x0432" label="в" topLabel="\#" popupCharacters="@string/alternates_for_d_lower" accentType="3" alignIndex="0" />
+        <key codes="0x0430" label="а" topLabel="$" popupCharacters="@string/alternates_for_f_lower" accentType="3" alignIndex="0" />
+        <key codes="0x043F" label="п" topLabel="%" popupCharacters="@string/alternates_for_g_lower" accentType="3" alignIndex="0" />
+        <key codes="0x0440" label="р" topLabel="&amp;" popupCharacters="@string/alternates_for_h_lower" accentType="3" alignIndex="0" />
+        <key codes="0x043E" label="о" topLabel="+" popupCharacters="@string/alternates_for_j_lower" accentType="3" alignIndex="1" />
+        <key codes="0x043B" label="л" topLabel="\?" popupCharacters="@string/alternates_for_k_lower" accentType="3" alignIndex="0" />
+        <key codes="0x0434" label="д" topLabel="/" popupCharacters="@string/alternates_for_l_lower" accentType="3" alignIndex="4" />
+        <key codes="0x0436" label="ж" topLabel="\\" rightEdge="true" popupCharacters="@string/alternates_label_backslash" accentType="3" alignIndex="0" />
+    </row>
+    <include xml="@xml/row_rus3" />
+    <row width="38dp" height="44.67dp">
+        <key codes="-1" width="47dp" modifier="true" sticky="true" function="true" leftEdge="true" icon="@drawable/key_icon_shift_toggle" showPreview="false" />
+        <key codes="0x0451" label="ё" />
+        <key codes="0x0021" label="!" />
+        <key codes="0x003F" label="\?" />
+        <key codes="0x002D" label="-" />
+        <key codes="0x044D" label="э" />
+        <key codes="0x0445" label="х" />
+        <key codes="0x044A" label="ъ" />
+        <key codes="0x0008" width="47dp" function="true" rightEdge="true" repeatable="true" icon="@drawable/htc_sense_input_icon_backspace_dark" showPreview="false" />
+    </row>
+    <include xml="@xml/row_rus5" />
+    <customize cust_dpad="true">
+        <include xml="@xml/row_arrow" />
+    </customize>
+</keyboard>

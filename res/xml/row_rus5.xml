@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<row width="38dp" height="47dp">
+    <key codes="-30" width="47dp" label="12#" textSize="17dp" popupTextSize="30dp" function="true" leftEdge="true" labelOffsetY="-1.34dp" topIcon="@drawable/htc_sense_input_icon_smiley_2nd_dark" longpressPreview="@drawable/htc_sense_input_visualfeedback_smiley_dark" grouped="4" />
+    <key codes="-2" width="47dp" label="12#" textSize="17dp" function="true" leftEdge="true" hgap="-47dp" showPreview="false" grouped="4" />
+    <key codes="0x002C,-28" label="," textSize="23dp" labelOffsetY="-6.34dp" function="true" topIcon="@drawable/htc_sense_input_icon_settings_2nd_dark" longpressPreview="@drawable/htc_sense_input_visualfeedback_setting_dark" ignoreDAM="true" splitSet="1" />
+    <key codes="0x0020" width="190dp" repeatable="true" iconOffsetY="11.34dp" icon="@drawable/htc_sense_input_icon_space_dark" showPreview="false" ignoreDAM="true" splitSet="1" />
+    <key codes="0x002C,-28" hgap="-228dp" label="," textSize="23dp" labelOffsetY="-6.34dp" function="true" topIcon="@drawable/htc_sense_input_icon_settings_2nd_dark" longpressPreview="@drawable/htc_sense_input_visualfeedback_setting_dark" ignoreDAM="true" splitSet="2" />
+    <key codes="0x002F" label="/" labelOffsetY="-3dp" ignoreDAM="true" splitSet="2" />
+    <key codes="0x0020" repeatable="true" width="114dp" iconOffsetY="11.34dp" icon="@drawable/htc_sense_input_icon_space_dark" showPreview="false" ignoreDAM="true" splitSet="2" />
+    <key codes="-7" label=".com" textSize="17dp" labelOffsetY="-4dp" popupTextSize="30dp" popupCharacters="@string/alternates_for_dotcom" accentType="1" alignIndex="2" ignoreDAM="true" splitSet="2" />
+    <key codes="0x002C,-28" hgap="-228dp" label="," textSize="23dp" labelOffsetY="-6.34dp" function="true" topIcon="@drawable/htc_sense_input_icon_settings_2nd_dark" longpressPreview="@drawable/htc_sense_input_visualfeedback_setting_dark" ignoreDAM="true" splitSet="3" />
+    <key codes="0x0040" label="\@" textSize="23dp" labelOffsetY="-5dp" ignoreDAM="true" splitSet="3" />
+    <key codes="0x005F" label="_" labelOffsetY="-4dp" ignoreDAM="true" splitSet="3" />
+    <key codes="0x0020" width="76dp" repeatable="true" iconOffsetY="11.34dp" icon="@drawable/htc_sense_input_icon_space_dark" showPreview="false" ignoreDAM="true" splitSet="3" />
+    <key codes="-7" label=".com" textSize="17dp" labelOffsetY="-4dp" popupTextSize="30dp" popupCharacters="@string/alternates_for_dotcom" accentType="1" alignIndex="2" ignoreDAM="true" splitSet="3" />
+    <key codes="-16" hgap="-228dp" function="true" popupTextSize="30dp" topIcon="@drawable/htc_sense_input_icon_global_dark" textSize="19dp" labelOffsetY="-1.34dp" popupCharacters="" ignoreDAM="true" splitSet="4" />
+    <key codes="0x002C,-28" label="," textSize="23dp" labelOffsetY="-6.34dp" function="true" topIcon="@drawable/htc_sense_input_icon_settings_2nd_dark" longpressPreview="@drawable/htc_sense_input_visualfeedback_setting_dark" ignoreDAM="true" splitSet="4" />
+    <key codes="0x0020" width="152dp" repeatable="true" iconOffsetY="11.34dp" icon="@drawable/htc_sense_input_icon_space_dark" showPreview="false" ignoreDAM="true" splitSet="4" />
+    <key codes="-16" hgap="-228dp" function="true" popupTextSize="30dp" topIcon="@drawable/htc_sense_input_icon_global_dark" textSize="19dp" labelOffsetY="-1.34dp" popupCharacters="" ignoreDAM="true" splitSet="5" />
+    <key codes="0x002C,-28" label="," textSize="23dp" labelOffsetY="-6.34dp" function="true" topIcon="@drawable/htc_sense_input_icon_settings_2nd_dark" longpressPreview="@drawable/htc_sense_input_visualfeedback_setting_dark" ignoreDAM="true" splitSet="5" />
+    <key codes="0x002F" label="/" labelOffsetY="-3dp" ignoreDAM="true" splitSet="5" />
+    <key codes="0x0020" width="76dp" repeatable="true" iconOffsetY="11.34dp" icon="@drawable/htc_sense_input_icon_space_dark" showPreview="false" ignoreDAM="true" splitSet="5" />
+    <key codes="-7" label=".com" textSize="17dp" labelOffsetY="-4dp" popupTextSize="30dp" popupCharacters="@string/alternates_for_dotcom" accentType="1" alignIndex="2" ignoreDAM="true" splitSet="5" />
+    <key codes="-16" hgap="-228dp" function="true" popupTextSize="30dp" topIcon="@drawable/htc_sense_input_icon_global_dark" textSize="19dp" labelOffsetY="-1.34dp" popupCharacters="" ignoreDAM="true" splitSet="6" />
+    <key codes="0x005F,-28" label="_" labelOffsetY="-5dp" function="true" topIcon="@drawable/htc_sense_input_icon_settings_2nd_dark" longpressPreview="@drawable/htc_sense_input_visualfeedback_setting_dark" ignoreDAM="true" splitSet="6" />
+    <key codes="0x0040" label="\@" textSize="23dp" labelOffsetY="-5dp" ignoreDAM="true" splitSet="6" />
+    <key codes="0x0020" width="76dp" repeatable="true" iconOffsetY="11.34dp" icon="@drawable/htc_sense_input_icon_space_dark" showPreview="false" ignoreDAM="true" splitSet="6" />
+    <key codes="-7" label=".com" textSize="17dp" labelOffsetY="-4dp" popupTextSize="30dp" popupCharacters="@string/alternates_for_dotcom" accentType="1" alignIndex="2" ignoreDAM="true" splitSet="6" />
+    <key codes="0x002E,-31" label="." textSize="23dp" labelOffsetY="-6.67dp" topIconOffsetY="1.34dp" function="true" topIcon="@drawable/htc_sense_input_icon_voice_2nd_dark" longpressPreview="@drawable/htc_sense_input_visualfeedback_voice_dark" grouped="3" />
+    <key codes="0x002E,0x002E" label="." textSize="23dp" labelOffsetY="5dp" ignoreDefaultOffsetY="true" hgap="-38dp" grouped="3" />
+    <key codes="0x000A" width="47dp" function="true" sticky="true" rightEdge="true" icon="@drawable/htc_sense_input_icon_enter_dark" showPreview="false" />
+</row>

@@ -1,0 +1,375 @@
+package kz.virtex.htc.tweaker.mods;
+
+import static de.robv.android.xposed.XposedHelpers.findAndHookMethod;
+import kz.virtex.htc.tweaker.R;
+import kz.virtex.htc.tweaker.XMain;
+import android.app.Notification;
+import android.app.PendingIntent;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.content.pm.PackageManager.NameNotFoundException;
+import android.content.res.XModuleResources;
+import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
+import android.net.Uri;
+import android.os.Bundle;
+import android.os.Vibrator;
+import android.view.View;
+import de.robv.android.xposed.XC_MethodHook;
+import de.robv.android.xposed.XposedBridge;
+import de.robv.android.xposed.XposedHelpers;
+import de.robv.android.xposed.callbacks.XC_InitPackageResources.InitPackageResourcesParam;
+import de.robv.android.xposed.callbacks.XC_LayoutInflated;
+import de.robv.android.xposed.callbacks.XC_LoadPackage.LoadPackageParam;
+import android.graphics.drawable.ColorDrawable;
+
+public class Messaging
+{
+	public static Boolean NotificationFlag = false;
+	public static Drawable Background;
+	public static Context messageContext;
+	private static MessageData mMessageData;
+	
+	public static final String ACTION_DELETE_MESSAGE = "tweaker.intent.action.DELETE_MESSAGE";
+	public static final String ACTION_CALL_TO_CONTACT = "tweaker.intent.action.CALL_TO_CONTACT";
+	public static final String ACTION_MARK_THREAD_READ = "tweaker.intent.action.MARK_THREAD_READ";
+	
+    public final static BroadcastReceiver receiver = new BroadcastReceiver() 
+    {
+        @Override
+        public void onReceive(Context paramContext, Intent intent)
+        {
+			Vibrator vibrator = (Vibrator) paramContext.getSystemService(Context.VIBRATOR_SERVICE);
+		    vibrator.vibrate(20);
+		    
+    		if (intent != null)
+    		{
+	        	String action = intent.getAction();
+	        	Bundle bundle = intent.getExtras();
+				if (action == null)
+					action = "UNKNOWN";
+				
+	        	XposedBridge.log("action: " + action);
+
+	        	if (action.equals(ACTION_DELETE_MESSAGE))
+				{
+					paramContext.getContentResolver().delete( Uri.parse("content://sms/" + bundle.getLong("MsgId")), null, null);
+				}
+				if (action.equals(ACTION_CALL_TO_CONTACT))
+				{
+					
+				}
+				if (action.equals(ACTION_MARK_THREAD_READ))
+				{
+					Class <?> MessagingNotification = XposedHelpers.findClass("com.android.mms.ui.MessageUtils", null);
+					XposedHelpers.callStaticMethod(MessagingNotification, "markAsRead", paramContext, bundle.getLong("ThreadId"));
+				}
+
+			    //paramContext.unregisterReceiver(this);
+    		}
+        }
+    };
+
+    
+	public static class MessageData
+	{
+		Context mContext;
+		long mWhen;
+		CharSequence mTicker;
+		int mSmallIcon;
+		Bitmap mLargeIcon;
+		boolean mGetNewMsgNotificationSetting;
+		PendingIntent mPendingIntent;
+		String mContentTitle;
+		String mContentText;
+		int mMessageCount;
+		int mThreadSize;
+		ClassLoader classLoader;
+		boolean paramBoolean;
+		Intent paramIntentFirst;
+		String paramSender;
+		String paramText;
+		long mThreadId;
+		long mMsgId;
+		long mContactId;
+	
+		public MessageData(Context context, long when, CharSequence ticker, int smallIcon, Bitmap largeIcon, PendingIntent intent, String contentTitle, String contentText, int messageCount, int threadSize, boolean getNewMsgNotificationSetting, ClassLoader paramClassLoader, boolean paramBool, Intent paramintent1, String pSender, String pText,long threadId, long msgId, long contactId)
+		{
+			mContext = context;
+			mWhen = when;
+			mTicker = ticker;
+			mSmallIcon = smallIcon;
+			mLargeIcon = largeIcon;
+			mPendingIntent = intent;
+			mContentTitle = contentTitle;
+			mContentText = contentText;
+			mMessageCount = messageCount;
+			mThreadSize = threadSize;
+			mGetNewMsgNotificationSetting = getNewMsgNotificationSetting;
+			classLoader = paramClassLoader;
+			paramBoolean = paramBool;
+			paramIntentFirst = paramintent1;
+			paramSender = pSender;
+			paramText = pText;
+			mThreadId = threadId;
+			mMsgId = msgId;
+			mContactId = contactId;
+		}
+		
+		public Notification getNotification(Notification paramNotification, Integer paramNotificationId, String packageName) throws NameNotFoundException
+		{
+			if (mThreadSize > 1 || mMessageCount > 1)
+			{
+				return paramNotification;
+			} 
+			else
+			{
+				//XModuleResources tweakRes = XModuleResources.createInstance(XMain.MODULE_PATH, null);
+				//int deleteIcon = tweakRes.getIdentifier("icon_btn_lockscreen_cancel_dark_xl", "drawable", "com.android.mms");
+				
+				IntentFilter intentFilter = new IntentFilter();
+				intentFilter.addAction(ACTION_MARK_THREAD_READ);
+				intentFilter.addAction(ACTION_DELETE_MESSAGE);
+				intentFilter.addAction(ACTION_CALL_TO_CONTACT);
+				mContext.registerReceiver(receiver, intentFilter);
+			
+				Intent intentMarkAsRead = new Intent(ACTION_MARK_THREAD_READ);
+				intentMarkAsRead.putExtra("ThreadId", mThreadId);
+				intentMarkAsRead.putExtra("SMSnotificationId", paramNotificationId);
+				PendingIntent mPintentMarkAsRead = PendingIntent.getBroadcast(mContext, paramNotificationId, intentMarkAsRead, 0);
+				
+				
+				Intent intentDeleteMsg = new Intent(ACTION_DELETE_MESSAGE);
+				intentDeleteMsg.putExtra("MsgId", mMsgId);
+				PendingIntent mPintentDeleteMsg = PendingIntent.getBroadcast(mContext, paramNotificationId, intentDeleteMsg, 0);
+
+				
+				Intent intentCallToContact = new Intent(ACTION_CALL_TO_CONTACT);
+				intentCallToContact.putExtra("ContactId", mContactId);
+				PendingIntent mPintentCallToContact = PendingIntent.getBroadcast(mContext, paramNotificationId, intentCallToContact, 0);
+				
+				
+				Notification.Builder localBuilder = new Notification.Builder(mContext);
+				localBuilder.setWhen(mWhen);
+				
+			    if (mGetNewMsgNotificationSetting) {
+			        localBuilder.setTicker(mTicker);
+			    }
+			    if (mLargeIcon != null) {
+			    	localBuilder.setLargeIcon(mLargeIcon);
+			    }
+			    localBuilder.setSmallIcon(mSmallIcon);
+			    localBuilder.setContentTitle(mContentTitle);
+			    localBuilder.setContentText(mContentText);
+			    localBuilder.setStyle(new Notification.BigTextStyle().bigText(mContentText));
+			    localBuilder.setContentIntent(mPendingIntent);
+			    //localBuilder.setDeleteIntent(mPintentMarkAsRead);
+			    //localBuilder.addAction(2130837647, "Удалить", mPintentDeleteMsg);
+			    //localBuilder.addAction(2130837646, "Позвонить", mPintentCallToContact);
+			    //localBuilder.addAction(2130837641, "Прочитано", mPintentMarkAsRead);
+			    
+			    Class <?> MessagingNotification = XposedHelpers.findClass(packageName+".transaction.MessagingNotification", classLoader);
+			    
+			    Notification localNotification = localBuilder.build();
+			    
+			    if ((Boolean)XposedHelpers.callStaticMethod(MessagingNotification, "getCharmMsgNotificationSetting", mContext) == true) {
+			        XposedHelpers.callStaticMethod(MessagingNotification, "flashCharmIndicator_JB", localNotification, 0);
+			    }
+			    
+			    XposedHelpers.callStaticMethod(MessagingNotification, "initiateEffectOfGEPNotification", mContext, paramBoolean, localNotification, false);
+			    String str3 = paramIntentFirst.getStringExtra("address");
+			    XposedHelpers.callStaticMethod(MessagingNotification, "setJogBall_JB", mContext, localNotification, str3);
+			    
+			    if ((Boolean)XposedHelpers.callStaticMethod(MessagingNotification, "getCharmMsgNotificationSetting", mContext) == true) {
+			        XposedHelpers.callStaticMethod(MessagingNotification, "flashCharmIndicator_JB", localNotification, 7);
+			    }
+			    
+			    localNotification.number = mMessageCount;
+
+			    if ((Boolean)XposedHelpers.callStaticMethod(MessagingNotification, "getNewMsgNotificationSetting", mContext)) {
+			    	
+			    	XposedHelpers.callStaticMethod(MessagingNotification, "setLSNotification", mContext, mWhen, mSmallIcon, paramSender, paramText, mPendingIntent);
+			    }
+			    
+			    return localNotification;
+			}
+		}
+	}
+	
+	public static void hookUpdateNotification(final LoadPackageParam paramLoadPackageParam, final String packageName)
+	{
+		findAndHookMethod
+		(
+			packageName + ".transaction.MessagingNotification", 
+			paramLoadPackageParam.classLoader, 
+			"updateNotification", 
+			"android.content.Context",	//0
+			"android.content.Intent",	//1
+			"java.lang.String",			//2
+			"int",						//3 SmallIcon
+			"boolean",					//4
+			"java.lang.CharSequence",	//5 Ticker
+			"long",						//6 When
+			"java.lang.String",			//7
+			"int",						//8 Count
+			"android.content.Intent",	//9
+			"java.util.SortedSet", 		//10
+			
+			new XC_MethodHook()
+			{
+				
+				protected void beforeHookedMethod(MethodHookParam param) throws Throwable
+				{
+					Object messageInfo = XposedHelpers.callMethod(param.args[10], "first");
+					long mThreadId = XposedHelpers.getLongField(messageInfo, "mThreadId");
+					long msgId = XposedHelpers.getLongField(messageInfo, "msgId");
+					long mContactId =XposedHelpers.getLongField(messageInfo, "mContactId");
+					boolean paramBoolean = (Boolean) param.args[4];
+					String paramSender = (String) param.args[7];
+					String paramText = (String) param.args[2];
+								
+					Context mContext = (Context) param.args[0];
+					Intent mIntentFirst = (Intent) param.args[1];
+					int mMessageCount =(Integer) param.args[8];
+					
+					long mWhen = (Long) param.args[6];
+					CharSequence mTicker = (CharSequence) param.args[5];
+					int mSmallIcon = (Integer) param.args[3];
+					
+					Class <?> MessagingNotification = XposedHelpers.findClass(packageName+".transaction.MessagingNotification", paramLoadPackageParam.classLoader);
+					boolean mGetNewMsgNotificationSetting = (Boolean) XposedHelpers.callStaticMethod(MessagingNotification, "getNewMsgNotificationSetting", mContext);
+					
+					int mThreadSize = (Integer) XposedHelpers.callStaticMethod(MessagingNotification, "getUniqueThreadSizeBySet", param.args[10]);
+					
+					Class <?> MessageUtils = XposedHelpers.findClass(packageName+".ui.MessageUtils", paramLoadPackageParam.classLoader);
+
+					Bitmap mLargeIcon = (Bitmap) XposedHelpers.callStaticMethod(MessageUtils, "getContactPhoto", ((Intent)param.args[9]).getLongExtra("notify_contact_id", 0L), mContext);
+					
+		            if(mLargeIcon != null)
+		            {
+		            	Bitmap localBitmap = (Bitmap) XposedHelpers.callStaticMethod(MessageUtils, "getPhotoIconWhenAppropriate", mContext.getResources(), mLargeIcon, mContext);
+		                if(localBitmap != null) {
+		                	mLargeIcon = localBitmap;
+		                }
+		            }
+		            Intent intentReadThread = new Intent(Intent.ACTION_VIEW, Uri.parse("content://mms-sms/conversations/"+mThreadId));
+		            
+		            PendingIntent mPendingIntent = PendingIntent.getActivity(mContext, 0, intentReadThread, PendingIntent.FLAG_CANCEL_CURRENT);
+		            String mContentTitle = (String) param.args[7];
+		            String mContentText = (String) param.args[2];
+		            if (mMessageCount == 1)
+		            {
+		            	CharSequence formatBigMessage = (CharSequence) XposedHelpers.callMethod(messageInfo, "formatBigMessage", mContext);
+		            	mContentText = formatBigMessage.toString();
+		            }
+		            
+		            mMessageData = new MessageData(mContext, mWhen, mTicker, mSmallIcon, mLargeIcon, mPendingIntent, mContentTitle, mContentText, mMessageCount, mThreadSize, mGetNewMsgNotificationSetting, paramLoadPackageParam.classLoader, paramBoolean, mIntentFirst, paramSender, paramText, mThreadId, msgId, mContactId);
+				}
+			}
+		);
+		
+		
+		findAndHookMethod
+		(
+			packageName+".transaction.MessagingNotification", 
+			paramLoadPackageParam.classLoader, 
+			"notifyNotification", 
+			"android.content.Context",			//0
+			"android.app.NotificationManager",	//1
+			"int",								//2
+			"java.lang.String",					//3 
+			"android.app.Notification",			//4
+			"android.content.Intent",			//5
+
+			new XC_MethodHook()
+			{
+				protected void beforeHookedMethod(MethodHookParam param) throws Throwable
+				{	
+					if (mMessageData != null) {
+						param.args[4] = mMessageData.getNotification((Notification) param.args[4], (Integer)param.args[2], packageName);
+					}
+				}
+				protected void afterHookedMethod(MethodHookParam param) throws Throwable
+				{
+					mMessageData = null;
+				}
+			}
+		);
+	}
+	
+	public static void hookUnread(final LoadPackageParam paramLoadPackageParam, String packageName)
+	{
+		findAndHookMethod(packageName + ".ui.ConversationListBaseAdapter", paramLoadPackageParam.classLoader, "bind", "android.view.View", "android.content.Context", packageName+".ui.ConversationHeader", new XC_MethodHook()
+		{
+			protected void afterHookedMethod(MethodHookParam param) throws Throwable
+			{
+				boolean isRead = (Boolean) XposedHelpers.callMethod(param.args[2], "isRead");
+				View row = (View) param.args[0];
+
+				if (Background == null)
+				{
+					Background = row.getBackground();
+					if (Background == null)
+					{
+						Background = new ColorDrawable(row.getContext().getResources().getColor(android.R.color.transparent));
+					}
+				}
+
+				if (isRead == false)
+				{
+					XModuleResources modRes = XModuleResources.createInstance(XMain.MODULE_PATH, null);
+
+					row.setBackgroundDrawable(modRes.getDrawable(R.drawable.list_background_unread));
+				}
+				else
+				{
+					row.setBackgroundDrawable(Background);
+				}
+			}
+		});
+	}
+
+	public static void hookContactBadge(final InitPackageResourcesParam resparam) throws Throwable
+	{
+		resparam.res.hookLayout(resparam.packageName, "layout", "common_list_item_conversation", new XC_LayoutInflated()
+		{
+			@Override
+			public void handleLayoutInflated(LayoutInflatedParam liparam) throws Throwable
+			{
+				View photo = (View) liparam.view.findViewById(liparam.res.getIdentifier("thread_list_Badge", "id", resparam.packageName));
+				photo.setVisibility(View.GONE);
+			}
+		});
+	}
+
+	public static void hookMessageNotification(final LoadPackageParam paramLoadPackageParam, String packageName)
+	{
+		findAndHookMethod(packageName + ".transaction.MessageStatusReceiver", paramLoadPackageParam.classLoader, "updateMessageStatus", "android.content.Context", "android.net.Uri", "byte[]", new XC_MethodHook()
+		{
+			protected void beforeHookedMethod(MethodHookParam param) throws Throwable
+			{
+				NotificationFlag = true;
+			}
+
+			protected void afterHookedMethod(MethodHookParam param) throws Throwable
+			{
+				NotificationFlag = false;
+			}
+		});
+
+		findAndHookMethod(packageName + ".transaction.MessagingNotification", paramLoadPackageParam.classLoader, "showReportNotification", "android.content.Context", "int", "int", "long", "long", "boolean", new XC_MethodHook()
+		{
+			@Override
+			protected void beforeHookedMethod(MethodHookParam param) throws Throwable
+			{
+				if (NotificationFlag)
+				{
+					param.setResult(null);
+					return;
+				}
+			}
+		});
+	}
+}

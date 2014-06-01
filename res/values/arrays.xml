@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="RecordingTypes">
+        <item>@string/RecordingTypesAll</item>
+        <item>@string/RecordingTypesKnown</item>
+        <item>@string/RecordingTypesUnknown</item>
+    </string-array>
+    <string-array name="RecordingStorage">
+        <item>@string/recordingFileFlag</item>
+        <item>@string/recordingSeparateDir</item>
+    </string-array>
+    <string-array name="RecordingStorageVal">
+        <item>@string/zero</item>
+        <item>@string/one</item>
+    </string-array>
+    <string-array name="RecordingFilterTitles">
+        <item>@string/recordingFilterIncoming</item>
+        <item>@string/recordingFilterOutgoing</item>
+    </string-array>
+    <string-array name="RecordingFilterSums">
+        <item>@string/incoming</item>
+        <item>@string/outgoing</item>
+    </string-array>
+    <string-array name="RecordingFilterKeys">
+        <item>@string/RecordingFilterKeysIn</item>
+        <item>@string/RecordingFilterKeysOut</item>
+    </string-array>
+    <string-array name="RecordingCaller">
+        <item>@string/RecordingCallerAll</item>
+        <item>@string/RecordingCallerKnown</item>
+        <item>@string/RecordingCallerUnknown</item>
+    </string-array>
+    <string-array name="RecordingCallerVal">
+        <item>@string/zero</item>
+        <item>@string/one</item>
+        <item>@string/two</item>
+    </string-array>
+    <string-array name="RecordingDelete">
+        <item>@string/RecordingDeleteNone</item>
+        <item>@string/RecordingDeleteByCount</item>
+        <item>@string/RecordingCallerByDate</item>
+    </string-array>
+    <string-array name="RecordingDeleteVal">
+        <item>@string/zero</item>
+        <item>@string/one</item>
+        <item>@string/two</item>
+    </string-array>
+    <string-array name="RecordingDeleteInterval">
+        <item>@string/seven</item>
+        <item>@string/fourteen</item>
+        <item>@string/thirty</item>
+        <item>@string/sixty</item>
+        <item>@string/one_eighty</item>
+        <item>@string/three_sixty</item>
+    </string-array>
+    <string-array name="RecordingDeleteCount">
+        <item>@string/ten</item>
+        <item>@string/twenty</item>
+        <item>@string/thirty</item>
+        <item>@string/fifty</item>
+        <item>@string/hundred1</item>
+        <item>@string/hundred2</item>
+        <item>@string/hundred3</item>
+        <item>@string/hundred5</item>
+        <item>@string/nine3</item>
+    </string-array>
+
+</resources>

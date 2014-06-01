@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.htc.preference.HtcPreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:settings="http://schemas.android.com/apk/res/com.android.settings"
+    xmlns:tweaker="http://schemas.android.com/apk/res/kz.virtex.htc.tweaker"
+    android:key="SettingsKey"
+    android:title="@string/app_name" >
+
+    <com.htc.preference.HtcPreferenceCategory android:title="@string/systemBuildProperties" >
+        <kz.virtex.htc.tweaker.preference.RecorderPreference
+            android:id="@id/enableCallRecording"
+            android:key="tweak_call_recording"
+            android:summary="@string/enableCallRecordingSummary"
+            android:title="@string/enableCallRecordingTitle" />
+        <kz.virtex.htc.tweaker.preference.RecorderPreference
+            android:id="@id/enableAutoRecording"
+            android:key="tweak_call_recording_auto"
+            android:summary="@string/enableAutoRecordingSummary"
+            android:title="@string/enableAutoRecordingTitle" />
+
+        <com.htc.preference.HtcPreferenceScreen
+            android:key="autorecording_settings_screen"
+            android:title="@string/settingsAutoRecordingTitle" >
+            <com.htc.preference.HtcPreferenceCategory android:title="@string/RecordingSaveCat" >
+                <com.htc.preference.HtcListPreference
+                    android:defaultValue="1"
+                    android:entries="@array/RecordingStorage"
+                    android:entryValues="@array/RecordingStorageVal"
+                    android:key="tweak_call_recording_auto_storage"
+                    android:summary="@string/RecordingStorageSummary"
+                    android:title="@string/RecordingStorageTitle" />
+            </com.htc.preference.HtcPreferenceCategory>
+            <com.htc.preference.HtcPreferenceCategory android:title="@string/RecordingFilterCat" >
+                <kz.virtex.htc.tweaker.preference.MultiCheckPreference
+                    android:key="tweak_call_recording_auto_filter"
+                    android:title="@string/RecordingFilterTitle"
+                    tweaker:entryKeys="@array/RecordingFilterKeys"
+                    tweaker:entrySummaries="@array/RecordingFilterSums"
+                    tweaker:entryTitles="@array/RecordingFilterTitles" />
+
+                <com.htc.preference.HtcListPreference
+                    android:entries="@array/RecordingCaller"
+                    android:entryValues="@array/RecordingCallerVal"
+                    android:key="tweak_call_recording_auto_caller"
+                    android:title="@string/RecordingCallerTitle" />
+            </com.htc.preference.HtcPreferenceCategory>
+            <com.htc.preference.HtcPreferenceCategory
+                android:key="autorecording_delete_cat"
+                android:title="@string/RecordingDeleteCat" >
+                <com.htc.preference.HtcListPreference
+                    android:entries="@array/RecordingDelete"
+                    android:entryValues="@array/RecordingDeleteVal"
+                    android:key="tweak_call_recording_auto_delete"
+                    android:title="@string/RecordingDeleteTitle" />
+
+                <kz.virtex.htc.tweaker.preference.NumberPickerPreference
+                    android:id="@id/RecordingDeleteCount"
+                    android:entries="@array/RecordingDeleteCount"
+                    android:key="tweak_call_recording_auto_delete_count"
+                    android:summary="@string/save_last_summary"
+                    android:title="@string/save_last"
+                    tweaker:defaultValue="50"
+                    tweaker:hint="@string/messages_of" />
+                <kz.virtex.htc.tweaker.preference.NumberPickerPreference
+                    android:id="@id/RecordingDeleteInterval"
+                    android:entries="@array/RecordingDeleteInterval"
+                    android:key="tweak_call_recording_auto_delete_interval"
+                    android:summary="@string/delete_after_summary"
+                    android:title="@string/delete_after"
+                    tweaker:defaultValue="30"
+                    tweaker:hint="@string/days_of" />
+            </com.htc.preference.HtcPreferenceCategory>
+        </com.htc.preference.HtcPreferenceScreen>
+    </com.htc.preference.HtcPreferenceCategory>
+    <com.htc.preference.HtcPreferenceCategory android:title="@string/otherSettingsTitle" >
+        <com.htc.preference.HtcPreferenceScreen
+            android:summary="@string/SystemScreenSummary"
+            android:title="@string/SystemScreenTitle" >
+            <com.htc.preference.HtcSwitchPreference
+                android:id="@id/sdcardPermission"
+                android:key="tweak_fix_sdcard_permission"
+                android:summary="@string/sdcardPermissionSummary"
+                android:title="@string/sdcardPermissionTitle" />
+            <com.htc.preference.HtcSwitchPreference
+                android:id="@id/allNotificationsExpanded"
+                android:key="tweak_expanded_notifications"
+                android:summary="@string/allNotificationsExpandedSummary"
+                android:title="@string/allNotificationsExpandedTitle" />
+            <com.htc.preference.HtcSwitchPreference
+                android:id="@id/enablePopupChar"
+                android:key="tweak_popup_keyboard"
+                android:summary="@string/enablePopupCharSummary"
+                android:title="@string/enablePopupCharTitle" />
+            <com.htc.preference.HtcSwitchPreference
+                android:id="@id/quickPullDown"
+                android:key="tweak_quick_pulldown"
+                android:summary="@string/quickPullDownSummary"
+                android:title="@string/quickPullDownTitle" />
+
+            <com.htc.preference.HtcPreferenceScreen
+                android:key="led_settings_screen"
+                android:summary="@string/LedScreenSummary"
+                android:title="@string/LedScreenTitle" >
+                <com.htc.preference.HtcSwitchPreference
+                    android:id="@id/flashlightDuringCharging"
+                    android:key="tweak_charging_flash"
+                    android:summary="@string/flashlightDuringChargingSummary"
+                    android:title="@string/flashlightDuringChargingTitle" />
+
+                <kz.virtex.htc.tweaker.preference.NumberPickerPreference
+                    android:id="@id/flashlightTimeout"
+                    android:key="tweak_flash_timeout"
+                    android:summary="@string/flashlightTimeoutSummary"
+                    android:title="@string/flashlightTimeoutTitle"
+                    tweaker:defaultValue="5"
+                    tweaker:hint="@string/flashlightTimeoutHint"
+                    tweaker:rangeEnd="60"
+                    tweaker:rangeStart="0" />
+
+                <com.htc.preference.HtcSwitchPreference
+                    android:id="@id/disableChargindLed"
+                    android:key="tweak_charging_led"
+                    android:summary="@string/chargingLedSummary"
+                    android:title="@string/chargingLedTitle" />
+            </com.htc.preference.HtcPreferenceScreen>
+            <com.htc.preference.HtcPreferenceScreen
+                android:icon="@drawable/icon_launcher_sim_toolkit"
+                android:key="notification_screen"
+                android:title="@string/dual_settings_title" >
+                <com.htc.preference.HtcEditTextPreference
+                    android:id="@id/slot1"
+                    android:key="slot_1_user_text"
+                    android:summary=""
+                    android:title="@string/slot1_name_title" />
+                <com.htc.preference.HtcEditTextPreference
+                    android:id="@id/slot2"
+                    android:key="slot_2_user_text"
+                    android:summary=""
+                    android:title="@string/slot2_name_title" />
+            </com.htc.preference.HtcPreferenceScreen>
+        </com.htc.preference.HtcPreferenceScreen>
+        <com.htc.preference.HtcPreferenceScreen
+            android:key="notification_screen"
+            android:summary="@string/NotificationScreenSummary"
+            android:title="@string/NotificationScreenTitle" >
+            <com.htc.preference.HtcCheckBoxPreference
+                android:id="@id/disableDeliveryNotification"
+                android:key="tweak_delivery_notification"
+                android:summary="@string/disableDeliveryNotificationSummary"
+                android:title="@string/disableDeliveryNotificationTitle" />
+            <com.htc.preference.HtcCheckBoxPreference
+                android:id="@id/disableADBNotification"
+                android:key="tweak_adb_notify"
+                android:title="@string/disableADBNotificationTitle" />
+            <com.htc.preference.HtcCheckBoxPreference
+                android:id="@id/disableUSBNotification"
+                android:key="tweak_usb_notify"
+                android:title="@string/disableUSBNotificationTitle" />
+            <com.htc.preference.HtcCheckBoxPreference
+                android:id="@id/disableSyncNotification"
+                android:key="tweak_sync_notify"
+                android:title="@string/disableSyncNotificationTitle" />
+            <com.htc.preference.HtcCheckBoxPreference
+                android:id="@id/disableMTPNotification"
+                android:key="tweak_mtp_notify"
+                android:title="@string/disableMTPNotificationTitle" />
+        </com.htc.preference.HtcPreferenceScreen>
+        <com.htc.preference.HtcPreferenceScreen
+            android:key="gui_screen_key"
+            android:summary="@string/GuiScreenSummary"
+            android:title="@string/GuiScreenTitle" >
+            <com.htc.preference.HtcPreferenceScreen
+                android:key="data_screen_key"
+                android:summary="@string/DataScreenSummary"
+                android:title="@string/DataScreenTitle" >
+                <com.htc.preference.HtcSwitchPreference
+                    android:id="@id/enableColoredSimLevel"
+                    android:key="tweak_colored_sim"
+                    android:summary="@string/enableColoredSimLevelSummary"
+                    android:title="@string/enableColoredSimLevelTitle" />
+
+                <com.htc.preference.HtcPreferenceScreen
+                    android:icon="@drawable/stat_sys_5signal_5"
+                    android:key="color_sim_screen"
+                    android:title="@string/ColoredSimLevelPreferenceTitle" >
+                    <kz.virtex.htc.tweaker.preference.IconsColorPreference
+                        android:icon="@drawable/cdma_stat_sys_s1_5signal_5"
+                        android:key="tweak_color_sim1"
+                        android:summary="@string/ColoredSimLevelPreferenceSummary"
+                        android:title="@string/ColoredSimLevelPreferenceTitle1" />
+                    <kz.virtex.htc.tweaker.preference.IconsColorPreference
+                        android:icon="@drawable/cdma_stat_sys_s2_5signal_5"
+                        android:key="tweak_color_sim2"
+                        android:summary="@string/ColoredSimLevelPreferenceSummary"
+                        android:title="@string/ColoredSimLevelPreferenceTitle2" />
+                </com.htc.preference.HtcPreferenceScreen>
+
+                <com.htc.preference.HtcSwitchPreference
+                    android:key="tweak_data_icons"
+                    android:summary="@string/ColoredDataIconsSummary"
+                    android:title="@string/ColoredDataIconsTitle" />
+
+                <kz.virtex.htc.tweaker.preference.IconsColorPreference
+                    android:icon="@drawable/stat_sys_data_out_lte"
+                    android:key="tweak_data_icons_color"
+                    android:summary="@string/ColoredDataIconsColorSummary"
+                    android:title="@string/ColoredDataIconsColorTitle" />
+
+                <com.htc.preference.HtcSwitchPreference
+                    android:id="@id/enableColoredWiFi"
+                    android:key="tweak_colored_wifi"
+                    android:summary="@string/enableColoredWiFiSummary"
+                    android:title="@string/enableColoredWiFiTitle" />
+
+                <kz.virtex.htc.tweaker.preference.IconsColorPreference
+                    android:icon="@drawable/stat_sys_wifi_signal_4"
+                    android:key="tweak_colored_wifi_color"
+                    android:summary="@string/ColoredWiFiIconsColorSummary"
+                    android:title="@string/ColoredWiFiIconsColorTitle" />
+            </com.htc.preference.HtcPreferenceScreen>
+            <com.htc.preference.HtcPreferenceScreen
+                android:key="contact_data_screen_key"
+                android:summary="@string/ContactDialScreenSummary"
+                android:title="@string/ContactDialScreenTitle" >
+                <kz.virtex.htc.tweaker.preference.DialerButtonPreference
+                    android:id="@id/enableDialerHighLight"
+                    android:key="tweak_dialer_btn"
+                    android:summary="@string/enableDialerHighLightSummary"
+                    android:title="@string/enableDialerHighLightTitle" />
+
+                <com.htc.preference.HtcSwitchPreference
+                    android:id="@id/enableColorCallIndicator"
+                    android:icon="@drawable/icon_indicator_incoming_light_s"
+                    android:key="tweak_color_call_indicator"
+                    android:summary="@string/enableColorCallIndicatorSummary"
+                    android:title="@string/enableColorCallIndicatorTitle" />
+            </com.htc.preference.HtcPreferenceScreen>
+            <com.htc.preference.HtcPreferenceScreen android:title="@string/MessagingScreenTitle" >
+                <com.htc.preference.HtcSwitchPreference
+                    android:id="@id/enableUnreadHighLight"
+                    android:key="tweak_sms_unread_highlight"
+                    android:summary="@string/enableUnreadHighLightSummary"
+                    android:title="@string/enableUnreadHighLightTitle" />
+                <com.htc.preference.HtcSwitchPreference
+                    android:id="@id/enableHideSMSBadge"
+                    android:key="tweak_sms_hide_badge"
+                    android:summary="@string/enableHideSMSBadgeSummary"
+                    android:title="@string/enableHideSMSBadgeTitle" />
+                <com.htc.preference.HtcSwitchPreference
+                    android:id="@id/enableSMSNotifyToDialog"
+                    android:key="tweak_sms_notify_to_dialog"
+                    android:summary="@string/enableSMSNotifyToDialogSummary"
+                    android:title="@string/enableSMSNotifyToDialogTitle" />
+            </com.htc.preference.HtcPreferenceScreen>
+
+            <com.htc.preference.HtcSwitchPreference
+                android:id="@id/enableColoredWeather"
+                android:key="tweak_colored_weather"
+                android:summary="@string/enableColoredWeatherSummary"
+                android:title="@string/enableColoredWeatherTitle" />
+        </com.htc.preference.HtcPreferenceScreen>
+        <com.htc.preference.HtcPreferenceScreen
+            android:key="other_settings_screen"
+            android:title="@string/otherSettingsTitle" >
+            <com.htc.preference.HtcSwitchPreference
+                android:id="@id/enableSIP"
+                android:key="tweak_enable_SIP"
+                android:summary="@string/enableSIPSummary"
+                android:title="@string/enableSIPTitle" />
+            <com.htc.preference.HtcSwitchPreference
+                android:id="@id/enablePhotoPrefix"
+                android:key="tweak_enable_photo_prefix"
+                android:summary="@string/enablePhotoPrefixSummary"
+                android:title="@string/enablePhotoPrefixTitle" />
+            </com.htc.preference.HtcPreferenceScreen>
+    </com.htc.preference.HtcPreferenceCategory>
+
+</com.htc.preference.HtcPreferenceScreen>

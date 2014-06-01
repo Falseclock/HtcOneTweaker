@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<row height="40dp" width="90dp">
+    <key codes="-18" function="true" leftEdge="true" showPreview="false" icon="@drawable/htc_sense_input_icon_arrow_up_dark" />
+    <key codes="-19" function="true" showPreview="false" icon="@drawable/htc_sense_input_icon_arrow_down_dark" />
+    <key codes="-20" function="true" showPreview="false" icon="@drawable/htc_sense_input_icon_arrow_left_dark" />
+    <key codes="-21" function="true" rightEdge="true" showPreview="false" icon="@drawable/htc_sense_input_icon_arrow_right_dark" />
+</row>

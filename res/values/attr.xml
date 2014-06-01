@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <attr name="backgroundMode">
+        <enum name="light" value="0" />
+        <enum name="dark" value="1" />
+    </attr>
+    <attr name="number" format="reference|string" />
+    <attr name="number_style" format="reference" />
+    <attr name="alphabet" format="reference|string" />
+    <attr name="alphabet_style" format="reference" />
+    <attr name="phoneticAlphabet" format="reference|string" />
+    <attr name="primaryIcon" format="reference" />
+    <attr name="secondaryIcon" format="reference" />
+    <attr name="isForthRow" format="reference|boolean" />
+    <attr name="isContentMultiply" format="reference|boolean" />
+    <attr name="mutiplyBackgroundColor" format="reference|color" />
+    <attr name="measureSelf" format="reference|boolean" />
+    <attr name="primaryAllCaps" format="reference|boolean" />
+
+    <declare-styleable name="NumberPicker">
+        <attr name="rangeStart" format="integer" />
+        <attr name="rangeEnd" format="integer" />
+        <attr name="hint" format="string" />
+        <attr name="defaultValue" format="integer" />
+    </declare-styleable>
+    <declare-styleable name="MultiCheckbox">
+        <attr name="entryTitles" format="reference" />
+        <attr name="entrySummaries" format="reference" />
+        <attr name="entryKeys" format="reference" />
+    </declare-styleable>
+
+</resources>
