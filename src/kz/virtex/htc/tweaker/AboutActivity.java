@@ -44,7 +44,10 @@ public class AboutActivity extends FragmentActivity
 	{
 		goToUrl("https://play.google.com/store/apps/details?id=kz.virtex.htc.tweaker");
 	}
-
+	public void goToGitHub(View view)
+	{
+		goToUrl("https://github.com/Falseclock/HtcOneTweaker");
+	}
 	public void goToXda(View view)
 	{
 		goToUrl("http://forum.xda-developers.com/showthread.php?p=53011963");

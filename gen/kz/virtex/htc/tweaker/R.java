@@ -574,6 +574,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int sixty=0x7f090011;
         public static final int slot1_name_title=0x7f09007d;
         public static final int slot2_name_title=0x7f09007e;
+        public static final int source_code=0x7f0900c5;
         public static final int systemBuildProperties=0x7f09001b;
         public static final int ten=0x7f09000e;
         public static final int thanks=0x7f0900bc;

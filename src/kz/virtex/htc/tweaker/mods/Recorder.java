@@ -334,15 +334,6 @@ public class Recorder
 						recordPathOut = new File(RootPathFile.getPath() + "/" + Const.AUTO_REC_MAIN);
 					}
 					
-					File nomedia = new File(RootPathFile.getPath() + "/" + Const.AUTO_REC_MAIN, ".nomedia");
-					if (!nomedia.exists())
-					{
-						if (!nomedia.createNewFile())
-						{
-							XposedBridge.log("Problem creating nomedia file");
-						}
-					}
-					
 					if (!recordPathIn.exists())
 					{
 						if (!recordPathIn.mkdirs())
@@ -355,6 +346,15 @@ public class Recorder
 						if (!recordPathOut.mkdirs())
 						{
 							XposedBridge.log("Problem creating outgoing folder");
+						}
+					}
+					
+					File nomedia = new File(RootPathFile.getPath() + "/" + Const.AUTO_REC_MAIN, ".nomedia");
+					if (!nomedia.exists())
+					{
+						if (!nomedia.createNewFile())
+						{
+							XposedBridge.log("Problem creating nomedia file");
 						}
 					}
 				}

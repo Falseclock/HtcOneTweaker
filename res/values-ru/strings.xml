@@ -210,6 +210,12 @@
     <string name="google_play"><b>Google Play Market</b></string>
     <string name="xda_support"><b>Поддержка на XDA</b></string>
     <string name="change_log_text">
+<big><b>Version 3.2.4</b></big>\n
+<font fgcolor="#FFFF0000"><b>*</b></font> (fix) Автозапись не работала при свежей установке\n
+<font fgcolor="#FFFF0000"><b>*</b></font> (fix) неактивные настройки удаления\n
+<font fgcolor="#FF009000"><b>*</b></font> публикация исходного кода\n
+<font fgcolor="#FF009000"><b>*</b></font> скрытие некоторых настроек для двухсимников на односимной версии\n
+\n
 <big><b>Версия 3.2.3</b></big>\n
 <font fgcolor="#FF009000"><b>*</b></font> создание nomedia файла в папке с записями\n
 <font fgcolor="#FF009000"><b>*</b></font> включение SIP настроек в настройках двухсимного телефона\n
@@ -253,4 +259,5 @@
     <string name="enableSIPSummary">включение этой возможности</string>
     <string name="enablePhotoPrefixTitle">Префикс к файлам Камеры</string>
     <string name="enablePhotoPrefixSummary">IMAG0001.jpg</string>
+        <string name="source_code">Исходный код</string>
 </resources>

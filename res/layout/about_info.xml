@@ -43,7 +43,7 @@
                 android:id="@+id/version"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="3.2.3"
+                android:text="3.2.4"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textColor="#444444"
                 android:textSize="26sp"
@@ -128,6 +128,20 @@
        android:text="@string/xda_support"
        android:textColor="#555555"
        android:textSize="12sp" />
-
+   
+   <Button
+       android:layout_width="match_parent"
+       android:layout_height="40dp"
+       android:layout_marginBottom="5dp"
+       android:layout_marginTop="5dp"
+       android:background="@drawable/btn_default_small"
+       android:clickable="true" android:autoLink="web"
+       android:linksClickable="true"
+       android:onClick="goToGitHub"
+       android:minHeight="40dp"
+       android:orientation="vertical"
+       android:text="@string/source_code"
+       android:textColor="#555555"
+       android:textSize="12sp" />
 </LinearLayout>
 </ScrollView>

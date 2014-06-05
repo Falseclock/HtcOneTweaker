@@ -214,6 +214,12 @@
     <string name="google_play"><b>Google Play Market</b></string>
     <string name="xda_support"><b>Support on XDA</b></string>
     <string name="change_log_text">
+<big><b>Version 3.2.4</b></big>\n
+<font fgcolor="#FFFF0000"><b>*</b></font> (fix) Autorecording for new install\n
+<font fgcolor="#FFFF0000"><b>*</b></font> (fix) disabled deletion settings\n
+<font fgcolor="#FF009000"><b>*</b></font> source code publishing\n
+<font fgcolor="#FF009000"><b>*</b></font> some settings now not visible to single sim version\n
+\n
 <big><b>Version 3.2.3</b></big>\n
 <font fgcolor="#FF009000"><b>*</b></font> nomedia file creating in autorecordind folder\n
 <font fgcolor="#FF009000"><b>*</b></font> SIP settings in Dialer options for Dual version\n
@@ -327,5 +333,6 @@ Manual records stored as default to My Recordings directory.\n
     
     <string name="enablePhotoPrefixTitle">Prefix to Camera shots</string>
     <string name="enablePhotoPrefixSummary">IMAG0001.jpg</string>
+    <string name="source_code">Source Code</string>
     
 </resources>

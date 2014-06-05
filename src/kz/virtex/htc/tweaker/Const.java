@@ -53,6 +53,8 @@ public class Const
 	public static final String GUI_SCREEN_KEY = "gui_screen_key";
 	public static final String DATA_SCREEN_KEY = "data_screen_key";
 	public static final String CONTACT_DATA_SCREEN_KEY = "contact_data_screen_key";
+	public static final String DUAL_SETTINGS_SCREEN_KEY = "dual_settings_screen";
+	public static final String SYSTEM_SETTINGS_SCREEN_KEY = "system_settings_screen";
 	
 	
 	public static final String TWEAK_COLORED_WIFI = "tweak_colored_wifi";

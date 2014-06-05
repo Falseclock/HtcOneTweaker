@@ -147,7 +147,7 @@ public class Main extends HtcPreferenceActivity implements HtcPreference.OnPrefe
 		storeWeatherApkPath();
 		setupNetworkManager("slot_1_user_text", R.string.preferred_network_1);
 		setupNetworkManager("slot_2_user_text", R.string.preferred_network_2);
-		setupSIP();
+		setupDUAL();
 		setupCamera();
 		Misc.cleanUp();
 	}
@@ -161,12 +161,15 @@ public class Main extends HtcPreferenceActivity implements HtcPreference.OnPrefe
 		tweak.setSummary(date + "_" + summ);
 	}
 	
-	private void setupSIP()
+	private void setupDUAL()
 	{
 		if (!dualPhoneEnable)
 		{
 			HtcPreferenceScreen preferenceScreen = (HtcPreferenceScreen) findPreference(Const.OTHER_SETTINGS_SCREEN_KEY);
 			preferenceScreen.removePreference(findPreference(Const.TWEAK_ENABLE_SIP));
+			
+			preferenceScreen = (HtcPreferenceScreen) findPreference(Const.SYSTEM_SETTINGS_SCREEN_KEY);
+			preferenceScreen.removePreference(findPreference(Const.DUAL_SETTINGS_SCREEN_KEY));
 		}
 	}
 	
@@ -391,8 +394,10 @@ public class Main extends HtcPreferenceActivity implements HtcPreference.OnPrefe
 	private void setupRecordingDelete()
 	{
 		final NumberPickerPreference countPreference = (NumberPickerPreference) findPreference(Const.TWEAK_CALL_REC_AUTO_DELETE_COUNT);
+		countPreference.setEnabled(true);
 		final NumberPickerPreference intervalPreference = (NumberPickerPreference) findPreference(Const.TWEAK_CALL_REC_AUTO_DELETE_INTERVAL);
-
+		intervalPreference.setEnabled(true);
+		
 		final HtcPreferenceCategory preferenceScreen = (HtcPreferenceCategory) findPreference(Const.TWEAK_CALL_REC_AUTO_DELETE_CAT);
 		preferenceScreen.removePreference(countPreference);
 		preferenceScreen.removePreference(intervalPreference);
@@ -405,9 +410,11 @@ public class Main extends HtcPreferenceActivity implements HtcPreference.OnPrefe
 		{
 		case 1:
 			preferenceScreen.addPreference(countPreference);
+			countPreference.setEnabled(true);
 			break;
 		case 2:
 			preferenceScreen.addPreference(intervalPreference);
+			intervalPreference.setEnabled(true);
 			break;
 		}
 
@@ -428,12 +435,14 @@ public class Main extends HtcPreferenceActivity implements HtcPreference.OnPrefe
 
 				case 1:
 					preferenceScreen.addPreference(countPreference);
+					countPreference.setEnabled(true);
 					preferenceScreen.removePreference(intervalPreference);
 					break;
 
 				case 2:
 					preferenceScreen.removePreference(countPreference);
 					preferenceScreen.addPreference(intervalPreference);
+					intervalPreference.setEnabled(true);
 					break;
 				}
 				return true;
