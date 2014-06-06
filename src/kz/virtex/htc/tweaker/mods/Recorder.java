@@ -12,9 +12,11 @@ import kz.virtex.htc.tweaker.XMain;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.XModuleResources;
 import android.os.AsyncResult;
 import android.os.PowerManager;
+import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -36,6 +38,31 @@ public class Recorder
 	private static Boolean is_incoming;
 	private static Context mContext;
 	private static Connection mConnection;
+
+	public static void hookPausableAudioRecorderStart(final LoadPackageParam paramLoadPackageParam)
+	{
+		findAndHookMethod("com.htc.soundrecorder.PausableAudioRecorder", paramLoadPackageParam.classLoader, "start", "long", "java.lang.String", "java.lang.String", new XC_MethodHook()
+		{
+			protected void beforeHookedMethod(MethodHookParam param) throws Throwable
+			{
+				Context context = (Context) XposedHelpers.getObjectField(param.thisObject, "mContext");
+				SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+
+				int i = Integer.parseInt(preferences.getString("encodeOption", "1"));
+
+				param.args[1] = "audio/amr";
+
+				if (i == 1)
+				{
+					param.args[1] = "audio/aac";
+				}
+				if (i == 2)
+				{
+					param.args[1] = "audio/amr-wb";
+				}
+			}
+		});
+	}
 
 	private static boolean isToAutoRecord(Context paramContext)
 	{
@@ -160,7 +187,7 @@ public class Recorder
 							{
 								PowerManager pm = (PowerManager) paramView.getContext().getSystemService(Context.POWER_SERVICE);
 								boolean isScreenOn = pm.isScreenOn();
-								
+
 								if (isScreenOn)
 								{
 									if ((Boolean) XposedHelpers.callMethod(Recorder, "isRecording"))
@@ -207,7 +234,7 @@ public class Recorder
 				mConnection = (Connection) asyncResult.result;
 				Object application = XposedHelpers.getObjectField(param.thisObject, "mApplication");
 				Context context = (Context) XposedHelpers.callMethod(application, "getApplicationContext");
-				
+
 				mContext = context;
 				is_incoming = mConnection.isIncoming();
 
@@ -235,7 +262,7 @@ public class Recorder
 			{
 				Object application = XposedHelpers.getObjectField(param.thisObject, "mApplication");
 				Context context = (Context) XposedHelpers.callMethod(application, "getApplicationContext");
-				
+
 				// Если условия автозаписи у нас сработали
 				if (isToAutoRecord(context))
 				{
@@ -333,7 +360,7 @@ public class Recorder
 						recordPathIn = new File(RootPathFile.getPath() + "/" + Const.AUTO_REC_MAIN);
 						recordPathOut = new File(RootPathFile.getPath() + "/" + Const.AUTO_REC_MAIN);
 					}
-					
+
 					if (!recordPathIn.exists())
 					{
 						if (!recordPathIn.mkdirs())
@@ -348,7 +375,7 @@ public class Recorder
 							XposedBridge.log("Problem creating outgoing folder");
 						}
 					}
-					
+
 					File nomedia = new File(RootPathFile.getPath() + "/" + Const.AUTO_REC_MAIN, ".nomedia");
 					if (!nomedia.exists())
 					{

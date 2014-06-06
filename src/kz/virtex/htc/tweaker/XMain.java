@@ -49,6 +49,7 @@ public class XMain implements IXposedHookInitPackageResources, IXposedHookZygote
 	public void initZygote(StartupParam startupParam) throws Throwable
 	{
 		pref = new XSharedPreferences(Const.PACKAGE_NAME, Const.PREFERENCE_FILE);
+		
 		weather_apk = pref.getString(Const.WEATHER_PACKAGE_APK, null);
 
 		MODULE_PATH = startupParam.modulePath;
@@ -121,6 +122,7 @@ public class XMain implements IXposedHookInitPackageResources, IXposedHookZygote
 			/* RECORDING FILENAME */
 			/*--------------------*/
 			Recorder.getStorageRoot(paramLoadPackageParam);
+			Recorder.hookPausableAudioRecorderStart(paramLoadPackageParam);
 		}
 		if (packageName.equals("com.htc.htcdialer"))
 		{

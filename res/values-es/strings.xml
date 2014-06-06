@@ -213,6 +213,9 @@
     <string name="google_play"><b>Google Play Market</b></string>
     <string name="xda_support"><b>Support on XDA</b></string>
     <string name="change_log_text">
+<big><b>Version 3.2.5</b></big>\n
+<font fgcolor="#FFFF0000"><b>*</b></font> (fix) recorder writes only in AMR-NB despite settings\n
+\n
 <big><b>Version 3.2.4</b></big>\n
 <font fgcolor="#FFFF0000"><b>*</b></font> (fix) Autorecording for new install\n
 <font fgcolor="#FFFF0000"><b>*</b></font> (fix) disabled deletion settings\n
