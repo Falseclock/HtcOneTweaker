@@ -209,132 +209,43 @@
 * Colored weather icons from Sense 4+.\n
 * Clicking on SMS notification will open dialog with contact instead of show dialog listings\n
 * SIP settings in Dialer options for Dual version\n
-* Date preffix to the Camera shots filename
-</string>
+* Date preffix to the Camera shots filename</string>
     <string name="google_play"><b>Google Play</b></string>
     <string name="xda_support"><b>Soporte en XDA</b></string>
-    <string name="change_log_text">
-<big><b>Versión 3.2.5</b></big>\n
-<font fgcolor="#FFFF0000"><b>*</b></font> (fix) recorder writes only in AMR-NB despite settings\n
-\n
-<big><b>Version 3.2.4</b></big>\n
-<font fgcolor="#FFFF0000"><b>*</b></font> (fix) Autorecording for new install\n
-<font fgcolor="#FFFF0000"><b>*</b></font> (fix) disabled deletion settings\n
-<font fgcolor="#FF009000"><b>*</b></font> source code publishing\n
-<font fgcolor="#FF009000"><b>*</b></font> some settings now not visible to single sim version\n
-\n
-<big><b>Version 3.2.3</b></big>\n
-<font fgcolor="#FF009000"><b>*</b></font> nomedia file creating in autorecordind folder\n
-<font fgcolor="#FF009000"><b>*</b></font> SIP settings in Dialer options for Dual version\n
-<font fgcolor="#FF009000"><b>*</b></font> About intent added\n
-<font fgcolor="#FF009000"><b>*</b></font> date preffix to the Camera shots filename\n
-<font fgcolor="#FFFF0000"><b>*</b></font> (fix) SMS settings for Sense 6.0\n
-<font fgcolor="#FFFF0000"><b>*</b></font> (fix) Latin aplhabet on dialer button settings now default\n
-\n
-<big><b>Version 3.2.2</b></big>\n
-<font fgcolor="#FFFF0000"><b>*</b></font> fix application crash with Sense 6.0\n
-<font fgcolor="#FF009000"><b>*</b></font> ability to give full access to SD card\n
-<font fgcolor="#FFFF0000"><b>*</b></font> (fix) recording button still clickable with screen off\n
-\n
-<big><b>Version 3.2.1</b></big>\n
-<font fgcolor="#FF009000"><b>*</b></font> bigger weather icons for hourly and daily forecast\n
-<font fgcolor="#FF009000"><b>*</b></font> Record button on call screen if auto recording switched off\n
-<font fgcolor="#FF009000"><b>*</b></font> ability to remove contact photo badge in SMS listing\n
-<font fgcolor="#FF009000"><b>*</b></font> More highlighted unread messages in SMS dialog listings\n
-<font fgcolor="#FF009000"><b>*</b></font> Colored identification for incoming and outgoing calls in call journal\n
-<font fgcolor="#FF009000"><b>*</b></font> additional data icons for 802d model\n
-<font fgcolor="#FF009000"><b>*</b></font> Clicking on SMS notification will open dialog with contact instead of show dialog listings\n
-<font fgcolor="#FF009000"><b>*</b></font> Settings menu refactoring\n
-\n
-<big><b>Version 3.1.9</b></big>\n
-<font fgcolor="#FF009000"><b>*</b></font> weather for lockscreen and  BlinkFeed. For correct work need to update Weather Pack\n
-\n
-<big><b>Version 3.1.8</b></big>\n
-<font fgcolor="#FF009000"><b>*</b></font> data transfer tweak added\n
-<font fgcolor="#FF009000"><b>*</b></font> Network signal icons added for 802d\n
-<font fgcolor="#FF009000"><b>*</b></font> Network signal icons added for M7 and M8\n
-<font fgcolor="#FF009000"><b>*</b></font> ability to change color of WiFi icon\n
-<font fgcolor="#FF009000"><b>*</b></font> Spanish language added\n
-<font fgcolor="#FF009000"><b>*</b></font> Portuguese language added\n
-\n
-<big><b>Version 3.1.7</b></big>\n
-<font fgcolor="#FFFF0000"><b>*</b></font> records auto deletion after certain (configurable) days or by defined max records count\n
-\n
-<big><b>Version 3.1.6</b></big>\n
-<font fgcolor="#FFFF0000"><b>*</b></font>Weather icons in separate apk\n
-\n
-<big><b>Version 3.1.5</b></big>\n
-<font fgcolor="#FFFF0000"><b>*</b></font> fix with LED settings\n
-<font fgcolor="#FFFF0000"><b>*</b></font> design change for some settings\n
-<font fgcolor="#FFFF0000"><b>*</b></font> filter by call type added for auto recordings\n
-<font fgcolor="#FFFF0000"><b>*</b></font> filter by calling/called party added for auto recordings\n
-<font fgcolor="#FFFF0000"><b>*</b></font> all auto recordings now save under Auto Recordings folder\n
-<font fgcolor="#FFFF0000"><b>*</b></font> ability to invoke tweaker from stock settings\n
-<font fgcolor="#FFFF0000"><b>*</b></font> weather icon pack now in separate application to reduce tweaker size\n
-\n
-<big><b>Version 3.1.4</b></big>\n
-<font fgcolor="#FFFF0000"><b>*</b></font> ability to change color &amp; size for latin alphabet in dialer\n
-<font fgcolor="#FFFF0000"><b>*</b></font> ability to change SIM card name without string length limit\n
-<font fgcolor="#FFFF0000"><b>*</b></font> access to Quick Settings by swiping right side of screen\n
-<font fgcolor="#FFFF0000"><b>*</b></font> 3G icon fix for Sense 5 ToolBox\n
-<font fgcolor="#FFFF0000"><b>*</b></font> fix with Recording settings saving for new installations\n
-\n
-<big><b>Version 3.1.3</b></big>\n
-<font fgcolor="#FFFF0000"><b>*</b></font> latin alphabet color and size change in dialer\n
-<font fgcolor="#FFFFA500"><b>*</b></font> SIM name change without length restriction\n
-\n
-<big><b>Version 3.1.2</b></big>\n
-<font fgcolor="#FFFFA500"><b>*</b></font> fix with recording settings\n
-<font fgcolor="#FFFF0000"><b>*</b></font> notification flashlight during charging\n
-<font fgcolor="#FFFF0000"><b>*</b></font> flashlight timeout\n
-\n
-<big><b>Version 3.1.1</b></big>\n
-<font fgcolor="#FFFF0000"><b>*</b></font> menu re-factoring\n
-<font fgcolor="#FFFF0000"><b>*</b></font> disable flashlight for charging\n
-<font fgcolor="#FFFF0000"><b>*</b></font> autorecording settings: separate dirs or file flag\n
-<font fgcolor="#FFFF0000"><b>*</b></font> pinch zoom for dialer button text size fix\n
-<font fgcolor="#FFFF0000"><b>*</b></font> fix with min/max values in color settings\n
-<font fgcolor="#FFFF0000"><b>*</b></font> fix second sim card sprite\n
-<font fgcolor="#FFFF0000"><b>*</b></font> fix with values between sim cards\n
-\n
-<big><b>Version 3.1.0</b></big>\n
-<font fgcolor="#FFFF0000"><b>*</b></font> Automatic call records now stored in specific folder depends on call type:\n
+    <string name="change_log_text"><big><b>Versión 3.2.5</b></big>\n<font fgcolor="#FFFF0000"><b>*</b></font> (fix) recorder writes only in AMR-NB despite settings\n
+\n<big><b>Version 3.2.4</b></big>\n<font fgcolor="#FFFF0000"><b>*</b></font> (fix) Autorecording for new install\n<font fgcolor="#FFFF0000"><b>*</b></font> (fix) disabled deletion settings\n<font fgcolor="#FF009000"><b>*</b></font> source code publishing\n<font fgcolor="#FF009000"><b>*</b></font> some settings now not visible to single sim version\n
+\n<big><b>Version 3.2.3</b></big>\n<font fgcolor="#FF009000"><b>*</b></font> nomedia file creating in autorecordind folder\n<font fgcolor="#FF009000"><b>*</b></font> SIP settings in Dialer options for Dual version\n<font fgcolor="#FF009000"><b>*</b></font> About intent added\n<font fgcolor="#FF009000"><b>*</b></font> date preffix to the Camera shots filename\n<font fgcolor="#FFFF0000"><b>*</b></font> (fix) SMS settings for Sense 6.0\n<font fgcolor="#FFFF0000"><b>*</b></font> (fix) Latin aplhabet on dialer button settings now default\n
+\n<big><b>Version 3.2.2</b></big>\n<font fgcolor="#FFFF0000"><b>*</b></font> fix application crash with Sense 6.0\n<font fgcolor="#FF009000"><b>*</b></font> ability to give full access to SD card\n<font fgcolor="#FFFF0000"><b>*</b></font> (fix) recording button still clickable with screen off\n
+\n<big><b>Version 3.2.1</b></big>\n<font fgcolor="#FF009000"><b>*</b></font> bigger weather icons for hourly and daily forecast\n<font fgcolor="#FF009000"><b>*</b></font> Record button on call screen if auto recording switched off\n<font fgcolor="#FF009000"><b>*</b></font> ability to remove contact photo badge in SMS listing\n<font fgcolor="#FF009000"><b>*</b></font> More highlighted unread messages in SMS dialog listings\n<font fgcolor="#FF009000"><b>*</b></font> Colored identification for incoming and outgoing calls in call journal\n<font fgcolor="#FF009000"><b>*</b></font> additional data icons for 802d model\n<font fgcolor="#FF009000"><b>*</b></font> Clicking on SMS notification will open dialog with contact instead of show dialog listings\n<font fgcolor="#FF009000"><b>*</b></font> Settings menu refactoring\n
+\n<big><b>Version 3.1.9</b></big>\n<font fgcolor="#FF009000"><b>*</b></font> weather for lockscreen and  BlinkFeed. For correct work need to update Weather Pack\n
+\n<big><b>Version 3.1.8</b></big>\n<font fgcolor="#FF009000"><b>*</b></font> data transfer tweak added\n<font fgcolor="#FF009000"><b>*</b></font> Network signal icons added for 802d\n<font fgcolor="#FF009000"><b>*</b></font> Network signal icons added for M7 and M8\n<font fgcolor="#FF009000"><b>*</b></font> ability to change color of WiFi icon\n<font fgcolor="#FF009000"><b>*</b></font> Spanish language added\n<font fgcolor="#FF009000"><b>*</b></font> Portuguese language added\n
+\n<big><b>Version 3.1.7</b></big>\n<font fgcolor="#FFFF0000"><b>*</b></font> records auto deletion after certain (configurable) days or by defined max records count\n
+\n<big><b>Version 3.1.6</b></big>\n<font fgcolor="#FFFF0000"><b>*</b></font>Weather icons in separate apk\n
+\n<big><b>Version 3.1.5</b></big>\n<font fgcolor="#FFFF0000"><b>*</b></font> fix with LED settings\n<font fgcolor="#FFFF0000"><b>*</b></font> design change for some settings\n<font fgcolor="#FFFF0000"><b>*</b></font> filter by call type added for auto recordings\n<font fgcolor="#FFFF0000"><b>*</b></font> filter by calling/called party added for auto recordings\n<font fgcolor="#FFFF0000"><b>*</b></font> all auto recordings now save under Auto Recordings folder\n<font fgcolor="#FFFF0000"><b>*</b></font> ability to invoke tweaker from stock settings\n<font fgcolor="#FFFF0000"><b>*</b></font> weather icon pack now in separate application to reduce tweaker size\n
+\n<big><b>Version 3.1.4</b></big>\n<font fgcolor="#FFFF0000"><b>*</b></font> ability to change color &amp; size for latin alphabet in dialer\n<font fgcolor="#FFFF0000"><b>*</b></font> ability to change SIM card name without string length limit\n<font fgcolor="#FFFF0000"><b>*</b></font> access to Quick Settings by swiping right side of screen\n<font fgcolor="#FFFF0000"><b>*</b></font> 3G icon fix for Sense 5 ToolBox\n<font fgcolor="#FFFF0000"><b>*</b></font> fix with Recording settings saving for new installations\n
+\n<big><b>Version 3.1.3</b></big>\n<font fgcolor="#FFFF0000"><b>*</b></font> latin alphabet color and size change in dialer\n<font fgcolor="#FFFFA500"><b>*</b></font> SIM name change without length restriction\n
+\n<big><b>Version 3.1.2</b></big>\n<font fgcolor="#FFFFA500"><b>*</b></font> fix with recording settings\n<font fgcolor="#FFFF0000"><b>*</b></font> notification flashlight during charging\n<font fgcolor="#FFFF0000"><b>*</b></font> flashlight timeout\n
+\n<big><b>Version 3.1.1</b></big>\n<font fgcolor="#FFFF0000"><b>*</b></font> menu re-factoring\n<font fgcolor="#FFFF0000"><b>*</b></font> disable flashlight for charging\n<font fgcolor="#FFFF0000"><b>*</b></font> autorecording settings: separate dirs or file flag\n<font fgcolor="#FFFF0000"><b>*</b></font> pinch zoom for dialer button text size fix\n<font fgcolor="#FFFF0000"><b>*</b></font> fix with min/max values in color settings\n<font fgcolor="#FFFF0000"><b>*</b></font> fix second sim card sprite\n<font fgcolor="#FFFF0000"><b>*</b></font> fix with values between sim cards\n
+\n<big><b>Version 3.1.0</b></big>\n<font fgcolor="#FFFF0000"><b>*</b></font> Automatic call records now stored in specific folder depends on call type:\n
  - Automatic records/Incoming/ - for incoming calls\n
  - Automatic records/Outgoing/ - for outgoing calls\n
-Manual records stored as default to My Recordings directory.\n
-<font fgcolor="#FFFF0000"><b>*</b></font> Ability to suppress notification:\n
+Manual records stored as default to My Recordings directory.\n<font fgcolor="#FFFF0000"><b>*</b></font> Ability to suppress notification:\n
  - USB debugging connected\n
  - USB connected\n
  - HTC Sync Manager\n
- - Media device [MTP] connected\n
-<font fgcolor="#FFFF0000"><b>*</b></font> minor fixes and additions\n
-\n
-<big><b>Version 3.0.8</b></big>\n
-<font fgcolor="#FFFF0000"><b>*</b></font> phonetic bux fix\n
-\n
-<big><b>Version 3.0.7</b></big>\n
-<font fgcolor="#FFFF0000"><b>*</b></font> pinch zoom for phonetic letter sizing\n
-\n
-<big><b>Version 3.0.6</b></big>\n
-<font fgcolor="#FFFF0000"><b>*</b></font> extended russian keyboard\n
-\n
-<big><b>Version 3.0.5</b></big>\n
-<font fgcolor="#FFFF0000"><b>*</b></font> fixed roaming SIM sprites for KitKat \n
-<font fgcolor="#FFFF0000"><b>*</b></font> added ability to setup highlight color for dialer phonetic letters.\n
-\n
-<big><b>Version 3.0.4</b></big>\n
-<font fgcolor="#FFFF0000"><b>*</b></font> fixed mistake with dialer highlighting.\n
-\n
-<big><b>Version 3.0.3</b></big>\n
-<font fgcolor="#FFFF0000"><b>*</b></font> Colored scheme for SIM cards\n
-\n
-<big><b>Version 3.0.2</b></big>\n
-<font fgcolor="#FFFF0000"><b>*</b></font> fully working settings
-</string>
+ - Media device [MTP] connected\n<font fgcolor="#FFFF0000"><b>*</b></font> minor fixes and additions\n
+\n<big><b>Version 3.0.8</b></big>\n<font fgcolor="#FFFF0000"><b>*</b></font> phonetic bux fix\n
+\n<big><b>Version 3.0.7</b></big>\n<font fgcolor="#FFFF0000"><b>*</b></font> pinch zoom for phonetic letter sizing\n
+\n<big><b>Version 3.0.6</b></big>\n<font fgcolor="#FFFF0000"><b>*</b></font> extended russian keyboard\n
+\n<big><b>Version 3.0.5</b></big>\n<font fgcolor="#FFFF0000"><b>*</b></font> fixed roaming SIM sprites for KitKat \n<font fgcolor="#FFFF0000"><b>*</b></font> added ability to setup highlight color for dialer phonetic letters.\n
+\n<big><b>Version 3.0.4</b></big>\n<font fgcolor="#FFFF0000"><b>*</b></font> fixed mistake with dialer highlighting.\n
+\n<big><b>Version 3.0.3</b></big>\n<font fgcolor="#FFFF0000"><b>*</b></font> Colored scheme for SIM cards\n
+\n<big><b>Version 3.0.2</b></big>\n<font fgcolor="#FFFF0000"><b>*</b></font> fully working settings</string>
     <string name="enableSIPTitle">Telefono SIP en SIM Dual</string>
     <string name="enableSIPSummary">Simplemente la activa</string>
     <string name="enablePhotoPrefixTitle">Prefijo de fotos</string>
     <string name="enablePhotoPrefixSummary">IMAG0001.jpg</string>
     <string name="author">Autor: <b>Nurlan Mukhanov</b> aka <a href="mailto:nurike@gmail.com">Falseclock</a></string>
-        <string name="source_code">Código fuente</string>
+    <string name="source_code">Código fuente</string>
+
 </resources>

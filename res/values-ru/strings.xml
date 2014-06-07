@@ -210,10 +210,10 @@
     <string name="google_play"><b>Google Play Market</b></string>
     <string name="xda_support"><b>Поддержка на XDA</b></string>
     <string name="change_log_text">
-<big><b>Version 3.2.5</b></big>\n
+<big><b>Версия 3.2.5</b></big>\n
 <font fgcolor="#FFFF0000"><b>*</b></font> (fix) запись только в AMR-NB несмотря на настройки\n
 \n
-<big><b>Version 3.2.4</b></big>\n
+<big><b>Версия 3.2.4</b></big>\n
 <font fgcolor="#FFFF0000"><b>*</b></font> (fix) Автозапись не работала при свежей установке\n
 <font fgcolor="#FFFF0000"><b>*</b></font> (fix) неактивные настройки удаления\n
 <font fgcolor="#FF009000"><b>*</b></font> публикация исходного кода\n

@@ -36,8 +36,13 @@ import de.robv.android.xposed.callbacks.XC_LoadPackage.LoadPackageParam;
 public class Recorder
 {
 	private static Boolean is_incoming;
-	private static Context mContext;
 	private static Connection mConnection;
+	private static boolean CallRecording;
+	private static boolean AutoRecording;
+	private static boolean RecordIn;
+	private static boolean RecordOut;
+	private static int RecordCaller;
+	private static int AutoRecordingStorage;
 
 	public static void hookPausableAudioRecorderStart(final LoadPackageParam paramLoadPackageParam)
 	{
@@ -66,12 +71,13 @@ public class Recorder
 
 	private static boolean isToAutoRecord(Context paramContext)
 	{
-		boolean CallRecording = Misc.toBoolean(Settings.System.getInt(paramContext.getContentResolver(), Const.TWEAK_CALL_REC, 0));
-		boolean AutoRecording = Misc.toBoolean(Settings.System.getInt(paramContext.getContentResolver(), Const.TWEAK_CALL_REC_AUTO, 0));
-		boolean RecordIn = Misc.toBoolean(Settings.System.getInt(paramContext.getContentResolver(), Const.TWEAK_CALL_REC_AUTO_FILTER_IN, 1));
-		boolean RecordOut = Misc.toBoolean(Settings.System.getInt(paramContext.getContentResolver(), Const.TWEAK_CALL_REC_AUTO_FILTER_OUT, 1));
-		int RecordCaller = Settings.System.getInt(paramContext.getContentResolver(), Const.TWEAK_CALL_REC_AUTO_CALLER, 0);
-
+		CallRecording = Misc.toBoolean(Settings.System.getInt(paramContext.getContentResolver(), Const.TWEAK_CALL_REC, 0));
+		AutoRecording = Misc.toBoolean(Settings.System.getInt(paramContext.getContentResolver(), Const.TWEAK_CALL_REC_AUTO, 0));
+		RecordIn = Misc.toBoolean(Settings.System.getInt(paramContext.getContentResolver(), Const.TWEAK_CALL_REC_AUTO_FILTER_IN, 1));
+		RecordOut = Misc.toBoolean(Settings.System.getInt(paramContext.getContentResolver(), Const.TWEAK_CALL_REC_AUTO_FILTER_OUT, 1));
+		RecordCaller = Settings.System.getInt(paramContext.getContentResolver(), Const.TWEAK_CALL_REC_AUTO_CALLER, 0);
+		AutoRecordingStorage = Settings.System.getInt(paramContext.getContentResolver(), Const.TWEAK_CALL_REC_AUTO_STORAGE, 1);
+		
 		if (!CallRecording)
 			return false;
 
@@ -235,7 +241,6 @@ public class Recorder
 				Object application = XposedHelpers.getObjectField(param.thisObject, "mApplication");
 				Context context = (Context) XposedHelpers.callMethod(application, "getApplicationContext");
 
-				mContext = context;
 				is_incoming = mConnection.isIncoming();
 
 				// Если условия автозаписи нас устраивают
@@ -293,12 +298,16 @@ public class Recorder
 		{
 			protected void afterHookedMethod(final MethodHookParam param) throws Throwable
 			{
-				Context context = mContext;
+				//Context context = mContext;
+				/*
+				Context context = (Context) XposedHelpers.getObjectField(param.thisObject, "mContext");
+
 
 				boolean CallRecording = Misc.toBoolean(Settings.System.getInt(context.getContentResolver(), Const.TWEAK_CALL_REC, 0));
 				boolean AutoRecording = Misc.toBoolean(Settings.System.getInt(context.getContentResolver(), Const.TWEAK_CALL_REC_AUTO, 0));
 				int AutoRecordingStorage = Settings.System.getInt(context.getContentResolver(), Const.TWEAK_CALL_REC_AUTO_STORAGE, 1);
-
+				*/
+				
 				if (CallRecording && AutoRecording && is_incoming != null)
 				{
 					String recordFile = (String) param.getResult();

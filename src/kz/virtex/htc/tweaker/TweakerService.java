@@ -8,20 +8,23 @@ import java.util.Comparator;
 import java.util.Date;
 
 import kz.virtex.htc.tweaker.utils.MediaStorageMgr;
+import kz.virtex.htc.tweaker.utils.ParseExceptionContents;
 import android.annotation.SuppressLint;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.IBinder;
+import android.util.Log;
+import android.widget.Toast;
 
 public class TweakerService extends Service
 {
 	public static final String ACTION_CLEANUP_RECORDS = "tweaker.intent.action.CLEANUP_RECORDS";
 
-
 	private SharedPreferences preferences;
 	private static ArrayList <Ls> mFileList = new ArrayList <Ls>();
+	private final int deleteCooldown = 60*60; // One in an hour
 
 	public void onCreate()
 	{
@@ -40,14 +43,7 @@ public class TweakerService extends Service
 				
 			if (action.equals(ACTION_CLEANUP_RECORDS))
 			{
-				// Если пятая по счету задача и у нас есть файлы
-				// Обнуляем текущий лист и сносим все нахер
-				if (startId % 5 == 0 && mFileList.size() > 0)
-				{
-					mFileList = new ArrayList <Ls>();
-					getRecords();
-					cleanUpRecords();
-				}
+				cleanUpRecords();
 			}
 		}
 		return super.onStartCommand(intent, flags, startId);
@@ -61,22 +57,34 @@ public class TweakerService extends Service
 		int deleteType = Integer.parseInt(preferences.getString(Const.TWEAK_CALL_REC_AUTO_DELETE, "0"));
 		int deleteCount = preferences.getInt(Const.TWEAK_CALL_REC_AUTO_DELETE_COUNT, 50);
 		int deleteInterval = preferences.getInt(Const.TWEAK_CALL_REC_AUTO_DELETE_INTERVAL, 30);
-
-		switch (deleteType)
+		long lastDelete = preferences.getLong(Const.TWEAK_CALL_REC_AUTO_LAST_DELETE, 0);
+		long now = System.currentTimeMillis() / 1000l;
+		
+		if ((now - lastDelete) > deleteCooldown)
 		{
-		case 0:
-			return;
-		case 1:
-			cleanUpRecordsByCount(deleteCount);
-			break;
-		case 2:
-			cleanUpRecordsByInterval(deleteInterval);
-			break;
+			Log.d("TweakerService","last delete was performed seconds ago: " + (now - lastDelete));
+			preferences.edit().putLong(Const.TWEAK_CALL_REC_AUTO_LAST_DELETE, now).commit();
+			
+			getRecords();
+			
+			switch (deleteType)
+			{
+			case 0:
+				return;
+			case 1:
+				cleanUpRecordsByCount(deleteCount);
+				break;
+			case 2:
+				cleanUpRecordsByInterval(deleteInterval);
+				break;
+			}
 		}
 	}
 
 	private void cleanUpRecordsByInterval(int deleteInterval)
 	{
+		Log.d("TweakerService","deleting by interval: " + deleteInterval);
+		
 		Calendar now = Calendar.getInstance();
 		Date date = new Date();
 		now.setTime(date);
@@ -90,12 +98,14 @@ public class TweakerService extends Service
 			{
 				try
 				{
+					Log.d("TweakerService","deleting " + mFileList.get(i).getName());
+					
 					File file = new File(mFileList.get(i).getPath());
 					file.delete();
 				}
 				catch (Exception e)
 				{
-
+					ParseExceptionContents.loge(e.getStackTrace());
 				}
 			}
 		}
@@ -112,18 +122,22 @@ public class TweakerService extends Service
 
 	private void cleanUpRecordsByCount(int deleteCount)
 	{
+		Log.d("TweakerService","deleting by count: " + deleteCount);
+		
 		for (int i = 0; i < mFileList.size(); i++)
 		{
 			if (deleteCount <= 0)
 			{
 				try
 				{
+					Log.d("TweakerService","deleting " + mFileList.get(i).getName());
+					
 					File file = new File(mFileList.get(i).getPath());
 					file.delete();
 				}
 				catch (Exception e)
 				{
-
+					ParseExceptionContents.loge(e.getStackTrace());
 				}
 			}
 			deleteCount--;
@@ -132,6 +146,8 @@ public class TweakerService extends Service
 
 	private void getRecords()
 	{
+		mFileList = new ArrayList <Ls>();
+		
 		getRecordsList(MediaStorageMgr.getSDCardFullPath() + "/" + Const.AUTO_REC_MAIN);
 		getRecordsList(MediaStorageMgr.getPhoneStorageFullPath() + "/" + Const.AUTO_REC_MAIN);
 
@@ -161,7 +177,7 @@ public class TweakerService extends Service
 		{
 			for (File row : list)
 			{
-				if (!row.isDirectory())
+				if (!row.isDirectory() && !row.getName().equals(".nomedia"))
 				{
 					mFileList.add(new Ls(row.getAbsolutePath(), row.getName(), row.lastModified()));
 				}

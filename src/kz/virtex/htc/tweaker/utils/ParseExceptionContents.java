@@ -18,7 +18,12 @@ public class ParseExceptionContents
 	{
 		Log.d("ParseExceptionContents", build(stackTrace));
 	}
-
+	
+	public static void loge(StackTraceElement[] stackTrace)
+	{
+		Log.e("ParseExceptionContents", build(stackTrace));
+	}
+	
 	private static String build(StackTraceElement[] stackTrace)
 	{
 		int index = 0;
