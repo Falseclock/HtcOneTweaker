@@ -103,6 +103,160 @@ public class SystemUI
 				return applyTheme(modRes.getDrawable(R.drawable.stat_sys_wifi_signal_4), Const.TWEAK_COLORED_WIFI_COLOR);
 			}
 		});
+		
+		try
+		{
+			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_wifi_signal_connected_0", new XResources.DrawableLoader()
+			{
+				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
+				{
+					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_wifi_signal_0), Const.TWEAK_COLORED_WIFI_COLOR);
+				}
+			});
+			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_wifi_signal_in_0", new XResources.DrawableLoader()
+			{
+				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
+				{
+					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_wifi_signal_0), Const.TWEAK_COLORED_WIFI_COLOR);
+				}
+			});
+			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_wifi_signal_inandout_0", new XResources.DrawableLoader()
+			{
+				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
+				{
+					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_wifi_signal_0), Const.TWEAK_COLORED_WIFI_COLOR);
+				}
+			});
+			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_wifi_signal_out_0", new XResources.DrawableLoader()
+			{
+				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
+				{
+					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_wifi_signal_0), Const.TWEAK_COLORED_WIFI_COLOR);
+				}
+			});
+	        
+			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_wifi_signal_connected_1", new XResources.DrawableLoader()
+			{
+				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
+				{
+					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_wifi_signal_1), Const.TWEAK_COLORED_WIFI_COLOR);
+				}
+			});
+			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_wifi_signal_in_1", new XResources.DrawableLoader()
+			{
+				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
+				{
+					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_wifi_signal_1), Const.TWEAK_COLORED_WIFI_COLOR);
+				}
+			});
+			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_wifi_signal_inandout_1", new XResources.DrawableLoader()
+			{
+				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
+				{
+					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_wifi_signal_1), Const.TWEAK_COLORED_WIFI_COLOR);
+				}
+			});
+			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_wifi_signal_out_1", new XResources.DrawableLoader()
+			{
+				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
+				{
+					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_wifi_signal_1), Const.TWEAK_COLORED_WIFI_COLOR);
+				}
+			});
+
+	        
+			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_wifi_signal_connected_2", new XResources.DrawableLoader()
+			{
+				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
+				{
+					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_wifi_signal_2), Const.TWEAK_COLORED_WIFI_COLOR);
+				}
+			});
+			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_wifi_signal_in_2", new XResources.DrawableLoader()
+			{
+				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
+				{
+					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_wifi_signal_2), Const.TWEAK_COLORED_WIFI_COLOR);
+				}
+			});
+			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_wifi_signal_inandout_2", new XResources.DrawableLoader()
+			{
+				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
+				{
+					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_wifi_signal_2), Const.TWEAK_COLORED_WIFI_COLOR);
+				}
+			});
+			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_wifi_signal_out_2", new XResources.DrawableLoader()
+			{
+				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
+				{
+					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_wifi_signal_2), Const.TWEAK_COLORED_WIFI_COLOR);
+				}
+			});
+
+			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_wifi_signal_connected_3", new XResources.DrawableLoader()
+			{
+				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
+				{
+					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_wifi_signal_3), Const.TWEAK_COLORED_WIFI_COLOR);
+				}
+			});
+			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_wifi_signal_in_3", new XResources.DrawableLoader()
+			{
+				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
+				{
+					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_wifi_signal_3), Const.TWEAK_COLORED_WIFI_COLOR);
+				}
+			});
+			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_wifi_signal_inandout_3", new XResources.DrawableLoader()
+			{
+				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
+				{
+					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_wifi_signal_3), Const.TWEAK_COLORED_WIFI_COLOR);
+				}
+			});
+			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_wifi_signal_out_3", new XResources.DrawableLoader()
+			{
+				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
+				{
+					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_wifi_signal_3), Const.TWEAK_COLORED_WIFI_COLOR);
+				}
+			});
+
+			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_wifi_signal_connected_4", new XResources.DrawableLoader()
+			{
+				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
+				{
+					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_wifi_signal_4), Const.TWEAK_COLORED_WIFI_COLOR);
+				}
+			});
+			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_wifi_signal_in_4", new XResources.DrawableLoader()
+			{
+				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
+				{
+					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_wifi_signal_4), Const.TWEAK_COLORED_WIFI_COLOR);
+				}
+			});
+			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_wifi_signal_inandout_4", new XResources.DrawableLoader()
+			{
+				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
+				{
+					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_wifi_signal_4), Const.TWEAK_COLORED_WIFI_COLOR);
+				}
+			});
+			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_wifi_signal_out_4", new XResources.DrawableLoader()
+			{
+				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
+				{
+					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_wifi_signal_4), Const.TWEAK_COLORED_WIFI_COLOR);
+				}
+			});
+	        
+		}
+		catch (Throwable t)
+		{
+
+		}
 	}
 
 	public static void handleColoredData(InitPackageResourcesParam resparam, String path)

@@ -210,6 +210,12 @@
     <string name="google_play"><b>Google Play Market</b></string>
     <string name="xda_support"><b>Поддержка на XDA</b></string>
     <string name="change_log_text">
+<big><b>Version 3.2.6</b></big>\n
+<font fgcolor="#FFFF0000"><b>*</b></font> (fix) запись для T-Mobile пользователей\n
+<font fgcolor="#FFFF0000"><b>*</b></font> (fix) WiFi иконка для Sense 6 \n
+<font fgcolor="#FF009000"><b>*</b></font> Более стабильное автоудаление записей\n
+<font fgcolor="#FF009000"><b>*</b></font> Стиль иконки Sense 6 на экране Настроек\n
+\n    
 <big><b>Версия 3.2.5</b></big>\n
 <font fgcolor="#FFFF0000"><b>*</b></font> (fix) запись только в AMR-NB несмотря на настройки\n
 \n

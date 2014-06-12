@@ -10,7 +10,6 @@ import kz.virtex.htc.tweaker.preference.MultiCheckPreference.Row;
 import kz.virtex.htc.tweaker.preference.NumberPickerPreference;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
-import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -21,11 +20,11 @@ import android.content.pm.PackageManager.NameNotFoundException;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Vibrator;
 import android.provider.Settings;
 import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
+
 import com.htc.preference.HtcEditTextPreference;
 import com.htc.preference.HtcPreference;
 import com.htc.preference.HtcPreference.OnPreferenceFirstBindViewListener;
@@ -39,20 +38,6 @@ public class Main extends HtcPreferenceActivity implements HtcPreference.OnPrefe
 {
 	public static SharedPreferences preferences;
 	private boolean dualPhoneEnable;
-	public static final String NOTIFICATION_DELETED_ACTION = "NOTIFICATION_DELETED";
-
-	public final static BroadcastReceiver receiver = new BroadcastReceiver()
-	{
-		@Override
-		public void onReceive(Context context, Intent intent)
-		{
-			Vibrator vibrator = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
-			vibrator.vibrate(2000);
-			context.unregisterReceiver(this);
-		}
-	};
-
-
 
 	@SuppressLint({ "WorldReadableFiles", "WorldWriteableFiles", "DefaultLocale" })
 	public void onCreate(Bundle paramBundle)
@@ -65,51 +50,6 @@ public class Main extends HtcPreferenceActivity implements HtcPreference.OnPrefe
 		dualPhoneEnable = Build.MODEL.toLowerCase().contains("dual");
 		
 		init();
-
-	
-		// new Test();
-
-		/*
-		 * Intent dismissIntent = new Intent(this, Main.class); PendingIntent
-		 * piDismiss = PendingIntent.getService(this, 0, dismissIntent, 0);
-		 * 
-		 * Intent testIntent = new Intent(this, Test.class); PendingIntent
-		 * piTest = PendingIntent.getService(this, 0, testIntent, 0);
-		 * 
-		 * Notification.Builder mBuilder = new
-		 * Notification.Builder(this).setSmallIcon
-		 * (R.drawable.ic_launcher).setContentTitle
-		 * ("+7 495 123 45 67").setContentText("setContentText!").setStyle( new
-		 * Notification.BigTextStyle().bigText(
-		 * "Здравствуйте. Это тестовое сообщение для 4pda. С помощью твикера можно сделать действия из шторки. Как считаете, будет удобно или нет?"
-		 * ))
-		 * 
-		 * .addAction(R.drawable.htc_sense_input_icon_arrow_right_dark,
-		 * "Удалить",
-		 * piDismiss).addAction(R.drawable.htc_sense_input_icon_arrow_up_dark,
-		 * "Закрыть",
-		 * piTest).addAction(R.drawable.htc_sense_input_icon_arrow_down_dark,
-		 * "Ответить", piTest);
-		 * 
-		 * NotificationManager mNotificationManager = (NotificationManager)
-		 * getSystemService(Context.NOTIFICATION_SERVICE); int mId = 1; //
-		 * mNotificationManager.notify(mId, mBuilder.build());
-		 * 
-		 * mBuilder = new
-		 * Notification.Builder(this).setSmallIcon(R.drawable.ic_launcher
-		 * ).setContentTitle
-		 * ("+7 495 123 45 67").setContentText("setContentText!"
-		 * ).setDeleteIntent(piDismiss).setStyle( new
-		 * Notification.BigTextStyle().bigText(
-		 * "А здесь вот второе оповещение, и шторка будет из-за него раздутой, поэтому предлагаю сделать только для одного сообщения, а если много непрочитанных, то как обычно."
-		 * )).addAction(R.drawable.htc_sense_input_icon_arrow_right_dark,
-		 * "Удалить",
-		 * piDismiss).addAction(R.drawable.htc_sense_input_icon_arrow_up_dark,
-		 * "Закрыть",
-		 * piTest).addAction(R.drawable.htc_sense_input_icon_arrow_down_dark,
-		 * "Ответить", piTest); mId = 2; mNotificationManager.notify(mId,
-		 * mBuilder.build());
-		 */
 	}
 
 	public boolean onCreateOptionsMenu(Menu paramMenu)
@@ -616,7 +556,6 @@ public class Main extends HtcPreferenceActivity implements HtcPreference.OnPrefe
 	@Override
 	public boolean onPreferenceChange(HtcPreference preference, Object object)
 	{
-		// TODO Auto-generated method stub
 		return false;
 	}
 }

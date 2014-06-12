@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="kz.virtex.htc.tweaker"
-    android:versionCode="32"
-    android:versionName="3.2.5" >
+    android:versionCode="34"
+    android:versionName="3.2.6" >
 
     <uses-sdk
         android:maxSdkVersion="19"
@@ -11,6 +11,7 @@
 
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
     <uses-permission android:name="com.htc.launcher.permission.READ_SETTINGS" />
+    <uses-permission android:name="com.htc.permission.APP_PLATFORM" />
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -33,16 +34,26 @@
 
         <uses-library android:name="com.htc.fusion.fx" />
 
-        <activity android:name="kz.virtex.htc.tweaker.AboutActivity" android:label="@string/app_about" android:theme="@style/Theme" /> 
         <activity
             android:name="kz.virtex.htc.tweaker.Main"
-            android:label="@string/app_name">
+            android:enabled="true"
+            android:excludeFromRecents="false"
+            android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.PREFERENCE" />
-                <category android:name="com.htc.settings.category.PLUGIN_ENTRY" />
                 <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="kz.virtex.htc.tweaker.Settings"
+            android:icon="@drawable/ic_launcher_bw"
+            android:label="@string/app_name"
+            android:excludeFromRecents="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="com.htc.settings.category.PLUGIN_ENTRY" />
             </intent-filter>
 
             <meta-data
@@ -51,6 +62,25 @@
             <meta-data
                 android:name="plugAnchorShift"
                 android:value="-1.0" />
+            <meta-data
+                android:name="plugLaunchType"
+                android:value="activity" />
+            <meta-data
+                android:name="plugLaunchTarget"
+                android:value="intent:#Intent;component=kz.virtex.htc.tweaker/.Main;end" />
+        </activity>
+        <activity
+            android:name="kz.virtex.htc.tweaker.AboutActivity"
+            android:label="@string/app_about"
+            android:theme="@style/Theme"
+            android:excludeFromRecents="true" />
+        <activity
+            android:name="kz.virtex.htc.tweaker.ReplyDialogActivity"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:excludeFromRecents="true" >
+            <intent-filter>
+                <action android:name="tweaker.intent.action.REPLY_MESSAGE" />
+            </intent-filter>
         </activity>
 
         <service
@@ -79,6 +109,16 @@
             android:exported="true" >
             <intent-filter android:priority="9999" >
                 <action android:name="android.intent.action.ACTION_SHUTDOWN" />
+            </intent-filter>
+        </receiver>
+        <receiver
+            android:name="TweakerBroadcastReceiver"
+            android:enabled="true" >
+            <intent-filter>
+                <action android:name="tweaker.intent.action.DELETE_MESSAGE" />
+                <action android:name="tweaker.intent.action.CALL_TO_CONTACT" />
+                <action android:name="tweaker.intent.action.MARK_THREAD_READ" />
+                <action android:name="tweaker.intent.action.REPLY_MESSAGE" />
             </intent-filter>
         </receiver>
     </application>

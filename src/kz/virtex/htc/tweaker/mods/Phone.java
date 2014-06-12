@@ -1,11 +1,9 @@
 package kz.virtex.htc.tweaker.mods;
 
 import static de.robv.android.xposed.XposedHelpers.findAndHookMethod;
-
 import android.content.res.XModuleResources;
 import de.robv.android.xposed.XC_MethodHook;
 import de.robv.android.xposed.XC_MethodReplacement;
-import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.XposedHelpers;
 import de.robv.android.xposed.callbacks.XC_LoadPackage.LoadPackageParam;
 

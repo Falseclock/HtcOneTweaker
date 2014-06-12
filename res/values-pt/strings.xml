@@ -214,6 +214,12 @@
     <string name="google_play"><b>Google Play Market</b></string>
     <string name="xda_support"><b>Support on XDA</b></string>
     <string name="change_log_text">
+<big><b>Version 3.2.6</b></big>\n
+<font fgcolor="#FFFF0000"><b>*</b></font> (fix) recorder for T-Mobile users\n
+<font fgcolor="#FFFF0000"><b>*</b></font> (fix) Sense 6 WiFi icon\n
+<font fgcolor="#FF009000"><b>*</b></font> Auto deletion service improvement\n
+<font fgcolor="#FF009000"><b>*</b></font> Sense 6 style icon in Settings screen\n
+\n    
 <big><b>Version 3.2.5</b></big>\n
 <font fgcolor="#FFFF0000"><b>*</b></font> (fix) recorder writes only in AMR-NB despite settings\n
 \n

@@ -2,28 +2,25 @@ package kz.virtex.htc.tweaker.mods;
 
 import static de.robv.android.xposed.XposedHelpers.findAndHookMethod;
 import kz.virtex.htc.tweaker.R;
+import kz.virtex.htc.tweaker.TweakerBroadcastReceiver;
 import kz.virtex.htc.tweaker.XMain;
 import android.app.Notification;
 import android.app.PendingIntent;
-import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.res.XModuleResources;
 import android.graphics.Bitmap;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
-import android.os.Bundle;
-import android.os.Vibrator;
 import android.view.View;
 import de.robv.android.xposed.XC_MethodHook;
-import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.XposedHelpers;
 import de.robv.android.xposed.callbacks.XC_InitPackageResources.InitPackageResourcesParam;
 import de.robv.android.xposed.callbacks.XC_LayoutInflated;
 import de.robv.android.xposed.callbacks.XC_LoadPackage.LoadPackageParam;
-import android.graphics.drawable.ColorDrawable;
 
 public class Messaging
 {
@@ -31,48 +28,7 @@ public class Messaging
 	public static Drawable Background;
 	public static Context messageContext;
 	private static MessageData mMessageData;
-	
-	public static final String ACTION_DELETE_MESSAGE = "tweaker.intent.action.DELETE_MESSAGE";
-	public static final String ACTION_CALL_TO_CONTACT = "tweaker.intent.action.CALL_TO_CONTACT";
-	public static final String ACTION_MARK_THREAD_READ = "tweaker.intent.action.MARK_THREAD_READ";
-	
-    public final static BroadcastReceiver receiver = new BroadcastReceiver() 
-    {
-        @Override
-        public void onReceive(Context paramContext, Intent intent)
-        {
-			Vibrator vibrator = (Vibrator) paramContext.getSystemService(Context.VIBRATOR_SERVICE);
-		    vibrator.vibrate(20);
-		    
-    		if (intent != null)
-    		{
-	        	String action = intent.getAction();
-	        	Bundle bundle = intent.getExtras();
-				if (action == null)
-					action = "UNKNOWN";
-				
-	        	XposedBridge.log("action: " + action);
-
-	        	if (action.equals(ACTION_DELETE_MESSAGE))
-				{
-					paramContext.getContentResolver().delete( Uri.parse("content://sms/" + bundle.getLong("MsgId")), null, null);
-				}
-				if (action.equals(ACTION_CALL_TO_CONTACT))
-				{
-					
-				}
-				if (action.equals(ACTION_MARK_THREAD_READ))
-				{
-					Class <?> MessagingNotification = XposedHelpers.findClass("com.android.mms.ui.MessageUtils", null);
-					XposedHelpers.callStaticMethod(MessagingNotification, "markAsRead", paramContext, bundle.getLong("ThreadId"));
-				}
-
-			    //paramContext.unregisterReceiver(this);
-    		}
-        }
-    };
-
-    
+   
 	public static class MessageData
 	{
 		Context mContext;
@@ -126,30 +82,36 @@ public class Messaging
 			} 
 			else
 			{
-				//XModuleResources tweakRes = XModuleResources.createInstance(XMain.MODULE_PATH, null);
-				//int deleteIcon = tweakRes.getIdentifier("icon_btn_lockscreen_cancel_dark_xl", "drawable", "com.android.mms");
-				
 				IntentFilter intentFilter = new IntentFilter();
-				intentFilter.addAction(ACTION_MARK_THREAD_READ);
-				intentFilter.addAction(ACTION_DELETE_MESSAGE);
-				intentFilter.addAction(ACTION_CALL_TO_CONTACT);
-				mContext.registerReceiver(receiver, intentFilter);
-			
-				Intent intentMarkAsRead = new Intent(ACTION_MARK_THREAD_READ);
-				intentMarkAsRead.putExtra("ThreadId", mThreadId);
-				intentMarkAsRead.putExtra("SMSnotificationId", paramNotificationId);
-				PendingIntent mPintentMarkAsRead = PendingIntent.getBroadcast(mContext, paramNotificationId, intentMarkAsRead, 0);
-				
-				
-				Intent intentDeleteMsg = new Intent(ACTION_DELETE_MESSAGE);
+				intentFilter.addAction(TweakerBroadcastReceiver.ACTION_DELETE_MESSAGE);
+				intentFilter.addAction(TweakerBroadcastReceiver.ACTION_CALL_TO_CONTACT);
+				intentFilter.addAction(TweakerBroadcastReceiver.ACTION_REPLY_MESSAGE);
+
+				mContext.registerReceiver(new TweakerBroadcastReceiver(), intentFilter);
+							
+				Intent intentDeleteMsg = new Intent();
+				intentDeleteMsg.setAction(TweakerBroadcastReceiver.ACTION_DELETE_MESSAGE);
 				intentDeleteMsg.putExtra("MsgId", mMsgId);
+				intentDeleteMsg.putExtra("ContactId", mContactId);
+				intentDeleteMsg.putExtra("ThreadId", mThreadId);
+				intentDeleteMsg.putExtra("Sender", paramSender);
 				PendingIntent mPintentDeleteMsg = PendingIntent.getBroadcast(mContext, paramNotificationId, intentDeleteMsg, 0);
 
-				
-				Intent intentCallToContact = new Intent(ACTION_CALL_TO_CONTACT);
+				Intent intentCallToContact = new Intent();
+				intentCallToContact.setAction(TweakerBroadcastReceiver.ACTION_CALL_TO_CONTACT);
 				intentCallToContact.putExtra("ContactId", mContactId);
-				PendingIntent mPintentCallToContact = PendingIntent.getBroadcast(mContext, paramNotificationId, intentCallToContact, 0);
+				intentCallToContact.putExtra("Sender", paramSender);
 				
+				PendingIntent mPintentCallToContact = PendingIntent.getBroadcast(mContext, paramNotificationId, intentCallToContact, 0);
+
+				Intent intentReplyMsg = new Intent();
+				intentReplyMsg.setAction(TweakerBroadcastReceiver.ACTION_REPLY_MESSAGE);
+				intentReplyMsg.putExtra("ContactId", mContactId);
+				intentDeleteMsg.putExtra("Sender", paramSender);
+				intentDeleteMsg.putExtra("ThreadId", mThreadId);
+				PendingIntent mPintentReplyMsg = PendingIntent.getBroadcast(mContext, paramNotificationId, intentReplyMsg, 0);
+				
+
 				
 				Notification.Builder localBuilder = new Notification.Builder(mContext);
 				localBuilder.setWhen(mWhen);
@@ -165,10 +127,10 @@ public class Messaging
 			    localBuilder.setContentText(mContentText);
 			    localBuilder.setStyle(new Notification.BigTextStyle().bigText(mContentText));
 			    localBuilder.setContentIntent(mPendingIntent);
-			    //localBuilder.setDeleteIntent(mPintentMarkAsRead);
-			    //localBuilder.addAction(2130837647, "Удалить", mPintentDeleteMsg);
-			    //localBuilder.addAction(2130837646, "Позвонить", mPintentCallToContact);
-			    //localBuilder.addAction(2130837641, "Прочитано", mPintentMarkAsRead);
+			    //localBuilder.addAction(0, "Удалить", mPintentDeleteMsg);
+			    //localBuilder.addAction(0, "Звонок", mPintentCallToContact);
+			    //localBuilder.addAction(0, "Ответ", mPintentReplyMsg);
+
 			    
 			    Class <?> MessagingNotification = XposedHelpers.findClass(packageName+".transaction.MessagingNotification", classLoader);
 			    
