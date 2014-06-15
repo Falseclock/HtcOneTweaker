@@ -9,6 +9,8 @@ import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.content.res.XModuleResources;
 import android.content.res.XResources;
+import android.graphics.ColorFilter;
+import android.graphics.drawable.Drawable;
 import android.media.AudioManager;
 import android.util.Log;
 import kz.virtex.htc.tweaker.mods.Android;
@@ -28,6 +30,7 @@ import kz.virtex.htc.tweaker.mods.Settings;
 import kz.virtex.htc.tweaker.mods.SystemUI;
 import kz.virtex.htc.tweaker.mods.Tweaker;
 import kz.virtex.htc.tweaker.mods.Weather;
+import kz.virtex.htc.tweaker.utils.ColorFilterGenerator;
 import de.robv.android.xposed.IXposedHookInitPackageResources;
 import de.robv.android.xposed.IXposedHookLoadPackage;
 import de.robv.android.xposed.IXposedHookZygoteInit;
@@ -82,10 +85,8 @@ public class XMain implements IXposedHookInitPackageResources, IXposedHookZygote
 			Android.hookSDcardPermission();
 		}
 		
-		//Android.hookCDROMMount();
-		//Android.hookBootSound();
-		//Android.hookEnableSkypeCall();
-		
+		Messaging.hookSetBadgeImageResource();
+
 	}
 
 	public void handleLoadPackage(LoadPackageParam paramLoadPackageParam) throws Throwable
@@ -108,6 +109,9 @@ public class XMain implements IXposedHookInitPackageResources, IXposedHookZygote
 		{
 			if (pref.getBoolean(Const.TWEAK_ENABLE_SIP, false))
 				Phone.hookSIP(paramLoadPackageParam);
+			
+			if (pref.getBoolean(Const.TWEAK_DISABLE_DATA_ROAM_NOTIFY, false))
+				Phone.hookShowDataDisconnectedRoaming(paramLoadPackageParam);
 			
 			/*----------------*/
 			/* CALL RECORDING */
@@ -188,6 +192,7 @@ public class XMain implements IXposedHookInitPackageResources, IXposedHookZygote
 		{
 			// LockScreen.hookOperatorName(paramLoadPackageParam);
 		}
+
 	}
 
 	public void handleInitPackageResources(InitPackageResourcesParam resparam) throws Throwable
@@ -201,17 +206,42 @@ public class XMain implements IXposedHookInitPackageResources, IXposedHookZygote
 		{
 			if (pref.getBoolean(Const.TWEAK_SMS_HIDE_BADGE, false))
 				Messaging.hookContactBadge(resparam);
+			
+			if (pref.getInt(Const.TWEAK_SLOT1_COLOR, 0) != 0)
+				Phone.handleSlotIndicator1(resparam, MODULE_PATH, pref.getInt(Const.TWEAK_SLOT1_COLOR, 0));
+			
+			if (pref.getInt(Const.TWEAK_SLOT2_COLOR, 0) != 0)
+				Phone.handleSlotIndicator2(resparam, MODULE_PATH, pref.getInt(Const.TWEAK_SLOT2_COLOR, 0));
+		}
+		
+		if (resparam.packageName.equals("com.android.phone"))
+		{
+			if (pref.getInt(Const.TWEAK_SLOT1_COLOR, 0) != 0)
+				Phone.handleSlotIndicator1(resparam, MODULE_PATH, pref.getInt(Const.TWEAK_SLOT1_COLOR, 0));
+			
+			if (pref.getInt(Const.TWEAK_SLOT2_COLOR, 0) != 0)
+				Phone.handleSlotIndicator2(resparam, MODULE_PATH, pref.getInt(Const.TWEAK_SLOT2_COLOR, 0));
 		}
 		
 		if (resparam.packageName.equals("com.htc.htcdialer"))
 		{
 			if (pref.getBoolean(Const.TWEAK_COLOR_CALL_INDICATOR, false))
 				Dialer.handleCallDirections(resparam, MODULE_PATH);
+			
+			if (pref.getInt(Const.TWEAK_SLOT1_COLOR, 0) != 0)
+				Phone.handleSlotIndicator1(resparam, MODULE_PATH, pref.getInt(Const.TWEAK_SLOT1_COLOR, 0));
+			
+			if (pref.getInt(Const.TWEAK_SLOT2_COLOR, 0) != 0)
+				Phone.handleSlotIndicator2(resparam, MODULE_PATH, pref.getInt(Const.TWEAK_SLOT2_COLOR, 0));
 		}
+		
 		if (resparam.packageName.equals("com.htc.contacts"))
 		{
-			//Contacts.hookContactBadge(resparam);
+			if (pref.getInt(Const.TWEAK_SLOT1_COLOR, 0) != 0)
+				Phone.handleSlotIndicator1(resparam, MODULE_PATH, pref.getInt(Const.TWEAK_SLOT1_COLOR, 0));
 			
+			if (pref.getInt(Const.TWEAK_SLOT2_COLOR, 0) != 0)
+				Phone.handleSlotIndicator2(resparam, MODULE_PATH, pref.getInt(Const.TWEAK_SLOT2_COLOR, 0));	
 			
 			if (pref.getBoolean(Const.TWEAK_COLOR_CALL_INDICATOR, false))
 				Contacts.handleCallDirections(resparam, MODULE_PATH);
@@ -222,14 +252,6 @@ public class XMain implements IXposedHookInitPackageResources, IXposedHookZygote
 			if (pref.getBoolean(Const.TWEAK_COLORED_WEATHER, false))
 			{
 				Weather.handleColorWeather(resparam, weather_apk);
-			}
-		}
-
-		if (resparam.packageName.equals("com.htc.Weather"))
-		{
-			if (pref.getBoolean(Const.TWEAK_COLORED_WEATHER, false))
-			{
-				//Weather.handleColorWeatherIcon(resparam, weather_apk);
 			}
 		}
 

@@ -137,7 +137,23 @@
                     android:key="slot_2_user_text"
                     android:summary=""
                     android:title="@string/slot2_name_title" />
-            </com.htc.preference.HtcPreferenceScreen>
+               <com.htc.preference.HtcPreferenceCategory
+                android:title="@string/SlotIconIndicator" >
+                <kz.virtex.htc.tweaker.preference.SeekBarPreference
+                    android:icon="@drawable/icon_indicator_slot_1"
+                    android:key="tweak_slot1_color"
+                    android:title="@string/hue_settings"
+                    android:max="360" >
+                </kz.virtex.htc.tweaker.preference.SeekBarPreference>
+                
+                <kz.virtex.htc.tweaker.preference.SeekBarPreference
+                    android:icon="@drawable/icon_indicator_slot_2"
+                    android:key="tweak_slot2_color"
+                    android:title="@string/hue_settings"
+                    android:max="360" >
+                </kz.virtex.htc.tweaker.preference.SeekBarPreference>
+                </com.htc.preference.HtcPreferenceCategory>
+             </com.htc.preference.HtcPreferenceScreen>
         </com.htc.preference.HtcPreferenceScreen>
         <com.htc.preference.HtcPreferenceScreen
             android:key="notification_screen"
@@ -164,7 +180,14 @@
                 android:id="@id/disableMTPNotification"
                 android:key="tweak_mtp_notify"
                 android:title="@string/disableMTPNotificationTitle" />
-        </com.htc.preference.HtcPreferenceScreen>
+            <com.htc.preference.HtcCheckBoxPreference
+                android:id="@id/disableRoamingDataNotification"
+                android:key="tweak_roaming_data_notify"
+                android:title="@string/disableRoamingDataNotification"
+                android:summary="@string/disableRoamingDataNotificationSummary" />
+            
+            
+            </com.htc.preference.HtcPreferenceScreen>
         <com.htc.preference.HtcPreferenceScreen
             android:key="gui_screen_key"
             android:summary="@string/GuiScreenSummary"
@@ -173,6 +196,7 @@
                 android:key="data_screen_key"
                 android:summary="@string/DataScreenSummary"
                 android:title="@string/DataScreenTitle" >
+                
                 <com.htc.preference.HtcSwitchPreference
                     android:id="@id/enableColoredSimLevel"
                     android:key="tweak_colored_sim"
@@ -195,6 +219,7 @@
                         android:title="@string/ColoredSimLevelPreferenceTitle2" />
                 </com.htc.preference.HtcPreferenceScreen>
 
+                
                 <com.htc.preference.HtcSwitchPreference
                     android:key="tweak_data_icons"
                     android:summary="@string/ColoredDataIconsSummary"

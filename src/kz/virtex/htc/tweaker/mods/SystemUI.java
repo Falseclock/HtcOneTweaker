@@ -2,12 +2,11 @@ package kz.virtex.htc.tweaker.mods;
 
 import static de.robv.android.xposed.XposedHelpers.findAndHookMethod;
 import kz.virtex.htc.tweaker.Const;
+import kz.virtex.htc.tweaker.Misc;
 import kz.virtex.htc.tweaker.R;
 import kz.virtex.htc.tweaker.XMain;
-import kz.virtex.htc.tweaker.utils.ColorFilterGenerator;
 import android.content.res.XModuleResources;
 import android.content.res.XResources;
-import android.graphics.ColorFilter;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.view.MotionEvent;
@@ -72,35 +71,35 @@ public class SystemUI
 		{
 			public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 			{
-				return applyTheme(modRes.getDrawable(R.drawable.stat_sys_wifi_signal_0), Const.TWEAK_COLORED_WIFI_COLOR);
+				return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_wifi_signal_0), Const.TWEAK_COLORED_WIFI_COLOR, XMain.pref);
 			}
 		});
 		resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_wifi_signal_1", new XResources.DrawableLoader()
 		{
 			public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 			{
-				return applyTheme(modRes.getDrawable(R.drawable.stat_sys_wifi_signal_1), Const.TWEAK_COLORED_WIFI_COLOR);
+				return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_wifi_signal_1), Const.TWEAK_COLORED_WIFI_COLOR, XMain.pref);
 			}
 		});
 		resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_wifi_signal_2", new XResources.DrawableLoader()
 		{
 			public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 			{
-				return applyTheme(modRes.getDrawable(R.drawable.stat_sys_wifi_signal_2), Const.TWEAK_COLORED_WIFI_COLOR);
+				return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_wifi_signal_2), Const.TWEAK_COLORED_WIFI_COLOR, XMain.pref);
 			}
 		});
 		resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_wifi_signal_3", new XResources.DrawableLoader()
 		{
 			public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 			{
-				return applyTheme(modRes.getDrawable(R.drawable.stat_sys_wifi_signal_3), Const.TWEAK_COLORED_WIFI_COLOR);
+				return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_wifi_signal_3), Const.TWEAK_COLORED_WIFI_COLOR, XMain.pref);
 			}
 		});
 		resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_wifi_signal_4", new XResources.DrawableLoader()
 		{
 			public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 			{
-				return applyTheme(modRes.getDrawable(R.drawable.stat_sys_wifi_signal_4), Const.TWEAK_COLORED_WIFI_COLOR);
+				return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_wifi_signal_4), Const.TWEAK_COLORED_WIFI_COLOR, XMain.pref);
 			}
 		});
 		
@@ -110,28 +109,28 @@ public class SystemUI
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_wifi_signal_0), Const.TWEAK_COLORED_WIFI_COLOR);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_wifi_signal_0), Const.TWEAK_COLORED_WIFI_COLOR, XMain.pref);
 				}
 			});
 			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_wifi_signal_in_0", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_wifi_signal_0), Const.TWEAK_COLORED_WIFI_COLOR);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_wifi_signal_0), Const.TWEAK_COLORED_WIFI_COLOR, XMain.pref);
 				}
 			});
 			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_wifi_signal_inandout_0", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_wifi_signal_0), Const.TWEAK_COLORED_WIFI_COLOR);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_wifi_signal_0), Const.TWEAK_COLORED_WIFI_COLOR, XMain.pref);
 				}
 			});
 			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_wifi_signal_out_0", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_wifi_signal_0), Const.TWEAK_COLORED_WIFI_COLOR);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_wifi_signal_0), Const.TWEAK_COLORED_WIFI_COLOR, XMain.pref);
 				}
 			});
 	        
@@ -139,28 +138,28 @@ public class SystemUI
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_wifi_signal_1), Const.TWEAK_COLORED_WIFI_COLOR);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_wifi_signal_1), Const.TWEAK_COLORED_WIFI_COLOR, XMain.pref);
 				}
 			});
 			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_wifi_signal_in_1", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_wifi_signal_1), Const.TWEAK_COLORED_WIFI_COLOR);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_wifi_signal_1), Const.TWEAK_COLORED_WIFI_COLOR, XMain.pref);
 				}
 			});
 			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_wifi_signal_inandout_1", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_wifi_signal_1), Const.TWEAK_COLORED_WIFI_COLOR);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_wifi_signal_1), Const.TWEAK_COLORED_WIFI_COLOR, XMain.pref);
 				}
 			});
 			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_wifi_signal_out_1", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_wifi_signal_1), Const.TWEAK_COLORED_WIFI_COLOR);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_wifi_signal_1), Const.TWEAK_COLORED_WIFI_COLOR, XMain.pref);
 				}
 			});
 
@@ -169,28 +168,28 @@ public class SystemUI
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_wifi_signal_2), Const.TWEAK_COLORED_WIFI_COLOR);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_wifi_signal_2), Const.TWEAK_COLORED_WIFI_COLOR, XMain.pref);
 				}
 			});
 			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_wifi_signal_in_2", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_wifi_signal_2), Const.TWEAK_COLORED_WIFI_COLOR);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_wifi_signal_2), Const.TWEAK_COLORED_WIFI_COLOR, XMain.pref);
 				}
 			});
 			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_wifi_signal_inandout_2", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_wifi_signal_2), Const.TWEAK_COLORED_WIFI_COLOR);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_wifi_signal_2), Const.TWEAK_COLORED_WIFI_COLOR, XMain.pref);
 				}
 			});
 			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_wifi_signal_out_2", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_wifi_signal_2), Const.TWEAK_COLORED_WIFI_COLOR);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_wifi_signal_2), Const.TWEAK_COLORED_WIFI_COLOR, XMain.pref);
 				}
 			});
 
@@ -198,28 +197,28 @@ public class SystemUI
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_wifi_signal_3), Const.TWEAK_COLORED_WIFI_COLOR);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_wifi_signal_3), Const.TWEAK_COLORED_WIFI_COLOR, XMain.pref);
 				}
 			});
 			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_wifi_signal_in_3", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_wifi_signal_3), Const.TWEAK_COLORED_WIFI_COLOR);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_wifi_signal_3), Const.TWEAK_COLORED_WIFI_COLOR, XMain.pref);
 				}
 			});
 			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_wifi_signal_inandout_3", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_wifi_signal_3), Const.TWEAK_COLORED_WIFI_COLOR);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_wifi_signal_3), Const.TWEAK_COLORED_WIFI_COLOR, XMain.pref);
 				}
 			});
 			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_wifi_signal_out_3", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_wifi_signal_3), Const.TWEAK_COLORED_WIFI_COLOR);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_wifi_signal_3), Const.TWEAK_COLORED_WIFI_COLOR, XMain.pref);
 				}
 			});
 
@@ -227,28 +226,28 @@ public class SystemUI
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_wifi_signal_4), Const.TWEAK_COLORED_WIFI_COLOR);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_wifi_signal_4), Const.TWEAK_COLORED_WIFI_COLOR, XMain.pref);
 				}
 			});
 			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_wifi_signal_in_4", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_wifi_signal_4), Const.TWEAK_COLORED_WIFI_COLOR);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_wifi_signal_4), Const.TWEAK_COLORED_WIFI_COLOR, XMain.pref);
 				}
 			});
 			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_wifi_signal_inandout_4", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_wifi_signal_4), Const.TWEAK_COLORED_WIFI_COLOR);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_wifi_signal_4), Const.TWEAK_COLORED_WIFI_COLOR, XMain.pref);
 				}
 			});
 			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_wifi_signal_out_4", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_wifi_signal_4), Const.TWEAK_COLORED_WIFI_COLOR);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_wifi_signal_4), Const.TWEAK_COLORED_WIFI_COLOR, XMain.pref);
 				}
 			});
 	        
@@ -270,28 +269,28 @@ public class SystemUI
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_data_connected_2g), Const.TWEAK_DATA_ICONS_COLOR);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_data_connected_2g), Const.TWEAK_DATA_ICONS_COLOR, XMain.pref);
 				}
 			});
 			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_data_inandout_2g", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_data_inandout_2g), Const.TWEAK_DATA_ICONS_COLOR);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_data_inandout_2g), Const.TWEAK_DATA_ICONS_COLOR, XMain.pref);
 				}
 			});
 			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_data_in_2g", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_data_in_2g), Const.TWEAK_DATA_ICONS_COLOR);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_data_in_2g), Const.TWEAK_DATA_ICONS_COLOR, XMain.pref);
 				}
 			});
 			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_data_out_2g", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_data_out_2g), Const.TWEAK_DATA_ICONS_COLOR);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_data_out_2g), Const.TWEAK_DATA_ICONS_COLOR, XMain.pref);
 				}
 			});
 
@@ -309,28 +308,28 @@ public class SystemUI
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_data_connected_3g), Const.TWEAK_DATA_ICONS_COLOR);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_data_connected_3g), Const.TWEAK_DATA_ICONS_COLOR, XMain.pref);
 				}
 			});
 			resparam.res.setReplacement(resparam.packageName, "drawable", "cdma_sys_data_inandout_3g", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_data_inandout_3g), Const.TWEAK_DATA_ICONS_COLOR);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_data_inandout_3g), Const.TWEAK_DATA_ICONS_COLOR, XMain.pref);
 				}
 			});
 			resparam.res.setReplacement(resparam.packageName, "drawable", "cdma_sys_data_in_3g", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_data_in_3g), Const.TWEAK_DATA_ICONS_COLOR);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_data_in_3g), Const.TWEAK_DATA_ICONS_COLOR, XMain.pref);
 				}
 			});
 			resparam.res.setReplacement(resparam.packageName, "drawable", "cdma_sys_data_out_3g", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_data_out_3g), Const.TWEAK_DATA_ICONS_COLOR);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_data_out_3g), Const.TWEAK_DATA_ICONS_COLOR, XMain.pref);
 				}
 			});
 
@@ -345,28 +344,28 @@ public class SystemUI
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_data_connected_3g), Const.TWEAK_DATA_ICONS_COLOR);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_data_connected_3g), Const.TWEAK_DATA_ICONS_COLOR, XMain.pref);
 				}
 			});
 			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_data_inandout_3g", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_data_inandout_3g), Const.TWEAK_DATA_ICONS_COLOR);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_data_inandout_3g), Const.TWEAK_DATA_ICONS_COLOR, XMain.pref);
 				}
 			});
 			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_data_in_3g", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_data_in_3g), Const.TWEAK_DATA_ICONS_COLOR);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_data_in_3g), Const.TWEAK_DATA_ICONS_COLOR, XMain.pref);
 				}
 			});
 			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_data_out_3g", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_data_out_3g), Const.TWEAK_DATA_ICONS_COLOR);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_data_out_3g), Const.TWEAK_DATA_ICONS_COLOR, XMain.pref);
 				}
 			});
 
@@ -384,28 +383,28 @@ public class SystemUI
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_data_connected_4g), Const.TWEAK_DATA_ICONS_COLOR);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_data_connected_4g), Const.TWEAK_DATA_ICONS_COLOR, XMain.pref);
 				}
 			});
 			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_data_inandout_4g", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_data_inandout_4g), Const.TWEAK_DATA_ICONS_COLOR);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_data_inandout_4g), Const.TWEAK_DATA_ICONS_COLOR, XMain.pref);
 				}
 			});
 			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_data_in_4g", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_data_in_4g), Const.TWEAK_DATA_ICONS_COLOR);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_data_in_4g), Const.TWEAK_DATA_ICONS_COLOR, XMain.pref);
 				}
 			});
 			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_data_out_4g", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_data_out_4g), Const.TWEAK_DATA_ICONS_COLOR);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_data_out_4g), Const.TWEAK_DATA_ICONS_COLOR, XMain.pref);
 				}
 			});
 		}
@@ -422,28 +421,28 @@ public class SystemUI
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_data_connected_e), Const.TWEAK_DATA_ICONS_COLOR);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_data_connected_e), Const.TWEAK_DATA_ICONS_COLOR, XMain.pref);
 				}
 			});
 			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_data_inandout_e", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_data_inandout_e), Const.TWEAK_DATA_ICONS_COLOR);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_data_inandout_e), Const.TWEAK_DATA_ICONS_COLOR, XMain.pref);
 				}
 			});
 			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_data_in_e", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_data_in_e), Const.TWEAK_DATA_ICONS_COLOR);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_data_in_e), Const.TWEAK_DATA_ICONS_COLOR, XMain.pref);
 				}
 			});
 			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_data_out_e", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_data_out_e), Const.TWEAK_DATA_ICONS_COLOR);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_data_out_e), Const.TWEAK_DATA_ICONS_COLOR, XMain.pref);
 				}
 			});
 		}
@@ -460,28 +459,28 @@ public class SystemUI
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_data_connected_g), Const.TWEAK_DATA_ICONS_COLOR);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_data_connected_g), Const.TWEAK_DATA_ICONS_COLOR, XMain.pref);
 				}
 			});
 			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_data_inandout_g", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_data_inandout_g), Const.TWEAK_DATA_ICONS_COLOR);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_data_inandout_g), Const.TWEAK_DATA_ICONS_COLOR, XMain.pref);
 				}
 			});
 			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_data_in_g", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_data_in_g), Const.TWEAK_DATA_ICONS_COLOR);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_data_in_g), Const.TWEAK_DATA_ICONS_COLOR, XMain.pref);
 				}
 			});
 			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_data_out_g", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_data_out_g), Const.TWEAK_DATA_ICONS_COLOR);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_data_out_g), Const.TWEAK_DATA_ICONS_COLOR, XMain.pref);
 				}
 			});
 		}
@@ -498,28 +497,28 @@ public class SystemUI
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_data_connected_h), Const.TWEAK_DATA_ICONS_COLOR);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_data_connected_h), Const.TWEAK_DATA_ICONS_COLOR, XMain.pref);
 				}
 			});
 			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_data_inandout_h", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_data_inandout_h), Const.TWEAK_DATA_ICONS_COLOR);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_data_inandout_h), Const.TWEAK_DATA_ICONS_COLOR, XMain.pref);
 				}
 			});
 			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_data_in_h", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_data_in_h), Const.TWEAK_DATA_ICONS_COLOR);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_data_in_h), Const.TWEAK_DATA_ICONS_COLOR, XMain.pref);
 				}
 			});
 			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_data_out_h", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_data_out_h), Const.TWEAK_DATA_ICONS_COLOR);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_data_out_h), Const.TWEAK_DATA_ICONS_COLOR, XMain.pref);
 				}
 			});
 		}
@@ -536,28 +535,28 @@ public class SystemUI
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_data_connected_hplus), Const.TWEAK_DATA_ICONS_COLOR);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_data_connected_hplus), Const.TWEAK_DATA_ICONS_COLOR, XMain.pref);
 				}
 			});
 			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_data_inandout_hplus", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_data_inandout_hplus), Const.TWEAK_DATA_ICONS_COLOR);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_data_inandout_hplus), Const.TWEAK_DATA_ICONS_COLOR, XMain.pref);
 				}
 			});
 			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_data_in_hplus", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_data_in_hplus), Const.TWEAK_DATA_ICONS_COLOR);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_data_in_hplus), Const.TWEAK_DATA_ICONS_COLOR, XMain.pref);
 				}
 			});
 			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_data_out_hplus", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_data_out_hplus), Const.TWEAK_DATA_ICONS_COLOR);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_data_out_hplus), Const.TWEAK_DATA_ICONS_COLOR, XMain.pref);
 				}
 			});
 		}
@@ -574,28 +573,28 @@ public class SystemUI
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_data_connected_lte), Const.TWEAK_DATA_ICONS_COLOR);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_data_connected_lte), Const.TWEAK_DATA_ICONS_COLOR, XMain.pref);
 				}
 			});
 			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_data_inandout_lte", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_data_inandout_lte), Const.TWEAK_DATA_ICONS_COLOR);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_data_inandout_lte), Const.TWEAK_DATA_ICONS_COLOR, XMain.pref);
 				}
 			});
 			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_data_in_lte", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_data_in_lte), Const.TWEAK_DATA_ICONS_COLOR);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_data_in_lte), Const.TWEAK_DATA_ICONS_COLOR, XMain.pref);
 				}
 			});
 			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_data_out_lte", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_data_out_lte), Const.TWEAK_DATA_ICONS_COLOR);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_data_out_lte), Const.TWEAK_DATA_ICONS_COLOR, XMain.pref);
 				}
 			});
 		}
@@ -617,49 +616,49 @@ public class SystemUI
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.cdma_stat_sys_s1_5signal_0), Const.TWEAK_COLOR_SIM1);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.cdma_stat_sys_s1_5signal_0), Const.TWEAK_COLOR_SIM1, XMain.pref);
 				}
 			});
 			resparam.res.setReplacement(resparam.packageName, "drawable", "cdma_stat_sys_s1_5signal_1", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.cdma_stat_sys_s1_5signal_1), Const.TWEAK_COLOR_SIM1);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.cdma_stat_sys_s1_5signal_1), Const.TWEAK_COLOR_SIM1, XMain.pref);
 				}
 			});
 			resparam.res.setReplacement(resparam.packageName, "drawable", "cdma_stat_sys_s1_5signal_2", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.cdma_stat_sys_s1_5signal_2), Const.TWEAK_COLOR_SIM1);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.cdma_stat_sys_s1_5signal_2), Const.TWEAK_COLOR_SIM1, XMain.pref);
 				}
 			});
 			resparam.res.setReplacement(resparam.packageName, "drawable", "cdma_stat_sys_s1_5signal_3", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.cdma_stat_sys_s1_5signal_3), Const.TWEAK_COLOR_SIM1);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.cdma_stat_sys_s1_5signal_3), Const.TWEAK_COLOR_SIM1, XMain.pref);
 				}
 			});
 			resparam.res.setReplacement(resparam.packageName, "drawable", "cdma_stat_sys_s1_5signal_4", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.cdma_stat_sys_s1_5signal_4), Const.TWEAK_COLOR_SIM1);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.cdma_stat_sys_s1_5signal_4), Const.TWEAK_COLOR_SIM1, XMain.pref);
 				}
 			});
 			resparam.res.setReplacement(resparam.packageName, "drawable", "cdma_stat_sys_s1_5signal_5", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.cdma_stat_sys_s1_5signal_5), Const.TWEAK_COLOR_SIM1);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.cdma_stat_sys_s1_5signal_5), Const.TWEAK_COLOR_SIM1, XMain.pref);
 				}
 			});
 			resparam.res.setReplacement(resparam.packageName, "drawable", "cdma_stat_sys_s1_5signal_null", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.cdma_stat_sys_s1_5signal_null), Const.TWEAK_COLOR_SIM1);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.cdma_stat_sys_s1_5signal_null), Const.TWEAK_COLOR_SIM1, XMain.pref);
 				}
 			});
 
@@ -667,49 +666,49 @@ public class SystemUI
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.cdma_stat_sys_s2_5signal_0), Const.TWEAK_COLOR_SIM2);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.cdma_stat_sys_s2_5signal_0), Const.TWEAK_COLOR_SIM2, XMain.pref);
 				}
 			});
 			resparam.res.setReplacement(resparam.packageName, "drawable", "cdma_stat_sys_s2_5signal_1", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.cdma_stat_sys_s2_5signal_1), Const.TWEAK_COLOR_SIM2);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.cdma_stat_sys_s2_5signal_1), Const.TWEAK_COLOR_SIM2, XMain.pref);
 				}
 			});
 			resparam.res.setReplacement(resparam.packageName, "drawable", "cdma_stat_sys_s2_5signal_2", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.cdma_stat_sys_s2_5signal_2), Const.TWEAK_COLOR_SIM2);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.cdma_stat_sys_s2_5signal_2), Const.TWEAK_COLOR_SIM2, XMain.pref);
 				}
 			});
 			resparam.res.setReplacement(resparam.packageName, "drawable", "cdma_stat_sys_s2_5signal_3", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.cdma_stat_sys_s2_5signal_3), Const.TWEAK_COLOR_SIM2);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.cdma_stat_sys_s2_5signal_3), Const.TWEAK_COLOR_SIM2, XMain.pref);
 				}
 			});
 			resparam.res.setReplacement(resparam.packageName, "drawable", "cdma_stat_sys_s2_5signal_4", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.cdma_stat_sys_s2_5signal_4), Const.TWEAK_COLOR_SIM2);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.cdma_stat_sys_s2_5signal_4), Const.TWEAK_COLOR_SIM2, XMain.pref);
 				}
 			});
 			resparam.res.setReplacement(resparam.packageName, "drawable", "cdma_stat_sys_s2_5signal_5", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.cdma_stat_sys_s2_5signal_5), Const.TWEAK_COLOR_SIM2);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.cdma_stat_sys_s2_5signal_5), Const.TWEAK_COLOR_SIM2, XMain.pref);
 				}
 			});
 			resparam.res.setReplacement(resparam.packageName, "drawable", "cdma_stat_sys_s2_5signal_null", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.cdma_stat_sys_s2_5signal_null), Const.TWEAK_COLOR_SIM2);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.cdma_stat_sys_s2_5signal_null), Const.TWEAK_COLOR_SIM2, XMain.pref);
 				}
 			});
 		}
@@ -726,42 +725,42 @@ public class SystemUI
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_s1_r_5signal_0), Const.TWEAK_COLOR_SIM1);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_s1_r_5signal_0), Const.TWEAK_COLOR_SIM1, XMain.pref);
 				}
 			});
 			resparam.res.setReplacement(resparam.packageName, "drawable", "cdma_stat_sys_s1_roaming_1", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_s1_r_5signal_1), Const.TWEAK_COLOR_SIM1);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_s1_r_5signal_1), Const.TWEAK_COLOR_SIM1, XMain.pref);
 				}
 			});
 			resparam.res.setReplacement(resparam.packageName, "drawable", "cdma_stat_sys_s1_roaming_2", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_s1_r_5signal_2), Const.TWEAK_COLOR_SIM1);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_s1_r_5signal_2), Const.TWEAK_COLOR_SIM1, XMain.pref);
 				}
 			});
 			resparam.res.setReplacement(resparam.packageName, "drawable", "cdma_stat_sys_s1_roaming_3", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_s1_r_5signal_3), Const.TWEAK_COLOR_SIM1);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_s1_r_5signal_3), Const.TWEAK_COLOR_SIM1, XMain.pref);
 				}
 			});
 			resparam.res.setReplacement(resparam.packageName, "drawable", "cdma_stat_sys_s1_roaming_4", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_s1_r_5signal_4), Const.TWEAK_COLOR_SIM1);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_s1_r_5signal_4), Const.TWEAK_COLOR_SIM1, XMain.pref);
 				}
 			});
 			resparam.res.setReplacement(resparam.packageName, "drawable", "cdma_stat_sys_s1_roaming_5", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_s1_r_5signal_5), Const.TWEAK_COLOR_SIM1);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_s1_r_5signal_5), Const.TWEAK_COLOR_SIM1, XMain.pref);
 				}
 			});
 
@@ -769,42 +768,42 @@ public class SystemUI
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_s2_r_5signal_0), Const.TWEAK_COLOR_SIM2);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_s2_r_5signal_0), Const.TWEAK_COLOR_SIM2, XMain.pref);
 				}
 			});
 			resparam.res.setReplacement(resparam.packageName, "drawable", "cdma_stat_sys_s2_roaming_1", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_s2_r_5signal_1), Const.TWEAK_COLOR_SIM2);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_s2_r_5signal_1), Const.TWEAK_COLOR_SIM2, XMain.pref);
 				}
 			});
 			resparam.res.setReplacement(resparam.packageName, "drawable", "cdma_stat_sys_s2_roaming_2", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_s2_r_5signal_2), Const.TWEAK_COLOR_SIM2);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_s2_r_5signal_2), Const.TWEAK_COLOR_SIM2, XMain.pref);
 				}
 			});
 			resparam.res.setReplacement(resparam.packageName, "drawable", "cdma_stat_sys_s2_roaming_3", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_s2_r_5signal_3), Const.TWEAK_COLOR_SIM2);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_s2_r_5signal_3), Const.TWEAK_COLOR_SIM2, XMain.pref);
 				}
 			});
 			resparam.res.setReplacement(resparam.packageName, "drawable", "cdma_stat_sys_s2_roaming_4", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_s2_r_5signal_4), Const.TWEAK_COLOR_SIM2);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_s2_r_5signal_4), Const.TWEAK_COLOR_SIM2, XMain.pref);
 				}
 			});
 			resparam.res.setReplacement(resparam.packageName, "drawable", "cdma_stat_sys_s2_roaming_5", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_s2_r_5signal_5), Const.TWEAK_COLOR_SIM2);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_s2_r_5signal_5), Const.TWEAK_COLOR_SIM2, XMain.pref);
 				}
 			});
 		}
@@ -821,42 +820,42 @@ public class SystemUI
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_s1_r_5signal_0), Const.TWEAK_COLOR_SIM1);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_s1_r_5signal_0), Const.TWEAK_COLOR_SIM1, XMain.pref);
 				}
 			});
 			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_s1_r_5signal_1", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_s1_r_5signal_1), Const.TWEAK_COLOR_SIM1);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_s1_r_5signal_1), Const.TWEAK_COLOR_SIM1, XMain.pref);
 				}
 			});
 			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_s1_r_5signal_2", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_s1_r_5signal_2), Const.TWEAK_COLOR_SIM1);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_s1_r_5signal_2), Const.TWEAK_COLOR_SIM1, XMain.pref);
 				}
 			});
 			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_s1_r_5signal_3", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_s1_r_5signal_3), Const.TWEAK_COLOR_SIM1);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_s1_r_5signal_3), Const.TWEAK_COLOR_SIM1, XMain.pref);
 				}
 			});
 			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_s1_r_5signal_4", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_s1_r_5signal_4), Const.TWEAK_COLOR_SIM1);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_s1_r_5signal_4), Const.TWEAK_COLOR_SIM1, XMain.pref);
 				}
 			});
 			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_s1_r_5signal_5", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_s1_r_5signal_5), Const.TWEAK_COLOR_SIM1);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_s1_r_5signal_5), Const.TWEAK_COLOR_SIM1, XMain.pref);
 				}
 			});
 
@@ -864,42 +863,42 @@ public class SystemUI
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_s2_r_5signal_0), Const.TWEAK_COLOR_SIM2);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_s2_r_5signal_0), Const.TWEAK_COLOR_SIM2, XMain.pref);
 				}
 			});
 			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_s2_r_5signal_1", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_s2_r_5signal_1), Const.TWEAK_COLOR_SIM2);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_s2_r_5signal_1), Const.TWEAK_COLOR_SIM2, XMain.pref);
 				}
 			});
 			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_s2_r_5signal_2", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_s2_r_5signal_2), Const.TWEAK_COLOR_SIM2);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_s2_r_5signal_2), Const.TWEAK_COLOR_SIM2, XMain.pref);
 				}
 			});
 			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_s2_r_5signal_3", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_s2_r_5signal_3), Const.TWEAK_COLOR_SIM2);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_s2_r_5signal_3), Const.TWEAK_COLOR_SIM2, XMain.pref);
 				}
 			});
 			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_s2_r_5signal_4", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_s2_r_5signal_4), Const.TWEAK_COLOR_SIM2);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_s2_r_5signal_4), Const.TWEAK_COLOR_SIM2, XMain.pref);
 				}
 			});
 			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_s2_r_5signal_5", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_s2_r_5signal_5), Const.TWEAK_COLOR_SIM2);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_s2_r_5signal_5), Const.TWEAK_COLOR_SIM2, XMain.pref);
 				}
 			});
 		}
@@ -916,35 +915,35 @@ public class SystemUI
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_1x_4signal_0), Const.TWEAK_COLOR_SIM1);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_1x_4signal_0), Const.TWEAK_COLOR_SIM1, XMain.pref);
 				}
 			});
 			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_1x_4signal_1", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_1x_4signal_1), Const.TWEAK_COLOR_SIM1);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_1x_4signal_1), Const.TWEAK_COLOR_SIM1, XMain.pref);
 				}
 			});
 			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_1x_4signal_2", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_1x_4signal_2), Const.TWEAK_COLOR_SIM1);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_1x_4signal_2), Const.TWEAK_COLOR_SIM1, XMain.pref);
 				}
 			});
 			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_1x_4signal_3", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_1x_4signal_3), Const.TWEAK_COLOR_SIM1);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_1x_4signal_3), Const.TWEAK_COLOR_SIM1, XMain.pref);
 				}
 			});
 			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_1x_4signal_4", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_1x_4signal_4), Const.TWEAK_COLOR_SIM1);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_1x_4signal_4), Const.TWEAK_COLOR_SIM1, XMain.pref);
 				}
 			});
 
@@ -952,175 +951,175 @@ public class SystemUI
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_3g0_1x4signal0), Const.TWEAK_COLOR_SIM1);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_3g0_1x4signal0), Const.TWEAK_COLOR_SIM1, XMain.pref);
 				}
 			});
 			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_3g0_1x4signal1", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_3g0_1x4signal1), Const.TWEAK_COLOR_SIM1);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_3g0_1x4signal1), Const.TWEAK_COLOR_SIM1, XMain.pref);
 				}
 			});
 			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_3g0_1x4signal2", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_3g0_1x4signal2), Const.TWEAK_COLOR_SIM1);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_3g0_1x4signal2), Const.TWEAK_COLOR_SIM1, XMain.pref);
 				}
 			});
 			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_3g0_1x4signal3", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_3g0_1x4signal3), Const.TWEAK_COLOR_SIM1);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_3g0_1x4signal3), Const.TWEAK_COLOR_SIM1, XMain.pref);
 				}
 			});
 			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_3g0_1x4signal4", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_3g0_1x4signal4), Const.TWEAK_COLOR_SIM1);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_3g0_1x4signal4), Const.TWEAK_COLOR_SIM1, XMain.pref);
 				}
 			});
 			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_3g1_1x4signal0", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_3g1_1x4signal0), Const.TWEAK_COLOR_SIM1);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_3g1_1x4signal0), Const.TWEAK_COLOR_SIM1, XMain.pref);
 				}
 			});
 			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_3g1_1x4signal1", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_3g1_1x4signal1), Const.TWEAK_COLOR_SIM1);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_3g1_1x4signal1), Const.TWEAK_COLOR_SIM1, XMain.pref);
 				}
 			});
 			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_3g1_1x4signal2", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_3g1_1x4signal2), Const.TWEAK_COLOR_SIM1);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_3g1_1x4signal2), Const.TWEAK_COLOR_SIM1, XMain.pref);
 				}
 			});
 			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_3g1_1x4signal3", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_3g1_1x4signal3), Const.TWEAK_COLOR_SIM1);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_3g1_1x4signal3), Const.TWEAK_COLOR_SIM1, XMain.pref);
 				}
 			});
 			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_3g1_1x4signal4", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_3g1_1x4signal4), Const.TWEAK_COLOR_SIM1);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_3g1_1x4signal4), Const.TWEAK_COLOR_SIM1, XMain.pref);
 				}
 			});
 			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_3g2_1x4signal0", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_3g2_1x4signal0), Const.TWEAK_COLOR_SIM1);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_3g2_1x4signal0), Const.TWEAK_COLOR_SIM1, XMain.pref);
 				}
 			});
 			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_3g2_1x4signal1", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_3g2_1x4signal1), Const.TWEAK_COLOR_SIM1);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_3g2_1x4signal1), Const.TWEAK_COLOR_SIM1, XMain.pref);
 				}
 			});
 			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_3g2_1x4signal2", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_3g2_1x4signal2), Const.TWEAK_COLOR_SIM1);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_3g2_1x4signal2), Const.TWEAK_COLOR_SIM1, XMain.pref);
 				}
 			});
 			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_3g2_1x4signal3", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_3g2_1x4signal3), Const.TWEAK_COLOR_SIM1);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_3g2_1x4signal3), Const.TWEAK_COLOR_SIM1, XMain.pref);
 				}
 			});
 			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_3g2_1x4signal4", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_3g2_1x4signal4), Const.TWEAK_COLOR_SIM1);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_3g2_1x4signal4), Const.TWEAK_COLOR_SIM1, XMain.pref);
 				}
 			});
 			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_3g3_1x4signal0", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_3g3_1x4signal0), Const.TWEAK_COLOR_SIM1);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_3g3_1x4signal0), Const.TWEAK_COLOR_SIM1, XMain.pref);
 				}
 			});
 			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_3g3_1x4signal1", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_3g3_1x4signal1), Const.TWEAK_COLOR_SIM1);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_3g3_1x4signal1), Const.TWEAK_COLOR_SIM1, XMain.pref);
 				}
 			});
 			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_3g3_1x4signal2", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_3g3_1x4signal2), Const.TWEAK_COLOR_SIM1);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_3g3_1x4signal2), Const.TWEAK_COLOR_SIM1, XMain.pref);
 				}
 			});
 			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_3g3_1x4signal3", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_3g3_1x4signal3), Const.TWEAK_COLOR_SIM1);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_3g3_1x4signal3), Const.TWEAK_COLOR_SIM1, XMain.pref);
 				}
 			});
 			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_3g3_1x4signal4", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_3g3_1x4signal4), Const.TWEAK_COLOR_SIM1);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_3g3_1x4signal4), Const.TWEAK_COLOR_SIM1, XMain.pref);
 				}
 			});
 			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_3g4_1x4signal0", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_3g4_1x4signal0), Const.TWEAK_COLOR_SIM1);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_3g4_1x4signal0), Const.TWEAK_COLOR_SIM1, XMain.pref);
 				}
 			});
 			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_3g4_1x4signal1", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_3g4_1x4signal1), Const.TWEAK_COLOR_SIM1);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_3g4_1x4signal1), Const.TWEAK_COLOR_SIM1, XMain.pref);
 				}
 			});
 			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_3g4_1x4signal2", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_3g4_1x4signal2), Const.TWEAK_COLOR_SIM1);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_3g4_1x4signal2), Const.TWEAK_COLOR_SIM1, XMain.pref);
 				}
 			});
 			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_3g4_1x4signal3", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_3g4_1x4signal3), Const.TWEAK_COLOR_SIM1);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_3g4_1x4signal3), Const.TWEAK_COLOR_SIM1, XMain.pref);
 				}
 			});
 			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_3g4_1x4signal4", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_3g4_1x4signal4), Const.TWEAK_COLOR_SIM1);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_3g4_1x4signal4), Const.TWEAK_COLOR_SIM1, XMain.pref);
 				}
 			});
 		}
@@ -1137,35 +1136,35 @@ public class SystemUI
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_2g_4signal_0), Const.TWEAK_COLOR_SIM2);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_2g_4signal_0), Const.TWEAK_COLOR_SIM2, XMain.pref);
 				}
 			});
 			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_2g_4signal_1", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_2g_4signal_1), Const.TWEAK_COLOR_SIM2);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_2g_4signal_1), Const.TWEAK_COLOR_SIM2, XMain.pref);
 				}
 			});
 			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_2g_4signal_2", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_2g_4signal_2), Const.TWEAK_COLOR_SIM2);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_2g_4signal_2), Const.TWEAK_COLOR_SIM2, XMain.pref);
 				}
 			});
 			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_2g_4signal_3", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_2g_4signal_3), Const.TWEAK_COLOR_SIM2);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_2g_4signal_3), Const.TWEAK_COLOR_SIM2, XMain.pref);
 				}
 			});
 			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_2g_4signal_4", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_2g_4signal_4), Const.TWEAK_COLOR_SIM2);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_2g_4signal_4), Const.TWEAK_COLOR_SIM2, XMain.pref);
 				}
 			});
 
@@ -1183,49 +1182,49 @@ public class SystemUI
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_5signal_0), Const.TWEAK_COLOR_SIM1);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_5signal_0), Const.TWEAK_COLOR_SIM1, XMain.pref);
 				}
 			});
 			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_5signal_1", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_5signal_1), Const.TWEAK_COLOR_SIM1);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_5signal_1), Const.TWEAK_COLOR_SIM1, XMain.pref);
 				}
 			});
 			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_5signal_2", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_5signal_2), Const.TWEAK_COLOR_SIM1);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_5signal_2), Const.TWEAK_COLOR_SIM1, XMain.pref);
 				}
 			});
 			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_5signal_3", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_5signal_3), Const.TWEAK_COLOR_SIM1);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_5signal_3), Const.TWEAK_COLOR_SIM1, XMain.pref);
 				}
 			});
 			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_5signal_4", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_5signal_4), Const.TWEAK_COLOR_SIM1);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_5signal_4), Const.TWEAK_COLOR_SIM1, XMain.pref);
 				}
 			});
 			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_5signal_5", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_5signal_5), Const.TWEAK_COLOR_SIM1);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_5signal_5), Const.TWEAK_COLOR_SIM1, XMain.pref);
 				}
 			});
 			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_5signal_null", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_5signal_null), Const.TWEAK_COLOR_SIM1);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_5signal_null), Const.TWEAK_COLOR_SIM1, XMain.pref);
 				}
 			});
 		}
@@ -1242,42 +1241,42 @@ public class SystemUI
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_r_5signal_0), Const.TWEAK_COLOR_SIM1);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_r_5signal_0), Const.TWEAK_COLOR_SIM1, XMain.pref);
 				}
 			});
 			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_r_5signal_1", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_r_5signal_1), Const.TWEAK_COLOR_SIM1);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_r_5signal_1), Const.TWEAK_COLOR_SIM1, XMain.pref);
 				}
 			});
 			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_r_5signal_2", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_r_5signal_2), Const.TWEAK_COLOR_SIM1);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_r_5signal_2), Const.TWEAK_COLOR_SIM1, XMain.pref);
 				}
 			});
 			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_r_5signal_3", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_r_5signal_3), Const.TWEAK_COLOR_SIM1);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_r_5signal_3), Const.TWEAK_COLOR_SIM1, XMain.pref);
 				}
 			});
 			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_r_5signal_4", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_r_5signal_4), Const.TWEAK_COLOR_SIM1);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_r_5signal_4), Const.TWEAK_COLOR_SIM1, XMain.pref);
 				}
 			});
 			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_r_5signal_5", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_r_5signal_5), Const.TWEAK_COLOR_SIM1);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_r_5signal_5), Const.TWEAK_COLOR_SIM1, XMain.pref);
 				}
 			});
 
@@ -1295,35 +1294,35 @@ public class SystemUI
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_2g_r_4signal_0), Const.TWEAK_COLOR_SIM1);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_2g_r_4signal_0), Const.TWEAK_COLOR_SIM1, XMain.pref);
 				}
 			});
 			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_2g_r_4signal_1", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_2g_r_4signal_1), Const.TWEAK_COLOR_SIM1);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_2g_r_4signal_1), Const.TWEAK_COLOR_SIM1, XMain.pref);
 				}
 			});
 			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_2g_r_4signal_2", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_2g_r_4signal_2), Const.TWEAK_COLOR_SIM1);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_2g_r_4signal_2), Const.TWEAK_COLOR_SIM1, XMain.pref);
 				}
 			});
 			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_2g_r_4signal_3", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_2g_r_4signal_3), Const.TWEAK_COLOR_SIM1);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_2g_r_4signal_3), Const.TWEAK_COLOR_SIM1, XMain.pref);
 				}
 			});
 			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_2g_r_4signal_4", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_2g_r_4signal_4), Const.TWEAK_COLOR_SIM1);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_2g_r_4signal_4), Const.TWEAK_COLOR_SIM1, XMain.pref);
 				}
 			});
 
@@ -1341,35 +1340,35 @@ public class SystemUI
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_3g_r_4signal_0), Const.TWEAK_COLOR_SIM1);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_3g_r_4signal_0), Const.TWEAK_COLOR_SIM1, XMain.pref);
 				}
 			});
 			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_3g_r_4signal_1", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_3g_r_4signal_1), Const.TWEAK_COLOR_SIM1);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_3g_r_4signal_1), Const.TWEAK_COLOR_SIM1, XMain.pref);
 				}
 			});
 			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_3g_r_4signal_2", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_3g_r_4signal_2), Const.TWEAK_COLOR_SIM1);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_3g_r_4signal_2), Const.TWEAK_COLOR_SIM1, XMain.pref);
 				}
 			});
 			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_3g_r_4signal_3", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_3g_r_4signal_3), Const.TWEAK_COLOR_SIM1);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_3g_r_4signal_3), Const.TWEAK_COLOR_SIM1, XMain.pref);
 				}
 			});
 			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_3g_r_4signal_4", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 				{
-					return applyTheme(modRes.getDrawable(R.drawable.stat_sys_3g_r_4signal_4), Const.TWEAK_COLOR_SIM1);
+					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_3g_r_4signal_4), Const.TWEAK_COLOR_SIM1, XMain.pref);
 				}
 			});
 
@@ -1379,20 +1378,5 @@ public class SystemUI
 
 		}
         // 802d KK 3GR END
-	}
-
-	public static Drawable applyTheme(Drawable paramDrawable, String key)
-	{
-		int light = XMain.pref.getInt(key + "_lightValue", 0);
-		int sat = XMain.pref.getInt(key + "_satValue", 0);
-		int hue = XMain.pref.getInt(key + "_hueValue", 0);
-
-		ColorFilter localColorFilter = ColorFilterGenerator.adjustColor(light, 0, sat, hue);
-
-		paramDrawable.clearColorFilter();
-		if (localColorFilter != null)
-			paramDrawable.setColorFilter(localColorFilter);
-
-		return paramDrawable;
 	}
 }

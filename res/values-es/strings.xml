@@ -184,8 +184,8 @@
     <string name="enableSMSNotifyToDialogTitle">La notificación SMS abre la conversación</string>
     <string name="sdcardPermissionTitle">Permitir acceso total a la Tarjeta SD</string>
     <string name="sdcardPermissionSummary">Corrige el permiso de lectura y escritura</string>
-    <string name="app_about">Acerca de...</string>
-    <string name="about">Acerca de...</string>
+    <string name="app_about">Acerca de…</string>
+    <string name="about">Acerca de…</string>
     <string name="change_log">Lista de cambios</string>
     <string name="current_bugs">Errores actuales</string>
     <string name="thanks">Agradecimientos</string>
@@ -254,5 +254,6 @@ Manual records stored as default to My Recordings directory.\n<font fgcolor="#F
     <string name="enablePhotoPrefixSummary">IMAG0001.jpg</string>
     <string name="author">Autor: <b>Nurlan Mukhanov</b> aka <a href="mailto:nurike@gmail.com">Falseclock</a></string>
     <string name="source_code">Código fuente</string>
-
+    <string name="disableRoamingDataNotification">Roaming de datos</string>
+    <string name="disableRoamingDataNotificationSummary">Has perdido la conectividad de datos…</string>
 </resources>

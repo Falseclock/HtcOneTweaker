@@ -8,6 +8,7 @@ import kz.virtex.htc.tweaker.preference.IconsColorPreference;
 import kz.virtex.htc.tweaker.preference.MultiCheckPreference;
 import kz.virtex.htc.tweaker.preference.MultiCheckPreference.Row;
 import kz.virtex.htc.tweaker.preference.NumberPickerPreference;
+import kz.virtex.htc.tweaker.preference.SeekBarPreference;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -18,12 +19,12 @@ import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.SeekBar;
 
 import com.htc.preference.HtcEditTextPreference;
 import com.htc.preference.HtcPreference;
@@ -37,7 +38,6 @@ import com.htc.preference.HtcSwitchPreference;
 public class Main extends HtcPreferenceActivity implements HtcPreference.OnPreferenceChangeListener
 {
 	public static SharedPreferences preferences;
-	private boolean dualPhoneEnable;
 
 	@SuppressLint({ "WorldReadableFiles", "WorldWriteableFiles", "DefaultLocale" })
 	public void onCreate(Bundle paramBundle)
@@ -47,7 +47,6 @@ public class Main extends HtcPreferenceActivity implements HtcPreference.OnPrefe
 		preferences = getSharedPreferences(Const.PREFERENCE_FILE, Context.MODE_WORLD_READABLE + Context.MODE_WORLD_WRITEABLE);
 		addPreferencesFromResource(R.xml.settings);
 		startService(new Intent(this, TweakerService.class).setAction(TweakerService.ACTION_CLEANUP_RECORDS));
-		dualPhoneEnable = Build.MODEL.toLowerCase().contains("dual");
 		
 		init();
 	}
@@ -89,8 +88,38 @@ public class Main extends HtcPreferenceActivity implements HtcPreference.OnPrefe
 		setupNetworkManager("slot_2_user_text", R.string.preferred_network_2);
 		setupDUAL();
 		setupCamera();
+		setupSlotSaturation();
 		Misc.cleanUp();
 	}
+	
+	private void setupSlotSaturation()
+	{
+		final SeekBarPreference slot1 = (SeekBarPreference) findPreference(Const.TWEAK_SLOT1_COLOR);
+		final SeekBarPreference slot2 = (SeekBarPreference) findPreference(Const.TWEAK_SLOT2_COLOR);
+
+		
+		Misc.applyTheme(slot1.getIcon(), 0, 0, 0, Misc.getHueValue(preferences.getInt(Const.TWEAK_SLOT1_COLOR, 0)));
+		Misc.applyTheme(slot2.getIcon(), 0, 0, 0, Misc.getHueValue(preferences.getInt(Const.TWEAK_SLOT2_COLOR, 0)));
+		
+ 		slot1.setOnSeekBarTrackListener(new SeekBarPreference.OnSeekBarTrackListener() {
+			
+			@Override
+			public void onSeekBarTrack(SeekBar paramSeekBar, int value)
+			{
+				Misc.applyTheme(slot1.getIcon(), 0, 0, 0,  Misc.getHueValue(value));
+			}
+		});
+ 		slot2.setOnSeekBarTrackListener(new SeekBarPreference.OnSeekBarTrackListener() {
+			
+			@Override
+			public void onSeekBarTrack(SeekBar paramSeekBar, int value)
+			{
+				Misc.applyTheme(slot2.getIcon(), 0, 0, 0, Misc.getHueValue(value));
+			}
+		});
+	}
+	
+
 	
 	@SuppressLint("SimpleDateFormat")
 	private void setupCamera()
@@ -103,7 +132,7 @@ public class Main extends HtcPreferenceActivity implements HtcPreference.OnPrefe
 	
 	private void setupDUAL()
 	{
-		if (!dualPhoneEnable)
+		if (!Misc.isDual())
 		{
 			HtcPreferenceScreen preferenceScreen = (HtcPreferenceScreen) findPreference(Const.OTHER_SETTINGS_SCREEN_KEY);
 			preferenceScreen.removePreference(findPreference(Const.TWEAK_ENABLE_SIP));
@@ -211,8 +240,8 @@ public class Main extends HtcPreferenceActivity implements HtcPreference.OnPrefe
 
 	private void setupWiFiIcons()
 	{
-		Misc.applyTheme(findPreference(Const.TWEAK_COLORED_WIFI_COLOR).getIcon(), Const.TWEAK_COLORED_WIFI_COLOR);
-		Misc.applyTheme(findPreference(Const.TWEAK_COLORED_WIFI_COLOR).getIcon(), Const.TWEAK_COLORED_WIFI_COLOR);
+		Misc.applyTheme(findPreference(Const.TWEAK_COLORED_WIFI_COLOR).getIcon(), Const.TWEAK_COLORED_WIFI_COLOR, preferences);
+		Misc.applyTheme(findPreference(Const.TWEAK_COLORED_WIFI_COLOR).getIcon(), Const.TWEAK_COLORED_WIFI_COLOR, preferences);
 
 		final HtcPreferenceScreen preferenceScreen = (HtcPreferenceScreen) findPreference(Const.DATA_SCREEN_KEY);
 
@@ -260,9 +289,9 @@ public class Main extends HtcPreferenceActivity implements HtcPreference.OnPrefe
 		}
 		else
 		{
-			Misc.applyTheme(findPreference(Const.COLOR_SIM_SCREEN).getIcon(), Const.TWEAK_COLOR_SIM1);
-			Misc.applyTheme(findPreference(Const.TWEAK_COLOR_SIM1).getIcon(), Const.TWEAK_COLOR_SIM1);
-			Misc.applyTheme(findPreference(Const.TWEAK_COLOR_SIM2).getIcon(), Const.TWEAK_COLOR_SIM2);
+			Misc.applyTheme(findPreference(Const.COLOR_SIM_SCREEN).getIcon(), Const.TWEAK_COLOR_SIM1, preferences);
+			Misc.applyTheme(findPreference(Const.TWEAK_COLOR_SIM1).getIcon(), Const.TWEAK_COLOR_SIM1, preferences);
+			Misc.applyTheme(findPreference(Const.TWEAK_COLOR_SIM2).getIcon(), Const.TWEAK_COLOR_SIM2, preferences);
 		}
 		/*
 		 * findPreference(Const.TWEAK_COLOR_SIM1).setOnPreferenceChangeListener(new
@@ -296,7 +325,7 @@ public class Main extends HtcPreferenceActivity implements HtcPreference.OnPrefe
 
 	private void setupDataIcons()
 	{
-		Misc.applyTheme(findPreference(Const.TWEAK_DATA_ICONS_COLOR).getIcon(), Const.TWEAK_DATA_ICONS_COLOR);
+		Misc.applyTheme(findPreference(Const.TWEAK_DATA_ICONS_COLOR).getIcon(), Const.TWEAK_DATA_ICONS_COLOR, preferences);
 
 		final HtcPreferenceScreen preferenceScreen = (HtcPreferenceScreen) findPreference(Const.DATA_SCREEN_KEY);
 

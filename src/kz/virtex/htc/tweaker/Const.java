@@ -23,9 +23,12 @@ public class Const
 	public static final String TWEAK_CALL_REC_AUTO_DELETE_COUNT = "tweak_call_recording_auto_delete_count"; 
 	public static final String TWEAK_CALL_REC_AUTO_LAST_DELETE = "tweak_call_recording_auto_last_delete"; 
 	
-	
 	public static final String TWEAK_FIX_SDCARD_PERMISSION = "tweak_fix_sdcard_permission"; 
 	public static final String TWEAK_ENABLE_SIP = "tweak_enable_SIP"; 
+	public static final String TWEAK_DISABLE_DATA_ROAM_NOTIFY = "tweak_roaming_data_notify"; 
+	public static final String TWEAK_SLOT1_COLOR = "tweak_slot1_color"; 
+	public static final String TWEAK_SLOT2_COLOR = "tweak_slot2_color"; 
+
 	
 	
 	public static final String TWEAK_DIALER_BUTTON = "tweak_dialer_btn"; 

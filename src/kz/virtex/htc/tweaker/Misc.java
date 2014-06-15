@@ -2,13 +2,39 @@ package kz.virtex.htc.tweaker;
 
 import kz.virtex.htc.tweaker.utils.ColorFilterGenerator;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.graphics.ColorFilter;
+import android.graphics.Bitmap.Config;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+
+import com.android.internal.telephony.HtcMessageHelper;
 
 public class Misc
 {
+	public static boolean isDual()
+	{
+		if (HtcMessageHelper.isDualSlotDevice())
+		{	
+			return true;
+		}
+		return false;
+	}
+
+	public static int getHueValue(int value)
+	{
+		if (value == 0) {
+			return 0;
+		} else if (value > 180) {
+			value = -180 + (value - 180);
+		}
+		return value;
+	}
+	
 	public static boolean isPackageInstalled(String packagename, Context context)
 	{
 		PackageManager pm = context.getPackageManager();
@@ -44,22 +70,32 @@ public class Misc
 		return Math.round(Const.DENSITY * paramInt);
 	}
 
-	public static Drawable applyTheme(Drawable paramDrawable, String key)
+	public static Drawable applyTheme(Drawable paramDrawable, String key, SharedPreferences preferences)
 	{
-		int light = Main.preferences.getInt(key + "_lightValue", 0);
-		int sat = Main.preferences.getInt(key + "_satValue", 0);
-		int hue = Main.preferences.getInt(key + "_hueValue", 0);
-		int con = Main.preferences.getInt(key + "_conValue", 0);
+		int light = preferences.getInt(key + "_lightValue", 0);
+		int sat = preferences.getInt(key + "_satValue", 0);
+		int hue = preferences.getInt(key + "_hueValue", 0);
+		int con = preferences.getInt(key + "_conValue", 0);
 
+		return applyFilter(paramDrawable, light, con, sat, hue);
+	}
+
+
+	public static Drawable applyTheme(Drawable paramDrawable, int light, int con, int sat, int hue) {
+		return applyFilter(paramDrawable, light, con, sat, hue);
+	}
+	
+	private static Drawable applyFilter(Drawable paramDrawable, int light, int con, int sat, int hue)
+	{
 		ColorFilter localColorFilter = ColorFilterGenerator.adjustColor(light, con, sat, hue);
 
 		paramDrawable.clearColorFilter();
 		if (localColorFilter != null)
 			paramDrawable.setColorFilter(localColorFilter);
-
+		
 		return paramDrawable;
 	}
-
+	
 	public static void cleanUp()
 	{
 		try
@@ -101,4 +137,18 @@ public class Misc
 		}
 	}
 
+	public static Bitmap drawableToBitmap(Drawable drawable)
+	{
+		if (drawable instanceof BitmapDrawable)
+		{
+			return ((BitmapDrawable) drawable).getBitmap();
+		}
+
+		Bitmap bitmap = Bitmap.createBitmap(drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight(), Config.ARGB_8888);
+		Canvas canvas = new Canvas(bitmap);
+		drawable.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
+		drawable.draw(canvas);
+
+		return bitmap;
+	}
 }

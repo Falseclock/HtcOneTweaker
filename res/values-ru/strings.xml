@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <string name="author">Автор: <b>Нурлан Муханов</b> он же <a href="mailto:nurike@gmail.com">Falseclock</a></string>
     <string name="app_name">Твикер HTC One</string>
     <string name="RecordingFilterKeysIn">in</string>
@@ -205,40 +206,15 @@
 * Цветная иконка WiFi\n
 * Цветная погода из Sense 4+.\n
 * Включение SIP настроек в настройках двухсимного телефона\n
-* Префикс в виде даты к названию файлов снятых камерой
-</string>
+* Префикс в виде даты к названию файлов снятых камерой</string>
     <string name="google_play"><b>Google Play Market</b></string>
     <string name="xda_support"><b>Поддержка на XDA</b></string>
-    <string name="change_log_text">
-<big><b>Version 3.2.6</b></big>\n
-<font fgcolor="#FFFF0000"><b>*</b></font> (fix) запись для T-Mobile пользователей\n
-<font fgcolor="#FFFF0000"><b>*</b></font> (fix) WiFi иконка для Sense 6 \n
-<font fgcolor="#FF009000"><b>*</b></font> Более стабильное автоудаление записей\n
-<font fgcolor="#FF009000"><b>*</b></font> Стиль иконки Sense 6 на экране Настроек\n
-\n    
-<big><b>Версия 3.2.5</b></big>\n
-<font fgcolor="#FFFF0000"><b>*</b></font> (fix) запись только в AMR-NB несмотря на настройки\n
-\n
-<big><b>Версия 3.2.4</b></big>\n
-<font fgcolor="#FFFF0000"><b>*</b></font> (fix) Автозапись не работала при свежей установке\n
-<font fgcolor="#FFFF0000"><b>*</b></font> (fix) неактивные настройки удаления\n
-<font fgcolor="#FF009000"><b>*</b></font> публикация исходного кода\n
-<font fgcolor="#FF009000"><b>*</b></font> скрытие некоторых настроек для двухсимников на односимной версии\n
-\n
-<big><b>Версия 3.2.3</b></big>\n
-<font fgcolor="#FF009000"><b>*</b></font> создание nomedia файла в папке с записями\n
-<font fgcolor="#FF009000"><b>*</b></font> включение SIP настроек в настройках двухсимного телефона\n
-<font fgcolor="#FF009000"><b>*</b></font> префикс в виде даты к названию файлов снятых камерой\n
-<font fgcolor="#FF009000"><b>*</b></font> окно с информацией о программе\n
-<font fgcolor="#FFFF0000"><b>*</b></font> (fix) настройки SMS для Sense 6.0\n
-<font fgcolor="#FFFF0000"><b>*</b></font> (fix) по умолчанию в настройках кнопки номеронабирателя выставлен латинский алфавит\n
-\n
-<big><b>Версия 3.2.2</b></big>\n
-<font fgcolor="#FFFF0000"><b>*</b></font> фикс запуска приложения при Sense 6.0\n
-<font fgcolor="#FF009000"><b>*</b></font> возможность разрешения полного доступа к SD карте\n
-<font fgcolor="#FFFF0000"><b>*</b></font> (fix) кнопка записи активна при включенном экране\n
-\n
-<big><b>Версия 3.2.1</b></big>\n<font fgcolor="#FF009000"><b>*</b></font> большие значки погоды в часовом и дневном прогнозе\n<font fgcolor="#FF009000"><b>*</b></font> кнопка записи на экране во время разговора если не включена автозапись\n<font fgcolor="#FF009000"><b>*</b></font> возможность отключать фотографии при листинге сообщений\n<font fgcolor="#FF009000"><b>*</b></font> более четкое выделение непрочитанных SMS сообщений\n<font fgcolor="#FF009000"><b>*</b></font> разноцветные иконки для индикации входящих и исходящих вызовов в журнале звонков\n<font fgcolor="#FF009000"><b>*</b></font> дополнительные иконки для 802d моделей\n<font fgcolor="#FF009000"><b>*</b></font> открытие SMS сообщения через уведомление в шторке открывает сразу диалог с контактом вместо открытия списка диалогов\n<font fgcolor="#FF009000"><b>*</b></font> переработано меню настроек\n
+    <string name="change_log_text"><big><b>Version 3.2.6</b></big>\n<font fgcolor="#FFFF0000"><b>*</b></font> (fix) запись для T-Mobile пользователей\n<font fgcolor="#FFFF0000"><b>*</b></font> (fix) WiFi иконка для Sense 6 \n<font fgcolor="#FF009000"><b>*</b></font> Более стабильное автоудаление записей\n<font fgcolor="#FF009000"><b>*</b></font> Стиль иконки Sense 6 на экране Настроек\n
+\n    <big><b>Версия 3.2.5</b></big>\n<font fgcolor="#FFFF0000"><b>*</b></font> (fix) запись только в AMR-NB несмотря на настройки\n
+\n<big><b>Версия 3.2.4</b></big>\n<font fgcolor="#FFFF0000"><b>*</b></font> (fix) Автозапись не работала при свежей установке\n<font fgcolor="#FFFF0000"><b>*</b></font> (fix) неактивные настройки удаления\n<font fgcolor="#FF009000"><b>*</b></font> публикация исходного кода\n<font fgcolor="#FF009000"><b>*</b></font> скрытие некоторых настроек для двухсимников на односимной версии\n
+\n<big><b>Версия 3.2.3</b></big>\n<font fgcolor="#FF009000"><b>*</b></font> создание nomedia файла в папке с записями\n<font fgcolor="#FF009000"><b>*</b></font> включение SIP настроек в настройках двухсимного телефона\n<font fgcolor="#FF009000"><b>*</b></font> префикс в виде даты к названию файлов снятых камерой\n<font fgcolor="#FF009000"><b>*</b></font> окно с информацией о программе\n<font fgcolor="#FFFF0000"><b>*</b></font> (fix) настройки SMS для Sense 6.0\n<font fgcolor="#FFFF0000"><b>*</b></font> (fix) по умолчанию в настройках кнопки номеронабирателя выставлен латинский алфавит\n
+\n<big><b>Версия 3.2.2</b></big>\n<font fgcolor="#FFFF0000"><b>*</b></font> фикс запуска приложения при Sense 6.0\n<font fgcolor="#FF009000"><b>*</b></font> возможность разрешения полного доступа к SD карте\n<font fgcolor="#FFFF0000"><b>*</b></font> (fix) кнопка записи активна при включенном экране\n
+\n<big><b>Версия 3.2.1</b></big>\n<font fgcolor="#FF009000"><b>*</b></font> большие значки погоды в часовом и дневном прогнозе\n<font fgcolor="#FF009000"><b>*</b></font> кнопка записи на экране во время разговора если не включена автозапись\n<font fgcolor="#FF009000"><b>*</b></font> возможность отключать фотографии при листинге сообщений\n<font fgcolor="#FF009000"><b>*</b></font> более четкое выделение непрочитанных SMS сообщений\n<font fgcolor="#FF009000"><b>*</b></font> разноцветные иконки для индикации входящих и исходящих вызовов в журнале звонков\n<font fgcolor="#FF009000"><b>*</b></font> дополнительные иконки для 802d моделей\n<font fgcolor="#FF009000"><b>*</b></font> открытие SMS сообщения через уведомление в шторке открывает сразу диалог с контактом вместо открытия списка диалогов\n<font fgcolor="#FF009000"><b>*</b></font> переработано меню настроек\n
 \n<big><b>Версия 3.1.9</b></big>\n<font fgcolor="#FF009000"><b>*</b></font> погода для экрана блокировки и BlinkFeed.\n
 \n
 для корректной работы необходимо обновить Weather Pack\n
@@ -268,5 +244,9 @@
     <string name="enableSIPSummary">включение этой возможности</string>
     <string name="enablePhotoPrefixTitle">Префикс к файлам Камеры</string>
     <string name="enablePhotoPrefixSummary">IMAG0001.jpg</string>
-        <string name="source_code">Исходный код</string>
+    <string name="source_code">Исходный код</string>
+    <string name="disableRoamingDataNotification">Передача данных в роуминге</string>
+    <string name="disableRoamingDataNotificationSummary">Подключение для передачи данных прервано.</string>
+    <string name="SlotIconIndicator">Иконка индикатора слота</string>
+   
 </resources>

@@ -92,7 +92,7 @@ public class IconsColorPreference extends HtcDialogPreference implements ColorPr
 			Main.putInt(mKey + "_lightValue", colorView.litValue);
 			Main.putInt(mKey + "_conValue", colorView.conValue);
 
-			Misc.applyTheme(getPreferenceManager().findPreference(mKey).getIcon(), mKey);
+			Misc.applyTheme(getPreferenceManager().findPreference(mKey).getIcon(), mKey, Main.preferences);
 		}
 		callChangeListener(this);
 	}

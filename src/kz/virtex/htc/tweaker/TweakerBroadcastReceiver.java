@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Vibrator;
-import android.provider.Contacts.People;
 import android.widget.Toast;
 
 public class TweakerBroadcastReceiver extends BroadcastReceiver {
@@ -35,8 +34,6 @@ public class TweakerBroadcastReceiver extends BroadcastReceiver {
 		Toast.makeText(paramContext,
 				"ContactId: " + paramIntent.getLongExtra("ContactId", 0L) + ", Sender: " + paramIntent.getStringExtra("Sender"),
 				Toast.LENGTH_SHORT).show();
-		
-		Uri localUri1 = Uri.parse("content://mms-sms-v2/get-contactID");
 		
 		Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("content://contacts/people/" + paramIntent.getLongExtra("ContactId", 0L)));
 		intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

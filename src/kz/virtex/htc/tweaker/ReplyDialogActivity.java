@@ -1,13 +1,8 @@
 package kz.virtex.htc.tweaker;
 
 import android.app.Activity;
-import android.content.BroadcastReceiver;
-import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
-import android.content.IntentFilter;
 import android.os.Bundle;
-import android.widget.EditText;
 
 import com.htc.widget.HtcAlertDialog;
 import com.htc.widget.HtcAlertDialog.Builder;

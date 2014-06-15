@@ -28,7 +28,7 @@ public class Dialer
 
 		return longer;
 	}
-
+	
 	public static void handleCallDirections(InitPackageResourcesParam resparam, String path)
 	{
 		XModuleResources modRes = XModuleResources.createInstance(path, resparam.res);
@@ -111,5 +111,4 @@ public class Dialer
 			}
 		});
 	}
-
 }
