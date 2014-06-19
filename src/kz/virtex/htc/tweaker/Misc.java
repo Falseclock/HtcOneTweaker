@@ -6,20 +6,64 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
 import android.graphics.Bitmap.Config;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.ColorFilter;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 
 import com.android.internal.telephony.HtcMessageHelper;
+import com.htc.customization.HtcCustomizationManager;
+import com.htc.customization.HtcCustomizationReader;
 
 public class Misc
 {
+
+	protected static float cleanValue(float p_val, float p_limit)
+	{
+		return Math.min(p_limit, Math.max(-p_limit, p_val));
+	}
+
+	// fucking color matrix
+	public static int colorTransform(int intColor, int value)
+	{
+		float rIn = Color.red(intColor);
+		float gIn = Color.green(intColor);
+		float bIn = Color.blue(intColor);
+
+		float degree = cleanValue(value, 180.0F) / 180f * (float) Math.PI;
+
+		float cosVal = (float) Math.cos(degree);
+		float sinVal = (float) Math.sin(degree);
+
+		float LUMA_R = 0.299F;
+		float LUMA_G = 0.587F;
+		float LUMA_B = 0.114F;
+
+		float rOut = ((LUMA_R + (cosVal * (1 - LUMA_R))) + (sinVal * -(LUMA_R))) * rIn + ((LUMA_G + (cosVal * -(LUMA_G))) + (sinVal * -(LUMA_G))) * gIn + ((LUMA_B + (cosVal * -(LUMA_B))) + (sinVal * (1 - LUMA_B))) * bIn;
+
+		float gOut = ((LUMA_R + (cosVal * -(LUMA_R))) + (sinVal * 0.143F)) * rIn + ((LUMA_G + (cosVal * (1 - LUMA_G))) + (sinVal * 0.140F)) * gIn + ((LUMA_B + (cosVal * -(LUMA_B))) + (sinVal * -0.283F)) * bIn;
+
+		float bOut = ((LUMA_R + (cosVal * -(LUMA_R))) + (sinVal * -((1 - LUMA_R)))) * rIn + ((LUMA_G + (cosVal * -(LUMA_G))) + (sinVal * LUMA_G)) * gIn + ((LUMA_B + (cosVal * (1 - LUMA_B))) + (sinVal * LUMA_B)) * bIn;
+
+		return Color.rgb(clamp(rOut), clamp(gOut), clamp(bOut));
+	}
+
+	private static int clamp(float v)
+	{
+		if (v < 0)
+			return 0;
+		if (v > 255)
+			return 255;
+
+		return (int) (v + 0.5);
+	}
+
 	public static boolean isDual()
 	{
 		if (HtcMessageHelper.isDualSlotDevice())
-		{	
+		{
 			return true;
 		}
 		return false;
@@ -27,14 +71,16 @@ public class Misc
 
 	public static int getHueValue(int value)
 	{
-		if (value == 0) {
+		if (value == 0)
+		{
 			return 0;
-		} else if (value > 180) {
+		} else if (value > 180)
+		{
 			value = -180 + (value - 180);
 		}
 		return value;
 	}
-	
+
 	public static boolean isPackageInstalled(String packagename, Context context)
 	{
 		PackageManager pm = context.getPackageManager();
@@ -42,8 +88,7 @@ public class Misc
 		{
 			pm.getPackageInfo(packagename, PackageManager.GET_META_DATA);
 			return true;
-		}
-		catch (NameNotFoundException e)
+		} catch (NameNotFoundException e)
 		{
 			return false;
 		}
@@ -61,7 +106,6 @@ public class Misc
 
 	public static float densify(float f)
 	{
-		// TODO Auto-generated method stub
 		return Const.DENSITY * f;
 	}
 
@@ -80,11 +124,17 @@ public class Misc
 		return applyFilter(paramDrawable, light, con, sat, hue);
 	}
 
+	public static Drawable adjustHue(Drawable paramDrawable, int hue)
+	{
+		ColorFilter localColorFilter = ColorFilterGenerator.adjustHue(hue);
 
-	public static Drawable applyTheme(Drawable paramDrawable, int light, int con, int sat, int hue) {
-		return applyFilter(paramDrawable, light, con, sat, hue);
+		paramDrawable.clearColorFilter();
+		if (localColorFilter != null)
+			paramDrawable.setColorFilter(localColorFilter);
+
+		return paramDrawable;
 	}
-	
+
 	private static Drawable applyFilter(Drawable paramDrawable, int light, int con, int sat, int hue)
 	{
 		ColorFilter localColorFilter = ColorFilterGenerator.adjustColor(light, con, sat, hue);
@@ -92,10 +142,10 @@ public class Misc
 		paramDrawable.clearColorFilter();
 		if (localColorFilter != null)
 			paramDrawable.setColorFilter(localColorFilter);
-		
+
 		return paramDrawable;
 	}
-	
+
 	public static void cleanUp()
 	{
 		try
@@ -130,8 +180,7 @@ public class Misc
 			Main.preferences.edit().remove("ColorSIM1_lightValue").commit();
 			Main.preferences.edit().remove("ColorSIM2_lightValue").commit();
 
-		}
-		catch (Exception e)
+		} catch (Exception e)
 		{
 
 		}
@@ -150,5 +199,21 @@ public class Misc
 		drawable.draw(canvas);
 
 		return bitmap;
+	}
+
+	public static boolean isSense6()
+	{
+		String SENSE_VERSION = "5.0";
+		
+		HtcCustomizationManager localHtcCustomizationManager = HtcCustomizationManager.getInstance();
+		if (localHtcCustomizationManager != null)
+		{
+			HtcCustomizationReader localHtcCustomizationReader = localHtcCustomizationManager.getCustomizationReader("system", 1, false);
+			if (localHtcCustomizationReader != null)
+			{
+				SENSE_VERSION = localHtcCustomizationReader.readString("sense_version", "5.0");
+			}
+		}
+		return SENSE_VERSION.equals("6.0");
 	}
 }

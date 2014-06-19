@@ -10,12 +10,14 @@ import kz.virtex.htc.tweaker.R;
 import kz.virtex.htc.tweaker.TweakerBroadcastReceiver;
 import kz.virtex.htc.tweaker.XMain;
 import kz.virtex.htc.tweaker.utils.ColorFilterGenerator;
+import android.app.Activity;
 import android.app.Notification;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager.NameNotFoundException;
+import android.content.res.TypedArray;
 import android.content.res.XModuleResources;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -26,6 +28,12 @@ import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.view.View;
+import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+
+import com.htc.widget.HtcSpecificInputField;
+
 import de.robv.android.xposed.XC_MethodHook;
 import de.robv.android.xposed.XC_MethodReplacement;
 import de.robv.android.xposed.XposedHelpers;
@@ -414,4 +422,71 @@ public class Messaging
 		});
 	}
 
+	public static void hookDualModeButtonStyle(final LoadPackageParam paramLoadPackageParam, final String packageName)
+	{
+		findAndHookMethod("com.htc.sense.mms.ui.MessageEditorPanel", paramLoadPackageParam.classLoader, "setDualModeButtonStyle", new XC_MethodReplacement()
+		{
+			@Override
+			protected Object replaceHookedMethod(MethodHookParam param) throws Throwable
+			{
+				XModuleResources apkRes = XModuleResources.createInstance(paramLoadPackageParam.appInfo.sourceDir, null);
+				
+				HtcSpecificInputField mEditorPanel = (HtcSpecificInputField) XposedHelpers.getObjectField(param.thisObject, "mEditorPanel");
+
+				if (mEditorPanel != null)
+				{
+					Activity mActivity = (Activity) XposedHelpers.getObjectField(param.thisObject, "mActivity");
+					int i = -1;
+					Context localContext = mActivity.getApplicationContext();
+
+					for (int k = 0; k < mEditorPanel.getChildCount(); k++)
+					{
+						View localView = mEditorPanel.getChildAt(k);
+
+						if ((localView != null) && ((localView instanceof LinearLayout)))
+						{
+							LinearLayout localLinearLayout = (LinearLayout) localView;
+							for (int j = 0; j < localLinearLayout.getChildCount(); j++)
+							{
+								Object localObject = (Button) localLinearLayout.getChildAt(j);
+								if ((localObject != null) && ((localObject instanceof Button)))
+								{
+									localObject = (Button) localObject;
+									i++;
+									final int[] DualModeButtonSelector = { android.R.attr.listSelector };
+
+									mEditorPanel.setButtonPressColorEnable(i, false);
+									TypedArray localTypedArray = localContext.obtainStyledAttributes(com.htc.R.style.HtcListView, DualModeButtonSelector);
+
+									Drawable localDrawable = localTypedArray.getDrawable(0);
+									localTypedArray.recycle();
+									((View) localObject).setBackground(localDrawable);
+
+									int m;
+									if (i == 0)
+									{
+										m = localContext.getResources().getColor(apkRes.getIdentifier("dualButton_1_color", "color", packageName));
+										m = Misc.colorTransform(m, Misc.getHueValue(XMain.pref.getInt(Const.TWEAK_SLOT1_COLOR, 0)));
+									} else
+									{
+										m = localContext.getResources().getColor(apkRes.getIdentifier("dualButton_2_color", "color", packageName));
+										m = Misc.colorTransform(m, Misc.getHueValue(XMain.pref.getInt(Const.TWEAK_SLOT2_COLOR, 0)));
+									}
+
+									((TextView) localObject).setTextColor(m);
+									Drawable adrawable[] = ((TextView) localObject).getCompoundDrawables();
+									if (adrawable[0] != null)
+									{
+										adrawable[0].mutate().setColorFilter(m, android.graphics.PorterDuff.Mode.SRC_ATOP);
+									}
+									XposedHelpers.callMethod(param.thisObject, "setLandIMEDualModeButtonStyle", i, m, true);
+								}
+							}
+						}
+					}
+				}
+				return null;
+			}
+		});
+	}
 }

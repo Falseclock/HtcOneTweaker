@@ -256,4 +256,5 @@ Manual records stored as default to My Recordings directory.\n<font fgcolor="#F
     <string name="source_code">Código fuente</string>
     <string name="disableRoamingDataNotification">Roaming de datos</string>
     <string name="disableRoamingDataNotificationSummary">Has perdido la conectividad de datos…</string>
+        <string name="SlotIconIndicator">Slot indicator icon</string>
 </resources>

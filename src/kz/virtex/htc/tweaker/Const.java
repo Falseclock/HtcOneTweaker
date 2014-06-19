@@ -80,6 +80,7 @@ public class Const
 	public static final String COLOR_SIM_SCREEN = "color_sim_screen";
 	public static final String OTHER_SETTINGS_SCREEN_KEY = "other_settings_screen";
 	public static final String TWEAK_ENABLE_PHOTO_PREFIX= "tweak_enable_photo_prefix";
+	public static final String ICON_INDICATOR_SLOT_SCREEN= "icon_indicator_slot_screen";
 	
 	
 	public static final String AUTO_REC_MAIN = "Automatic records/";

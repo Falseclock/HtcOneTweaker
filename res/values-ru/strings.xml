@@ -60,7 +60,7 @@
     <string name="ColoredSimLevelPreferenceTitle1">Цветовая схема SIM1</string>
     <string name="ColoredSimLevelPreferenceTitle2">Цветовая схема SIM2</string>
     <string name="ColoredSimLevelPreferenceSummary">Настройка цветов для сим карт</string>
-    <string name="enablePopupCharTitle">Расширенная русская клавиатуре</string>
+    <string name="enablePopupCharTitle">Расширенная русская клавиатура</string>
     <string name="enablePopupCharSummary">Добавить вторичные и всплывающие символы</string>
     <string name="NotificationScreenSummary">в статус строке и слайдере</string>
     <string name="NotificationScreenTitle">Подавление оповещений</string>
@@ -248,5 +248,6 @@
     <string name="disableRoamingDataNotification">Передача данных в роуминге</string>
     <string name="disableRoamingDataNotificationSummary">Подключение для передачи данных прервано.</string>
     <string name="SlotIconIndicator">Иконка индикатора слота</string>
-   
+    <string name="app_error">Ошибка приложения</string>
+    <string name="no_xposed">Xposed Framework не установлен! Пожалуйста установите его.</string>
 </resources>

@@ -487,6 +487,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int alternates_label_backslash=0x7f090058;
         public static final int alternates_label_equal=0x7f090059;
         public static final int app_about=0x7f0900b8;
+        public static final int app_error=0x7f0900c9;
         public static final int app_name=0x7f090001;
         public static final int author=0x7f090000;
         public static final int callSettingsTitle=0x7f09001e;
@@ -562,6 +563,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int messages_of=0x7f090092;
         public static final int nine=0x7f09000d;
         public static final int nine3=0x7f09001a;
+        public static final int no_xposed=0x7f0900ca;
         public static final int one=0x7f090005;
         public static final int one_eighty=0x7f090012;
         public static final int otherSettingsTitle=0x7f090022;

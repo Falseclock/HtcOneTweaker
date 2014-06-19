@@ -52,7 +52,6 @@
             android:excludeFromRecents="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="com.htc.settings.category.PLUGIN_ENTRY" />
             </intent-filter>
 
@@ -65,9 +64,7 @@
             <meta-data
                 android:name="plugLaunchType"
                 android:value="activity" />
-            <meta-data
-                android:name="plugLaunchTarget"
-                android:value="intent:#Intent;component=kz.virtex.htc.tweaker/.Main;end" />
+
         </activity>
         <activity
             android:name="kz.virtex.htc.tweaker.AboutActivity"

@@ -258,6 +258,8 @@ Manual records stored as default to My Recordings directory.\n<font fgcolor="#F
     <string name="disableRoamingDataNotification">Data roaming</string>
     <string name="disableRoamingDataNotificationSummary">You have lost data connectivity…</string>
     <string name="SlotIconIndicator">Slot indicator icon</string>
+    <string name="app_error">Application error </string>
+    <string name="no_xposed">Xposed Framework not installed! Please install prior.</string>
     
-    
+   
 </resources>

@@ -10,6 +10,7 @@ import kz.virtex.htc.tweaker.preference.MultiCheckPreference.Row;
 import kz.virtex.htc.tweaker.preference.NumberPickerPreference;
 import kz.virtex.htc.tweaker.preference.SeekBarPreference;
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -33,22 +34,42 @@ import com.htc.preference.HtcPreferenceActivity;
 import com.htc.preference.HtcPreferenceCategory;
 import com.htc.preference.HtcPreferenceScreen;
 import com.htc.preference.HtcSwitchPreference;
+import com.htc.widget.HtcAlertDialog;
 
 @SuppressLint("DefaultLocale")
 public class Main extends HtcPreferenceActivity implements HtcPreference.OnPreferenceChangeListener
 {
 	public static SharedPreferences preferences;
-
-	@SuppressLint({ "WorldReadableFiles", "WorldWriteableFiles", "DefaultLocale" })
+	private Context mContext;
+	@SuppressLint(
+	{ "WorldReadableFiles", "WorldWriteableFiles", "DefaultLocale" })
 	public void onCreate(Bundle paramBundle)
 	{
 		super.onCreate(paramBundle);
-
+		mContext = this;
+		
 		preferences = getSharedPreferences(Const.PREFERENCE_FILE, Context.MODE_WORLD_READABLE + Context.MODE_WORLD_WRITEABLE);
 		addPreferencesFromResource(R.xml.settings);
-		startService(new Intent(this, TweakerService.class).setAction(TweakerService.ACTION_CLEANUP_RECORDS));
-		
-		init();
+
+		// If Xposed not installet, let's do not confuse
+		// users with working application and non working tweaks
+		if (!Misc.isPackageInstalled("de.robv.android.xposed.installer", this))
+		{
+			new HtcAlertDialog.Builder(this)
+		    .setTitle(R.string.app_error)
+		    .setMessage(R.string.no_xposed)
+		    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+		        public void onClick(DialogInterface dialog, int which) { 
+		        	((Activity) mContext).finish();
+		        }
+		     })
+		     .show();
+		}
+		else
+		{
+			startService(new Intent(this, TweakerService.class).setAction(TweakerService.ACTION_CLEANUP_RECORDS));
+			init();
+		}
 	}
 
 	public boolean onCreateOptionsMenu(Menu paramMenu)
@@ -64,10 +85,10 @@ public class Main extends HtcPreferenceActivity implements HtcPreference.OnPrefe
 	{
 		switch (paramMenuItem.getItemId())
 		{
-		case 101:
-			Intent intent = new Intent(this, AboutActivity.class);
-			startActivity(intent);
-			break;
+			case 101:
+				Intent intent = new Intent(this, AboutActivity.class);
+				startActivity(intent);
+				break;
 		}
 		return true;
 	}
@@ -86,41 +107,45 @@ public class Main extends HtcPreferenceActivity implements HtcPreference.OnPrefe
 		storeWeatherApkPath();
 		setupNetworkManager("slot_1_user_text", R.string.preferred_network_1);
 		setupNetworkManager("slot_2_user_text", R.string.preferred_network_2);
+		setupSense6();
 		setupDUAL();
 		setupCamera();
 		setupSlotSaturation();
 		Misc.cleanUp();
 	}
-	
+
 	private void setupSlotSaturation()
 	{
-		final SeekBarPreference slot1 = (SeekBarPreference) findPreference(Const.TWEAK_SLOT1_COLOR);
-		final SeekBarPreference slot2 = (SeekBarPreference) findPreference(Const.TWEAK_SLOT2_COLOR);
+		if (Misc.isSense6())
+		{
+			final SeekBarPreference slot1 = (SeekBarPreference) findPreference(Const.TWEAK_SLOT1_COLOR);
+			final SeekBarPreference slot2 = (SeekBarPreference) findPreference(Const.TWEAK_SLOT2_COLOR);
 
-		
-		Misc.applyTheme(slot1.getIcon(), 0, 0, 0, Misc.getHueValue(preferences.getInt(Const.TWEAK_SLOT1_COLOR, 0)));
-		Misc.applyTheme(slot2.getIcon(), 0, 0, 0, Misc.getHueValue(preferences.getInt(Const.TWEAK_SLOT2_COLOR, 0)));
-		
- 		slot1.setOnSeekBarTrackListener(new SeekBarPreference.OnSeekBarTrackListener() {
-			
-			@Override
-			public void onSeekBarTrack(SeekBar paramSeekBar, int value)
+			Misc.adjustHue(slot1.getIcon(), Misc.getHueValue(preferences.getInt(Const.TWEAK_SLOT1_COLOR, 0)));
+			Misc.adjustHue(slot2.getIcon(), Misc.getHueValue(preferences.getInt(Const.TWEAK_SLOT2_COLOR, 0)));
+
+			slot1.setOnSeekBarTrackListener(new SeekBarPreference.OnSeekBarTrackListener()
 			{
-				Misc.applyTheme(slot1.getIcon(), 0, 0, 0,  Misc.getHueValue(value));
-			}
-		});
- 		slot2.setOnSeekBarTrackListener(new SeekBarPreference.OnSeekBarTrackListener() {
-			
-			@Override
-			public void onSeekBarTrack(SeekBar paramSeekBar, int value)
+				@Override
+				public void onSeekBarTrack(SeekBar paramSeekBar, int value)
+				{
+					Misc.adjustHue(slot1.getIcon(), Misc.getHueValue(value));
+					// paramSeekBar.setBackgroundColor(Misc.colorTransform(-13388315,
+					// Misc.getHueValue(value)));
+				}
+			});
+
+			slot2.setOnSeekBarTrackListener(new SeekBarPreference.OnSeekBarTrackListener()
 			{
-				Misc.applyTheme(slot2.getIcon(), 0, 0, 0, Misc.getHueValue(value));
-			}
-		});
+				@Override
+				public void onSeekBarTrack(SeekBar paramSeekBar, int value)
+				{
+					Misc.adjustHue(slot2.getIcon(), Misc.getHueValue(value));
+				}
+			});
+		}
 	}
-	
 
-	
 	@SuppressLint("SimpleDateFormat")
 	private void setupCamera()
 	{
@@ -129,19 +154,28 @@ public class Main extends HtcPreferenceActivity implements HtcPreference.OnPrefe
 		String date = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
 		tweak.setSummary(date + "_" + summ);
 	}
-	
+
+	private void setupSense6()
+	{
+		if (!Misc.isSense6())
+		{
+			HtcPreferenceScreen preferenceScreen = (HtcPreferenceScreen) findPreference(Const.DUAL_SETTINGS_SCREEN_KEY);
+			preferenceScreen.removePreference(findPreference(Const.ICON_INDICATOR_SLOT_SCREEN));
+		}
+	}
+
 	private void setupDUAL()
 	{
 		if (!Misc.isDual())
 		{
 			HtcPreferenceScreen preferenceScreen = (HtcPreferenceScreen) findPreference(Const.OTHER_SETTINGS_SCREEN_KEY);
 			preferenceScreen.removePreference(findPreference(Const.TWEAK_ENABLE_SIP));
-			
+
 			preferenceScreen = (HtcPreferenceScreen) findPreference(Const.SYSTEM_SETTINGS_SCREEN_KEY);
 			preferenceScreen.removePreference(findPreference(Const.DUAL_SETTINGS_SCREEN_KEY));
 		}
 	}
-	
+
 	private void storeWeatherApkPath()
 	{
 		PackageManager pm = getPackageManager();
@@ -152,10 +186,9 @@ public class Main extends HtcPreferenceActivity implements HtcPreference.OnPrefe
 			String sourceApk = ai.publicSourceDir;
 			preferences.edit().putString(Const.WEATHER_PACKAGE_APK, sourceApk).commit();
 
-		}
-		catch (NameNotFoundException e)
+		} catch (NameNotFoundException e)
 		{
-			
+
 		}
 	}
 
@@ -164,18 +197,19 @@ public class Main extends HtcPreferenceActivity implements HtcPreference.OnPrefe
 		super.onResume();
 
 		final HtcSwitchPreference weatherPref = (HtcSwitchPreference) findPreference(Const.TWEAK_COLORED_WEATHER);
+		
 		if (Misc.isPackageInstalled(Const.WEATHER_PACKAGE_NAME, weatherPref.getContext()))
 		{
 			weatherPref.setChecked(true);
 			putBoolean(Const.TWEAK_COLORED_WEATHER, true);
 			storeWeatherApkPath();
 
-		}
-		else
+		} else
 		{
 			weatherPref.setChecked(false);
 			putBoolean(Const.TWEAK_COLORED_WEATHER, false);
 		}
+		
 	}
 
 	private void setupWeather()
@@ -191,8 +225,7 @@ public class Main extends HtcPreferenceActivity implements HtcPreference.OnPrefe
 					// weatherPref.setEnabled(false);
 					weatherPref.setChecked(false);
 					putBoolean(Const.TWEAK_COLORED_WEATHER, false);
-				}
-				else
+				} else
 				{
 					storeWeatherApkPath();
 				}
@@ -266,8 +299,7 @@ public class Main extends HtcPreferenceActivity implements HtcPreference.OnPrefe
 				if (value == 1)
 				{
 					preferenceScreen.addPreference(wifiTweakColor);
-				}
-				else
+				} else
 				{
 					preferenceScreen.removePreference(wifiTweakColor);
 				}
@@ -279,15 +311,14 @@ public class Main extends HtcPreferenceActivity implements HtcPreference.OnPrefe
 	private void setupSimSettings()
 	{
 		final HtcPreferenceScreen preferenceScreen = (HtcPreferenceScreen) findPreference(Const.DATA_SCREEN_KEY);
-		
+
 		final HtcPreferenceScreen colorSimScreen = (HtcPreferenceScreen) findPreference(Const.COLOR_SIM_SCREEN);
 		HtcSwitchPreference tweakColorSim = (HtcSwitchPreference) findPreference(Const.TWEAK_COLORED_SIM);
 
 		if (!tweakColorSim.isChecked())
 		{
 			preferenceScreen.removePreference(colorSimScreen);
-		}
-		else
+		} else
 		{
 			Misc.applyTheme(findPreference(Const.COLOR_SIM_SCREEN).getIcon(), Const.TWEAK_COLOR_SIM1, preferences);
 			Misc.applyTheme(findPreference(Const.TWEAK_COLOR_SIM1).getIcon(), Const.TWEAK_COLOR_SIM1, preferences);
@@ -313,8 +344,7 @@ public class Main extends HtcPreferenceActivity implements HtcPreference.OnPrefe
 				if (value == 1)
 				{
 					preferenceScreen.addPreference(colorSimScreen);
-				}
-				else
+				} else
 				{
 					preferenceScreen.removePreference(colorSimScreen);
 				}
@@ -350,8 +380,7 @@ public class Main extends HtcPreferenceActivity implements HtcPreference.OnPrefe
 				if (value == 1)
 				{
 					preferenceScreen.addPreference(dataTweakColor);
-				}
-				else
+				} else
 				{
 					preferenceScreen.removePreference(dataTweakColor);
 				}
@@ -366,7 +395,7 @@ public class Main extends HtcPreferenceActivity implements HtcPreference.OnPrefe
 		countPreference.setEnabled(true);
 		final NumberPickerPreference intervalPreference = (NumberPickerPreference) findPreference(Const.TWEAK_CALL_REC_AUTO_DELETE_INTERVAL);
 		intervalPreference.setEnabled(true);
-		
+
 		final HtcPreferenceCategory preferenceScreen = (HtcPreferenceCategory) findPreference(Const.TWEAK_CALL_REC_AUTO_DELETE_CAT);
 		preferenceScreen.removePreference(countPreference);
 		preferenceScreen.removePreference(intervalPreference);
@@ -377,14 +406,14 @@ public class Main extends HtcPreferenceActivity implements HtcPreference.OnPrefe
 
 		switch (deleteValue)
 		{
-		case 1:
-			preferenceScreen.addPreference(countPreference);
-			countPreference.setEnabled(true);
-			break;
-		case 2:
-			preferenceScreen.addPreference(intervalPreference);
-			intervalPreference.setEnabled(true);
-			break;
+			case 1:
+				preferenceScreen.addPreference(countPreference);
+				countPreference.setEnabled(true);
+				break;
+			case 2:
+				preferenceScreen.addPreference(intervalPreference);
+				intervalPreference.setEnabled(true);
+				break;
 		}
 
 		findPreference(Const.TWEAK_CALL_REC_AUTO_DELETE).setOnPreferenceChangeListener(new HtcPreference.OnPreferenceChangeListener()
@@ -397,22 +426,22 @@ public class Main extends HtcPreferenceActivity implements HtcPreference.OnPrefe
 
 				switch (index)
 				{
-				case 0:
-					preferenceScreen.removePreference(countPreference);
-					preferenceScreen.removePreference(intervalPreference);
-					break;
+					case 0:
+						preferenceScreen.removePreference(countPreference);
+						preferenceScreen.removePreference(intervalPreference);
+						break;
 
-				case 1:
-					preferenceScreen.addPreference(countPreference);
-					countPreference.setEnabled(true);
-					preferenceScreen.removePreference(intervalPreference);
-					break;
+					case 1:
+						preferenceScreen.addPreference(countPreference);
+						countPreference.setEnabled(true);
+						preferenceScreen.removePreference(intervalPreference);
+						break;
 
-				case 2:
-					preferenceScreen.removePreference(countPreference);
-					preferenceScreen.addPreference(intervalPreference);
-					intervalPreference.setEnabled(true);
-					break;
+					case 2:
+						preferenceScreen.removePreference(countPreference);
+						preferenceScreen.addPreference(intervalPreference);
+						intervalPreference.setEnabled(true);
+						break;
 				}
 				return true;
 			}
@@ -511,9 +540,9 @@ public class Main extends HtcPreferenceActivity implements HtcPreference.OnPrefe
 			@SuppressWarnings("unchecked")
 			public boolean onPreferenceChange(HtcPreference preference, Object object)
 			{
-				changeFilterSummary((MultiCheckPreference) preference, (ArrayList <Row>) object);
+				changeFilterSummary((MultiCheckPreference) preference, (ArrayList<Row>) object);
 
-				ArrayList <Row> rows = (ArrayList <Row>) object;
+				ArrayList<Row> rows = (ArrayList<Row>) object;
 
 				for (int i = 0; i < rows.size(); i++)
 				{
@@ -525,9 +554,9 @@ public class Main extends HtcPreferenceActivity implements HtcPreference.OnPrefe
 		});
 	}
 
-	private void changeFilterSummary(MultiCheckPreference pref, ArrayList <Row> rows)
+	private void changeFilterSummary(MultiCheckPreference pref, ArrayList<Row> rows)
 	{
-		ArrayList <String> summs = new ArrayList <String>();
+		ArrayList<String> summs = new ArrayList<String>();
 
 		for (int i = 0; i < rows.size(); i++)
 		{
@@ -545,10 +574,17 @@ public class Main extends HtcPreferenceActivity implements HtcPreference.OnPrefe
 		HtcEditTextPreference slot = (HtcEditTextPreference) findPreference(key);
 
 		String slot_name = Settings.System.getString(getContentResolver(), key);
+
 		if (TextUtils.isEmpty(slot_name))
+		{
 			slot.setSummary(standart);
-		else
+			putString(key, getResources().getString(standart)); // save for
+																// coloring
+		} else
+		{
 			slot.setSummary(slot_name);
+			putString(key, slot_name); // save for coloring
+		}
 
 		findPreference(key).setOnPreferenceChangeListener(new HtcPreference.OnPreferenceChangeListener()
 		{
@@ -557,6 +593,7 @@ public class Main extends HtcPreferenceActivity implements HtcPreference.OnPrefe
 				String name = object.toString();
 				preference.setSummary(name);
 				Settings.System.putString(getContentResolver(), key, name);
+				putString(key, name);
 				return true;
 			}
 		});
@@ -580,6 +617,11 @@ public class Main extends HtcPreferenceActivity implements HtcPreference.OnPrefe
 	public static void putFloat(String name, float value)
 	{
 		preferences.edit().putFloat(name, value).commit();
+	}
+
+	public static void putString(String name, String value)
+	{
+		preferences.edit().putString(name, value).commit();
 	}
 
 	@Override

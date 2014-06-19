@@ -19,7 +19,6 @@ import kz.virtex.htc.tweaker.mods.Contacts;
 import kz.virtex.htc.tweaker.mods.Dialer;
 import kz.virtex.htc.tweaker.mods.HTCSync;
 import kz.virtex.htc.tweaker.mods.Keyboard;
-import kz.virtex.htc.tweaker.mods.Launcher;
 import kz.virtex.htc.tweaker.mods.LockScreen;
 import kz.virtex.htc.tweaker.mods.Media;
 import kz.virtex.htc.tweaker.mods.Messaging;
@@ -58,34 +57,26 @@ public class XMain implements IXposedHookInitPackageResources, IXposedHookZygote
 		MODULE_PATH = startupParam.modulePath;
 
 		if (pref.getBoolean(Const.TWEAK_ADB_NOTIFY, false))
-		{
 			Services.hookUpdateAdbNotification();
-		}
 
 		XModuleResources modRes = XModuleResources.createInstance(MODULE_PATH, null);
 
 		if (pref.getBoolean(Const.TWEAK_CHARGING_LED, false))
-		{
 			Services.hookUdateBatteryLight();
-		}
 
 		if (pref.getBoolean(Const.TWEAK_CHARGING_FLASH, false))
-		{
 			Services.hookFlashDuringPlugged();
-		}
 
 		Services.hookForceSetFlashing(pref.getInt(Const.TWEAK_FLASH_TIMEOUT, 5));
 
 		if (Android.hookWeatherBitmapPreload())
-		{
 			Android.hookWeatherBitmap();
-		}
+
 		if (pref.getBoolean(Const.TWEAK_FIX_SDCARD_PERMISSION, false))
-		{
 			Android.hookSDcardPermission();
-		}
 		
-		Messaging.hookSetBadgeImageResource();
+		if (XMain.pref.getInt(Const.TWEAK_SLOT1_COLOR, 0) !=0 || XMain.pref.getInt(Const.TWEAK_SLOT2_COLOR, 0) != 0)
+			Messaging.hookSetBadgeImageResource();
 
 	}
 
@@ -120,6 +111,7 @@ public class XMain implements IXposedHookInitPackageResources, IXposedHookZygote
 			Recorder.hookAutomateCallRecording(paramLoadPackageParam);
 			Recorder.hookAutomateCallRecordingFilename(paramLoadPackageParam);
 		}
+		
 		if (packageName.equals("com.htc.soundrecorder"))
 		{
 			/*--------------------*/
@@ -128,14 +120,18 @@ public class XMain implements IXposedHookInitPackageResources, IXposedHookZygote
 			Recorder.getStorageRoot(paramLoadPackageParam);
 			Recorder.hookPausableAudioRecorderStart(paramLoadPackageParam);
 		}
+		
 		if (packageName.equals("com.htc.htcdialer"))
 		{
+			Dialer.hookCallButtons(paramLoadPackageParam);
+			
 			/*----------------*/
 			/* DIALER BUTTONS */
 			/*----------------*/
 			if (pref.getBoolean(Const.TWEAK_DIALER_BUTTON, false))
 				Dialer.hookDialerButtons(paramLoadPackageParam);
 		}
+		
 		if (packageName.equals("com.android.mms") || packageName.equals("com.htc.sense.mms"))
 		{
 			if (pref.getBoolean(Const.TWEAK_SMS_UNREAD_HIGHLIGHT, false))
@@ -149,7 +145,11 @@ public class XMain implements IXposedHookInitPackageResources, IXposedHookZygote
 			/*-----------------------*/
 			if (pref.getBoolean(Const.TWEAK_DELIVERY_NOTIFICATION, false))
 				Messaging.hookMessageNotification(paramLoadPackageParam, packageName);
+			
+			if (XMain.pref.getInt(Const.TWEAK_SLOT1_COLOR, 0) !=0 || XMain.pref.getInt(Const.TWEAK_SLOT2_COLOR, 0) != 0)
+				Messaging.hookDualModeButtonStyle(paramLoadPackageParam, packageName);
 		}
+		
 		if (packageName.equals("com.android.systemui"))
 		{
 			/*----------------*/
@@ -164,6 +164,7 @@ public class XMain implements IXposedHookInitPackageResources, IXposedHookZygote
 			if (pref.getBoolean(Const.TWEAK_EXPANDED_NOTIFICATIONS, false))
 				SystemUI.hookExpandedNotifications(paramLoadPackageParam);
 		}
+		
 		if (packageName.equals("com.nero.android.htc.sync"))
 		{
 			if (pref.getBoolean(Const.TWEAK_SYNC_NOTIFY, false))
@@ -175,6 +176,7 @@ public class XMain implements IXposedHookInitPackageResources, IXposedHookZygote
 			if (pref.getBoolean(Const.TWEAK_USB_NOTIFY, false))
 				Settings.hookUSBNotification(paramLoadPackageParam);
 		}
+		
 		if (packageName.equals("com.android.providers.media"))
 		{
 			if (pref.getBoolean(Const.TWEAK_MTP_NOTIFY, false))
@@ -188,20 +190,15 @@ public class XMain implements IXposedHookInitPackageResources, IXposedHookZygote
 			if (pref.getBoolean(Const.TWEAK_ENABLE_PHOTO_PREFIX, false))
 				Camera.hookCameraPrefix(paramLoadPackageParam);
 		}
+		
 		if (packageName.equals("com.htc.lockscreen"))
 		{
 			// LockScreen.hookOperatorName(paramLoadPackageParam);
 		}
-
 	}
 
 	public void handleInitPackageResources(InitPackageResourcesParam resparam) throws Throwable
-	{
-		if (resparam.packageName.equals("com.htc.launcher"))
-		{
-			//Launcher.execHook_HomeScreenGridSize(resparam, MODULE_PATH);
-		}
-		
+	{	
 		if (resparam.packageName.equals("com.android.mms") || resparam.packageName.equals("com.htc.sense.mms"))
 		{
 			if (pref.getBoolean(Const.TWEAK_SMS_HIDE_BADGE, false))
@@ -250,9 +247,7 @@ public class XMain implements IXposedHookInitPackageResources, IXposedHookZygote
 		if (resparam.packageName.equals("com.htc.weather.res"))
 		{
 			if (pref.getBoolean(Const.TWEAK_COLORED_WEATHER, false))
-			{
 				Weather.handleColorWeather(resparam, weather_apk);
-			}
 		}
 
 		if (resparam.packageName.equals("com.htc.android.htcime"))
@@ -260,7 +255,6 @@ public class XMain implements IXposedHookInitPackageResources, IXposedHookZygote
 			if (pref.getBoolean(Const.TWEAK_POPUP_KEYBOARD, false))
 				Keyboard.handlePopup(resparam, MODULE_PATH);
 		}
-		
 		
 		if (resparam.packageName.equals("com.android.systemui"))
 		{
