@@ -140,6 +140,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int button_call_font_color_dual=0x7f070002;
         public static final int list_item_bg_center_color=0x7f070001;
         public static final int phonetic=0x7f070000;
+        public static final int red=0x7f070003;
     }
     public static final class dimen {
         public static final int digit=0x7f080000;

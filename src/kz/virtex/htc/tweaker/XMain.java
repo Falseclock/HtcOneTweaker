@@ -225,7 +225,6 @@ public class XMain implements IXposedHookInitPackageResources, IXposedHookZygote
 		
 		if (resparam.packageName.equals("com.htc.htcdialer"))
 		{
-			Dialer.hookSpecificHtcShowKeypad(resparam, MODULE_PATH);
 			
 			if (pref.getBoolean(Const.TWEAK_COLOR_CALL_INDICATOR, false))
 				Dialer.handleCallDirections(resparam, MODULE_PATH);

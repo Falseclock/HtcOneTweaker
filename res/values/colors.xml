@@ -4,4 +4,5 @@
     <color name="phonetic">#ffffffff</color>
     <color name="list_item_bg_center_color">#ffeeeeee</color>
     <color name="button_call_font_color_dual">#ff00ffff</color>
+    <color name="red">#fff00033</color>
 </resources>
