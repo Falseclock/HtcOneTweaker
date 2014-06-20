@@ -123,7 +123,10 @@ public class XMain implements IXposedHookInitPackageResources, IXposedHookZygote
 		
 		if (packageName.equals("com.htc.htcdialer"))
 		{
-			Dialer.hookCallButtons(paramLoadPackageParam);
+			if (XMain.pref.getInt(Const.TWEAK_SLOT1_COLOR, 0) !=0 || XMain.pref.getInt(Const.TWEAK_SLOT2_COLOR, 0) != 0)
+				Dialer.hookCallButtons(paramLoadPackageParam);
+
+			Dialer.hookSpecificHtcShowKeypad(paramLoadPackageParam);
 			
 			/*----------------*/
 			/* DIALER BUTTONS */
@@ -222,6 +225,8 @@ public class XMain implements IXposedHookInitPackageResources, IXposedHookZygote
 		
 		if (resparam.packageName.equals("com.htc.htcdialer"))
 		{
+			Dialer.hookSpecificHtcShowKeypad(resparam, MODULE_PATH);
+			
 			if (pref.getBoolean(Const.TWEAK_COLOR_CALL_INDICATOR, false))
 				Dialer.handleCallDirections(resparam, MODULE_PATH);
 			
@@ -250,7 +255,7 @@ public class XMain implements IXposedHookInitPackageResources, IXposedHookZygote
 				Weather.handleColorWeather(resparam, weather_apk);
 		}
 
-		if (resparam.packageName.equals("com.htc.android.htcime"))
+		if (resparam.packageName.equals("com.htc.android.htcime") || resparam.packageName.equals("com.htc.sense.ime"))
 		{
 			if (pref.getBoolean(Const.TWEAK_POPUP_KEYBOARD, false))
 				Keyboard.handlePopup(resparam, MODULE_PATH);

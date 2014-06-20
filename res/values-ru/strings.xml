@@ -209,7 +209,14 @@
 * Префикс в виде даты к названию файлов снятых камерой</string>
     <string name="google_play"><b>Google Play Market</b></string>
     <string name="xda_support"><b>Поддержка на XDA</b></string>
-    <string name="change_log_text"><big><b>Version 3.2.6</b></big>\n<font fgcolor="#FFFF0000"><b>*</b></font> (fix) запись для T-Mobile пользователей\n<font fgcolor="#FFFF0000"><b>*</b></font> (fix) WiFi иконка для Sense 6 \n<font fgcolor="#FF009000"><b>*</b></font> Более стабильное автоудаление записей\n<font fgcolor="#FF009000"><b>*</b></font> Стиль иконки Sense 6 на экране Настроек\n
+    <string name="change_log_text">
+<big><b>Version 3.2.7</b></big>\n
+<font fgcolor="#FF009000"><b>*</b></font> (new) Подавление оповещения о передаче данных в роуминге\n
+<font fgcolor="#FFFF0000"><b>*</b></font> (fix) Настройки для двухсимников не доступны на 802d\n
+<font fgcolor="#FF009000"><b>*</b></font> (new) Настройки цвета индикаторов слотов (Телефон, Номеронабиратель, Сообщения, Контакты)\n
+<font fgcolor="#FF009000"><b>*</b></font> Проверка установки Xposed Framework\n
+\n        
+<big><b>Version 3.2.6</b></big>\n<font fgcolor="#FFFF0000"><b>*</b></font> (fix) запись для T-Mobile пользователей\n<font fgcolor="#FFFF0000"><b>*</b></font> (fix) WiFi иконка для Sense 6 \n<font fgcolor="#FF009000"><b>*</b></font> Более стабильное автоудаление записей\n<font fgcolor="#FF009000"><b>*</b></font> Стиль иконки Sense 6 на экране Настроек\n
 \n    <big><b>Версия 3.2.5</b></big>\n<font fgcolor="#FFFF0000"><b>*</b></font> (fix) запись только в AMR-NB несмотря на настройки\n
 \n<big><b>Версия 3.2.4</b></big>\n<font fgcolor="#FFFF0000"><b>*</b></font> (fix) Автозапись не работала при свежей установке\n<font fgcolor="#FFFF0000"><b>*</b></font> (fix) неактивные настройки удаления\n<font fgcolor="#FF009000"><b>*</b></font> публикация исходного кода\n<font fgcolor="#FF009000"><b>*</b></font> скрытие некоторых настроек для двухсимников на односимной версии\n
 \n<big><b>Версия 3.2.3</b></big>\n<font fgcolor="#FF009000"><b>*</b></font> создание nomedia файла в папке с записями\n<font fgcolor="#FF009000"><b>*</b></font> включение SIP настроек в настройках двухсимного телефона\n<font fgcolor="#FF009000"><b>*</b></font> префикс в виде даты к названию файлов снятых камерой\n<font fgcolor="#FF009000"><b>*</b></font> окно с информацией о программе\n<font fgcolor="#FFFF0000"><b>*</b></font> (fix) настройки SMS для Sense 6.0\n<font fgcolor="#FFFF0000"><b>*</b></font> (fix) по умолчанию в настройках кнопки номеронабирателя выставлен латинский алфавит\n

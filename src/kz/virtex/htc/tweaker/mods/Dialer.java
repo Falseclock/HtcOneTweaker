@@ -2,7 +2,10 @@ package kz.virtex.htc.tweaker.mods;
 
 import static de.robv.android.xposed.XposedHelpers.findAndHookMethod;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+
+import com.htc.widget.HtcSeekBar;
 
 import kz.virtex.htc.tweaker.Const;
 import kz.virtex.htc.tweaker.Misc;
@@ -11,12 +14,20 @@ import kz.virtex.htc.tweaker.XMain;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.content.res.XModuleResources;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.drawable.ColorDrawable;
 import android.text.TextPaint;
 import android.text.TextUtils;
 import android.util.AttributeSet;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import de.robv.android.xposed.XC_MethodHook;
+import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.XposedHelpers;
 import de.robv.android.xposed.callbacks.XC_InitPackageResources.InitPackageResourcesParam;
+import de.robv.android.xposed.callbacks.XC_LayoutInflated;
 import de.robv.android.xposed.callbacks.XC_LoadPackage.LoadPackageParam;
 
 public class Dialer
@@ -34,7 +45,38 @@ public class Dialer
 
 		return longer;
 	}
+	
+	public static void hookSpecificHtcShowKeypad(final LoadPackageParam paramLoadPackageParam)
+	{
+		if (1 == 1)
+			return;
+		findAndHookMethod("com.htc.htcdialer.widget.keypadbtn.HtcKeypadBgBtn.BackgroundDrawable", paramLoadPackageParam.classLoader, "draw", "android.graphics.Canvas", new XC_MethodHook()
+		{
+			protected void beforeHookedMethod(MethodHookParam param) throws Throwable
+			{
+				Paint mBgPaint = (Paint) XposedHelpers.getObjectField(param.thisObject, "mBgPaint");
+				mBgPaint.setColor(Color.argb(0, 0, 0, 0));
+			}
+		});
+	}
+	
+	public static void hookSpecificHtcShowKeypad(final InitPackageResourcesParam resparam, String path)
+	{
+		if (1 == 1)
+			return;
+		resparam.res.hookLayout(resparam.packageName, "layout", "specific_htc_show_keypad", new XC_LayoutInflated() {
+	        @Override
+	        public void handleLayoutInflated(LayoutInflatedParam liparam) throws Throwable {
+	        	int show_keypad = liparam.res.getIdentifier("show_keypad", "id", resparam.packageName);
 
+	        	FrameLayout keypad = (FrameLayout) liparam.view.findViewById(show_keypad);
+	        	
+	        	keypad.setBackgroundColor(Color.argb(0, 0, 0, 0));
+	        	keypad.setBackgroundDrawable(new ColorDrawable(Color.argb(0, 0, 0, 0)));
+	        }
+	    });
+	}
+	
 	public static void hookCallButtons(final LoadPackageParam paramLoadPackageParam)
 	{
 		findAndHookMethod("com.htc.htcdialer.widget.DividerDrawable", paramLoadPackageParam.classLoader, "setDividerColor", "int", "int", new XC_MethodHook()
@@ -125,6 +167,13 @@ public class Dialer
 					}
 				}
 				dialer.recycle();
+			}
+			
+			protected void afterHookedMethod(MethodHookParam param) throws Throwable
+			{
+				if (1 == 1)
+					return;
+				XposedHelpers.callMethod(param.thisObject, "setBackground", new ColorDrawable(Color.argb(0, 0, 0, 0)));
 			}
 		});
 		

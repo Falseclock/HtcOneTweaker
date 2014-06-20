@@ -212,14 +212,9 @@
 * Date preffix to the Camera shots filename</string>
     <string name="google_play"><b>Google Play</b></string>
     <string name="xda_support"><b>Soporte en XDA</b></string>
-    <string name="change_log_text">
-<big><b>Version 3.2.6</b></big>\n
-<font fgcolor="#FFFF0000"><b>*</b></font> (fix) recorder for T-Mobile users\n
-<font fgcolor="#FFFF0000"><b>*</b></font> (fix) Sense 6 WiFi icon\n
-<font fgcolor="#FF009000"><b>*</b></font> Auto deletion service improvement\n
-<font fgcolor="#FF009000"><b>*</b></font> Sense 6 style icon in Settings screen\n
-\n        
-<big><b>Versión 3.2.5</b></big>\n<font fgcolor="#FFFF0000"><b>*</b></font> (fix) recorder writes only in AMR-NB despite settings\n
+    <string name="change_log_text"><big><b>Version 3.2.7</b></big>\n<font fgcolor="#FF009000"><b>*</b></font> (new) Data Roaming notification suppress\n<font fgcolor="#FFFF0000"><b>*</b></font> (fix) Dual sim network manager not available on Chinese 802d\n<font fgcolor="#FF009000"><b>*</b></font> (new) Color settings for slot indicator icon (Phone, Dialer, Messaging, Contacts)\n<font fgcolor="#FF009000"><b>*</b></font> XposedFramework installation check\n
+\n<big><b>Version 3.2.6</b></big>\n<font fgcolor="#FFFF0000"><b>*</b></font> (fix) recorder for T-Mobile users\n<font fgcolor="#FFFF0000"><b>*</b></font> (fix) Sense 6 WiFi icon\n<font fgcolor="#FF009000"><b>*</b></font> Auto deletion service improvement\n<font fgcolor="#FF009000"><b>*</b></font> Sense 6 style icon in Settings screen\n
+\n        <big><b>Versión 3.2.5</b></big>\n<font fgcolor="#FFFF0000"><b>*</b></font> (fix) recorder writes only in AMR-NB despite settings\n
 \n<big><b>Version 3.2.4</b></big>\n<font fgcolor="#FFFF0000"><b>*</b></font> (fix) Autorecording for new install\n<font fgcolor="#FFFF0000"><b>*</b></font> (fix) disabled deletion settings\n<font fgcolor="#FF009000"><b>*</b></font> source code publishing\n<font fgcolor="#FF009000"><b>*</b></font> some settings now not visible to single sim version\n
 \n<big><b>Version 3.2.3</b></big>\n<font fgcolor="#FF009000"><b>*</b></font> nomedia file creating in autorecordind folder\n<font fgcolor="#FF009000"><b>*</b></font> SIP settings in Dialer options for Dual version\n<font fgcolor="#FF009000"><b>*</b></font> About intent added\n<font fgcolor="#FF009000"><b>*</b></font> date preffix to the Camera shots filename\n<font fgcolor="#FFFF0000"><b>*</b></font> (fix) SMS settings for Sense 6.0\n<font fgcolor="#FFFF0000"><b>*</b></font> (fix) Latin aplhabet on dialer button settings now default\n
 \n<big><b>Version 3.2.2</b></big>\n<font fgcolor="#FFFF0000"><b>*</b></font> fix application crash with Sense 6.0\n<font fgcolor="#FF009000"><b>*</b></font> ability to give full access to SD card\n<font fgcolor="#FFFF0000"><b>*</b></font> (fix) recording button still clickable with screen off\n
@@ -256,5 +251,8 @@ Manual records stored as default to My Recordings directory.\n<font fgcolor="#F
     <string name="source_code">Código fuente</string>
     <string name="disableRoamingDataNotification">Roaming de datos</string>
     <string name="disableRoamingDataNotificationSummary">Has perdido la conectividad de datos…</string>
-        <string name="SlotIconIndicator">Slot indicator icon</string>
+    <string name="SlotIconIndicator">Slot indicator icon</string>
+    <string name="app_error">Application error </string>
+    <string name="no_xposed">Xposed Framework not installed! Please install prior.</string>
+
 </resources>

@@ -217,6 +217,7 @@
 <font fgcolor="#FF009000"><b>*</b></font> (new) Data Roaming notification suppress\n
 <font fgcolor="#FFFF0000"><b>*</b></font> (fix) Dual sim network manager not available on Chinese 802d\n
 <font fgcolor="#FF009000"><b>*</b></font> (new) Color settings for slot indicator icon (Phone, Dialer, Messaging, Contacts)\n
+<font fgcolor="#FF009000"><b>*</b></font> XposedFramework installation check\n
 \n
 <big><b>Version 3.2.6</b></big>\n<font fgcolor="#FFFF0000"><b>*</b></font> (fix) recorder for T-Mobile users\n<font fgcolor="#FFFF0000"><b>*</b></font> (fix) Sense 6 WiFi icon\n
 <font fgcolor="#FF009000"><b>*</b></font> Auto deletion service improvement\n

@@ -1,5 +1,7 @@
 package kz.virtex.htc.tweaker;
 
+import java.util.ArrayList;
+
 import kz.virtex.htc.tweaker.utils.ColorFilterGenerator;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -12,6 +14,8 @@ import android.graphics.Color;
 import android.graphics.ColorFilter;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.view.View;
+import android.view.ViewGroup;
 
 import com.android.internal.telephony.HtcMessageHelper;
 import com.htc.customization.HtcCustomizationManager;
@@ -19,7 +23,28 @@ import com.htc.customization.HtcCustomizationReader;
 
 public class Misc
 {
+	public static ArrayList<View> getAllChildren(View v) {
+		if (!(v instanceof ViewGroup)) {
+			ArrayList<View> viewArrayList = new ArrayList<View>();
+			viewArrayList.add(v);
+			return viewArrayList;
+		}
 
+		ArrayList<View> result = new ArrayList<View>();
+
+		ViewGroup vg = (ViewGroup) v;
+		for (int i = 0; i < vg.getChildCount(); i++) {
+
+			View child = vg.getChildAt(i);
+			ArrayList<View> viewArrayList = new ArrayList<View>();
+			viewArrayList.add(v);
+			viewArrayList.addAll(getAllChildren(child));
+
+			result.addAll(viewArrayList);
+		}
+		return result;
+	}
+	
 	protected static float cleanValue(float p_val, float p_limit)
 	{
 		return Math.min(p_limit, Math.max(-p_limit, p_val));

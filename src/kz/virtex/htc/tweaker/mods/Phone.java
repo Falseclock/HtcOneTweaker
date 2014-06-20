@@ -34,20 +34,7 @@ public class Phone
 			} catch (Throwable t)
 			{
 			}
-			try
-			{
-				resparam.res.setReplacement(resparam.packageName, "drawable", "l_icon_indicator_slot2_s", new XResources.DrawableLoader()
-				{
-					public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
-					{
-						return Misc.adjustHue(modRes.getDrawable(R.drawable.icon_indicator_slot2_s), Misc.getHueValue(value));
-					}
-				});
-			} catch (Throwable t)
-			{
-			}
-			
-			
+
 			try
 			{
 				resparam.res.setReplacement(resparam.packageName, "drawable", "l_icon_indicator_slot1", new XResources.DrawableLoader()
@@ -60,18 +47,7 @@ public class Phone
 			} catch (Throwable t)
 			{
 			}
-			try
-			{
-				resparam.res.setReplacement(resparam.packageName, "drawable", "l_icon_indicator_slot2", new XResources.DrawableLoader()
-				{
-					public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
-					{
-						return Misc.adjustHue(modRes.getDrawable(R.drawable.icon_indicator_slot2), Misc.getHueValue(value));
-					}
-				});
-			} catch (Throwable t)
-			{
-			}
+
 		}
 		try
 		{
@@ -130,6 +106,34 @@ public class Phone
 	public static void handleSlotIndicator2(InitPackageResourcesParam resparam, String path, final int value)
 	{
 		final XModuleResources modRes = XModuleResources.createInstance(path, resparam.res);
+		if (resparam.packageName.equals("com.htc.sense.mms"))
+		{
+			try
+			{
+				resparam.res.setReplacement(resparam.packageName, "drawable", "l_icon_indicator_slot2_s", new XResources.DrawableLoader()
+				{
+					public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
+					{
+						return Misc.adjustHue(modRes.getDrawable(R.drawable.icon_indicator_slot2_s), Misc.getHueValue(value));
+					}
+				});
+			} catch (Throwable t)
+			{
+			}
+
+			try
+			{
+				resparam.res.setReplacement(resparam.packageName, "drawable", "l_icon_indicator_slot2", new XResources.DrawableLoader()
+				{
+					public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
+					{
+						return Misc.adjustHue(modRes.getDrawable(R.drawable.icon_indicator_slot2), Misc.getHueValue(value));
+					}
+				});
+			} catch (Throwable t)
+			{
+			}
+		}
 		try
 		{
 			resparam.res.setReplacement(resparam.packageName, "drawable", "icon_indicator_slot2", new XResources.DrawableLoader()
