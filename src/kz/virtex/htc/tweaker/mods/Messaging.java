@@ -21,6 +21,7 @@ import android.content.res.TypedArray;
 import android.content.res.XModuleResources;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.ColorFilter;
 import android.graphics.Paint;
 import android.graphics.drawable.BitmapDrawable;
@@ -470,7 +471,7 @@ public class Messaging
 									} else
 									{
 										m = localContext.getResources().getColor(apkRes.getIdentifier("dualButton_2_color", "color", packageName));
-										m = Misc.colorTransform(m, Misc.getHueValue(XMain.pref.getInt(Const.TWEAK_SLOT2_COLOR, 0)));
+										m = Misc.colorTransform(Color.parseColor("#33e5b1"), Misc.getHueValue(XMain.pref.getInt(Const.TWEAK_SLOT2_COLOR, 0)));
 									}
 
 									((TextView) localObject).setTextColor(m);

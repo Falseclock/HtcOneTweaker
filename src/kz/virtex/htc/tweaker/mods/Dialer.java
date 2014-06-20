@@ -92,7 +92,7 @@ public class Dialer
 						param.args[1] = Misc.colorTransform(paramInt2, Misc.getHueValue(XMain.pref.getInt(Const.TWEAK_SLOT1_COLOR, 0)));
 
 					if (paramInt2 == -13128336) // #FF37AD70 FIXME: get color from resources
-						param.args[1] = Misc.colorTransform(paramInt2, Misc.getHueValue(XMain.pref.getInt(Const.TWEAK_SLOT2_COLOR, 0)));
+						param.args[1] = Misc.colorTransform(Color.parseColor("#33e5b1"), Misc.getHueValue(XMain.pref.getInt(Const.TWEAK_SLOT2_COLOR, 0)));
 				}
 			}
 		});
@@ -119,7 +119,7 @@ public class Dialer
 					int color = -13388315; //FIXME:
 					if (text.toLowerCase().contains(slot2.toLowerCase())) {
 						pref = Const.TWEAK_SLOT2_COLOR;
-						color = -13128336; //FIXME:
+						color = Color.parseColor("#33e5b1"); //FIXME:
 					}
 					TextPaint mTextPaint = (TextPaint) XposedHelpers.getObjectField(param.thisObject, "mTextPaint");
 					int tweak = Misc.colorTransform(color, Misc.getHueValue(XMain.pref.getInt(pref, 0)));

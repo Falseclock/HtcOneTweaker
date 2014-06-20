@@ -44,27 +44,44 @@ public class Misc
 		}
 		return result;
 	}
-	
-	protected static float cleanValue(float p_val, float p_limit)
-	{
-		return Math.min(p_limit, Math.max(-p_limit, p_val));
-	}
 
+
+	public static Drawable adjustHue(Drawable paramDrawable, int hue)
+	{
+		ColorFilter localColorFilter = ColorFilterGenerator.adjustHue(hue);
+
+		paramDrawable.clearColorFilter();
+		
+		if (localColorFilter != null)
+			paramDrawable.setColorFilter(localColorFilter);
+
+		return paramDrawable;
+	}
+	
 	// fucking color matrix
 	public static int colorTransform(int intColor, int value)
 	{
-		float rIn = Color.red(intColor);
-		float gIn = Color.green(intColor);
-		float bIn = Color.blue(intColor);
+		
+		int rIn = Color.red(intColor);
+		int gIn = Color.green(intColor);
+		int bIn = Color.blue(intColor);
+		/*
+		float hsv[] = new float[3];;
+		
+		Color.RGBToHSV(rIn,gIn,bIn,hsv);
+		hsv[0] += value;
 
+		if (1 == 1)
+			return Color.HSVToColor(hsv);
+		*/
 		float degree = cleanValue(value, 180.0F) / 180f * (float) Math.PI;
 
 		float cosVal = (float) Math.cos(degree);
 		float sinVal = (float) Math.sin(degree);
 
-		float LUMA_R = 0.299F;
-		float LUMA_G = 0.587F;
-		float LUMA_B = 0.114F;
+		float LUMA_R = 0.212671f;
+		float LUMA_G = 0.715160f;
+		float LUMA_B = 0.072169F;
 
 		float rOut = ((LUMA_R + (cosVal * (1 - LUMA_R))) + (sinVal * -(LUMA_R))) * rIn + ((LUMA_G + (cosVal * -(LUMA_G))) + (sinVal * -(LUMA_G))) * gIn + ((LUMA_B + (cosVal * -(LUMA_B))) + (sinVal * (1 - LUMA_B))) * bIn;
 
@@ -73,6 +90,11 @@ public class Misc
 		float bOut = ((LUMA_R + (cosVal * -(LUMA_R))) + (sinVal * -((1 - LUMA_R)))) * rIn + ((LUMA_G + (cosVal * -(LUMA_G))) + (sinVal * LUMA_G)) * gIn + ((LUMA_B + (cosVal * (1 - LUMA_B))) + (sinVal * LUMA_B)) * bIn;
 
 		return Color.rgb(clamp(rOut), clamp(gOut), clamp(bOut));
+	}
+	
+	protected static float cleanValue(float p_val, float p_limit)
+	{
+		return Math.min(p_limit, Math.max(-p_limit, p_val));
 	}
 
 	private static int clamp(float v)
@@ -149,16 +171,6 @@ public class Misc
 		return applyFilter(paramDrawable, light, con, sat, hue);
 	}
 
-	public static Drawable adjustHue(Drawable paramDrawable, int hue)
-	{
-		ColorFilter localColorFilter = ColorFilterGenerator.adjustHue(hue);
-
-		paramDrawable.clearColorFilter();
-		if (localColorFilter != null)
-			paramDrawable.setColorFilter(localColorFilter);
-
-		return paramDrawable;
-	}
 
 	private static Drawable applyFilter(Drawable paramDrawable, int light, int con, int sat, int hue)
 	{

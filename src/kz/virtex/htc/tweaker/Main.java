@@ -130,8 +130,7 @@ public class Main extends HtcPreferenceActivity implements HtcPreference.OnPrefe
 				public void onSeekBarTrack(SeekBar paramSeekBar, int value)
 				{
 					Misc.adjustHue(slot1.getIcon(), Misc.getHueValue(value));
-					// paramSeekBar.setBackgroundColor(Misc.colorTransform(-13388315,
-					// Misc.getHueValue(value)));
+					//paramSeekBar.setBackgroundColor(Misc.colorTransform(-13388315, Misc.getHueValue(value)));
 				}
 			});
 
@@ -141,6 +140,7 @@ public class Main extends HtcPreferenceActivity implements HtcPreference.OnPrefe
 				public void onSeekBarTrack(SeekBar paramSeekBar, int value)
 				{
 					Misc.adjustHue(slot2.getIcon(), Misc.getHueValue(value));
+					//paramSeekBar.setBackgroundColor(Misc.colorTransform(-13128336, Misc.getHueValue(value)));
 				}
 			});
 		}
