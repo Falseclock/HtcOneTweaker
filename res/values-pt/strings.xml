@@ -86,38 +86,40 @@
     <string name="saturation_settings">Saturação</string>
     <string name="light_settings">Brilho</string>
     <string name="contrast_settings">Contraste</string>
-    <string name="qwerty_rus">Teclado Qwert russo completo</string>
-    <string name="land_qwerty_rus">Teclado Qwert russo paisagem</string>
-    <string name="alternates_label_backslash">\\</string>
-    <string name="alternates_label_equal">=</string>
-    <string name="alternates_for_euro">€</string>
-    <string name="alternates_for_dotcom">.com .net .org .edu</string>
-    <string name="alternates_for_a_lower">! à á â ã ä å æ ą</string>
-    <string name="alternates_for_b_lower">} ] > )</string>
-    <string name="alternates_for_c_lower">"' ` ç ć č"</string>
-    <string name="alternates_for_d_lower">\# ď</string>
-    <string name="alternates_for_e_lower">3 è é ê ë ę ě</string>
-    <string name="alternates_for_f_lower">$ € £ ¥ ¢</string>
-    <string name="alternates_for_g_lower">% ‰ ğ</string>
-    <string name="alternates_for_h_lower">&amp;</string>
-    <string name="alternates_for_i_lower">ı ï î í ì 8</string>
-    <string name="alternates_for_j_lower">* +</string>
-    <string name="alternates_for_k_lower">\?</string>
-    <string name="alternates_for_l_lower">ľ ĺ ł \\ /</string>
-    <string name="alternates_for_m_lower">; :</string>
-    <string name="alternates_for_n_lower">ň ń — ~ -</string>
-    <string name="alternates_for_o_lower">ő ø œ ö õ ô ó ò 9</string>
-    <string name="alternates_for_p_lower">0</string>
-    <string name="alternates_for_q_lower">1</string>
-    <string name="alternates_for_r_lower">4 ř ŕ</string>
-    <string name="alternates_for_s_lower">\@ ß ś ş š</string>
-    <string name="alternates_for_t_lower">5 ţ ť</string>
-    <string name="alternates_for_u_lower">ű ů ü û ú ù 7</string>
-    <string name="alternates_for_v_lower">( &lt; [ {</string>
-    <string name="alternates_for_w_lower">2</string>
-    <string name="alternates_for_x_lower">\"</string>
-    <string name="alternates_for_y_lower">6 ý ÿ</string>
-    <string name="alternates_for_z_lower">_ ź ż ž</string>
+    
+    <string name="qwerty_rus">Full Qwerty Russian</string>
+    <string name="land_qwerty_rus">Landscape Qwerty Russian</string>
+    <string name="alternates_for_slash">\\ /</string>
+    <string name="alternates_for_semicolon">;</string>
+    <string name="alternates_for_asterisk">*</string>
+    <string name="alternates_for_dotcom">.com .ru .kz .ua .net .org .edu</string>
+    <string name="alternates_for_tilde">~</string>
+    <string name="alternates_for_ara_rparen">) > ] }</string>
+    <string name="alternates_for_apostrophe">"' `"</string>
+    <string name="alternates_for_at">\@</string>
+    <string name="alternates_for_3">3</string>
+    <string name="alternates_for_number">\# №</string>
+    <string name="alternates_for_dollar">$ € £ ₴ ₸</string>
+    <string name="alternates_for_percent">% ‰</string>
+    <string name="alternates_for_8">8</string>
+    <string name="alternates_for_ampersand">&amp;</string>
+    <string name="alternates_for_plus">+</string>
+    <string name="alternates_for_colon">; :</string>
+    <string name="alternates_for_dash">— ~ -</string>
+    <string name="alternates_for_9">9</string>
+    <string name="alternates_for_0">0</string>
+    <string name="alternates_for_1">1</string>
+    <string name="alternates_for_4">4</string>
+    <string name="alternates_for_5">5</string>
+    <string name="alternates_for_7">7</string>
+    <string name="alternates_for_lparen">( &lt; [ {</string>
+    <string name="alternates_for_2">2</string>
+    <string name="alternates_for_dquotation">\" « »</string>
+    <string name="alternates_for_6">6</string>
+    <string name="alternates_for_underscore">_</string>
+	<string name="alternates_label_equal">=</string>
+	<string name="alternates_for_graveaccent">`</string>
+	
     <string name="recordingSeparateDir">In Incoming &amp; Outgoing dirs</string>
     <string name="recordingFileFlag">Adicionar IN &amp; OUT para o nome do aqruivo</string>
     <string name="RecordingStorageSummary" />
@@ -190,6 +192,7 @@
     <string name="current_bugs">Current bugs</string>
     <string name="thanks">Thanks</string>
     <string name="implemented"><b>What currently implemented:</b>\n
+* I\'m tired to track what already implemented… There are a lot of new features.
 * Ability to record all voice calls directly from the line. Work with Bluetooth devices.\n
 * Voice call auto recording with stock Recorder.\n
 * Filtering auto recording by calling/called party type as well as call incoming/outgoing type\n
@@ -212,7 +215,19 @@
 * Date preffix to the Câmera shots filename</string>
     <string name="google_play"><b>Google Play Market</b></string>
     <string name="xda_support"><b>Support on XDA</b></string>
-    <string name="change_log_text"><big><b>Version 3.2.7</b></big>\n<font fgcolor="#FF009000"><b>*</b></font> (new) Data Roaming notification suppress\n<font fgcolor="#FFFF0000"><b>*</b></font> (fix) Dual sim network manager not available on Chinese 802d\n<font fgcolor="#FF009000"><b>*</b></font> (new) Color settings for slot indicator icon (Phone, Dialer, Messaging, Contacts)\n<font fgcolor="#FF009000"><b>*</b></font> XposedFramework installation check\n
+<string name="change_log_text">
+<big><b>Version 3.2.8</b></big>\n
+<font fgcolor="#FFFF0000"><b>*</b></font> (fix) App crash on Single sim version\n
+<font fgcolor="#FF009000"><b>*</b></font> (new) Old style dialer background (Sense 6 only)\n
+<font fgcolor="#FFFF0000"><b>*</b></font> (fix) Color improvement for SIM2 slot\n
+<font fgcolor="#FF009000"><b>*</b></font> (new) Advanced keyboard for Russian layout\n
+<font fgcolor="#FF009000"><b>*</b></font> other minor Sense 6 related fixes\n
+\n
+<big><b>Version 3.2.7</b></big>\n
+<font fgcolor="#FF009000"><b>*</b></font> (new) Data Roaming notification suppress\n
+<font fgcolor="#FFFF0000"><b>*</b></font> (fix) Dual sim network manager not available on Chinese 802d\n
+<font fgcolor="#FF009000"><b>*</b></font> (new) Color settings for slot indicator icon (Phone, Dialer, Messaging, Contacts) (Sense 6 only)\n
+<font fgcolor="#FF009000"><b>*</b></font> XposedFramework installation check\n
 \n<big><b>Version 3.2.6</b></big>\n<font fgcolor="#FFFF0000"><b>*</b></font> (fix) recorder for T-Mobile users\n<font fgcolor="#FFFF0000"><b>*</b></font> (fix) Sense 6 WiFi icon\n<font fgcolor="#FF009000"><b>*</b></font> Auto deletion service improvement\n<font fgcolor="#FF009000"><b>*</b></font> Sense 6 style icon in Settings screen\n
 \n    <big><b>Version 3.2.5</b></big>\n<font fgcolor="#FFFF0000"><b>*</b></font> (fix) recorder writes only in AMR-NB despite settings\n
 \n<big><b>Version 3.2.4</b></big>\n<font fgcolor="#FFFF0000"><b>*</b></font> (fix) Autorecording for new install\n<font fgcolor="#FFFF0000"><b>*</b></font> (fix) disabled deletion settings\n<font fgcolor="#FF009000"><b>*</b></font> source code publishing\n<font fgcolor="#FF009000"><b>*</b></font> some settings now not visible to single sim version\n
@@ -254,5 +269,7 @@ Manual records stored as default to My Recordings directory.\n<font fgcolor="#F
     <string name="SlotIconIndicator">Slot indicator icon</string>
     <string name="app_error">Application error </string>
     <string name="no_xposed">Xposed Framework not installed! Please install prior.</string>
-
+    <string name="enableOldSenseDialerTitle">Sense 5 dialer style</string>
+    <string name="enableOldSenseDialerSummary">With gray background</string>
+    
 </resources>

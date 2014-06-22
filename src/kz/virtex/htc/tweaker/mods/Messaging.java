@@ -170,8 +170,13 @@ public class Messaging
 
 				XposedHelpers.callStaticMethod(MessagingNotification, "initiateEffectOfGEPNotification", mContext, paramBoolean, localNotification, false);
 				String str3 = paramIntentFirst.getStringExtra("address");
-				XposedHelpers.callStaticMethod(MessagingNotification, "setJogBall_JB", mContext, localNotification, str3);
-
+				
+				if (Misc.isSense6()) {
+					XposedHelpers.callStaticMethod(MessagingNotification, "setJogBall", mContext, localNotification, str3);
+				} else {
+					XposedHelpers.callStaticMethod(MessagingNotification, "setJogBall_JB", mContext, localNotification, str3);					
+				}
+				
 				if ((Boolean) XposedHelpers.callStaticMethod(MessagingNotification, "getCharmMsgNotificationSetting", mContext) == true)
 				{
 					XposedHelpers.callStaticMethod(MessagingNotification, "flashCharmIndicator_JB", localNotification, 7);

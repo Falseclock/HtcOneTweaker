@@ -41,13 +41,14 @@ public class Main extends HtcPreferenceActivity implements HtcPreference.OnPrefe
 {
 	public static SharedPreferences preferences;
 	private Context mContext;
+
 	@SuppressLint(
 	{ "WorldReadableFiles", "WorldWriteableFiles", "DefaultLocale" })
 	public void onCreate(Bundle paramBundle)
 	{
 		super.onCreate(paramBundle);
 		mContext = this;
-		
+
 		preferences = getSharedPreferences(Const.PREFERENCE_FILE, Context.MODE_WORLD_READABLE + Context.MODE_WORLD_WRITEABLE);
 		addPreferencesFromResource(R.xml.settings);
 
@@ -55,17 +56,14 @@ public class Main extends HtcPreferenceActivity implements HtcPreference.OnPrefe
 		// users with working application and non working tweaks
 		if (!Misc.isPackageInstalled("de.robv.android.xposed.installer", this))
 		{
-			new HtcAlertDialog.Builder(this)
-		    .setTitle(R.string.app_error)
-		    .setMessage(R.string.no_xposed)
-		    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-		        public void onClick(DialogInterface dialog, int which) { 
-		        	((Activity) mContext).finish();
-		        }
-		     })
-		     .show();
-		}
-		else
+			new HtcAlertDialog.Builder(this).setTitle(R.string.app_error).setMessage(R.string.no_xposed).setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener()
+			{
+				public void onClick(DialogInterface dialog, int which)
+				{
+					((Activity) mContext).finish();
+				}
+			}).show();
+		} else
 		{
 			startService(new Intent(this, TweakerService.class).setAction(TweakerService.ACTION_CLEANUP_RECORDS));
 			init();
@@ -116,13 +114,11 @@ public class Main extends HtcPreferenceActivity implements HtcPreference.OnPrefe
 
 	private void setupSlotSaturation()
 	{
-		if (Misc.isSense6())
+		if (Misc.isSense6() && Misc.isDual())
 		{
 			final SeekBarPreference slot1 = (SeekBarPreference) findPreference(Const.TWEAK_SLOT1_COLOR);
-			final SeekBarPreference slot2 = (SeekBarPreference) findPreference(Const.TWEAK_SLOT2_COLOR);
 
 			Misc.adjustHue(slot1.getIcon(), Misc.getHueValue(preferences.getInt(Const.TWEAK_SLOT1_COLOR, 0)));
-			Misc.adjustHue(slot2.getIcon(), Misc.getHueValue(preferences.getInt(Const.TWEAK_SLOT2_COLOR, 0)));
 
 			slot1.setOnSeekBarTrackListener(new SeekBarPreference.OnSeekBarTrackListener()
 			{
@@ -130,9 +126,13 @@ public class Main extends HtcPreferenceActivity implements HtcPreference.OnPrefe
 				public void onSeekBarTrack(SeekBar paramSeekBar, int value)
 				{
 					Misc.adjustHue(slot1.getIcon(), Misc.getHueValue(value));
-					//paramSeekBar.setBackgroundColor(Misc.colorTransform(-13388315, Misc.getHueValue(value)));
+					// paramSeekBar.setBackgroundColor(Misc.colorTransform(-13388315,
+					// Misc.getHueValue(value)));
 				}
 			});
+
+			final SeekBarPreference slot2 = (SeekBarPreference) findPreference(Const.TWEAK_SLOT2_COLOR);
+			Misc.adjustHue(slot2.getIcon(), Misc.getHueValue(preferences.getInt(Const.TWEAK_SLOT2_COLOR, 0)));
 
 			slot2.setOnSeekBarTrackListener(new SeekBarPreference.OnSeekBarTrackListener()
 			{
@@ -140,7 +140,8 @@ public class Main extends HtcPreferenceActivity implements HtcPreference.OnPrefe
 				public void onSeekBarTrack(SeekBar paramSeekBar, int value)
 				{
 					Misc.adjustHue(slot2.getIcon(), Misc.getHueValue(value));
-					//paramSeekBar.setBackgroundColor(Misc.colorTransform(-13128336, Misc.getHueValue(value)));
+					// paramSeekBar.setBackgroundColor(Misc.colorTransform(-13128336,
+					// Misc.getHueValue(value)));
 				}
 			});
 		}
@@ -161,6 +162,9 @@ public class Main extends HtcPreferenceActivity implements HtcPreference.OnPrefe
 		{
 			HtcPreferenceScreen preferenceScreen = (HtcPreferenceScreen) findPreference(Const.DUAL_SETTINGS_SCREEN_KEY);
 			preferenceScreen.removePreference(findPreference(Const.ICON_INDICATOR_SLOT_SCREEN));
+
+			preferenceScreen = (HtcPreferenceScreen) findPreference(Const.CONTACT_DATA_SCREEN_KEY);
+			preferenceScreen.removePreference(findPreference(Const.TWEAK_OLD_SENSE_DIALER));
 		}
 	}
 
@@ -197,7 +201,7 @@ public class Main extends HtcPreferenceActivity implements HtcPreference.OnPrefe
 		super.onResume();
 
 		final HtcSwitchPreference weatherPref = (HtcSwitchPreference) findPreference(Const.TWEAK_COLORED_WEATHER);
-		
+
 		if (Misc.isPackageInstalled(Const.WEATHER_PACKAGE_NAME, weatherPref.getContext()))
 		{
 			weatherPref.setChecked(true);
@@ -209,7 +213,7 @@ public class Main extends HtcPreferenceActivity implements HtcPreference.OnPrefe
 			weatherPref.setChecked(false);
 			putBoolean(Const.TWEAK_COLORED_WEATHER, false);
 		}
-		
+
 	}
 
 	private void setupWeather()

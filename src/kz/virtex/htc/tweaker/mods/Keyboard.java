@@ -13,7 +13,8 @@ public class Keyboard
 
 		if (Misc.isSense6())
 		{
-			// TODO:
+			resparam.res.setReplacement(resparam.packageName, "xml", "qwerty_rus", modRes.fwd(R.xml.qwerty_rus_sense6));
+			resparam.res.setReplacement(resparam.packageName, "xml", "land_qwerty_rus", modRes.fwd(R.xml.land_qwerty_rus_sense6));
 		} 
 		else
 		{

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<keyboard label="@string/land_qwerty_rus" keyTextSize="20.67sp" popupTextSize="37.67dp" topLabelTextSize="14.67sp" topLabelTextXOffset="-2.33dp" topLabelTextYOffset="3.67sp" previewTopLevel="false" heightTemplate="5" landscape="true">
+    <row>
+        <key codes="0x0439" label="й" topLabel="1" leftEdge="true"                              popupCharacters="@string/alternates_for_1" />
+        <key codes="0x0446" label="ц" topLabel="2"                                              popupCharacters="@string/alternates_for_2" />
+        <key codes="0x0443" label="у" topLabel="3"                                              popupCharacters="@string/alternates_for_3" />
+        <key codes="0x043A" label="к" topLabel="4"                                              popupCharacters="@string/alternates_for_4" />
+        <key codes="0x0435" label="е" topLabel="5"                                              popupCharacters="@string/alternates_for_5" />
+        <key codes="0x043D" label="н" topLabel="6"                                              popupCharacters="@string/alternates_for_6" />
+        <key codes="0x0433" label="г" topLabel="7"                                              popupCharacters="@string/alternates_for_7" />
+        <key codes="0x0448" label="ш" topLabel="8"                                              popupCharacters="@string/alternates_for_8" />
+        <key codes="0x0449" label="щ" topLabel="9"                                              popupCharacters="@string/alternates_for_9" />
+        <key codes="0x0437" label="з" topLabel="0"                             rightEdge="true" popupCharacters="@string/alternates_for_0" />
+    </row>
+    <row>
+        <key codes="0x0444" label="ф" topLabel="~"      leftEdge="true" toplabelOffsetX="0.67dp" toplabelOffsetY="-2sp"                                 popupCharacters="@string/alternates_for_tilde" />
+        <key codes="0x044B" label="ы" topLabel="`"      topLabelTextSize="18.67sp" toplabelOffsetX="-3.33dp" toplabelOffsetY="-0.33sp"                  popupCharacters="@string/alternates_for_graveaccent" />
+        <key codes="0x0432" label="в" topLabel="\@"     topLabelTextSize="12.67sp" toplabelOffsetX="1dp" toplabelOffsetY="-0.67sp"                      popupCharacters="@string/alternates_for_at" />
+        <key codes="0x0430" label="а" topLabel="\#"     topLabelTextSize="15.33sp" toplabelOffsetY="-0.33sp"                                            popupCharacters="@string/alternates_for_number" />
+        <key codes="0x043F" label="п" topLabel="$"      topLabelTextSize="12.67sp" toplabelOffsetX="-0.33dp" toplabelOffsetY="0.67sp"                   popupCharacters="@string/alternates_for_dollar" />
+        <key codes="0x0440" label="р" topLabel="%"      topLabelTextSize="15.33sp" toplabelOffsetX="1.33dp" toplabelOffsetY="-0.33sp"                   popupCharacters="@string/alternates_for_percent" />
+        <key codes="0x043E" label="о" topLabel="&amp;"  topLabelTextSize="15.33sp" toplabelOffsetY="-0.33sp"                                            popupCharacters="@string/alternates_for_ampersand" />
+        <key codes="0x043B" label="л" topLabel="+"      topLabelTextSize="18sp" toplabelOffsetX="1dp" toplabelOffsetY="-2sp"                            popupCharacters="@string/alternates_for_plus" alignIndex="1" />
+        <key codes="0x0434" label="д" topLabel="="      topLabelTextSize="15.33sp" toplabelOffsetX="-0.67dp" toplabelOffsetY="-0.33sp"                  popupCharacters="@string/alternates_label_equal" />
+        <key codes="0x0436" label="ж" topLabel="/"     rightEdge="true" topLabelTextSize="15.33sp" toplabelOffsetX="-1.33dp" toplabelOffsetY="-0.67sp"  popupCharacters="@string/alternates_for_slash" alignIndex="1" />
+    </row>
+    <row withPaddingL="true" withPaddingR="true">
+        <key codes="0x044F" label="я" topLabel="_" hgap="8dp" topLabelTextSize="18sp" toplabelOffsetX="-0.67dp" toplabelOffsetY="-5.67sp"   popupCharacters="@string/alternates_for_underscore" />
+        <key codes="0x0447" label="ч" topLabel="&quot;" topLabelTextSize="20sp" toplabelOffsetX="-0.67dp" toplabelOffsetY="0.67sp"          popupCharacters="@string/alternates_for_dquotation" />
+        <key codes="0x0441" label="с" topLabel="'" topLabelTextSize="20sp" toplabelOffsetX="-4.34dp" toplabelOffsetY="0.67sp"               popupCharacters="@string/alternates_for_apostrophe" />
+        <key codes="0x043C" label="м" topLabel="(" topLabelTextSize="12.67sp" toplabelOffsetX="-4dp" toplabelOffsetY="0.33sp"               popupCharacters="@string/alternates_for_lparen" />
+        <key codes="0x0438" label="и" topLabel=")" topLabelTextSize="12.67sp" toplabelOffsetX="-3.67dp" toplabelOffsetY="0.33sp"            popupCharacters="@string/alternates_for_ara_rparen" />
+        <key codes="0x0442" label="т" topLabel="-" topLabelTextSize="20sp" toplabelOffsetX="-1.34dp" toplabelOffsetY="-4.33sp"              popupCharacters="@string/alternates_for_dash" alignIndex="2" />
+        <key codes="0x044C" label="ь" topLabel=":" topLabelTextSize="18sp" toplabelOffsetX="-3.67dp" toplabelOffsetY="-4sp"                 popupCharacters="@string/alternates_for_colon" alignIndex="1" />
+        <key codes="0x0431" label="б" topLabel=";" topLabelTextSize="18sp" toplabelOffsetX="-3.67dp" toplabelOffsetY="-4sp"                 popupCharacters="@string/alternates_for_semicolon" />
+        <key codes="0x044E" label="ю" topLabel="*" topLabelTextSize="18sp" toplabelOffsetX="1dp"                                            popupCharacters="@string/alternates_for_asterisk" />
+    </row>
+    <row>
+        <key codes="-1" modifier="true" sticky="true" function="true" leftEdge="true" icon="@drawable/key_icon_shift_toggle" showPreview="false" />
+        <key codes="0x0451" label="ё"  />
+        <key codes="0x0021" label="!"  />
+        <key codes="0x003F" label="\?" />
+        <key codes="0x002D" label="-"  />
+        <key codes="0x044D" label="э"  />
+        <key codes="0x0445" label="х"  />
+        <key codes="0x044A" label="ъ"  />
+        <key codes="0x0008" function="true" rightEdge="true" repeatable="true" icon="@drawable/ime_icon_backspace" showPreview="false" />
+    </row>
+    <row template="9">
+        <key codes="-30" label="12#" textSize="14sp" popupTextSize="30dp" function="true" leftEdge="true" labelOffsetY="-0.67sp" topIcon="@drawable/ime_icon_smile" iconScale="90%p" topIconOffsetY="2.67sp" longpressPreview="@drawable/ime_visualfeedback_smile" grouped="4" index="0" />
+        <key codes="-2" label="12#" textSize="14sp" function="true" leftEdge="true" showPreview="false" grouped="4" index="0" />
+        <key codes="0x002C,-28" label="," textSize="22.67sp" labelOffsetY="-7.33sp" function="true" topIcon="@drawable/ime_icon_setting" iconScale="90%p" topIconOffsetY="2.67sp" longpressPreview="@drawable/ime_visualfeedback_setting" splitSet="1" index="1" />
+        <key codes="0x0020" repeatable="true" bottomIcon="@drawable/ime_icon_space" bottomIconOffsetY="-7.33sp" splitSet="1" index="2,5" />
+        <key codes="0x002C,-28" label="," textSize="22.67sp" labelOffsetY="-7.33sp" function="true" topIcon="@drawable/ime_icon_setting" iconScale="90%p" topIconOffsetY="2.67sp" longpressPreview="@drawable/ime_visualfeedback_setting" splitSet="2" index="1" />
+        <key codes="0x002F" label="/" ignoreDefaultOffsetY="true" splitSet="2" index="2" />
+        <key codes="0x0020" repeatable="true" bottomIcon="@drawable/ime_icon_space" bottomIconOffsetY="-7.33sp" showPreview="false" splitSet="2" index="3,4" />
+        <key codes="-7" label=".com" textSize="22.67sp" popupTextSize="30dp" ignoreDefaultOffsetY="true" popupCharacters="@string/alternates_for_dotcom" accentType="1" alignIndex="2" splitSet="2" index="5" />
+        <key codes="0x002C,-28" label="," textSize="22.67sp" labelOffsetY="-7.33sp" function="true" topIcon="@drawable/ime_icon_setting" iconScale="90%p" topIconOffsetY="2.67sp" longpressPreview="@drawable/ime_visualfeedback_setting" splitSet="3" index="1" />
+        <key codes="0x0040" label="\@" textSize="22.67sp" labelOffsetY="-2sp" ignoreDefaultOffsetY="true" splitSet="3" index="2" />
+        <key codes="0x005F" label="_" textSize="22.67sp" ignoreDefaultOffsetY="true" splitSet="3" index="3" />
+        <key codes="0x0020" repeatable="true" bottomIcon="@drawable/ime_icon_space" bottomIconOffsetY="-7.33sp" showPreview="false" splitSet="3" index="4" />
+        <key codes="-7" label=".com" textSize="22.67sp" popupTextSize="30dp" labelOffsetY="-2sp" ignoreDefaultOffsetY="true" popupCharacters="@string/alternates_for_dotcom" accentType="1" alignIndex="2" splitSet="3" index="5" />
+        <key codes="-16" function="true" popupTextSize="30dp" topIcon="@drawable/ime_icon_language_switch" iconScale="90%p" topIconOffsetY="2.67sp" textSize="14sp" labelOffsetY="-0.67sp" popupCharacters="" splitSet="4" index="1" />
+        <key codes="0x002C,-28" label="," textSize="22.67sp" labelOffsetY="-7.33sp" function="true" topIcon="@drawable/ime_icon_setting" iconScale="90%p" topIconOffsetY="2.67sp" longpressPreview="@drawable/ime_visualfeedback_setting" splitSet="4" index="2" />
+        <key codes="0x0020" repeatable="true" showPreview="false" bottomIcon="@drawable/ime_icon_space" bottomIconOffsetY="-7.33sp" splitSet="4" index="3,5" />
+        <key codes="-16" function="true" popupTextSize="30dp" topIcon="@drawable/ime_icon_language_switch" iconScale="90%p" topIconOffsetY="2.67sp" textSize="14sp" labelOffsetY="-0.67sp" popupCharacters="" splitSet="5" index="1" />
+        <key codes="0x002C,-28" label="," textSize="22.67sp" labelOffsetY="-7.33sp" function="true" topIcon="@drawable/ime_icon_setting" iconScale="90%p" topIconOffsetY="2.67sp" longpressPreview="@drawable/ime_visualfeedback_setting" splitSet="5" index="2" />
+        <key codes="0x002F" label="/" textSize="22.67sp" ignoreDefaultOffsetY="true" splitSet="5" index="3" />
+        <key codes="0x0020" repeatable="true" bottomIcon="@drawable/ime_icon_space" bottomIconOffsetY="-7.33sp" showPreview="false" splitSet="5" index="4" />
+        <key codes="-7" label=".com" textSize="22.67sp" popupTextSize="30dp" labelOffsetY="-2sp" ignoreDefaultOffsetY="true" popupCharacters="@string/alternates_for_dotcom" accentType="1" alignIndex="2" splitSet="5" index="5" />
+        <key codes="-16" function="true" popupTextSize="30dp" topIcon="@drawable/ime_icon_language_switch" iconScale="90%p" topIconOffsetY="4.33sp" textSize="14sp" labelOffsetY="-0.67sp" popupCharacters="" splitSet="6" index="1" />
+        <key codes="0x005F,-28" label="_" textSize="22.67sp" labelOffsetY="-5.67sp" function="true" topIcon="@drawable/ime_icon_setting" iconScale="90%p" topIconOffsetY="4.33sp" longpressPreview="@drawable/ime_visualfeedback_setting" splitSet="6" index="2" />
+        <key codes="0x0040" label="\@" textSize="22.67sp" labelOffsetY="-2sp" ignoreDefaultOffsetY="true" splitSet="6" index="3" />
+        <key codes="0x0020" repeatable="true" bottomIcon="@drawable/ime_icon_space" bottomIconOffsetY="-7.33sp" showPreview="false" splitSet="6" index="4" />
+        <key codes="-7" label=".com" textSize="22.67sp" popupTextSize="30dp" labelOffsetY="-2sp" ignoreDefaultOffsetY="true" popupCharacters="@string/alternates_for_dotcom" accentType="1" alignIndex="2" splitSet="6" index="5" />
+        <key codes="0x002E,-31" label="." textSize="22.67sp" labelOffsetY="-7.33sp" function="true" topIcon="@drawable/ime_icon_voice" iconScale="90%p" topIconOffsetY="2.67sp" longpressPreview="@drawable/ime_visualfeedback_voice" grouped="3" index="6" />
+        <key codes="0x002E,0x002E" label="." textSize="22.67sp" labelOffsetY="1.33sp" ignoreDefaultOffsetY="true" grouped="3" index="6" />
+        <key codes="0x000A" function="true" sticky="true" rightEdge="true" icon="@drawable/ime_icon_enter" showPreview="false" index="7,8" />
+    </row>
+</keyboard>

@@ -11,9 +11,12 @@ import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.ColorFilter;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.LinearLayout;
+
 import com.htc.preference.HtcDialogPreference;
 
 public class IconsColorPreference extends HtcDialogPreference implements ColorPreferenceView.OnColorChangeListener
@@ -73,6 +76,7 @@ public class IconsColorPreference extends HtcDialogPreference implements ColorPr
 		
 		for (int i = 0; i < iconRowView.images.length; i++)
 		{
+			iconRowView.images[i].setColorFilter(new PorterDuffColorFilter(Color.CYAN, PorterDuff.Mode.SRC_ATOP));
 			iconRowView.images[i].setColorFilter(localColorFilter);
 		}
 	}

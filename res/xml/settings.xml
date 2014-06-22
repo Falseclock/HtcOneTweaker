@@ -242,6 +242,12 @@
                 android:key="contact_data_screen_key"
                 android:summary="@string/ContactDialScreenSummary"
                 android:title="@string/ContactDialScreenTitle" >
+                <com.htc.preference.HtcSwitchPreference
+                    android:id="@id/enableOldSenseDialer"
+                    android:key="tweak_old_sense_dialer"
+                    android:summary="@string/enableOldSenseDialerSummary"
+                    android:title="@string/enableOldSenseDialerTitle" />
+                
                 <kz.virtex.htc.tweaker.preference.DialerButtonPreference
                     android:id="@id/enableDialerHighLight"
                     android:key="tweak_dialer_btn"

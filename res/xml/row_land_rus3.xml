@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <row width="64dp" height="36dp">
     <key codes="-97" width="8.5dp" enable="false" leftEdge="true" />
-    <key codes="0x044F" label="я" width="62dp" topLabel="_" popupCharacters="@string/alternates_for_z_lower" accentType="3" alignIndex="0" />
-    <key codes="0x0447" label="ч" width="63dp" topLabel="&quot;" popupCharacters="@string/alternates_for_x_lower" accentType="3" alignIndex="0" />
-    <key codes="0x0441" label="с" width="67dp" topLabel="'" popupCharacters="@string/alternates_for_c_lower" accentType="3" alignIndex="0" />
-    <key codes="0x043C" label="м" width="74dp" topLabel="(" popupCharacters="@string/alternates_for_v_lower" accentType="3" alignIndex="0" />
-    <key codes="0x0438" label="и" width="91dp" topLabel=")" popupCharacters="@string/alternates_for_b_lower" accentType="3" alignIndex="3" />
-    <key codes="0x0442" label="т" width="74dp" topLabel="-" popupCharacters="@string/alternates_for_n_lower" accentType="3" alignIndex="5" />
-    <key codes="0x044C" label="ь" width="67dp" topLabel=":" popupCharacters="@string/alternates_for_m_lower" accentType="3" alignIndex="1" />
-    <key codes="0x0431" label="б" width="63dp" topLabel="=" popupCharacters="@string/alternates_label_equal" accentType="3" alignIndex="0" />
-    <key codes="0x044E" label="ю" width="62dp" topLabel="€" popupCharacters="@string/alternates_for_euro" accentType="3" alignIndex="0" />
+        <key codes="0x044F" label="я" topLabel="_"  topLabelTextSize="18sp" toplabelOffsetX="-0.67dp" toplabelOffsetY="-5.67sp"             popupCharacters="@string/alternates_for_underscore" />
+        <key codes="0x0447" label="ч" topLabel="&quot;" topLabelTextSize="20sp" toplabelOffsetX="-0.67dp" toplabelOffsetY="0.67sp"          popupCharacters="@string/alternates_for_dquotation" />
+        <key codes="0x0441" label="с" topLabel="'" topLabelTextSize="20sp" toplabelOffsetX="-4.34dp" toplabelOffsetY="0.67sp"               popupCharacters="@string/alternates_for_apostrophe" />
+        <key codes="0x043C" label="м" topLabel="(" topLabelTextSize="12.67sp" toplabelOffsetX="-4dp" toplabelOffsetY="0.33sp"               popupCharacters="@string/alternates_for_lparen" />
+        <key codes="0x0438" label="и" topLabel=")" topLabelTextSize="12.67sp" toplabelOffsetX="-3.67dp" toplabelOffsetY="0.33sp"            popupCharacters="@string/alternates_for_ara_rparen" />
+        <key codes="0x0442" label="т" topLabel="-" topLabelTextSize="20sp" toplabelOffsetX="-1.34dp" toplabelOffsetY="-4.33sp"              popupCharacters="@string/alternates_for_dash" alignIndex="2" />
+        <key codes="0x044C" label="ь" topLabel=":" topLabelTextSize="18sp" toplabelOffsetX="-3.67dp" toplabelOffsetY="-4sp"                 popupCharacters="@string/alternates_for_colon" alignIndex="1" />
+        <key codes="0x0431" label="б" topLabel=";" topLabelTextSize="18sp" toplabelOffsetX="-3.67dp" toplabelOffsetY="-4sp"                 popupCharacters="@string/alternates_for_semicolon" />
+        <key codes="0x044E" label="ю" topLabel="*" topLabelTextSize="18sp" toplabelOffsetX="1dp"                                            popupCharacters="@string/alternates_for_asterisk" />
     <key codes="-97" width="8.67dp" enable="false" rightEdge="true" />
 </row>

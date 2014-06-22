@@ -18,6 +18,7 @@ import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.View;
 import de.robv.android.xposed.XC_MethodHook;
+import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.XposedHelpers;
 import de.robv.android.xposed.callbacks.XC_InitPackageResources.InitPackageResourcesParam;
 import de.robv.android.xposed.callbacks.XC_LoadPackage.LoadPackageParam;
@@ -28,7 +29,6 @@ public class Dialer
 	{};
 	public static String[] Lat =
 	{};
-	private static boolean DialerBackgroundSet = false;
 	
 	private static String[] push(String[] array, String push)
 	{
@@ -47,17 +47,15 @@ public class Dialer
 			protected void afterHookedMethod(MethodHookParam param) throws Throwable
 			{
 				float alpha = (Float) XposedHelpers.callMethod(param.thisObject, "getAlpha");
-				if (alpha <= 0.4F && !DialerBackgroundSet) // to avoid background set every time
+				if (alpha <= 0.4F) // to avoid background set every time
 				{
 					 View btn = (View) param.thisObject;
 					 View parent = (View) btn.getParent();
 					 View main = (View) parent.getParent();
-					 
+					 					 
 					 XModuleResources modRes = XModuleResources.createInstance(XMain.MODULE_PATH, null);
 					 Drawable bg = modRes.getDrawable(R.drawable.phone_keypad_bg);
 					 main.setBackground(bg);
-
-					 DialerBackgroundSet = true;
 				}
 			}
 		});

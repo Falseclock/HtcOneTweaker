@@ -2,16 +2,16 @@
 <keyboard label="@string/land_qwerty_rus" keyTextSize="23dp" popupTextSize="37.5dp" topIconYOffset="2dp" topLabelTextSize="14.5dp" topLabelTextXOffset="-1.67dp" topLabelTextYOffset="1.67dp" previewTopLevel="false" keyboardPadding="0dp,0.67dp,0dp,0dp" totalRows="4">
     <include xml="@xml/row_land_rus1" />
     <row width="64dp" height="36dp">
-        <key codes="0x0444" label="ф" width="56.5dp" leftEdge="true" topLabel="!" popupCharacters="@string/alternates_for_a_lower" accentType="3" alignIndex="0" />
-        <key codes="0x044B" label="ы" width="58dp" topLabel="\@" topLabelTextScale="97%p" popupCharacters="@string/alternates_for_s_lower" accentType="3" alignIndex="0" />
-        <key codes="0x0432" label="в" width="60dp" topLabel="\#" topLabelTextScale="104%p" popupCharacters="@string/alternates_for_d_lower" accentType="3" alignIndex="0" />
-        <key codes="0x0430" label="а" width="66dp" topLabel="$" topLabelTextScale="90%p" popupCharacters="@string/alternates_for_f_lower" accentType="3" alignIndex="0" />
-        <key codes="0x043F" label="п" width="79.67dp" topLabel="%" topLabelTextScale="104%p" popupCharacters="@string/alternates_for_g_lower" accentType="3" alignIndex="0" />
-        <key codes="0x0440" label="р" width="79.5dp" topLabel="&amp;" topLabelTextScale="104%p" popupCharacters="@string/alternates_for_h_lower" accentType="3" alignIndex="0" />
-        <key codes="0x043E" label="о" width="66dp" topLabel="+" topLabelTextScale="125%p" popupCharacters="@string/alternates_for_j_lower" accentType="3" alignIndex="1" />
-        <key codes="0x043B" label="л" width="60dp" topLabel="\?" topLabelTextScale="104%p" popupCharacters="@string/alternates_for_k_lower" accentType="3" alignIndex="0" />
-        <key codes="0x0434" label="д" width="58dp" topLabel="/" topLabelTextScale="104%p" popupCharacters="@string/alternates_for_l_lower" accentType="3" alignIndex="4" />
-        <key codes="0x0436" label="ж" width="56.67dp" rightEdge="true" topLabel="\\" topLabelTextScale="104%p" popupCharacters="@string/alternates_label_backslash" accentType="3" alignIndex="0" />
+        <key codes="0x0444" label="ф" topLabel="~"      leftEdge="true" toplabelOffsetX="0.67dp" toplabelOffsetY="-2sp"                                 popupCharacters="@string/alternates_for_tilde" />
+        <key codes="0x044B" label="ы" topLabel="`"      topLabelTextSize="18.67sp" toplabelOffsetX="-3.33dp" toplabelOffsetY="-0.33sp"                  popupCharacters="@string/alternates_for_graveaccent" />
+        <key codes="0x0432" label="в" topLabel="\@"     topLabelTextSize="12.67sp" toplabelOffsetX="1dp" toplabelOffsetY="-0.67sp"                      popupCharacters="@string/alternates_for_at" />
+        <key codes="0x0430" label="а" topLabel="\#"     topLabelTextSize="15.33sp" toplabelOffsetY="-0.33sp"                                            popupCharacters="@string/alternates_for_number" />
+        <key codes="0x043F" label="п" topLabel="$"      topLabelTextSize="12.67sp" toplabelOffsetX="-0.33dp" toplabelOffsetY="0.67sp"                   popupCharacters="@string/alternates_for_dollar" />
+        <key codes="0x0440" label="р" topLabel="%"      topLabelTextSize="15.33sp" toplabelOffsetX="1.33dp" toplabelOffsetY="-0.33sp"                   popupCharacters="@string/alternates_for_percent" />
+        <key codes="0x043E" label="о" topLabel="&amp;"  topLabelTextSize="15.33sp" toplabelOffsetY="-0.33sp"                                            popupCharacters="@string/alternates_for_ampersand" />
+        <key codes="0x043B" label="л" topLabel="+"      topLabelTextSize="18sp" toplabelOffsetX="1dp" toplabelOffsetY="-2sp"                            popupCharacters="@string/alternates_for_plus" alignIndex="1" />
+        <key codes="0x0434" label="д" topLabel="="      topLabelTextSize="15.33sp" toplabelOffsetX="-0.67dp" toplabelOffsetY="-0.33sp"                  popupCharacters="@string/alternates_label_equal" />
+        <key codes="0x0436" label="ж" topLabel="/"     rightEdge="true" topLabelTextSize="15.33sp" toplabelOffsetX="-1.33dp" toplabelOffsetY="-0.67sp"  popupCharacters="@string/alternates_for_slash" alignIndex="1" />
     </row>
     <include xml="@xml/row_land_rus3" />
     <row width="64dp" height="36dp">

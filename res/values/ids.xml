@@ -46,5 +46,6 @@
     <item name="enableHideSMSBadge" type="id">false</item>
     <item name="enableSMSNotifyToDialog" type="id">false</item>
     <item name="disableRoamingDataNotification" type="id">false</item>
+    <item name="enableOldSenseDialer" type="id">false</item>
     
 </resources>

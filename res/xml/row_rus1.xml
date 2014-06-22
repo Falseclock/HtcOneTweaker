@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <row height="44dp" width="36dp">
-    <key codes="0x0439" label="й" topLabel="1" leftEdge="true" popupCharacters="@string/alternates_for_q_lower" accentType="3" />
-    <key codes="0x0446" label="ц" topLabel="2" popupCharacters="@string/alternates_for_w_lower" accentType="3" />
-    <key codes="0x0443" label="у" topLabel="3" popupCharacters="@string/alternates_for_e_lower" accentType="3" />
-    <key codes="0x043A" label="к" topLabel="4" popupCharacters="@string/alternates_for_r_lower" accentType="3" />
-    <key codes="0x0435" label="е" topLabel="5" popupCharacters="@string/alternates_for_t_lower" accentType="3" />
-    <key codes="0x043D" label="н" topLabel="6" popupCharacters="@string/alternates_for_y_lower" accentType="3" />
-    <key codes="0x0433" label="г" topLabel="7" popupCharacters="@string/alternates_for_u_lower" accentType="3" alignIndex="6" />
-    <key codes="0x0448" label="ш" topLabel="8" popupCharacters="@string/alternates_for_i_lower" accentType="3" alignIndex="5" />
-    <key codes="0x0449" label="щ" topLabel="9" popupCharacters="@string/alternates_for_o_lower" accentType="3" alignIndex="8" />
-    <key codes="0x0437" label="з" topLabel="0" rightEdge="true" popupCharacters="@string/alternates_for_p_lower" accentType="3" alignIndex="0" />
+    <key codes="0x0439" label="й" topLabel="1" leftEdge="true" popupCharacters="@string/alternates_for_1" accentType="3" />
+    <key codes="0x0446" label="ц" topLabel="2" popupCharacters="@string/alternates_for_2" accentType="3" />
+    <key codes="0x0443" label="у" topLabel="3" popupCharacters="@string/alternates_for_3" accentType="3" />
+    <key codes="0x043A" label="к" topLabel="4" popupCharacters="@string/alternates_for_4" accentType="3" />
+    <key codes="0x0435" label="е" topLabel="5" popupCharacters="@string/alternates_for_5" accentType="3" />
+    <key codes="0x043D" label="н" topLabel="6" popupCharacters="@string/alternates_for_6" accentType="3" />
+    <key codes="0x0433" label="г" topLabel="7" popupCharacters="@string/alternates_for_7" accentType="3" alignIndex="6" />
+    <key codes="0x0448" label="ш" topLabel="8" popupCharacters="@string/alternates_for_8" accentType="3" alignIndex="5" />
+    <key codes="0x0449" label="щ" topLabel="9" popupCharacters="@string/alternates_for_9" accentType="3" alignIndex="8" />
+    <key codes="0x0437" label="з" topLabel="0" rightEdge="true" popupCharacters="@string/alternates_for_0" accentType="3" alignIndex="0" />
 </row>

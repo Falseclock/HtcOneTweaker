@@ -81,8 +81,9 @@ public class Const
 	public static final String OTHER_SETTINGS_SCREEN_KEY = "other_settings_screen";
 	public static final String TWEAK_ENABLE_PHOTO_PREFIX= "tweak_enable_photo_prefix";
 	public static final String ICON_INDICATOR_SLOT_SCREEN= "icon_indicator_slot_screen";
+	public static final String TWEAK_OLD_SENSE_DIALER= "tweak_old_sense_dialer";
 	
-	
+		
 	public static final String AUTO_REC_MAIN = "Automatic records/";
 	public static final String AUTO_REC_INCOMING = AUTO_REC_MAIN + "/Incoming/";
 	public static final String AUTO_REC_OUTGOING = AUTO_REC_MAIN + "/Outgoing/";

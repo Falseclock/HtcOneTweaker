@@ -126,7 +126,8 @@ public class XMain implements IXposedHookInitPackageResources, IXposedHookZygote
 			if (XMain.pref.getInt(Const.TWEAK_SLOT1_COLOR, 0) !=0 || XMain.pref.getInt(Const.TWEAK_SLOT2_COLOR, 0) != 0)
 				Dialer.hookCallButtons(paramLoadPackageParam);
 
-			Dialer.hookSpecificHtcShowKeypad(paramLoadPackageParam);
+			if (pref.getBoolean(Const.TWEAK_OLD_SENSE_DIALER, false))
+				Dialer.hookSpecificHtcShowKeypad(paramLoadPackageParam);
 			
 			/*----------------*/
 			/* DIALER BUTTONS */
