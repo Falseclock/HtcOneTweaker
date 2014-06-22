@@ -29,6 +29,8 @@ public class Const
 	public static final String TWEAK_SLOT1_COLOR = "tweak_slot1_color"; 
 	public static final String TWEAK_SLOT2_COLOR = "tweak_slot2_color"; 
 
+	public static final String TWEAK_HEADS_UP_NOTIFICATION = "tweak_heads_up_notifications"; 
+	
 	
 	
 	public static final String TWEAK_DIALER_BUTTON = "tweak_dialer_btn"; 

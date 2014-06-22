@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="kz.virtex.htc.tweaker"
-    android:versionCode="37"
-    android:versionName="3.2.8" >
+    android:versionCode="38"
+    android:versionName="3.2.9" >
 
     <uses-sdk
         android:maxSdkVersion="19"
@@ -27,7 +27,7 @@
             android:value="true" />
         <meta-data
             android:name="xposedminversion"
-            android:value="2.0*" />
+            android:value="2.6*" />
         <meta-data
             android:name="xposeddescription"
             android:value="Tweaks collection for HTC One" />

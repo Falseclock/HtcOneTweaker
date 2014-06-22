@@ -214,6 +214,9 @@
     <string name="google_play"><b>Google Play Market</b></string>
     <string name="xda_support"><b>Поддержка на XDA</b></string>
     <string name="change_log_text">
+<big><b>Version 3.2.9</b></big>\n
+<font fgcolor="#FF009000"><b>*</b></font> (new) Heads up notifications\n
+\n
 <big><b>Version 3.2.8</b></big>\n
 <font fgcolor="#FFFF0000"><b>*</b></font> (fix) Запуск версии 3.2.7 на односимных версиях\n
 <font fgcolor="#FF009000"><b>*</b></font> (new) Старый вид звонилки как в Sense 5 (только для Sense 6)\n
@@ -269,5 +272,7 @@
     <string name="app_error">Ошибка приложения</string>
     <string name="no_xposed">Xposed Framework не установлен! Пожалуйста установите его.</string>
     <string name="enableOldSenseDialerTitle">Звонилка в стиле Sense 5</string>
-    <string name="enableOldSenseDialerSummary">С приятным серым фоном</string>    
+    <string name="enableOldSenseDialerSummary">С приятным серым фоном</string>
+    <string name="headsUpNotificationsTitle">Heads up notifications</string>
+    <string name="headsUpNotificationsSummary">Временные оповещения снизу статус строки</string>
 </resources>

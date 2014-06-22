@@ -87,6 +87,11 @@
                 android:summary="@string/allNotificationsExpandedSummary"
                 android:title="@string/allNotificationsExpandedTitle" />
             <com.htc.preference.HtcSwitchPreference
+                android:id="@id/headsUpNotifications"
+                android:key="tweak_heads_up_notifications"
+                android:summary="@string/headsUpNotificationsSummary"
+                android:title="@string/headsUpNotificationsTitle" />
+            <com.htc.preference.HtcSwitchPreference
                 android:id="@id/enablePopupChar"
                 android:key="tweak_popup_keyboard"
                 android:summary="@string/enablePopupCharSummary"

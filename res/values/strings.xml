@@ -218,6 +218,9 @@
     <string name="google_play"><b>Google Play Market</b></string>
     <string name="xda_support"><b>Support on XDA</b></string>
 <string name="change_log_text">
+<big><b>Version 3.2.9</b></big>\n
+<font fgcolor="#FF009000"><b>*</b></font> (new) Heads up notifications\n
+\n
 <big><b>Version 3.2.8</b></big>\n
 <font fgcolor="#FFFF0000"><b>*</b></font> (fix) App crash on Single sim version\n
 <font fgcolor="#FF009000"><b>*</b></font> (new) Old style dialer background (Sense 6 only)\n
@@ -275,6 +278,8 @@ Manual records stored as default to My Recordings directory.\n<font fgcolor="#F
     <string name="no_xposed">Xposed Framework not installed! Please install prior.</string>
     <string name="enableOldSenseDialerTitle">Sense 5 dialer style</string>
     <string name="enableOldSenseDialerSummary">With gray background</string>
+    <string name="headsUpNotificationsTitle">Heads up notifications</string>
+    <string name="headsUpNotificationsSummary">All notifications will float in just below the notification bar</string>
     
    
 </resources>

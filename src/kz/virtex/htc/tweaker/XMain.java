@@ -156,6 +156,9 @@ public class XMain implements IXposedHookInitPackageResources, IXposedHookZygote
 		
 		if (packageName.equals("com.android.systemui"))
 		{
+			if (pref.getBoolean(Const.TWEAK_HEADS_UP_NOTIFICATION, false))
+				SystemUI.hookUseHeadsUp(paramLoadPackageParam);
+			
 			/*----------------*/
 			/* QUICK PULLDOWN */
 			/*----------------*/
@@ -263,6 +266,7 @@ public class XMain implements IXposedHookInitPackageResources, IXposedHookZygote
 		
 		if (resparam.packageName.equals("com.android.systemui"))
 		{
+		
 			if (pref.getBoolean(Const.TWEAK_COLORED_SIM, false))
 				SystemUI.handleColoredSIM(resparam, MODULE_PATH);
 

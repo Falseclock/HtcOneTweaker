@@ -5,6 +5,8 @@ import kz.virtex.htc.tweaker.Const;
 import kz.virtex.htc.tweaker.Misc;
 import kz.virtex.htc.tweaker.R;
 import kz.virtex.htc.tweaker.XMain;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.res.XModuleResources;
 import android.content.res.XResources;
 import android.graphics.drawable.Drawable;
@@ -13,22 +15,76 @@ import android.view.MotionEvent;
 import android.view.View;
 import de.robv.android.xposed.XC_MethodHook;
 import de.robv.android.xposed.XC_MethodReplacement;
+import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.XposedHelpers;
 import de.robv.android.xposed.callbacks.XC_InitPackageResources.InitPackageResourcesParam;
 import de.robv.android.xposed.callbacks.XC_LoadPackage.LoadPackageParam;
 
 public class SystemUI
 {
+	public static void hookUseHeadsUp(LoadPackageParam paramLoadPackageParam)
+	{
+		/*
+		XposedHelpers.findAndHookConstructor("com.android.systemui.statusbar.BaseStatusBar", paramLoadPackageParam.classLoader, new XC_MethodHook()
+		{
+			@Override
+			protected void afterHookedMethod(MethodHookParam param) throws Throwable
+			{
+				XposedHelpers.setBooleanField(param.thisObject, "mUseHeadsUp", true);
+			}
+		});
+		*/
+		XposedHelpers.findAndHookMethod("com.android.systemui.statusbar.BaseStatusBar", paramLoadPackageParam.classLoader, "start", new XC_MethodHook()
+		{
+			@Override
+			protected void beforeHookedMethod(MethodHookParam param) throws Throwable
+			{
+				Context mContext = (Context) XposedHelpers.getObjectField(param.thisObject, "mContext");				
+				android.provider.Settings.Global.putInt(mContext.getContentResolver(), "heads_up_enabled", 1);
+			}
+		});	
+		
+		XposedHelpers.findAndHookMethod("com.android.systemui.statusbar.BaseStatusBar", paramLoadPackageParam.classLoader, "shouldInterrupt", "android.service.notification.StatusBarNotification", new XC_MethodReplacement()
+		{
+			@Override
+			protected Object replaceHookedMethod(MethodHookParam param) throws Throwable
+			{
+				Boolean replace = true;
+				return replace;
+			}
+		});	
+		
+		XposedHelpers.findAndHookMethod("com.android.systemui.statusbar.phone.PhoneStatusBar", paramLoadPackageParam.classLoader, "addNotification", "android.os.IBinder", "android.service.notification.StatusBarNotification", "boolean", new XC_MethodHook()
+		{
+			@Override
+			protected void afterHookedMethod(MethodHookParam param) throws Throwable
+			{
+				boolean mUseHeadsUp = XposedHelpers.getBooleanField(param.thisObject, "mUseHeadsUp");
+				XposedBridge.log("addNotification: " + mUseHeadsUp);
+				
+				boolean shouldInterrupt = (Boolean) XposedHelpers.callMethod(param.thisObject, "shouldInterrupt", param.args[1]);
+				XposedBridge.log("shouldInterrupt: " + shouldInterrupt);
+				
+				Object getNotification = XposedHelpers.callMethod(param.args[1], "getNotification");
+				PendingIntent fullScreenIntent = (PendingIntent) XposedHelpers.getObjectField(getNotification, "fullScreenIntent");
+				
+				XposedBridge.log("fullScreenIntent: " + fullScreenIntent);
+				
+				XposedBridge.log("heads_up_enabled: " + android.provider.Settings.Global.getUriFor("heads_up_enabled"));
+			}
+		});
+	}
+
 	public static void hookOnTouchEvent(LoadPackageParam paramLoadPackageParam)
 	{
 		findAndHookMethod("com.android.systemui.statusbar.phone.NotificationPanelView", paramLoadPackageParam.classLoader, "onTouchEvent", "android.view.MotionEvent", new XC_MethodHook()
 		{
+			@Override
 			protected void afterHookedMethod(MethodHookParam param) throws Throwable
 			{
 				MotionEvent paramMotionEvent = (MotionEvent) param.args[0];
 
-				// XposedBridge.log("X" + paramMotionEvent.getX(0));
-				// XposedBridge.log("Y" + paramMotionEvent.getY(0));
+				//TODO: landscape mode
 
 				if (paramMotionEvent.getY(0) < 100 && paramMotionEvent.getX(0) > 1000)
 				{
@@ -56,6 +112,7 @@ public class SystemUI
 
 		XposedHelpers.findAndHookMethod("com.android.systemui.statusbar.ExpandableNotificationRow", paramLoadPackageParam.classLoader, "isUserExpanded", new XC_MethodReplacement()
 		{
+			@Override
 			protected Object replaceHookedMethod(MethodHookParam param) throws Throwable
 			{
 				return Boolean.valueOf(true);
