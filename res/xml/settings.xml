@@ -303,7 +303,12 @@
                 android:key="tweak_enable_photo_prefix"
                 android:summary="@string/enablePhotoPrefixSummary"
                 android:title="@string/enablePhotoPrefixTitle" />
-        </com.htc.preference.HtcPreferenceScreen>
+            <com.htc.preference.HtcSwitchPreference
+                android:id="@id/enableAllLanguages"
+                android:key="tweak_enable_all_languages"
+                android:summary="@string/enableAllLanguagesSummary"
+                android:title="@string/enableAllLanguagesTitle" />
+            </com.htc.preference.HtcPreferenceScreen>
     </com.htc.preference.HtcPreferenceCategory>
 
 </com.htc.preference.HtcPreferenceScreen>

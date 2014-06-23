@@ -1,14 +1,15 @@
 package kz.virtex.htc.tweaker;
 
 import static de.robv.android.xposed.XposedHelpers.findAndHookMethod;
-
 import java.io.File;
-
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.content.res.XModuleResources;
 import android.content.res.XResources;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteException;
 import android.graphics.ColorFilter;
 import android.graphics.drawable.Drawable;
 import android.media.AudioManager;
@@ -48,10 +49,11 @@ public class XMain implements IXposedHookInitPackageResources, IXposedHookZygote
 	public static String MODULE_PATH;
 	public static String weather_apk;
 
+	@SuppressLint("SdCardPath")
 	public void initZygote(StartupParam startupParam) throws Throwable
 	{
 		pref = new XSharedPreferences(Const.PACKAGE_NAME, Const.PREFERENCE_FILE);
-		
+
 		weather_apk = pref.getString(Const.WEATHER_PACKAGE_APK, null);
 
 		MODULE_PATH = startupParam.modulePath;
@@ -74,10 +76,25 @@ public class XMain implements IXposedHookInitPackageResources, IXposedHookZygote
 
 		if (pref.getBoolean(Const.TWEAK_FIX_SDCARD_PERMISSION, false))
 			Android.hookSDcardPermission();
-		
-		if (XMain.pref.getInt(Const.TWEAK_SLOT1_COLOR, 0) !=0 || XMain.pref.getInt(Const.TWEAK_SLOT2_COLOR, 0) != 0)
+
+		if (XMain.pref.getInt(Const.TWEAK_SLOT1_COLOR, 0) != 0 || XMain.pref.getInt(Const.TWEAK_SLOT2_COLOR, 0) != 0)
 			Messaging.hookSetBadgeImageResource();
 
+		try
+		{
+			SQLiteDatabase mydb = SQLiteDatabase.openDatabase("/data/data/com.htc.provider.CustomizationSettings/databases/customization_settings.db", null, SQLiteDatabase.OPEN_READWRITE);
+			if (pref.getBoolean(Const.TWEAK_ENABLE_ALL_LANGUAGES, false))
+			{
+				mydb.execSQL("UPDATE SettingTable set key='tweak_system_locale' WHERE key='system_locale'");
+			} else
+			{
+				mydb.execSQL("UPDATE SettingTable set key='system_locale' WHERE key='tweak_system_locale'");
+			}
+			mydb.close();
+		} catch (SQLiteException e)
+		{
+			XposedBridge.log(e);
+		}
 	}
 
 	public void handleLoadPackage(LoadPackageParam paramLoadPackageParam) throws Throwable
@@ -87,23 +104,23 @@ public class XMain implements IXposedHookInitPackageResources, IXposedHookZygote
 		// usage and checking
 		if (packageName.equals("kz.virtex.htc.tweaker"))
 		{
-			
+
 		}
-		
+
 		if (packageName.equals("android.net.sip"))
 		{
 			if (pref.getBoolean(Const.TWEAK_ENABLE_SIP, false))
 				Phone.hookSIP2(paramLoadPackageParam);
 		}
-				
+
 		if (packageName.equals("com.android.phone"))
 		{
 			if (pref.getBoolean(Const.TWEAK_ENABLE_SIP, false))
 				Phone.hookSIP(paramLoadPackageParam);
-			
+
 			if (pref.getBoolean(Const.TWEAK_DISABLE_DATA_ROAM_NOTIFY, false))
 				Phone.hookShowDataDisconnectedRoaming(paramLoadPackageParam);
-			
+
 			/*----------------*/
 			/* CALL RECORDING */
 			/*----------------*/
@@ -111,7 +128,7 @@ public class XMain implements IXposedHookInitPackageResources, IXposedHookZygote
 			Recorder.hookAutomateCallRecording(paramLoadPackageParam);
 			Recorder.hookAutomateCallRecordingFilename(paramLoadPackageParam);
 		}
-		
+
 		if (packageName.equals("com.htc.soundrecorder"))
 		{
 			/*--------------------*/
@@ -120,45 +137,48 @@ public class XMain implements IXposedHookInitPackageResources, IXposedHookZygote
 			Recorder.getStorageRoot(paramLoadPackageParam);
 			Recorder.hookPausableAudioRecorderStart(paramLoadPackageParam);
 		}
-		
+
 		if (packageName.equals("com.htc.htcdialer"))
 		{
-			if (XMain.pref.getInt(Const.TWEAK_SLOT1_COLOR, 0) !=0 || XMain.pref.getInt(Const.TWEAK_SLOT2_COLOR, 0) != 0)
+			if (XMain.pref.getInt(Const.TWEAK_SLOT1_COLOR, 0) != 0 || XMain.pref.getInt(Const.TWEAK_SLOT2_COLOR, 0) != 0)
 				Dialer.hookCallButtons(paramLoadPackageParam);
 
 			if (pref.getBoolean(Const.TWEAK_OLD_SENSE_DIALER, false))
 				Dialer.hookSpecificHtcShowKeypad(paramLoadPackageParam);
-			
+
 			/*----------------*/
 			/* DIALER BUTTONS */
 			/*----------------*/
 			if (pref.getBoolean(Const.TWEAK_DIALER_BUTTON, false))
 				Dialer.hookDialerButtons(paramLoadPackageParam);
 		}
-		
+
 		if (packageName.equals("com.android.mms") || packageName.equals("com.htc.sense.mms"))
 		{
+
+			Messaging.hookNotificationRemove(paramLoadPackageParam, packageName);
+
 			if (pref.getBoolean(Const.TWEAK_SMS_UNREAD_HIGHLIGHT, false))
 				Messaging.hookUnread(paramLoadPackageParam, packageName);
-			
+
 			if (pref.getBoolean(Const.TWEAK_SMS_NOTIFY_TO_DIALOG, false))
 				Messaging.hookUpdateNotification(paramLoadPackageParam, packageName);
-			
+
 			/*-----------------------*/
 			/* DELIVERY NOTIFICATION */
 			/*-----------------------*/
 			if (pref.getBoolean(Const.TWEAK_DELIVERY_NOTIFICATION, false))
 				Messaging.hookMessageNotification(paramLoadPackageParam, packageName);
-			
-			if (XMain.pref.getInt(Const.TWEAK_SLOT1_COLOR, 0) !=0 || XMain.pref.getInt(Const.TWEAK_SLOT2_COLOR, 0) != 0)
+
+			if (XMain.pref.getInt(Const.TWEAK_SLOT1_COLOR, 0) != 0 || XMain.pref.getInt(Const.TWEAK_SLOT2_COLOR, 0) != 0)
 				Messaging.hookDualModeButtonStyle(paramLoadPackageParam, packageName);
 		}
-		
+
 		if (packageName.equals("com.android.systemui"))
 		{
 			if (pref.getBoolean(Const.TWEAK_HEADS_UP_NOTIFICATION, false))
 				SystemUI.hookUseHeadsUp(paramLoadPackageParam);
-			
+
 			/*----------------*/
 			/* QUICK PULLDOWN */
 			/*----------------*/
@@ -171,7 +191,7 @@ public class XMain implements IXposedHookInitPackageResources, IXposedHookZygote
 			if (pref.getBoolean(Const.TWEAK_EXPANDED_NOTIFICATIONS, false))
 				SystemUI.hookExpandedNotifications(paramLoadPackageParam);
 		}
-		
+
 		if (packageName.equals("com.nero.android.htc.sync"))
 		{
 			if (pref.getBoolean(Const.TWEAK_SYNC_NOTIFY, false))
@@ -183,7 +203,7 @@ public class XMain implements IXposedHookInitPackageResources, IXposedHookZygote
 			if (pref.getBoolean(Const.TWEAK_USB_NOTIFY, false))
 				Settings.hookUSBNotification(paramLoadPackageParam);
 		}
-		
+
 		if (packageName.equals("com.android.providers.media"))
 		{
 			if (pref.getBoolean(Const.TWEAK_MTP_NOTIFY, false))
@@ -192,12 +212,12 @@ public class XMain implements IXposedHookInitPackageResources, IXposedHookZygote
 
 		if (packageName.equals("com.android.camera"))
 		{
-			//Camera.hookCameraActivity(paramLoadPackageParam);
-			
+			// Camera.hookCameraActivity(paramLoadPackageParam);
+
 			if (pref.getBoolean(Const.TWEAK_ENABLE_PHOTO_PREFIX, false))
 				Camera.hookCameraPrefix(paramLoadPackageParam);
 		}
-		
+
 		if (packageName.equals("com.htc.lockscreen"))
 		{
 			// LockScreen.hookOperatorName(paramLoadPackageParam);
@@ -205,53 +225,53 @@ public class XMain implements IXposedHookInitPackageResources, IXposedHookZygote
 	}
 
 	public void handleInitPackageResources(InitPackageResourcesParam resparam) throws Throwable
-	{	
+	{
 		if (resparam.packageName.equals("com.android.mms") || resparam.packageName.equals("com.htc.sense.mms"))
 		{
 			if (pref.getBoolean(Const.TWEAK_SMS_HIDE_BADGE, false))
 				Messaging.hookContactBadge(resparam);
-			
+
 			if (pref.getInt(Const.TWEAK_SLOT1_COLOR, 0) != 0)
 				Phone.handleSlotIndicator1(resparam, MODULE_PATH, pref.getInt(Const.TWEAK_SLOT1_COLOR, 0));
-			
+
 			if (pref.getInt(Const.TWEAK_SLOT2_COLOR, 0) != 0)
 				Phone.handleSlotIndicator2(resparam, MODULE_PATH, pref.getInt(Const.TWEAK_SLOT2_COLOR, 0));
 		}
-		
+
 		if (resparam.packageName.equals("com.android.phone"))
 		{
 			if (pref.getInt(Const.TWEAK_SLOT1_COLOR, 0) != 0)
 				Phone.handleSlotIndicator1(resparam, MODULE_PATH, pref.getInt(Const.TWEAK_SLOT1_COLOR, 0));
-			
+
 			if (pref.getInt(Const.TWEAK_SLOT2_COLOR, 0) != 0)
 				Phone.handleSlotIndicator2(resparam, MODULE_PATH, pref.getInt(Const.TWEAK_SLOT2_COLOR, 0));
 		}
-		
+
 		if (resparam.packageName.equals("com.htc.htcdialer"))
 		{
-			
+
 			if (pref.getBoolean(Const.TWEAK_COLOR_CALL_INDICATOR, false))
 				Dialer.handleCallDirections(resparam, MODULE_PATH);
-			
+
 			if (pref.getInt(Const.TWEAK_SLOT1_COLOR, 0) != 0)
 				Phone.handleSlotIndicator1(resparam, MODULE_PATH, pref.getInt(Const.TWEAK_SLOT1_COLOR, 0));
-			
+
 			if (pref.getInt(Const.TWEAK_SLOT2_COLOR, 0) != 0)
 				Phone.handleSlotIndicator2(resparam, MODULE_PATH, pref.getInt(Const.TWEAK_SLOT2_COLOR, 0));
 		}
-		
+
 		if (resparam.packageName.equals("com.htc.contacts"))
 		{
 			if (pref.getInt(Const.TWEAK_SLOT1_COLOR, 0) != 0)
 				Phone.handleSlotIndicator1(resparam, MODULE_PATH, pref.getInt(Const.TWEAK_SLOT1_COLOR, 0));
-			
+
 			if (pref.getInt(Const.TWEAK_SLOT2_COLOR, 0) != 0)
-				Phone.handleSlotIndicator2(resparam, MODULE_PATH, pref.getInt(Const.TWEAK_SLOT2_COLOR, 0));	
-			
+				Phone.handleSlotIndicator2(resparam, MODULE_PATH, pref.getInt(Const.TWEAK_SLOT2_COLOR, 0));
+
 			if (pref.getBoolean(Const.TWEAK_COLOR_CALL_INDICATOR, false))
 				Contacts.handleCallDirections(resparam, MODULE_PATH);
 		}
-		
+
 		if (resparam.packageName.equals("com.htc.weather.res"))
 		{
 			if (pref.getBoolean(Const.TWEAK_COLORED_WEATHER, false))
@@ -263,10 +283,10 @@ public class XMain implements IXposedHookInitPackageResources, IXposedHookZygote
 			if (pref.getBoolean(Const.TWEAK_POPUP_KEYBOARD, false))
 				Keyboard.handlePopup(resparam, MODULE_PATH);
 		}
-		
+
 		if (resparam.packageName.equals("com.android.systemui"))
 		{
-		
+
 			if (pref.getBoolean(Const.TWEAK_COLORED_SIM, false))
 				SystemUI.handleColoredSIM(resparam, MODULE_PATH);
 

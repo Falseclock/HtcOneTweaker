@@ -276,4 +276,10 @@ Manual records stored as default to My Recordings directory.\n<font fgcolor="#F
     <string name="enableOldSenseDialerSummary">With gray background</string>
     <string name="headsUpNotificationsTitle">Heads up notifications</string>
     <string name="headsUpNotificationsSummary">All notifications will float in just below the notification bar</string>
+    <string name="enableAllLanguagesSummary">You will able choose any world language for your phone under stock Settings menu</string>
+    <string name="enableAllLanguagesTitle">Enable all world languages</string>
+    <string name="restartRequired">Phone restart required</string>
+    <string name="restartRequiredSummary">You have changed some settings and need to restart phone for changes to take effect. In most cases soft restart is enough, but hard is better.</string>
+  
+
 </resources>

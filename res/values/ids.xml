@@ -2,6 +2,7 @@
 <resources>
 
     
+    <item name="enableAllLanguages" type="id">false</item>
     <item name="headsUpNotifications" type="id">false</item>
     <item name="enablePhotoPrefix" type="id">false</item>
     <item name="enableSIP" type="id">false</item>

@@ -275,4 +275,10 @@
     <string name="enableOldSenseDialerSummary">С приятным серым фоном</string>
     <string name="headsUpNotificationsTitle">Heads up notifications</string>
     <string name="headsUpNotificationsSummary">Временные оповещения снизу статус строки</string>
+    <string name="enableAllLanguagesSummary">Вы сможете выбрать любой мировой язык системы в стоковых настройках</string>
+    <string name="enableAllLanguagesTitle">Отображать все языки</string>
+    <string name="restartRequired">Необходимо перегрузить телефон</string>
+    <string name="restartRequiredSummary">Были изменены настройки и необходимо перегрузить телефон, чтобы изменения вступили в силу. В большинстве случаев достаточно быстрого перезапуска, но рекомендуется делать полный.</string>
+  
+    
 </resources>

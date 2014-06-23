@@ -7,14 +7,13 @@ public class Const
 	public static final String WEATHER_PACKAGE_APK = "tweak_weather_pack_apk";
 	
 	public static final String PREFERENCE_FILE = "kz.virtex.htc.tweaker_preferences";
-	
+
+	// No need restart tweaks
 	public static final String TWEAK_CALL_REC = "tweak_call_recording"; 
 	public static final String TWEAK_CALL_REC_AUTO = "tweak_call_recording_auto"; 
 	public static final String TWEAK_CALL_REC_AUTO_STORAGE = "tweak_call_recording_auto_storage"; 
-	public static final String TWEAK_CALL_REC_AUTO_SCREEN = "autorecording_settings_screen"; 
 	public static final String TWEAK_CALL_REC_AUTO_DEL_CNT = "tweak_call_recording_auto_delete_count"; 
 	public static final String TWEAK_CALL_REC_AUTO_FILTER = "tweak_call_recording_auto_filter"; 
-	public static final String TWEAK_CALL_REC_AUTO_DELETE_CAT = "autorecording_delete_cat"; 
 	public static final String TWEAK_CALL_REC_AUTO_FILTER_IN = "tweak_call_recording_auto_filter_in"; 
 	public static final String TWEAK_CALL_REC_AUTO_FILTER_OUT = "tweak_call_recording_auto_filter_out"; 
 	public static final String TWEAK_CALL_REC_AUTO_CALLER = "tweak_call_recording_auto_caller"; 
@@ -23,30 +22,9 @@ public class Const
 	public static final String TWEAK_CALL_REC_AUTO_DELETE_COUNT = "tweak_call_recording_auto_delete_count"; 
 	public static final String TWEAK_CALL_REC_AUTO_LAST_DELETE = "tweak_call_recording_auto_last_delete"; 
 	
+	// FULL restart tweaks
+	public static final String TWEAK_ENABLE_ALL_LANGUAGES= "tweak_enable_all_languages";
 	public static final String TWEAK_FIX_SDCARD_PERMISSION = "tweak_fix_sdcard_permission"; 
-	public static final String TWEAK_ENABLE_SIP = "tweak_enable_SIP"; 
-	public static final String TWEAK_DISABLE_DATA_ROAM_NOTIFY = "tweak_roaming_data_notify"; 
-	public static final String TWEAK_SLOT1_COLOR = "tweak_slot1_color"; 
-	public static final String TWEAK_SLOT2_COLOR = "tweak_slot2_color"; 
-
-	public static final String TWEAK_HEADS_UP_NOTIFICATION = "tweak_heads_up_notifications"; 
-	
-	
-	
-	public static final String TWEAK_DIALER_BUTTON = "tweak_dialer_btn"; 
-	public static final String TWEAK_DIALER_BUTTON_COLOR = "tweak_dialer_btn_color"; 
-	public static final String TWEAK_DIALER_BUTTON_SIZE = "tweak_dialer_btn_size"; 
-	public static final String TWEAK_DIALER_BUTTON_COLOR_LAT = "tweak_dialer_btn_color_lat"; 
-	public static final String TWEAK_DIALER_BUTTON_SIZE_LAT = "tweak_dialer_btn_size_lat"; 
-	
-	public static final String TWEAK_COLORED_WEATHER = "tweak_colored_weather";
-	public static final String TWEAK_POPUP_KEYBOARD = "tweak_popup_keyboard";
-	public static final String TWEAK_COLORED_SIM = "tweak_colored_sim";
-	public static final String TWEAK_DELIVERY_NOTIFICATION = "tweak_delivery_notification";
-	public static final String TWEAK_EXPANDED_NOTIFICATIONS = "tweak_expanded_notifications";
-	public static final String TWEAK_COLOR_SIM1 = "tweak_color_sim1";
-	public static final String TWEAK_COLOR_SIM2 = "tweak_color_sim2";
-	
 	public static final String TWEAK_ADB_NOTIFY = "tweak_adb_notify";
 	public static final String TWEAK_SYNC_NOTIFY = "tweak_sync_notify";
 	public static final String TWEAK_USB_NOTIFY = "tweak_usb_notify";
@@ -54,24 +32,47 @@ public class Const
 	public static final String TWEAK_CHARGING_LED = "tweak_charging_led";
 	public static final String TWEAK_CHARGING_FLASH = "tweak_charging_flash";
 	public static final String TWEAK_FLASH_TIMEOUT = "tweak_flash_timeout";
+
+	// SOFT restart tweaks
+	public static final String TWEAK_ENABLE_SIP = "tweak_enable_SIP"; 
+	public static final String TWEAK_DISABLE_DATA_ROAM_NOTIFY = "tweak_roaming_data_notify"; 
+	public static final String TWEAK_SLOT1_COLOR = "tweak_slot1_color"; 
+	public static final String TWEAK_SLOT2_COLOR = "tweak_slot2_color"; 
+	public static final String TWEAK_HEADS_UP_NOTIFICATION = "tweak_heads_up_notifications"; 
+	public static final String TWEAK_DIALER_BUTTON = "tweak_dialer_btn"; 
+	public static final String TWEAK_DIALER_BUTTON_COLOR = "tweak_dialer_btn_color"; 
+	public static final String TWEAK_DIALER_BUTTON_SIZE = "tweak_dialer_btn_size"; 
+	public static final String TWEAK_DIALER_BUTTON_COLOR_LAT = "tweak_dialer_btn_color_lat"; 
+	public static final String TWEAK_DIALER_BUTTON_SIZE_LAT = "tweak_dialer_btn_size_lat"; 
+	public static final String TWEAK_COLORED_WEATHER = "tweak_colored_weather";
+	public static final String TWEAK_POPUP_KEYBOARD = "tweak_popup_keyboard";
+	public static final String TWEAK_COLORED_SIM = "tweak_colored_sim";
+	public static final String TWEAK_DELIVERY_NOTIFICATION = "tweak_delivery_notification";
+	public static final String TWEAK_EXPANDED_NOTIFICATIONS = "tweak_expanded_notifications";
+	public static final String TWEAK_COLOR_SIM1 = "tweak_color_sim1";
+	public static final String TWEAK_COLOR_SIM2 = "tweak_color_sim2";
 	public static final String TWEAK_QUICK_PULLDOWN = "tweak_quick_pulldown";
 	public static final String TWEAK_DATA_ICONS = "tweak_data_icons";
 	public static final String TWEAK_DATA_ICONS_COLOR = "tweak_data_icons_color";
+	public static final String TWEAK_COLORED_WIFI = "tweak_colored_wifi";
+	public static final String TWEAK_COLORED_WIFI_COLOR = "tweak_colored_wifi_color";
+	public static final String TWEAK_SMS_UNREAD_HIGHLIGHT = "tweak_sms_unread_highlight";
+	public static final String TWEAK_SMS_NOTIFY_TO_DIALOG = "tweak_sms_notify_to_dialog";
+	public static final String TWEAK_SMS_HIDE_BADGE = "tweak_sms_hide_badge";
+	public static final String TWEAK_COLOR_CALL_INDICATOR= "tweak_color_call_indicator";
+	public static final String TWEAK_ENABLE_PHOTO_PREFIX= "tweak_enable_photo_prefix";
+	public static final String TWEAK_OLD_SENSE_DIALER= "tweak_old_sense_dialer";
+
+
 	public static final String GUI_SCREEN_KEY = "gui_screen_key";
 	public static final String DATA_SCREEN_KEY = "data_screen_key";
 	public static final String CONTACT_DATA_SCREEN_KEY = "contact_data_screen_key";
 	public static final String DUAL_SETTINGS_SCREEN_KEY = "dual_settings_screen";
 	public static final String SYSTEM_SETTINGS_SCREEN_KEY = "system_settings_screen";
+	public static final String TWEAK_CALL_REC_AUTO_SCREEN = "autorecording_settings_screen"; 
+	public static final String TWEAK_CALL_REC_AUTO_DELETE_CAT = "autorecording_delete_cat"; 
 	
 	
-	public static final String TWEAK_COLORED_WIFI = "tweak_colored_wifi";
-	public static final String TWEAK_COLORED_WIFI_COLOR = "tweak_colored_wifi_color";
-
-	public static final String TWEAK_SMS_UNREAD_HIGHLIGHT = "tweak_sms_unread_highlight";
-	public static final String TWEAK_SMS_NOTIFY_TO_DIALOG = "tweak_sms_notify_to_dialog";
-	public static final String TWEAK_SMS_HIDE_BADGE = "tweak_sms_hide_badge";
-	
-	public static final String TWEAK_COLOR_CALL_INDICATOR= "tweak_color_call_indicator";
 	
 	
 	public static final int[] tweak_color_sim1 = { R.drawable.cdma_stat_sys_s1_5signal_0, R.drawable.cdma_stat_sys_s1_5signal_1, R.drawable.cdma_stat_sys_s1_5signal_2, R.drawable.cdma_stat_sys_s1_5signal_3, R.drawable.cdma_stat_sys_s1_5signal_4, R.drawable.cdma_stat_sys_s1_5signal_5, R.drawable.cdma_stat_sys_s1_5signal_null };
@@ -81,9 +82,7 @@ public class Const
 	
 	public static final String COLOR_SIM_SCREEN = "color_sim_screen";
 	public static final String OTHER_SETTINGS_SCREEN_KEY = "other_settings_screen";
-	public static final String TWEAK_ENABLE_PHOTO_PREFIX= "tweak_enable_photo_prefix";
 	public static final String ICON_INDICATOR_SLOT_SCREEN= "icon_indicator_slot_screen";
-	public static final String TWEAK_OLD_SENSE_DIALER= "tweak_old_sense_dialer";
 	
 		
 	public static final String AUTO_REC_MAIN = "Automatic records/";

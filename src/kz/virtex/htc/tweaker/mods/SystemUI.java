@@ -53,26 +53,55 @@ public class SystemUI
 				return replace;
 			}
 		});	
-		
-		XposedHelpers.findAndHookMethod("com.android.systemui.statusbar.phone.PhoneStatusBar", paramLoadPackageParam.classLoader, "addNotification", "android.os.IBinder", "android.service.notification.StatusBarNotification", "boolean", new XC_MethodHook()
+		/*
+		XposedHelpers.findAndHookMethod("com.android.systemui.statusbar.policy.HeadsUpNotificationView", paramLoadPackageParam.classLoader, "setNotification", "com.android.systemui.statusbar.NotificationData.Entry", new XC_MethodReplacement()
 		{
 			@Override
-			protected void afterHookedMethod(MethodHookParam param) throws Throwable
+			protected Object replaceHookedMethod(MethodHookParam param) throws Throwable
 			{
-				boolean mUseHeadsUp = XposedHelpers.getBooleanField(param.thisObject, "mUseHeadsUp");
-				XposedBridge.log("addNotification: " + mUseHeadsUp);
+				XposedHelpers.setObjectField(param.thisObject, "mHeadsUp", param.args[0]);
+				Object mHeadsUp = XposedHelpers.getObjectField(param.thisObject, "mHeadsUp");
+				Object row = XposedHelpers.getObjectField(mHeadsUp, "row");
+				XposedHelpers.callMethod(row, "setExpanded", true);
 				
-				boolean shouldInterrupt = (Boolean) XposedHelpers.callMethod(param.thisObject, "shouldInterrupt", param.args[1]);
-				XposedBridge.log("shouldInterrupt: " + shouldInterrupt);
+				Object mContentHolder = XposedHelpers.getObjectField(param.thisObject, "mContentHolder");
+				if (mContentHolder == null) {
+					return Boolean.valueOf(false);
+				}
+				XposedHelpers.callMethod(mContentHolder, "setX", 0.0F);
+
+				XposedHelpers.callMethod(mContentHolder, "setX", 0.0F);
+				XposedHelpers.callMethod(mContentHolder, "setVisibility", 0);
+				XposedHelpers.callMethod(mContentHolder, "setAlpha", 1.0F);
+				XposedHelpers.callMethod(mContentHolder, "removeAllViews");
+				XposedHelpers.callMethod(mContentHolder, "addView", row);
 				
-				Object getNotification = XposedHelpers.callMethod(param.args[1], "getNotification");
-				PendingIntent fullScreenIntent = (PendingIntent) XposedHelpers.getObjectField(getNotification, "fullScreenIntent");
+				Object mSwipeHelper = XposedHelpers.getObjectField(param.thisObject, "mSwipeHelper");
+				Object mContentSlider = XposedHelpers.getObjectField(param.thisObject, "mContentSlider");	
+				XposedHelpers.callMethod(mSwipeHelper, "snapChild", mContentSlider, 1.0F);
 				
-				XposedBridge.log("fullScreenIntent: " + fullScreenIntent);
+				long mTouchSensitivityDelay = (Long) XposedHelpers.getObjectField(param.thisObject, "mTouchSensitivityDelay");
 				
-				XposedBridge.log("heads_up_enabled: " + android.provider.Settings.Global.getUriFor("heads_up_enabled"));
+				XposedHelpers.setLongField(param.thisObject, "mStartTouchTime", System.currentTimeMillis() + mTouchSensitivityDelay);
+				
+			    this.mHeadsUp = paramEntry;
+			    this.mHeadsUp.row.setExpanded(false);
+			    if (this.mContentHolder == null) {
+			      return false;
+			    }
+			    this.mContentHolder.setX(0.0F);
+			    this.mContentHolder.setVisibility(0);
+			    this.mContentHolder.setAlpha(1.0F);
+			    this.mContentHolder.removeAllViews();
+			    this.mContentHolder.addView(this.mHeadsUp.row);
+			    this.mSwipeHelper.snapChild(this.mContentSlider, 1.0F);
+			    this.mStartTouchTime = (System.currentTimeMillis() + this.mTouchSensitivityDelay);
+			    return true;
+			    
+				return Boolean.valueOf(true);
 			}
 		});
+		*/
 	}
 
 	public static void hookOnTouchEvent(LoadPackageParam paramLoadPackageParam)

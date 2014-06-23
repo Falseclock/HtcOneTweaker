@@ -12,6 +12,7 @@ import kz.virtex.htc.tweaker.preference.SeekBarPreference;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.NotificationManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -21,7 +22,9 @@ import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.provider.Settings;
+import android.support.v4.app.NotificationCompat;
 import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -37,10 +40,12 @@ import com.htc.preference.HtcSwitchPreference;
 import com.htc.widget.HtcAlertDialog;
 
 @SuppressLint("DefaultLocale")
-public class Main extends HtcPreferenceActivity implements HtcPreference.OnPreferenceChangeListener
+public class Main extends HtcPreferenceActivity implements HtcPreference.OnPreferenceChangeListener, SharedPreferences.OnSharedPreferenceChangeListener
 {
 	public static SharedPreferences preferences;
 	private Context mContext;
+	private static ArrayList<String> mSettingsChanges = new ArrayList<String>();
+	private static NotificationManager mNotifyMgr;
 
 	@SuppressLint(
 	{ "WorldReadableFiles", "WorldWriteableFiles", "DefaultLocale" })
@@ -48,8 +53,12 @@ public class Main extends HtcPreferenceActivity implements HtcPreference.OnPrefe
 	{
 		super.onCreate(paramBundle);
 		mContext = this;
+		mNotifyMgr = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
 
 		preferences = getSharedPreferences(Const.PREFERENCE_FILE, Context.MODE_WORLD_READABLE + Context.MODE_WORLD_WRITEABLE);
+
+		PreferenceManager.getDefaultSharedPreferences(this).registerOnSharedPreferenceChangeListener(this);
+
 		addPreferencesFromResource(R.xml.settings);
 
 		// If Xposed not installet, let's do not confuse
@@ -63,7 +72,8 @@ public class Main extends HtcPreferenceActivity implements HtcPreference.OnPrefe
 					((Activity) mContext).finish();
 				}
 			}).show();
-		} else
+		}
+		else
 		{
 			startService(new Intent(this, TweakerService.class).setAction(TweakerService.ACTION_CLEANUP_RECORDS));
 			init();
@@ -190,7 +200,8 @@ public class Main extends HtcPreferenceActivity implements HtcPreference.OnPrefe
 			String sourceApk = ai.publicSourceDir;
 			preferences.edit().putString(Const.WEATHER_PACKAGE_APK, sourceApk).commit();
 
-		} catch (NameNotFoundException e)
+		}
+		catch (NameNotFoundException e)
 		{
 
 		}
@@ -208,14 +219,29 @@ public class Main extends HtcPreferenceActivity implements HtcPreference.OnPrefe
 			putBoolean(Const.TWEAK_COLORED_WEATHER, true);
 			storeWeatherApkPath();
 
-		} else
+		}
+		else
 		{
 			weatherPref.setChecked(false);
 			putBoolean(Const.TWEAK_COLORED_WEATHER, false);
 		}
 
+		// remove restart notification on resume
+		mNotifyMgr.cancelAll();
 	}
 
+	protected void onPause()
+	{
+		super.onPause();
+		checkRestartRequired();
+	}
+	
+	protected void onDestroy()
+	{
+		super.onDestroy();
+		checkRestartRequired();
+	}
+	
 	private void setupWeather()
 	{
 		final HtcSwitchPreference weatherPref = (HtcSwitchPreference) findPreference(Const.TWEAK_COLORED_WEATHER);
@@ -229,7 +255,8 @@ public class Main extends HtcPreferenceActivity implements HtcPreference.OnPrefe
 					// weatherPref.setEnabled(false);
 					weatherPref.setChecked(false);
 					putBoolean(Const.TWEAK_COLORED_WEATHER, false);
-				} else
+				}
+				else
 				{
 					storeWeatherApkPath();
 				}
@@ -303,7 +330,8 @@ public class Main extends HtcPreferenceActivity implements HtcPreference.OnPrefe
 				if (value == 1)
 				{
 					preferenceScreen.addPreference(wifiTweakColor);
-				} else
+				}
+				else
 				{
 					preferenceScreen.removePreference(wifiTweakColor);
 				}
@@ -322,7 +350,8 @@ public class Main extends HtcPreferenceActivity implements HtcPreference.OnPrefe
 		if (!tweakColorSim.isChecked())
 		{
 			preferenceScreen.removePreference(colorSimScreen);
-		} else
+		}
+		else
 		{
 			Misc.applyTheme(findPreference(Const.COLOR_SIM_SCREEN).getIcon(), Const.TWEAK_COLOR_SIM1, preferences);
 			Misc.applyTheme(findPreference(Const.TWEAK_COLOR_SIM1).getIcon(), Const.TWEAK_COLOR_SIM1, preferences);
@@ -348,7 +377,8 @@ public class Main extends HtcPreferenceActivity implements HtcPreference.OnPrefe
 				if (value == 1)
 				{
 					preferenceScreen.addPreference(colorSimScreen);
-				} else
+				}
+				else
 				{
 					preferenceScreen.removePreference(colorSimScreen);
 				}
@@ -384,7 +414,8 @@ public class Main extends HtcPreferenceActivity implements HtcPreference.OnPrefe
 				if (value == 1)
 				{
 					preferenceScreen.addPreference(dataTweakColor);
-				} else
+				}
+				else
 				{
 					preferenceScreen.removePreference(dataTweakColor);
 				}
@@ -584,7 +615,8 @@ public class Main extends HtcPreferenceActivity implements HtcPreference.OnPrefe
 			slot.setSummary(standart);
 			putString(key, getResources().getString(standart)); // save for
 																// coloring
-		} else
+		}
+		else
 		{
 			slot.setSummary(slot_name);
 			putString(key, slot_name); // save for coloring
@@ -632,5 +664,86 @@ public class Main extends HtcPreferenceActivity implements HtcPreference.OnPrefe
 	public boolean onPreferenceChange(HtcPreference preference, Object object)
 	{
 		return false;
+	}
+	
+	private void checkRestartRequired()
+	{
+		if (mSettingsChanges.size() > 0)
+		{
+			NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this).setSmallIcon(R.drawable.notification_icon).setContentTitle(getResources().getString(R.string.restartRequired)).setContentText(getResources().getString(R.string.restartRequiredSummary))
+					.setStyle(new NotificationCompat.BigTextStyle().bigText(getResources().getString(R.string.restartRequiredSummary)));
+
+			mNotifyMgr.notify(001, mBuilder.build());
+		}
+	}
+
+	@Override
+	public void onSharedPreferenceChanged(SharedPreferences pref, String key)
+	{
+		// Call recording works on the fly
+		if (!key.contains("tweak_call_rec"))
+		{
+			// let's remove cause we are switched back
+			if (mSettingsChanges.contains(key))
+			{
+				// before removing we should check if it is not integer
+				// if param not exist, then value will be -99999999
+				// then we should delete it
+				int intChecker;
+				long longChecker;
+				float floatChecker;
+				String strChecker;
+
+				//  surraund with try/catch case we can not intercast
+				try
+				{
+					intChecker = pref.getInt(key, -99976999);
+				}
+				catch (ClassCastException e)
+				{
+					intChecker = -99976999;
+				}
+				
+				try
+				{
+					longChecker = pref.getLong(key, 12345678910L);
+				}
+				catch (ClassCastException e)
+				{
+					longChecker = 12345678910L;
+				}
+				
+				try
+				{
+					floatChecker = pref.getFloat(key, -99976999.0F);
+				}
+				catch (ClassCastException e)
+				{
+					floatChecker = -99976999.0F;
+				}
+				
+				try
+				{
+					strChecker = pref.getString(key, "UnaVaiLabLe");
+				}
+				catch (ClassCastException e)
+				{
+					strChecker = "UnaVaiLabLe";
+				}
+
+				if (intChecker == -99976999 && longChecker == 12345678910L && strChecker.equals("UnaVaiLabLe") && floatChecker == -99976999.0F)
+				{
+					// it means we changing boolean value
+					// so let's remove
+					mSettingsChanges.remove(key);
+					mSettingsChanges.trimToSize();
+				}
+			}
+			else
+			{
+				mSettingsChanges.add(key);
+			}
+		}
+		//Log.d("onPreferenceChange", key);
 	}
 }

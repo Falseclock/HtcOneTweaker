@@ -218,6 +218,11 @@
     <string name="google_play"><b>Google Play Market</b></string>
     <string name="xda_support"><b>Support on XDA</b></string>
 <string name="change_log_text">
+<big><b>Version 3.3.0</b></big>\n
+<font fgcolor="#FF009000"><b>*</b></font> (new) World languages tweak\n
+<font fgcolor="#FF009000"><b>*</b></font> (new) Restart notification after settings change\n
+<font fgcolor="#FF009000"><b>*</b></font> (new) Minimum Xposed version check\n
+\n
 <big><b>Version 3.2.9</b></big>\n
 <font fgcolor="#FF009000"><b>*</b></font> (new) Heads up notifications\n
 \n
@@ -280,6 +285,11 @@ Manual records stored as default to My Recordings directory.\n<font fgcolor="#F
     <string name="enableOldSenseDialerSummary">With gray background</string>
     <string name="headsUpNotificationsTitle">Heads up notifications</string>
     <string name="headsUpNotificationsSummary">All notifications will float in just below the notification bar</string>
+    <string name="enableAllLanguagesSummary">You will able choose any world language for your phone under stock Settings menu</string>
+    <string name="enableAllLanguagesTitle">Enable all world languages</string>
     
-   
+    <string name="restartRequired">Phone restart required</string>
+    <string name="restartRequiredSummary">You have changed some settings and need to restart phone for changes to take effect. In most cases soft restart is enough, but hard is better.</string>
+    
+    
 </resources>

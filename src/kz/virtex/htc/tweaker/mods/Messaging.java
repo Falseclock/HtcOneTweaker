@@ -28,6 +28,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.os.Message;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -37,6 +38,7 @@ import com.htc.widget.HtcSpecificInputField;
 
 import de.robv.android.xposed.XC_MethodHook;
 import de.robv.android.xposed.XC_MethodReplacement;
+import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.XposedHelpers;
 import de.robv.android.xposed.callbacks.XC_InitPackageResources.InitPackageResourcesParam;
 import de.robv.android.xposed.callbacks.XC_LayoutInflated;
@@ -53,6 +55,23 @@ public class Messaging
 	private static String[] tweaks =
 	{ "icon_indicator_slot1", "icon_indicator_slot1", "icon_indicator_slot1_s", "icon_indicator_slot1_s", "icon_indicator_slot2", "icon_indicator_slot2_s" };
 	private static Drawable[] tweakedDrawable = new Drawable[icons.length];
+
+	public static void hookNotificationRemove(final LoadPackageParam paramLoadPackageParam, String packageName)
+	{
+		findAndHookMethod(packageName + ".transaction.SmsReceiverService.ServiceHandler", paramLoadPackageParam.classLoader, "handleMessage", "android.os.Message", new XC_MethodHook()
+		{
+			protected void afterHookedMethod(MethodHookParam param) throws Throwable
+			{
+				Message paramMessage = (Message) param.args[0];
+				Intent localIntent = (Intent) paramMessage.obj;
+				if (localIntent != null)
+				{
+					String action = localIntent.getAction();
+					XposedBridge.log("ServiceHandler: " + action);
+				}
+			}
+		});
+	}
 
 	public static class MessageData
 	{
@@ -156,8 +175,8 @@ public class Messaging
 				localBuilder.setStyle(new Notification.BigTextStyle().bigText(mContentText));
 				localBuilder.setContentIntent(mPendingIntent);
 				// localBuilder.addAction(0, "Удалить", mPintentDeleteMsg);
-				// localBuilder.addAction(0, "Звонок", mPintentCallToContact);
-				// localBuilder.addAction(0, "Ответ", mPintentReplyMsg);
+				localBuilder.addAction(0, "Звонок", mPintentCallToContact);
+				localBuilder.addAction(0, "Ответ", mPintentReplyMsg);
 
 				Class<?> MessagingNotification = XposedHelpers.findClass(packageName + ".transaction.MessagingNotification", classLoader);
 
@@ -170,13 +189,15 @@ public class Messaging
 
 				XposedHelpers.callStaticMethod(MessagingNotification, "initiateEffectOfGEPNotification", mContext, paramBoolean, localNotification, false);
 				String str3 = paramIntentFirst.getStringExtra("address");
-				
-				if (Misc.isSense6()) {
+
+				if (Misc.isSense6())
+				{
 					XposedHelpers.callStaticMethod(MessagingNotification, "setJogBall", mContext, localNotification, str3);
-				} else {
-					XposedHelpers.callStaticMethod(MessagingNotification, "setJogBall_JB", mContext, localNotification, str3);					
+				} else
+				{
+					XposedHelpers.callStaticMethod(MessagingNotification, "setJogBall_JB", mContext, localNotification, str3);
 				}
-				
+
 				if ((Boolean) XposedHelpers.callStaticMethod(MessagingNotification, "getCharmMsgNotificationSetting", mContext) == true)
 				{
 					XposedHelpers.callStaticMethod(MessagingNotification, "flashCharmIndicator_JB", localNotification, 7);
@@ -436,7 +457,7 @@ public class Messaging
 			protected Object replaceHookedMethod(MethodHookParam param) throws Throwable
 			{
 				XModuleResources apkRes = XModuleResources.createInstance(paramLoadPackageParam.appInfo.sourceDir, null);
-				
+
 				HtcSpecificInputField mEditorPanel = (HtcSpecificInputField) XposedHelpers.getObjectField(param.thisObject, "mEditorPanel");
 
 				if (mEditorPanel != null)
@@ -459,7 +480,8 @@ public class Messaging
 								{
 									localObject = (Button) localObject;
 									i++;
-									final int[] DualModeButtonSelector = { android.R.attr.listSelector };
+									final int[] DualModeButtonSelector =
+									{ android.R.attr.listSelector };
 
 									mEditorPanel.setButtonPressColorEnable(i, false);
 									TypedArray localTypedArray = localContext.obtainStyledAttributes(com.htc.R.style.HtcListView, DualModeButtonSelector);
