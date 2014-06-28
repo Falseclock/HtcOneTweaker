@@ -12,10 +12,13 @@ import kz.virtex.htc.tweaker.preference.SeekBarPreference;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Notification;
 import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
@@ -26,6 +29,7 @@ import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.support.v4.app.NotificationCompat;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.SeekBar;
@@ -44,15 +48,49 @@ public class Main extends HtcPreferenceActivity implements HtcPreference.OnPrefe
 {
 	public static SharedPreferences preferences;
 	private Context mContext;
+	private TweakerBroadcastReceiver broadcastReceiverInstance = null;
 	private static ArrayList<String> mSettingsChanges = new ArrayList<String>();
 	private static NotificationManager mNotifyMgr;
+	private static String DEBUG = "Main";
+			
+	@SuppressWarnings("unused")
+	private void test()
+	{
+		Log.d(DEBUG,"test");
+		
+		IntentFilter intentFilter = new IntentFilter();
+		intentFilter.addAction(TweakerBroadcastReceiver.ACTION_DELETE_MESSAGE);
+		intentFilter.addAction(TweakerBroadcastReceiver.ACTION_CALL_TO_CONTACT);
+		intentFilter.addAction(TweakerBroadcastReceiver.ACTION_REPLY_MESSAGE);
+
+		broadcastReceiverInstance = new TweakerBroadcastReceiver();
+		registerReceiver(broadcastReceiverInstance, intentFilter);
+
+		Intent intentCallToContact = new Intent();
+		intentCallToContact.setAction(TweakerBroadcastReceiver.ACTION_CALL_TO_CONTACT);
+		intentCallToContact.putExtra("ContactId", Long.parseLong(String.valueOf("123")));
+		intentCallToContact.putExtra("Sender", "Wow!");
+		PendingIntent mPintentCallToContact = PendingIntent.getBroadcast(this, 12345, intentCallToContact, 0);
+
+		Notification.Builder localBuilder = new Notification.Builder(this);
+		localBuilder.setSmallIcon(R.drawable.notification_icon);
+		localBuilder.setContentTitle("Test Title");
+		localBuilder.setContentText("message text gere");
+		localBuilder.setStyle(new Notification.BigTextStyle().bigText("message text gere"));
+		localBuilder.addAction(0, "Удалить", mPintentCallToContact);
+		Notification localNotification = localBuilder.build();
+
+		mNotifyMgr.notify(12345, localNotification);
+
+	}
 
 	@SuppressLint(
 	{ "WorldReadableFiles", "WorldWriteableFiles", "DefaultLocale" })
 	public void onCreate(Bundle paramBundle)
 	{
+		Log.d(DEBUG,"onCreate");
 		super.onCreate(paramBundle);
-		mContext = this;
+
 		mNotifyMgr = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
 
 		preferences = getSharedPreferences(Const.PREFERENCE_FILE, Context.MODE_WORLD_READABLE + Context.MODE_WORLD_WRITEABLE);
@@ -103,6 +141,9 @@ public class Main extends HtcPreferenceActivity implements HtcPreference.OnPrefe
 
 	private void init()
 	{
+		//Log.d(DEBUG,"init");
+		//test();
+
 		setupCallRecording();
 		setupRecordingTypeFilter();
 		setupRecordingAutoCaller();
@@ -209,7 +250,16 @@ public class Main extends HtcPreferenceActivity implements HtcPreference.OnPrefe
 
 	protected void onResume()
 	{
+		//Log.d(DEBUG,"onResume");
 		super.onResume();
+
+		// remove restart notification on resume
+		mNotifyMgr.cancel(001);
+
+		if (broadcastReceiverInstance != null)
+		{
+			unregisterReceiver(broadcastReceiverInstance);
+		}
 
 		final HtcSwitchPreference weatherPref = (HtcSwitchPreference) findPreference(Const.TWEAK_COLORED_WEATHER);
 
@@ -218,30 +268,38 @@ public class Main extends HtcPreferenceActivity implements HtcPreference.OnPrefe
 			weatherPref.setChecked(true);
 			putBoolean(Const.TWEAK_COLORED_WEATHER, true);
 			storeWeatherApkPath();
-
 		}
 		else
 		{
 			weatherPref.setChecked(false);
 			putBoolean(Const.TWEAK_COLORED_WEATHER, false);
 		}
-
-		// remove restart notification on resume
-		mNotifyMgr.cancelAll();
 	}
 
 	protected void onPause()
 	{
+		//Log.d(DEBUG,"onPause");
+		if (broadcastReceiverInstance != null)
+		{
+			//unregisterReceiver(broadcastReceiverInstance);
+		}
 		super.onPause();
 		checkRestartRequired();
 	}
 	
+	protected void onStop()
+	{
+		//Log.d(DEBUG,"onStop");
+		super.onStop();
+	}
+	
 	protected void onDestroy()
 	{
+		//Log.d(DEBUG,"onDestroy");
 		super.onDestroy();
 		checkRestartRequired();
 	}
-	
+
 	private void setupWeather()
 	{
 		final HtcSwitchPreference weatherPref = (HtcSwitchPreference) findPreference(Const.TWEAK_COLORED_WEATHER);
@@ -665,7 +723,7 @@ public class Main extends HtcPreferenceActivity implements HtcPreference.OnPrefe
 	{
 		return false;
 	}
-	
+
 	private void checkRestartRequired()
 	{
 		if (mSettingsChanges.size() > 0)
@@ -694,7 +752,7 @@ public class Main extends HtcPreferenceActivity implements HtcPreference.OnPrefe
 				float floatChecker;
 				String strChecker;
 
-				//  surraund with try/catch case we can not intercast
+				// surraund with try/catch case we can not intercast
 				try
 				{
 					intChecker = pref.getInt(key, -99976999);
@@ -703,7 +761,7 @@ public class Main extends HtcPreferenceActivity implements HtcPreference.OnPrefe
 				{
 					intChecker = -99976999;
 				}
-				
+
 				try
 				{
 					longChecker = pref.getLong(key, 12345678910L);
@@ -712,7 +770,7 @@ public class Main extends HtcPreferenceActivity implements HtcPreference.OnPrefe
 				{
 					longChecker = 12345678910L;
 				}
-				
+
 				try
 				{
 					floatChecker = pref.getFloat(key, -99976999.0F);
@@ -721,7 +779,7 @@ public class Main extends HtcPreferenceActivity implements HtcPreference.OnPrefe
 				{
 					floatChecker = -99976999.0F;
 				}
-				
+
 				try
 				{
 					strChecker = pref.getString(key, "UnaVaiLabLe");
@@ -744,6 +802,6 @@ public class Main extends HtcPreferenceActivity implements HtcPreference.OnPrefe
 				mSettingsChanges.add(key);
 			}
 		}
-		//Log.d("onPreferenceChange", key);
+		// Log.d("onPreferenceChange", key);
 	}
 }

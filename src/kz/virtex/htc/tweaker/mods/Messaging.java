@@ -56,6 +56,20 @@ public class Messaging
 	{ "icon_indicator_slot1", "icon_indicator_slot1", "icon_indicator_slot1_s", "icon_indicator_slot1_s", "icon_indicator_slot2", "icon_indicator_slot2_s" };
 	private static Drawable[] tweakedDrawable = new Drawable[icons.length];
 
+	
+	public static void hookSupport8ColorLed(final LoadPackageParam paramLoadPackageParam, String packageName)
+	{
+		findAndHookMethod(packageName + ".MmsConfig",  paramLoadPackageParam.classLoader, "isSupport8ColorLed", new XC_MethodReplacement()
+		{
+			@Override
+			protected Object replaceHookedMethod(MethodHookParam param) throws Throwable
+			{
+				XposedBridge.log("hookSupport8ColorLed");
+				return Boolean.valueOf(true);
+			}
+		});
+	}
+	
 	public static void hookNotificationRemove(final LoadPackageParam paramLoadPackageParam, String packageName)
 	{
 		findAndHookMethod(packageName + ".transaction.SmsReceiverService.ServiceHandler", paramLoadPackageParam.classLoader, "handleMessage", "android.os.Message", new XC_MethodHook()
@@ -139,6 +153,7 @@ public class Messaging
 				intentDeleteMsg.putExtra("ContactId", mContactId);
 				intentDeleteMsg.putExtra("ThreadId", mThreadId);
 				intentDeleteMsg.putExtra("Sender", paramSender);
+				
 				@SuppressWarnings("unused")
 				PendingIntent mPintentDeleteMsg = PendingIntent.getBroadcast(mContext, paramNotificationId, intentDeleteMsg, 0);
 
@@ -174,9 +189,9 @@ public class Messaging
 				localBuilder.setContentText(mContentText);
 				localBuilder.setStyle(new Notification.BigTextStyle().bigText(mContentText));
 				localBuilder.setContentIntent(mPendingIntent);
-				// localBuilder.addAction(0, "Удалить", mPintentDeleteMsg);
-				localBuilder.addAction(0, "Звонок", mPintentCallToContact);
-				localBuilder.addAction(0, "Ответ", mPintentReplyMsg);
+				//localBuilder.addAction(0, "Удалить", mPintentDeleteMsg);
+				//localBuilder.addAction(0, "Звонок", mPintentCallToContact);
+				//localBuilder.addAction(0, "Ответ", mPintentReplyMsg);
 
 				Class<?> MessagingNotification = XposedHelpers.findClass(packageName + ".transaction.MessagingNotification", classLoader);
 

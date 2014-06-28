@@ -2,6 +2,8 @@
 <resources>
 
     
+    <item name="disableAllCaps" type="id">false</item>
+    <item name="disableInputMethodNotification" type="id">false</item>
     <item name="enableAllLanguages" type="id">false</item>
     <item name="headsUpNotifications" type="id">false</item>
     <item name="enablePhotoPrefix" type="id">false</item>

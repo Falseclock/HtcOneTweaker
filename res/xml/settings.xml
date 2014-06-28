@@ -189,7 +189,12 @@
                 android:key="tweak_roaming_data_notify"
                 android:summary="@string/disableRoamingDataNotificationSummary"
                 android:title="@string/disableRoamingDataNotification" />
-        </com.htc.preference.HtcPreferenceScreen>
+            <com.htc.preference.HtcCheckBoxPreference
+                android:id="@id/disableInputMethodNotification"
+                android:key="tweak_input_method_notify"
+                android:summary="@string/disableInputMethodNotificationSummary"
+                android:title="@string/disableInputMethodNotificationTitle" />
+            </com.htc.preference.HtcPreferenceScreen>
         <com.htc.preference.HtcPreferenceScreen
             android:key="gui_screen_key"
             android:summary="@string/GuiScreenSummary"
@@ -308,7 +313,12 @@
                 android:key="tweak_enable_all_languages"
                 android:summary="@string/enableAllLanguagesSummary"
                 android:title="@string/enableAllLanguagesTitle" />
+            <com.htc.preference.HtcSwitchPreference
+                android:id="@id/disableAllCaps"
+                android:key="tweak_disable_all_caps"
+                android:summary="@string/disableAllCapsSummary"
+                android:title="@string/disableAllCapsTitle" />
             </com.htc.preference.HtcPreferenceScreen>
-    </com.htc.preference.HtcPreferenceCategory>
+        </com.htc.preference.HtcPreferenceCategory>
 
 </com.htc.preference.HtcPreferenceScreen>

@@ -3,6 +3,7 @@ package kz.virtex.htc.tweaker.mods;
 import static de.robv.android.xposed.XposedHelpers.findAndHookMethod;
 
 import java.io.File;
+import java.util.Locale;
 
 import kz.virtex.htc.tweaker.Const;
 import kz.virtex.htc.tweaker.Misc;
@@ -21,12 +22,15 @@ import android.provider.Settings;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.view.ViewGroup.LayoutParams;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import com.android.internal.telephony.Call;
 import com.android.internal.telephony.CallerInfo;
 import com.android.internal.telephony.Connection;
+import com.htc.widget.HtcIconButton;
 
 import de.robv.android.xposed.XC_MethodHook;
 import de.robv.android.xposed.XposedBridge;
@@ -151,6 +155,7 @@ public class Recorder
 			}
 		});
 
+		// Record button
 		findAndHookMethod("com.android.phone.InCallScreen", paramLoadPackageParam.classLoader, "updateScreen", new XC_MethodHook()
 		{
 			protected void afterHookedMethod(MethodHookParam param) throws Throwable
@@ -159,16 +164,26 @@ public class Recorder
 
 				boolean AutoRecording = Misc.toBoolean(Settings.System.getInt(context.getContentResolver(), Const.TWEAK_CALL_REC_AUTO, 0));
 
+				XposedBridge.log(Locale.getDefault().getLanguage());
+				
 				if (!AutoRecording)
 				{
-					ViewGroup screen = (ViewGroup) XposedHelpers.getObjectField(param.thisObject, "mInCallPanel");
+					LinearLayout screen = (LinearLayout) XposedHelpers.getObjectField(param.thisObject, "mControlPanel");
 
+					final Object mControlPanel = XposedHelpers.getObjectField(param.thisObject, "mControlPanel");
 					Object mInCallScreenMode = XposedHelpers.getObjectField(param.thisObject, "mInCallScreenMode");
 					boolean isSingleAlive = (Boolean) XposedHelpers.callMethod(mInCallScreenMode, "isSingleAlive");
 					boolean isConference = (Boolean) XposedHelpers.callMethod(mInCallScreenMode, "isConference");
 					boolean isMultiple = (Boolean) XposedHelpers.callMethod(mInCallScreenMode, "isMultiple");
 					final XModuleResources modRes = XModuleResources.createInstance(XMain.MODULE_PATH, null);
 
+					// Russsian language fix to fit 4 buttons
+					if (Locale.getDefault().getLanguage().equalsIgnoreCase("ru"))
+					{
+						Object mMuteButton = XposedHelpers.getObjectField(mControlPanel, "mMuteButton");
+						XposedHelpers.callMethod(mMuteButton, "setText", "Микрофон");
+					}
+					
 					Button recordButton;
 
 					recordButton = (Button) screen.findViewById(R.id.RecordingButton);
@@ -178,14 +193,16 @@ public class Recorder
 
 					if (recordButton == null)
 					{
-						recordButton = new Button(context);
+						recordButton = new HtcIconButton(context);
 						recordButton.setId(R.id.RecordingButton);
-
-						RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(170, 124);
-						layoutParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT, RelativeLayout.TRUE);
-						layoutParams.setMargins(Misc.densify(0), Misc.densify(10), Misc.densify(10), Misc.densify(0));
+					
+						LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(0, LayoutParams.FILL_PARENT, 1.0f);
 						recordButton.setLayoutParams(layoutParams);
-						recordButton.setBackgroundDrawable(modRes.getDrawable(R.drawable.record_start));
+						
+						recordButton.setText( modRes.getString(R.string.menu_start_record));
+						
+						XposedHelpers.callMethod(recordButton, "setIconDrawable", modRes.getDrawable(R.drawable.icon_btn_recorder_on_dark));
+						
 						recordButton.setOnClickListener(new OnClickListener()
 						{
 							@Override
@@ -199,12 +216,15 @@ public class Recorder
 									if ((Boolean) XposedHelpers.callMethod(Recorder, "isRecording"))
 									{
 										XposedHelpers.callMethod(Recorder, "stop");
-										paramView.setBackgroundDrawable(modRes.getDrawable(R.drawable.record_start));
+
+										updateRecordButton(paramView,true,modRes);
 									}
 									else
 									{
 										XposedHelpers.callMethod(Recorder, "start");
-										paramView.setBackgroundDrawable(modRes.getDrawable(R.drawable.record_stop));
+										
+										updateRecordButton(paramView,false,modRes);
+										
 									}
 								}
 							}
@@ -213,19 +233,40 @@ public class Recorder
 					}
 
 					recordButton.setVisibility(View.GONE);
+					updateRecordButton(recordButton,true,modRes);
 
 					if (isSingleAlive || isConference || isMultiple)
 					{
 						recordButton.setVisibility(View.VISIBLE);
+						updateRecordButton(recordButton,true,modRes);
 					}
 					else
 					{
-						recordButton.setBackgroundDrawable(modRes.getDrawable(R.drawable.record_start));
 						recordButton.setVisibility(View.GONE);
+						updateRecordButton(recordButton,false,modRes);
 					}
+					
+					XposedHelpers.callMethod(mControlPanel, "updateIconButtonTextSize");
 				}
 			}
 		});
+	}
+	
+	private static void updateRecordButton(Object button, boolean startRecordState, XModuleResources modRes)
+	{
+		if (startRecordState)
+		{
+			XposedHelpers.callMethod(button, "setPressed", false);
+			XposedHelpers.callMethod(button, "setColorOn", false);
+			XposedHelpers.callMethod(button, "setText", modRes.getString(R.string.menu_start_record));
+			XposedHelpers.callMethod(button, "setIconDrawable", modRes.getDrawable(R.drawable.icon_btn_recorder_on_dark));
+			
+		} else {
+			XposedHelpers.callMethod(button, "setPressed", true);
+			XposedHelpers.callMethod(button, "setColorOn", true);
+			XposedHelpers.callMethod(button, "setText", modRes.getString(R.string.menu_stop_record));
+			XposedHelpers.callMethod(button, "setIconDrawable", modRes.getDrawable(R.drawable.icon_btn_recorder_stop_on_dark));
+		}
 	}
 
 	// Метод по реализации начала и остановки автозаписи

@@ -8,11 +8,31 @@ import de.robv.android.xposed.XposedHelpers;
 public class Services
 {
 
+	public static void hookInputMethodManagerService()
+	{
+		try
+		{
+			final Class<?> traceClass = XposedHelpers.findClass("com.android.server.InputMethodManagerService", null);
+
+			XposedHelpers.findAndHookMethod(traceClass, "systemRunning", "com.android.server.StatusBarManagerService", new XC_MethodHook()
+			{
+				protected void afterHookedMethod(MethodHookParam param) throws Throwable
+				{
+					XposedHelpers.setObjectField(param.thisObject, "mNotificationManager", null);
+				}
+			});
+		}
+		catch (Throwable t)
+		{
+			XposedBridge.log(t);
+		}
+	}
+	
 	public static void hookFlashDuringPlugged()
 	{
 		try
 		{
-			final Class <?> traceClass = XposedHelpers.findClass("com.android.server.NotificationManagerService", null);
+			final Class<?> traceClass = XposedHelpers.findClass("com.android.server.NotificationManagerService", null);
 
 			XposedHelpers.findAndHookMethod(traceClass, "updateBatteryStatus", "android.content.Intent", new XC_MethodHook()
 			{
@@ -32,7 +52,7 @@ public class Services
 	{
 		try
 		{
-			final Class <?> traceClass = XposedHelpers.findClass("com.android.server.NotificationManagerService", null);
+			final Class<?> traceClass = XposedHelpers.findClass("com.android.server.NotificationManagerService", null);
 
 			XposedHelpers.findAndHookMethod(traceClass, "forceSetFlashing", int.class, int.class, int.class, int.class, new XC_MethodHook()
 			{
@@ -56,7 +76,7 @@ public class Services
 	{
 		try
 		{
-			final Class <?> traceClass = XposedHelpers.findClass("com.android.server.NotificationManagerService", null);
+			final Class<?> traceClass = XposedHelpers.findClass("com.android.server.NotificationManagerService", null);
 
 			XposedHelpers.findAndHookMethod(traceClass, "updateBatteryLight", new XC_MethodReplacement()
 			{
@@ -76,7 +96,7 @@ public class Services
 	{
 		try
 		{
-			final Class <?> traceClass = XposedHelpers.findClass("com.android.server.usb.UsbDeviceManager.UsbHandler", null);
+			final Class<?> traceClass = XposedHelpers.findClass("com.android.server.usb.UsbDeviceManager.UsbHandler", null);
 
 			XposedHelpers.findAndHookMethod(traceClass, "updateAdbNotification", new XC_MethodReplacement()
 			{
@@ -94,5 +114,4 @@ public class Services
 			XposedBridge.log(t);
 		}
 	}
-
 }

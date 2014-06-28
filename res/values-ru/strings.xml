@@ -214,6 +214,16 @@
     <string name="google_play"><b>Google Play Market</b></string>
     <string name="xda_support"><b>Поддержка на XDA</b></string>
     <string name="change_log_text">
+<big><b>Version 3.3.1</b></big>\n
+<font fgcolor="#FF009000"><b>*</b></font> (new) Запрет рисовать интерфейс заглавными буквами (причуда HTC) для яыков использующих латинский алфавит\n
+<font fgcolor="#FF009000"><b>*</b></font> (new) Кнопка записи на экране разговора перенесена в нижнюю панель\n
+\n
+<big><b>Version 3.3.0</b></big>\n
+<font fgcolor="#FF009000"><b>*</b></font> (new) Включение всех мировых языков в стоковых настройках\n
+<font fgcolor="#FF009000"><b>*</b></font> (new) Оповещение о необходимости перезагрузке после изменения настроек\n
+<font fgcolor="#FF009000"><b>*</b></font> (new) Проверка минимальной установки Xposed\n
+<font fgcolor="#FF009000"><b>*</b></font> (new) Подавление оповещения Выберите способ ввода\n
+\n
 <big><b>Version 3.2.9</b></big>\n
 <font fgcolor="#FF009000"><b>*</b></font> (new) Heads up notifications\n
 \n
@@ -273,12 +283,17 @@
     <string name="no_xposed">Xposed Framework не установлен! Пожалуйста установите его.</string>
     <string name="enableOldSenseDialerTitle">Звонилка в стиле Sense 5</string>
     <string name="enableOldSenseDialerSummary">С приятным серым фоном</string>
-    <string name="headsUpNotificationsTitle">Heads up notifications</string>
+    <string name="headsUpNotificationsTitle">Всплывающие оповещения</string>
     <string name="headsUpNotificationsSummary">Временные оповещения снизу статус строки</string>
     <string name="enableAllLanguagesSummary">Вы сможете выбрать любой мировой язык системы в стоковых настройках</string>
     <string name="enableAllLanguagesTitle">Отображать все языки</string>
     <string name="restartRequired">Необходимо перегрузить телефон</string>
     <string name="restartRequiredSummary">Были изменены настройки и необходимо перегрузить телефон, чтобы изменения вступили в силу. В большинстве случаев достаточно быстрого перезапуска, но рекомендуется делать полный.</string>
   
-    
+    <string name="disableInputMethodNotificationTitle">Выберите способ ввода</string>
+    <string name="disableInputMethodNotificationSummary">HTC Sense Input</string>
+    <string name="disableAllCapsTitle">Запретить заглавные буквы</string>
+    <string name="disableAllCapsSummary">В дизайне интерфейса для латинского алфавита</string>
+    <string name="menu_start_record">Записать</string>
+    <string name="menu_stop_record">Остановить</string>
 </resources>

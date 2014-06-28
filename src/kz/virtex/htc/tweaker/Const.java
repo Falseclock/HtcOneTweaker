@@ -32,7 +32,10 @@ public class Const
 	public static final String TWEAK_CHARGING_LED = "tweak_charging_led";
 	public static final String TWEAK_CHARGING_FLASH = "tweak_charging_flash";
 	public static final String TWEAK_FLASH_TIMEOUT = "tweak_flash_timeout";
-
+	public static final String TWEAK_INPUT_METHOD_NOTIFY = "tweak_input_method_notify";
+	public static final String TWEAK_DISABLE_ALL_CAPS = "tweak_disable_all_caps";
+	
+	
 	// SOFT restart tweaks
 	public static final String TWEAK_ENABLE_SIP = "tweak_enable_SIP"; 
 	public static final String TWEAK_DISABLE_DATA_ROAM_NOTIFY = "tweak_roaming_data_notify"; 

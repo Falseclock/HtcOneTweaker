@@ -216,6 +216,16 @@
     <string name="google_play"><b>Google Play</b></string>
     <string name="xda_support"><b>Soporte en XDA</b></string>
 <string name="change_log_text">
+<big><b>Version 3.3.1</b></big>\n
+<font fgcolor="#FF009000"><b>*</b></font> (new) Disable all CAPS (HTC feature) for lating alphabet languages\n
+<font fgcolor="#FF009000"><b>*</b></font> (new) Record button in CallScreen moved to bottom panel\n
+\n
+<big><b>Version 3.3.0</b></big>\n
+<font fgcolor="#FF009000"><b>*</b></font> (new) World languages tweak\n
+<font fgcolor="#FF009000"><b>*</b></font> (new) Restart notification after settings change\n
+<font fgcolor="#FF009000"><b>*</b></font> (new) Minimum Xposed version check\n
+<font fgcolor="#FF009000"><b>*</b></font> (new) Choose input method notification suppress\n
+\n
 <big><b>Version 3.2.9</b></big>\n
 <font fgcolor="#FF009000"><b>*</b></font> (new) Heads up notifications\n
 \n
@@ -281,5 +291,10 @@ Manual records stored as default to My Recordings directory.\n<font fgcolor="#F
     <string name="restartRequired">Phone restart required</string>
     <string name="restartRequiredSummary">You have changed some settings and need to restart phone for changes to take effect. In most cases soft restart is enough, but hard is better.</string>
   
-
+    <string name="disableInputMethodNotificationTitle">Selecciona un método de entrada</string>
+    <string name="disableInputMethodNotificationSummary">HTC Sense Input</string>
+    <string name="disableAllCapsTitle">Disable all CAPS</string>
+    <string name="disableAllCapsSummary">In menus, tabs, buttons, etc. interface design</string>
+    <string name="menu_start_record">Record</string>
+    <string name="menu_stop_record">Stop</string>    
 </resources>

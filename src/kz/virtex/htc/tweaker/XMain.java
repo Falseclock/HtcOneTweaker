@@ -79,7 +79,14 @@ public class XMain implements IXposedHookInitPackageResources, IXposedHookZygote
 
 		if (XMain.pref.getInt(Const.TWEAK_SLOT1_COLOR, 0) != 0 || XMain.pref.getInt(Const.TWEAK_SLOT2_COLOR, 0) != 0)
 			Messaging.hookSetBadgeImageResource();
+		
+		if (pref.getBoolean(Const.TWEAK_INPUT_METHOD_NOTIFY, false))
+			Services.hookInputMethodManagerService();
+		
+		if (pref.getBoolean(Const.TWEAK_DISABLE_ALL_CAPS, false))
+			Android.hookAllCapsLocale();
 
+		
 		try
 		{
 			SQLiteDatabase mydb = SQLiteDatabase.openDatabase("/data/data/com.htc.provider.CustomizationSettings/databases/customization_settings.db", null, SQLiteDatabase.OPEN_READWRITE);
@@ -156,7 +163,9 @@ public class XMain implements IXposedHookInitPackageResources, IXposedHookZygote
 		if (packageName.equals("com.android.mms") || packageName.equals("com.htc.sense.mms"))
 		{
 
-			Messaging.hookNotificationRemove(paramLoadPackageParam, packageName);
+			
+			//Messaging.hookSupport8ColorLed(paramLoadPackageParam, packageName);
+			//Messaging.hookNotificationRemove(paramLoadPackageParam, packageName);
 
 			if (pref.getBoolean(Const.TWEAK_SMS_UNREAD_HIGHLIGHT, false))
 				Messaging.hookUnread(paramLoadPackageParam, packageName);

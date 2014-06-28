@@ -59,7 +59,7 @@ public class TweakerService extends Service
 		long lastDelete = preferences.getLong(Const.TWEAK_CALL_REC_AUTO_LAST_DELETE, 0);
 		long now = System.currentTimeMillis() / 1000l;
 		
-		if ((now - lastDelete) > deleteCooldown)
+		if (deleteType != 0 && (now - lastDelete) > deleteCooldown)
 		{
 			Log.d("TweakerService","last delete was performed seconds ago: " + (now - lastDelete));
 			preferences.edit().putLong(Const.TWEAK_CALL_REC_AUTO_LAST_DELETE, now).commit();
@@ -69,7 +69,7 @@ public class TweakerService extends Service
 			switch (deleteType)
 			{
 			case 0:
-				return;
+				return; // ubreachable code
 			case 1:
 				cleanUpRecordsByCount(deleteCount);
 				break;

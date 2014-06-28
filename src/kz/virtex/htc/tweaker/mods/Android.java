@@ -22,6 +22,20 @@ public class Android
 	private static HashMap <String, Integer> mapTweak;
 	private static HashMap <Integer, String> mapWeather;
 
+	public static void hookAllCapsLocale()
+	{
+		final Class <?> PowerManagerService = XposedHelpers.findClass("com.htc.util.res.HtcResUtil", null);
+
+		XposedHelpers.findAndHookMethod(PowerManagerService, "isInAllCapsLocale", "android.content.Context", new XC_MethodReplacement()
+		{
+			@Override
+			protected Object replaceHookedMethod(MethodHookParam param) throws Throwable
+			{
+				return Boolean.valueOf(false);
+			}
+		});
+	}
+	
 	public static void hookEnableSkypeCall()
 	{
 		final Class <?> PowerManagerService = XposedHelpers.findClass("com.android.internal.telephony.enableSkypeCall", null);
