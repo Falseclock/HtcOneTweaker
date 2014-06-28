@@ -21,6 +21,10 @@ public final class R {
         public static final int RecordingStorage=0x7f050001;
         public static final int RecordingStorageVal=0x7f050002;
         public static final int RecordingTypes=0x7f050000;
+        public static final int media_action=0x7f05000e;
+        public static final int media_action_val=0x7f05000f;
+        public static final int media_option=0x7f05000c;
+        public static final int media_option_val=0x7f05000d;
     }
     public static final class attr {
         /** <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
@@ -514,6 +518,14 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int app_about=0x7f0900b8;
         public static final int app_error=0x7f0900c9;
         public static final int app_name=0x7f090001;
+        public static final int array_media_next=0x7f0900db;
+        public static final int array_media_none=0x7f0900d9;
+        public static final int array_media_op_always=0x7f0900e4;
+        public static final int array_media_op_disabled=0x7f0900e1;
+        public static final int array_media_op_screenoff=0x7f0900e3;
+        public static final int array_media_op_screenon=0x7f0900e2;
+        public static final int array_media_playpause=0x7f0900da;
+        public static final int array_media_prev=0x7f0900dc;
         public static final int author=0x7f090000;
         public static final int callSettingsTitle=0x7f09001e;
         public static final int change_log=0x7f0900ba;
@@ -521,6 +533,11 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int chargingLedSummary=0x7f090049;
         public static final int chargingLedTitle=0x7f09004a;
         public static final int contrast_settings=0x7f090055;
+        public static final int controls_media_option_title=0x7f0900e6;
+        public static final int controls_vol_down_media_summ=0x7f0900e0;
+        public static final int controls_vol_down_media_title=0x7f0900df;
+        public static final int controls_vol_up_media_summ=0x7f0900dd;
+        public static final int controls_vol_up_media_title=0x7f0900de;
         public static final int current_bugs=0x7f0900bb;
         public static final int days_of=0x7f090094;
         public static final int delete_after=0x7f090095;
@@ -595,6 +612,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int incoming=0x7f090090;
         public static final int land_qwerty_rus=0x7f090057;
         public static final int light_settings=0x7f090054;
+        public static final int media_control_category=0x7f0900e5;
         public static final int menu_start_record=0x7f0900d7;
         public static final int menu_stop_record=0x7f0900d8;
         public static final int messages_of=0x7f090092;

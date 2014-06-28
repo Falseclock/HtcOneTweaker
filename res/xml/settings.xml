@@ -143,7 +143,9 @@
                     android:summary=""
                     android:title="@string/slot2_name_title" />
 
-                <com.htc.preference.HtcPreferenceCategory android:title="@string/SlotIconIndicator" android:key="icon_indicator_slot_screen">
+                <com.htc.preference.HtcPreferenceCategory
+                    android:key="icon_indicator_slot_screen"
+                    android:title="@string/SlotIconIndicator" >
                     <kz.virtex.htc.tweaker.preference.SeekBarPreference
                         android:icon="@drawable/icon_indicator_slot_1"
                         android:key="tweak_slot1_color"
@@ -194,7 +196,7 @@
                 android:key="tweak_input_method_notify"
                 android:summary="@string/disableInputMethodNotificationSummary"
                 android:title="@string/disableInputMethodNotificationTitle" />
-            </com.htc.preference.HtcPreferenceScreen>
+        </com.htc.preference.HtcPreferenceScreen>
         <com.htc.preference.HtcPreferenceScreen
             android:key="gui_screen_key"
             android:summary="@string/GuiScreenSummary"
@@ -257,7 +259,7 @@
                     android:key="tweak_old_sense_dialer"
                     android:summary="@string/enableOldSenseDialerSummary"
                     android:title="@string/enableOldSenseDialerTitle" />
-                
+
                 <kz.virtex.htc.tweaker.preference.DialerButtonPreference
                     android:id="@id/enableDialerHighLight"
                     android:key="tweak_dialer_btn"
@@ -318,7 +320,32 @@
                 android:key="tweak_disable_all_caps"
                 android:summary="@string/disableAllCapsSummary"
                 android:title="@string/disableAllCapsTitle" />
-            </com.htc.preference.HtcPreferenceScreen>
-        </com.htc.preference.HtcPreferenceCategory>
+
+            <com.htc.preference.HtcPreferenceCategory
+                android:key="media_control_cat"
+                android:title="@string/media_control_category" >
+                <com.htc.preference.HtcListPreference
+                    android:defaultValue="0"
+                    android:entries="@array/media_option"
+                    android:entryValues="@array/media_option_val"
+                    android:key="tweak_media_option"
+                    android:title="@string/controls_media_option_title" />
+                <com.htc.preference.HtcListPreference
+                    android:defaultValue="0"
+                    android:entries="@array/media_action"
+                    android:entryValues="@array/media_action_val"
+                    android:key="tweak_media_key_up"
+                    android:summary="@string/controls_vol_up_media_summ"
+                    android:title="@string/controls_vol_up_media_title" />
+                <com.htc.preference.HtcListPreference
+                    android:defaultValue="0"
+                    android:entries="@array/media_action"
+                    android:entryValues="@array/media_action_val"
+                    android:key="tweak_media_key_down"
+                    android:summary="@string/controls_vol_down_media_summ"
+                    android:title="@string/controls_vol_down_media_title" />
+            </com.htc.preference.HtcPreferenceCategory>
+        </com.htc.preference.HtcPreferenceScreen>
+    </com.htc.preference.HtcPreferenceCategory>
 
 </com.htc.preference.HtcPreferenceScreen>

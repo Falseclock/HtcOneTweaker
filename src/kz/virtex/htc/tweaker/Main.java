@@ -35,6 +35,7 @@ import android.view.MenuItem;
 import android.widget.SeekBar;
 
 import com.htc.preference.HtcEditTextPreference;
+import com.htc.preference.HtcListPreference;
 import com.htc.preference.HtcPreference;
 import com.htc.preference.HtcPreference.OnPreferenceFirstBindViewListener;
 import com.htc.preference.HtcPreferenceActivity;
@@ -52,12 +53,12 @@ public class Main extends HtcPreferenceActivity implements HtcPreference.OnPrefe
 	private static ArrayList<String> mSettingsChanges = new ArrayList<String>();
 	private static NotificationManager mNotifyMgr;
 	private static String DEBUG = "Main";
-			
+
 	@SuppressWarnings("unused")
 	private void test()
 	{
-		Log.d(DEBUG,"test");
-		
+		Log.d(DEBUG, "test");
+
 		IntentFilter intentFilter = new IntentFilter();
 		intentFilter.addAction(TweakerBroadcastReceiver.ACTION_DELETE_MESSAGE);
 		intentFilter.addAction(TweakerBroadcastReceiver.ACTION_CALL_TO_CONTACT);
@@ -88,7 +89,7 @@ public class Main extends HtcPreferenceActivity implements HtcPreference.OnPrefe
 	{ "WorldReadableFiles", "WorldWriteableFiles", "DefaultLocale" })
 	public void onCreate(Bundle paramBundle)
 	{
-		Log.d(DEBUG,"onCreate");
+		Log.d(DEBUG, "onCreate");
 		super.onCreate(paramBundle);
 
 		mNotifyMgr = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
@@ -141,8 +142,8 @@ public class Main extends HtcPreferenceActivity implements HtcPreference.OnPrefe
 
 	private void init()
 	{
-		//Log.d(DEBUG,"init");
-		//test();
+		// Log.d(DEBUG,"init");
+		// test();
 
 		setupCallRecording();
 		setupRecordingTypeFilter();
@@ -160,7 +161,43 @@ public class Main extends HtcPreferenceActivity implements HtcPreference.OnPrefe
 		setupDUAL();
 		setupCamera();
 		setupSlotSaturation();
+		setupMediaKey();
 		Misc.cleanUp();
+	}
+
+	private void setupMediaKey()
+	{
+		final HtcPreferenceCategory mediaCategory = (HtcPreferenceCategory) findPreference(Const.MEDIA_CONTROL_CAT);
+		int mediaOptionVal = Integer.parseInt(preferences.getString(Const.TWEAK_MEDIA_OPTION, "0"));
+		final HtcListPreference mediaOptionPref = (HtcListPreference) findPreference(Const.TWEAK_MEDIA_OPTION);
+		final HtcListPreference mediaKeyUpPref = (HtcListPreference) findPreference(Const.TWEAK_MEDIA_KEY_UP);
+		final HtcListPreference mediaKeyDownPref = (HtcListPreference) findPreference(Const.TWEAK_MEDIA_KEY_DOWN);
+
+		if (mediaOptionVal == 0)
+		{
+			mediaCategory.removePreference(mediaKeyUpPref);
+			mediaCategory.removePreference(mediaKeyDownPref);
+		}
+		mediaOptionPref.setOnPreferenceChangeListener(new HtcListPreference.OnPreferenceChangeListener()
+		{
+			@Override
+			public boolean onPreferenceChange(HtcPreference arg0, Object object)
+			{
+				Integer value = Integer.parseInt(object.toString());
+
+				if (value != 0)
+				{
+					mediaCategory.addPreference(mediaKeyUpPref);
+					mediaCategory.addPreference(mediaKeyDownPref);
+				}
+				else
+				{
+					mediaCategory.removePreference(mediaKeyUpPref);
+					mediaCategory.removePreference(mediaKeyDownPref);
+				}
+				return true;
+			}
+		});
 	}
 
 	private void setupSlotSaturation()
@@ -250,7 +287,7 @@ public class Main extends HtcPreferenceActivity implements HtcPreference.OnPrefe
 
 	protected void onResume()
 	{
-		//Log.d(DEBUG,"onResume");
+		// Log.d(DEBUG,"onResume");
 		super.onResume();
 
 		// remove restart notification on resume
@@ -278,24 +315,24 @@ public class Main extends HtcPreferenceActivity implements HtcPreference.OnPrefe
 
 	protected void onPause()
 	{
-		//Log.d(DEBUG,"onPause");
+		// Log.d(DEBUG,"onPause");
 		if (broadcastReceiverInstance != null)
 		{
-			//unregisterReceiver(broadcastReceiverInstance);
+			// unregisterReceiver(broadcastReceiverInstance);
 		}
 		super.onPause();
 		checkRestartRequired();
 	}
-	
+
 	protected void onStop()
 	{
-		//Log.d(DEBUG,"onStop");
+		// Log.d(DEBUG,"onStop");
 		super.onStop();
 	}
-	
+
 	protected void onDestroy()
 	{
-		//Log.d(DEBUG,"onDestroy");
+		// Log.d(DEBUG,"onDestroy");
 		super.onDestroy();
 		checkRestartRequired();
 	}

@@ -303,4 +303,24 @@ Manual records stored as default to My Recordings directory.\n<font fgcolor="#F
             
     <string name="menu_start_record">Record</string>
     <string name="menu_stop_record">Stop</string>
+
+    <string name="array_media_none">No Change</string>
+    <string name="array_media_playpause">Play/Pause</string>
+    <string name="array_media_next">Next track</string>
+    <string name="array_media_prev">Previous track</string>
+    
+    <string name="controls_vol_up_media_summ">The action for Volume Up long press</string>
+    <string name="controls_vol_up_media_title">Volume Up long press action</string>
+    <string name="controls_vol_down_media_title">Volume Down long press action</string>
+    <string name="controls_vol_down_media_summ">The action for Volume Down long press.</string>
+    
+    <string name="array_media_op_disabled">Mod is disabled</string>
+    <string name="array_media_op_screenon">Only when screen is ON</string>
+    <string name="array_media_op_screenoff">Only when screen is OFF</string>
+    <string name="array_media_op_always">Any state of screen</string>
+
+    
+    <string name="media_control_category">Media control</string>
+    <string name="controls_media_option_title">Volume key media control</string>
+    
 </resources>

@@ -34,6 +34,10 @@ public class Const
 	public static final String TWEAK_FLASH_TIMEOUT = "tweak_flash_timeout";
 	public static final String TWEAK_INPUT_METHOD_NOTIFY = "tweak_input_method_notify";
 	public static final String TWEAK_DISABLE_ALL_CAPS = "tweak_disable_all_caps";
+	public static final String TWEAK_MEDIA_KEY_UP = "tweak_media_key_up";
+	public static final String TWEAK_MEDIA_KEY_DOWN = "tweak_media_key_down";
+	public static final String TWEAK_MEDIA_OPTION = "tweak_media_option";
+	
 	
 	
 	// SOFT restart tweaks
@@ -74,6 +78,7 @@ public class Const
 	public static final String SYSTEM_SETTINGS_SCREEN_KEY = "system_settings_screen";
 	public static final String TWEAK_CALL_REC_AUTO_SCREEN = "autorecording_settings_screen"; 
 	public static final String TWEAK_CALL_REC_AUTO_DELETE_CAT = "autorecording_delete_cat"; 
+	public static final String MEDIA_CONTROL_CAT = "media_control_cat"; 
 	
 	
 	
