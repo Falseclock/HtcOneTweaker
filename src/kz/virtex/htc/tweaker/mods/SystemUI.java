@@ -1,17 +1,26 @@
 package kz.virtex.htc.tweaker.mods;
 
 import static de.robv.android.xposed.XposedHelpers.findAndHookMethod;
+
+import java.util.ArrayList;
+
 import kz.virtex.htc.tweaker.Const;
 import kz.virtex.htc.tweaker.Misc;
 import kz.virtex.htc.tweaker.R;
 import kz.virtex.htc.tweaker.XMain;
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.XModuleResources;
 import android.content.res.XResources;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 import de.robv.android.xposed.XC_MethodHook;
 import de.robv.android.xposed.XC_MethodReplacement;
 import de.robv.android.xposed.XposedHelpers;
@@ -20,28 +29,95 @@ import de.robv.android.xposed.callbacks.XC_LoadPackage.LoadPackageParam;
 
 public class SystemUI
 {
-	public static void hookUseHeadsUp(LoadPackageParam paramLoadPackageParam)
+	@SuppressLint("DefaultLocale")
+	public static void hookDateCase(LoadPackageParam paramLoadPackageParam)
 	{
-		/*
-		XposedHelpers.findAndHookConstructor("com.android.systemui.statusbar.BaseStatusBar", paramLoadPackageParam.classLoader, new XC_MethodHook()
+		findAndHookMethod("com.android.systemui.statusbar.policy.DateView", paramLoadPackageParam.classLoader, "updateClock", new XC_MethodHook()
 		{
 			@Override
 			protected void afterHookedMethod(MethodHookParam param) throws Throwable
 			{
-				XposedHelpers.setBooleanField(param.thisObject, "mUseHeadsUp", true);
+				TextView date = (TextView) param.thisObject;
+				CharSequence text = date.getText();
+				
+				//XposedHelpers.callMethod(param.thisObject, "setText", Misc.capitalizeFully(text));
+				date.setText(String.valueOf(text.charAt(0)).toUpperCase() + text.subSequence(1, text.length()));
+				date.setAllCaps(false);
 			}
 		});
-		*/
+	}
+	
+	public static void hookBarFont(LoadPackageParam paramLoadPackageParam)
+	{
+		findAndHookMethod("com.android.systemui.statusbar.policy.Clock", paramLoadPackageParam.classLoader, "updateClock", new XC_MethodHook()
+		{
+			@Override
+			protected void afterHookedMethod(MethodHookParam param) throws Throwable
+			{
+				XposedHelpers.callMethod(param.thisObject, "setTypeface", Typeface.create("sans-serif-condensed", Typeface.NORMAL));
+			}
+		});
+		
+		findAndHookMethod("com.android.systemui.statusbar.policy.BatteryController", paramLoadPackageParam.classLoader, "updateClock", new XC_MethodHook()
+		{
+			@SuppressWarnings("unchecked")
+			@Override
+			protected void afterHookedMethod(MethodHookParam param) throws Throwable
+			{
+				ArrayList<TextView> mLabelViews = (ArrayList<TextView>) XposedHelpers.getObjectField(param.thisObject, "mLabelViews");
+				TextView localObject = (TextView)mLabelViews.get(0);
+				localObject.setTypeface(Typeface.create("sans-serif-condensed", Typeface.NORMAL));
+			}
+		});
+	}
+	
+	public static void hookBatteryController(LoadPackageParam paramLoadPackageParam)
+	{
+		findAndHookMethod("com.android.systemui.statusbar.policy.BatteryController", paramLoadPackageParam.classLoader, "onReceive", Context.class, Intent.class, new XC_MethodHook()
+		{
+			@Override
+			protected void afterHookedMethod(MethodHookParam param) throws Throwable
+			{
+				@SuppressWarnings("unchecked")
+				ArrayList<ImageView> mIconViews = (ArrayList<ImageView>) XposedHelpers.getObjectField(param.thisObject, "mIconViews");
+
+				int level = XposedHelpers.getIntField(param.thisObject, "level");
+
+				ImageView localImageView = (ImageView) mIconViews.get(0);
+				Drawable battery = localImageView.getDrawable();
+
+				float[] hsv = new float[3];
+				hsv[0] = level;
+				hsv[1] = 1.0F;
+				hsv[2] = 1.0F;
+				int color = Color.HSVToColor(hsv);
+
+				battery.setColorFilter(color, android.graphics.PorterDuff.Mode.SRC_ATOP);				
+			}
+		});
+	}
+
+	public static void hookUseHeadsUp(LoadPackageParam paramLoadPackageParam)
+	{
+		/*
+		 * XposedHelpers.findAndHookConstructor(
+		 * "com.android.systemui.statusbar.BaseStatusBar",
+		 * paramLoadPackageParam.classLoader, new XC_MethodHook() {
+		 * 
+		 * @Override protected void afterHookedMethod(MethodHookParam param)
+		 * throws Throwable { XposedHelpers.setBooleanField(param.thisObject,
+		 * "mUseHeadsUp", true); } });
+		 */
 		XposedHelpers.findAndHookMethod("com.android.systemui.statusbar.BaseStatusBar", paramLoadPackageParam.classLoader, "start", new XC_MethodHook()
 		{
 			@Override
 			protected void beforeHookedMethod(MethodHookParam param) throws Throwable
 			{
-				Context mContext = (Context) XposedHelpers.getObjectField(param.thisObject, "mContext");				
+				Context mContext = (Context) XposedHelpers.getObjectField(param.thisObject, "mContext");
 				android.provider.Settings.Global.putInt(mContext.getContentResolver(), "heads_up_enabled", 1);
 			}
-		});	
-		
+		});
+
 		XposedHelpers.findAndHookMethod("com.android.systemui.statusbar.BaseStatusBar", paramLoadPackageParam.classLoader, "shouldInterrupt", "android.service.notification.StatusBarNotification", new XC_MethodReplacement()
 		{
 			@Override
@@ -50,56 +126,57 @@ public class SystemUI
 				Boolean replace = true;
 				return replace;
 			}
-		});	
-		/*
-		XposedHelpers.findAndHookMethod("com.android.systemui.statusbar.policy.HeadsUpNotificationView", paramLoadPackageParam.classLoader, "setNotification", "com.android.systemui.statusbar.NotificationData.Entry", new XC_MethodReplacement()
-		{
-			@Override
-			protected Object replaceHookedMethod(MethodHookParam param) throws Throwable
-			{
-				XposedHelpers.setObjectField(param.thisObject, "mHeadsUp", param.args[0]);
-				Object mHeadsUp = XposedHelpers.getObjectField(param.thisObject, "mHeadsUp");
-				Object row = XposedHelpers.getObjectField(mHeadsUp, "row");
-				XposedHelpers.callMethod(row, "setExpanded", true);
-				
-				Object mContentHolder = XposedHelpers.getObjectField(param.thisObject, "mContentHolder");
-				if (mContentHolder == null) {
-					return Boolean.valueOf(false);
-				}
-				XposedHelpers.callMethod(mContentHolder, "setX", 0.0F);
-
-				XposedHelpers.callMethod(mContentHolder, "setX", 0.0F);
-				XposedHelpers.callMethod(mContentHolder, "setVisibility", 0);
-				XposedHelpers.callMethod(mContentHolder, "setAlpha", 1.0F);
-				XposedHelpers.callMethod(mContentHolder, "removeAllViews");
-				XposedHelpers.callMethod(mContentHolder, "addView", row);
-				
-				Object mSwipeHelper = XposedHelpers.getObjectField(param.thisObject, "mSwipeHelper");
-				Object mContentSlider = XposedHelpers.getObjectField(param.thisObject, "mContentSlider");	
-				XposedHelpers.callMethod(mSwipeHelper, "snapChild", mContentSlider, 1.0F);
-				
-				long mTouchSensitivityDelay = (Long) XposedHelpers.getObjectField(param.thisObject, "mTouchSensitivityDelay");
-				
-				XposedHelpers.setLongField(param.thisObject, "mStartTouchTime", System.currentTimeMillis() + mTouchSensitivityDelay);
-				
-			    this.mHeadsUp = paramEntry;
-			    this.mHeadsUp.row.setExpanded(false);
-			    if (this.mContentHolder == null) {
-			      return false;
-			    }
-			    this.mContentHolder.setX(0.0F);
-			    this.mContentHolder.setVisibility(0);
-			    this.mContentHolder.setAlpha(1.0F);
-			    this.mContentHolder.removeAllViews();
-			    this.mContentHolder.addView(this.mHeadsUp.row);
-			    this.mSwipeHelper.snapChild(this.mContentSlider, 1.0F);
-			    this.mStartTouchTime = (System.currentTimeMillis() + this.mTouchSensitivityDelay);
-			    return true;
-			    
-				return Boolean.valueOf(true);
-			}
 		});
-		*/
+		/*
+		 * XposedHelpers.findAndHookMethod(
+		 * "com.android.systemui.statusbar.policy.HeadsUpNotificationView",
+		 * paramLoadPackageParam.classLoader, "setNotification",
+		 * "com.android.systemui.statusbar.NotificationData.Entry", new
+		 * XC_MethodReplacement() {
+		 * 
+		 * @Override protected Object replaceHookedMethod(MethodHookParam param)
+		 * throws Throwable { XposedHelpers.setObjectField(param.thisObject,
+		 * "mHeadsUp", param.args[0]); Object mHeadsUp =
+		 * XposedHelpers.getObjectField(param.thisObject, "mHeadsUp"); Object
+		 * row = XposedHelpers.getObjectField(mHeadsUp, "row");
+		 * XposedHelpers.callMethod(row, "setExpanded", true);
+		 * 
+		 * Object mContentHolder =
+		 * XposedHelpers.getObjectField(param.thisObject, "mContentHolder"); if
+		 * (mContentHolder == null) { return Boolean.valueOf(false); }
+		 * XposedHelpers.callMethod(mContentHolder, "setX", 0.0F);
+		 * 
+		 * XposedHelpers.callMethod(mContentHolder, "setX", 0.0F);
+		 * XposedHelpers.callMethod(mContentHolder, "setVisibility", 0);
+		 * XposedHelpers.callMethod(mContentHolder, "setAlpha", 1.0F);
+		 * XposedHelpers.callMethod(mContentHolder, "removeAllViews");
+		 * XposedHelpers.callMethod(mContentHolder, "addView", row);
+		 * 
+		 * Object mSwipeHelper = XposedHelpers.getObjectField(param.thisObject,
+		 * "mSwipeHelper"); Object mContentSlider =
+		 * XposedHelpers.getObjectField(param.thisObject, "mContentSlider");
+		 * XposedHelpers.callMethod(mSwipeHelper, "snapChild", mContentSlider,
+		 * 1.0F);
+		 * 
+		 * long mTouchSensitivityDelay = (Long)
+		 * XposedHelpers.getObjectField(param.thisObject,
+		 * "mTouchSensitivityDelay");
+		 * 
+		 * XposedHelpers.setLongField(param.thisObject, "mStartTouchTime",
+		 * System.currentTimeMillis() + mTouchSensitivityDelay);
+		 * 
+		 * this.mHeadsUp = paramEntry; this.mHeadsUp.row.setExpanded(false); if
+		 * (this.mContentHolder == null) { return false; }
+		 * this.mContentHolder.setX(0.0F); this.mContentHolder.setVisibility(0);
+		 * this.mContentHolder.setAlpha(1.0F);
+		 * this.mContentHolder.removeAllViews();
+		 * this.mContentHolder.addView(this.mHeadsUp.row);
+		 * this.mSwipeHelper.snapChild(this.mContentSlider, 1.0F);
+		 * this.mStartTouchTime = (System.currentTimeMillis() +
+		 * this.mTouchSensitivityDelay); return true;
+		 * 
+		 * return Boolean.valueOf(true); } });
+		 */
 	}
 
 	public static void hookOnTouchEvent(LoadPackageParam paramLoadPackageParam)
@@ -111,7 +188,7 @@ public class SystemUI
 			{
 				MotionEvent paramMotionEvent = (MotionEvent) param.args[0];
 
-				//TODO: landscape mode
+				// TODO: landscape mode
 
 				if (paramMotionEvent.getY(0) < 100 && paramMotionEvent.getX(0) > 1000)
 				{
@@ -186,7 +263,7 @@ public class SystemUI
 				return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_wifi_signal_4), Const.TWEAK_COLORED_WIFI_COLOR, XMain.pref);
 			}
 		});
-		
+
 		try
 		{
 			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_wifi_signal_connected_0", new XResources.DrawableLoader()
@@ -217,7 +294,7 @@ public class SystemUI
 					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_wifi_signal_0), Const.TWEAK_COLORED_WIFI_COLOR, XMain.pref);
 				}
 			});
-	        
+
 			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_wifi_signal_connected_1", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
@@ -247,7 +324,6 @@ public class SystemUI
 				}
 			});
 
-	        
 			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_wifi_signal_connected_2", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
@@ -334,7 +410,7 @@ public class SystemUI
 					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_wifi_signal_4), Const.TWEAK_COLORED_WIFI_COLOR, XMain.pref);
 				}
 			});
-	        
+
 		}
 		catch (Throwable t)
 		{
@@ -459,8 +535,8 @@ public class SystemUI
 
 		}
 		// END DATA 3G
-		
-        // DATA 4G
+
+		// DATA 4G
 		try
 		{
 			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_data_connected_4g", new XResources.DrawableLoader()
@@ -496,9 +572,9 @@ public class SystemUI
 		{
 
 		}
-        // END DATA 4G
-		
-        // DATA E
+		// END DATA 4G
+
+		// DATA E
 		try
 		{
 			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_data_connected_e", new XResources.DrawableLoader()
@@ -534,9 +610,9 @@ public class SystemUI
 		{
 
 		}
-        // END DATA E
-		
-        // DATA G
+		// END DATA E
+
+		// DATA G
 		try
 		{
 			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_data_connected_g", new XResources.DrawableLoader()
@@ -572,9 +648,9 @@ public class SystemUI
 		{
 
 		}
-        // END DATA G
-		
-        // DATA H
+		// END DATA G
+
+		// DATA H
 		try
 		{
 			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_data_connected_h", new XResources.DrawableLoader()
@@ -610,9 +686,9 @@ public class SystemUI
 		{
 
 		}
-        // END DATA H
-		
-        // DATA H+
+		// END DATA H
+
+		// DATA H+
 		try
 		{
 			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_data_connected_hplus", new XResources.DrawableLoader()
@@ -648,9 +724,9 @@ public class SystemUI
 		{
 
 		}
-        // END DATA H+
-		
-        // DATA LTE
+		// END DATA H+
+
+		// DATA LTE
 		try
 		{
 			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_data_connected_lte", new XResources.DrawableLoader()
@@ -686,7 +762,7 @@ public class SystemUI
 		{
 
 		}
-        // END DATA LTE
+		// END DATA LTE
 	}
 
 	public static void handleColoredSIM(InitPackageResourcesParam resparam, String path)
@@ -1370,8 +1446,8 @@ public class SystemUI
 
 		}
 		// END 802 KK SIM 1 ROAMING
-		
-        // 802d KK 2GR
+
+		// 802d KK 2GR
 		try
 		{
 			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_2g_r_4signal_0", new XResources.DrawableLoader()
@@ -1415,9 +1491,9 @@ public class SystemUI
 		{
 
 		}
-        // 802d KK 2GR END
-		
-        // 802d KK 3GR
+		// 802d KK 2GR END
+
+		// 802d KK 3GR
 		try
 		{
 			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_3g_r_4signal_0", new XResources.DrawableLoader()
@@ -1461,6 +1537,6 @@ public class SystemUI
 		{
 
 		}
-        // 802d KK 3GR END
+		// 802d KK 3GR END
 	}
 }

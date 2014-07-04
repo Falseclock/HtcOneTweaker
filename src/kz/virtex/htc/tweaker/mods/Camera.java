@@ -23,10 +23,9 @@ import de.robv.android.xposed.callbacks.XC_LoadPackage.LoadPackageParam;
 @SuppressLint("SimpleDateFormat")
 public class Camera
 {
-	public static void hookCameraPrefix(final LoadPackageParam paramLoadPackageParam)
+	public static void hookCameraPrefix(final LoadPackageParam paramLoadPackageParam, String packageName)
 	{
-
-		XposedHelpers.findAndHookConstructor("com.android.camera.io.DCFPath", paramLoadPackageParam.classLoader, "java.lang.String", "java.lang.String", "com.android.camera.io.FileCounter", "com.android.camera.io.FileCounter", new XC_MethodHook()
+		XposedHelpers.findAndHookConstructor(packageName + ".io.DCFPath", paramLoadPackageParam.classLoader, "java.lang.String", "java.lang.String", packageName + ".io.FileCounter", packageName+".io.FileCounter", new XC_MethodHook()
 		{
 			protected void beforeHookedMethod(MethodHookParam param) throws Throwable
 			{

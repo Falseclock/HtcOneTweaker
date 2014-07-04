@@ -33,10 +33,10 @@ public class ParseExceptionContents
 		for (StackTraceElement element : stackTrace)
 		{
 			final String exceptionMsg 
-					= "ClassName:     " + element.getClassName() + newLine 
-					+ "MethodName:    " + element.getMethodName() + newLine 
-					+ "FileName:      " + element.getFileName() + newLine 
-					+ "LineNumber:    " + element.getLineNumber() + newLine 
+					= "ClassName:	" + element.getClassName() + newLine 
+					+ "MethodName:	" + element.getMethodName() + newLine 
+					+ "FileName:	" + element.getFileName() + newLine 
+					+ "LineNumber:	" + element.getLineNumber() + newLine 
 					+ "\t" + newLine
 			;
 

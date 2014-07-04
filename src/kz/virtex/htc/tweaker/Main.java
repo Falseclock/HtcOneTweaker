@@ -10,7 +10,6 @@ import kz.virtex.htc.tweaker.preference.MultiCheckPreference.Row;
 import kz.virtex.htc.tweaker.preference.NumberPickerPreference;
 import kz.virtex.htc.tweaker.preference.SeekBarPreference;
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Notification;
 import android.app.NotificationManager;
@@ -48,7 +47,6 @@ import com.htc.widget.HtcAlertDialog;
 public class Main extends HtcPreferenceActivity implements HtcPreference.OnPreferenceChangeListener, SharedPreferences.OnSharedPreferenceChangeListener
 {
 	public static SharedPreferences preferences;
-	private Context mContext;
 	private TweakerBroadcastReceiver broadcastReceiverInstance = null;
 	private static ArrayList<String> mSettingsChanges = new ArrayList<String>();
 	private static NotificationManager mNotifyMgr;
@@ -108,7 +106,16 @@ public class Main extends HtcPreferenceActivity implements HtcPreference.OnPrefe
 			{
 				public void onClick(DialogInterface dialog, int which)
 				{
-					((Activity) mContext).finish();
+					Uri uriUrl = Uri.parse("http://forum.xda-developers.com/showthread.php?p=53011963");
+					Intent launchBrowser = new Intent(Intent.ACTION_VIEW, uriUrl);
+					startActivity(launchBrowser);
+					Main.this.finish();
+				}
+			}).setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener()
+			{
+				public void onClick(DialogInterface dialog, int which)
+				{
+					Main.this.finish();
 				}
 			}).show();
 		}
@@ -199,7 +206,7 @@ public class Main extends HtcPreferenceActivity implements HtcPreference.OnPrefe
 			}
 		});
 	}
-
+	
 	private void setupSlotSaturation()
 	{
 		if (Misc.isSense6() && Misc.isDual())

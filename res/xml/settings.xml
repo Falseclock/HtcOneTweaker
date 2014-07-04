@@ -296,6 +296,22 @@
                 android:key="tweak_colored_weather"
                 android:summary="@string/enableColoredWeatherSummary"
                 android:title="@string/enableColoredWeatherTitle" />
+
+            <com.htc.preference.HtcPreferenceCategory
+                android:key="status_bar_category"
+                android:title="@string/StatusBarCategory" >
+                
+                <com.htc.preference.HtcSwitchPreference
+                    android:key="tweak_colored_battery"
+                    android:summary="@string/enableColoredBatterySummary"
+                    android:title="@string/enableColoredBatteryTitle" />
+                
+                <com.htc.preference.HtcSwitchPreference
+                    android:key="tweak_statusbar_condensed"
+                    android:summary="@string/statusbarCondensedSummary"
+                    android:title="@string/statusbarCondensedTitle" />
+                
+            </com.htc.preference.HtcPreferenceCategory>
         </com.htc.preference.HtcPreferenceScreen>
         <com.htc.preference.HtcPreferenceScreen
             android:key="other_settings_screen"
@@ -335,14 +351,12 @@
                     android:entries="@array/media_action"
                     android:entryValues="@array/media_action_val"
                     android:key="tweak_media_key_up"
-                    android:summary="@string/controls_vol_up_media_summ"
                     android:title="@string/controls_vol_up_media_title" />
                 <com.htc.preference.HtcListPreference
                     android:defaultValue="0"
                     android:entries="@array/media_action"
                     android:entryValues="@array/media_action_val"
                     android:key="tweak_media_key_down"
-                    android:summary="@string/controls_vol_down_media_summ"
                     android:title="@string/controls_vol_down_media_title" />
             </com.htc.preference.HtcPreferenceCategory>
         </com.htc.preference.HtcPreferenceScreen>

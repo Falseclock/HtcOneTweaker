@@ -21,11 +21,9 @@ import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 
 import com.android.internal.telephony.Call;
 import com.android.internal.telephony.CallerInfo;
@@ -163,10 +161,9 @@ public class Recorder
 				Context context = (Context) XposedHelpers.callMethod(param.thisObject, "getApplicationContext");
 
 				boolean AutoRecording = Misc.toBoolean(Settings.System.getInt(context.getContentResolver(), Const.TWEAK_CALL_REC_AUTO, 0));
-
-				XposedBridge.log(Locale.getDefault().getLanguage());
-				
-				if (!AutoRecording)
+				boolean Recording = Misc.toBoolean(Settings.System.getInt(context.getContentResolver(), Const.TWEAK_CALL_REC, 0));
+		
+				if (Recording && !AutoRecording)
 				{
 					LinearLayout screen = (LinearLayout) XposedHelpers.getObjectField(param.thisObject, "mControlPanel");
 
@@ -224,7 +221,6 @@ public class Recorder
 										XposedHelpers.callMethod(Recorder, "start");
 										
 										updateRecordButton(paramView,false,modRes);
-										
 									}
 								}
 							}

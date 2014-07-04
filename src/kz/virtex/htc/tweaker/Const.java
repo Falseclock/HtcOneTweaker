@@ -69,7 +69,9 @@ public class Const
 	public static final String TWEAK_COLOR_CALL_INDICATOR= "tweak_color_call_indicator";
 	public static final String TWEAK_ENABLE_PHOTO_PREFIX= "tweak_enable_photo_prefix";
 	public static final String TWEAK_OLD_SENSE_DIALER= "tweak_old_sense_dialer";
-
+	public static final String TWEAK_COLORED_BATTERY= "tweak_colored_battery";
+	public static final String TWEAK_STATUSBAR_CONDENSED = "tweak_statusbar_condensed";
+	
 
 	public static final String GUI_SCREEN_KEY = "gui_screen_key";
 	public static final String DATA_SCREEN_KEY = "data_screen_key";

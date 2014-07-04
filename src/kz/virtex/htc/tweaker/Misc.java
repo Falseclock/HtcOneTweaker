@@ -1,30 +1,81 @@
 package kz.virtex.htc.tweaker;
 
 import java.util.ArrayList;
-
 import kz.virtex.htc.tweaker.utils.ColorFilterGenerator;
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.Config;
+import android.graphics.Paint.Align;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.ColorFilter;
+import android.graphics.Paint;
+import android.graphics.Typeface;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.LayerDrawable;
 import android.view.View;
 import android.view.ViewGroup;
-
 import com.android.internal.telephony.HtcMessageHelper;
 import com.htc.customization.HtcCustomizationManager;
 import com.htc.customization.HtcCustomizationReader;
 
+@SuppressLint("DefaultLocale")
 public class Misc
 {
-	public static ArrayList<View> getAllChildren(View v) {
-		if (!(v instanceof ViewGroup)) {
+	public static Drawable createMarkerIcon(Drawable image, String text)
+	{
+
+		image.setColorFilter(Color.parseColor("#c2ffb6"), android.graphics.PorterDuff.Mode.SRC_ATOP);
+
+		final int width = image.getIntrinsicWidth();
+		final int height = image.getIntrinsicHeight();
+
+		Bitmap canvasBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
+		// Create a canvas, that will draw on to canvasBitmap.
+		Canvas imageCanvas = new Canvas(canvasBitmap);
+
+		// Set up the paint for use with our Canvas
+		Paint imagePaint = new Paint();
+		imagePaint.setAntiAlias(true);
+		imagePaint.setTextAlign(Align.CENTER);
+		imagePaint.setTextSize(28f);
+		imagePaint.setColor(Color.parseColor("#ffffff"));
+		imagePaint.setTypeface(Typeface.create("sans-serif-condensed", Typeface.BOLD));
+		// imagePaint.setShadowLayer(3F, 0, 0, Color.parseColor("#ffffff"));
+
+		Paint mTextPaintOutline = new Paint();
+		mTextPaintOutline.setAntiAlias(true);
+		mTextPaintOutline.setTextAlign(Align.CENTER);
+		mTextPaintOutline.setTextSize(28f);
+		mTextPaintOutline.setStrokeMiter(6.0f);
+		mTextPaintOutline.setColor(0xFF003800);
+		mTextPaintOutline.setStyle(Paint.Style.STROKE);
+		mTextPaintOutline.setTypeface(Typeface.create("sans-serif-condensed", Typeface.BOLD));
+		mTextPaintOutline.setStrokeWidth(2F);
+
+		// Draw the image to our canvas
+		image.draw(imageCanvas);
+
+		// Draw the text on top of our image
+		imageCanvas.drawText(text, width / 1.9F, height / 1.6F, imagePaint);
+		imageCanvas.drawText(text, width / 1.9F, height / 1.6F, mTextPaintOutline);
+
+		// Combine background and text to a LayerDrawable
+		LayerDrawable layerDrawable = new LayerDrawable(new Drawable[]
+		{ image, new BitmapDrawable(canvasBitmap) });
+
+		return layerDrawable;
+	}
+
+	public static ArrayList<View> getAllChildren(View v)
+	{
+		if (!(v instanceof ViewGroup))
+		{
 			ArrayList<View> viewArrayList = new ArrayList<View>();
 			viewArrayList.add(v);
 			return viewArrayList;
@@ -33,7 +84,8 @@ public class Misc
 		ArrayList<View> result = new ArrayList<View>();
 
 		ViewGroup vg = (ViewGroup) v;
-		for (int i = 0; i < vg.getChildCount(); i++) {
+		for (int i = 0; i < vg.getChildCount(); i++)
+		{
 
 			View child = vg.getChildAt(i);
 			ArrayList<View> viewArrayList = new ArrayList<View>();
@@ -45,35 +97,32 @@ public class Misc
 		return result;
 	}
 
-
 	public static Drawable adjustHue(Drawable paramDrawable, int hue)
 	{
 		ColorFilter localColorFilter = ColorFilterGenerator.adjustHue(hue);
 
 		paramDrawable.clearColorFilter();
-		
+
 		if (localColorFilter != null)
 			paramDrawable.setColorFilter(localColorFilter);
 
 		return paramDrawable;
 	}
-	
+
 	// fucking color matrix
 	public static int colorTransform(int intColor, int value)
 	{
-		
+
 		int rIn = Color.red(intColor);
 		int gIn = Color.green(intColor);
 		int bIn = Color.blue(intColor);
 		/*
-		float hsv[] = new float[3];;
-		
-		Color.RGBToHSV(rIn,gIn,bIn,hsv);
-		hsv[0] += value;
-
-		if (1 == 1)
-			return Color.HSVToColor(hsv);
-		*/
+		 * float hsv[] = new float[3];;
+		 * 
+		 * Color.RGBToHSV(rIn,gIn,bIn,hsv); hsv[0] += value;
+		 * 
+		 * if (1 == 1) return Color.HSVToColor(hsv);
+		 */
 		float degree = cleanValue(value, 180.0F) / 180f * (float) Math.PI;
 
 		float cosVal = (float) Math.cos(degree);
@@ -91,7 +140,7 @@ public class Misc
 
 		return Color.rgb(clamp(rOut), clamp(gOut), clamp(bOut));
 	}
-	
+
 	protected static float cleanValue(float p_val, float p_limit)
 	{
 		return Math.min(p_limit, Math.max(-p_limit, p_val));
@@ -109,9 +158,16 @@ public class Misc
 
 	public static boolean isDual()
 	{
-		if (HtcMessageHelper.isDualSlotDevice())
+		try
 		{
-			return true;
+			if (HtcMessageHelper.isDualSlotDevice())
+			{
+				return true;
+			}
+		}
+		catch (NoSuchMethodError e)
+		{
+			return false;
 		}
 		return false;
 	}
@@ -121,10 +177,12 @@ public class Misc
 		if (value == 0)
 		{
 			return 0;
-		} else if (value > 180)
-		{
-			value = -180 + (value - 180);
 		}
+		else
+			if (value > 180)
+			{
+				value = -180 + (value - 180);
+			}
 		return value;
 	}
 
@@ -135,7 +193,8 @@ public class Misc
 		{
 			pm.getPackageInfo(packagename, PackageManager.GET_META_DATA);
 			return true;
-		} catch (NameNotFoundException e)
+		}
+		catch (NameNotFoundException e)
 		{
 			return false;
 		}
@@ -170,7 +229,6 @@ public class Misc
 
 		return applyFilter(paramDrawable, light, con, sat, hue);
 	}
-
 
 	private static Drawable applyFilter(Drawable paramDrawable, int light, int con, int sat, int hue)
 	{
@@ -217,7 +275,8 @@ public class Misc
 			Main.preferences.edit().remove("ColorSIM1_lightValue").commit();
 			Main.preferences.edit().remove("ColorSIM2_lightValue").commit();
 
-		} catch (Exception e)
+		}
+		catch (Exception e)
 		{
 
 		}
@@ -241,7 +300,7 @@ public class Misc
 	public static boolean isSense6()
 	{
 		String SENSE_VERSION = "5.0";
-		
+
 		HtcCustomizationManager localHtcCustomizationManager = HtcCustomizationManager.getInstance();
 		if (localHtcCustomizationManager != null)
 		{
@@ -253,4 +312,87 @@ public class Misc
 		}
 		return SENSE_VERSION.equals("6.0");
 	}
+
+	
+	/*
+	* Licensed to the Apache Software Foundation (ASF) under one or more
+	* contributor license agreements.  See the NOTICE file distributed with
+	* this work for additional information regarding copyright ownership.
+	* The ASF licenses this file to You under the Apache License, Version 2.0
+	* (the "License"); you may not use this file except in compliance with
+	* the License.  You may obtain a copy of the License at
+	* 
+	*      http://www.apache.org/licenses/LICENSE-2.0
+	* 
+	* Unless required by applicable law or agreed to in writing, software
+	* distributed under the License is distributed on an "AS IS" BASIS,
+	* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	* See the License for the specific language governing permissions and
+	* limitations under the License.
+	*/
+	
+	public static String capitalizeFully(CharSequence str)
+	{
+		return capitalizeFully(str.toString(), null);
+	}
+	
+	public static String capitalizeFully(String str)
+	{
+		return capitalizeFully(str, null);
+	}
+
+	@SuppressLint("DefaultLocale")
+	public static String capitalizeFully(String str, char... delimiters)
+	{
+		int delimLen = delimiters == null ? -1 : delimiters.length;
+		if (str.isEmpty() || delimLen == 0)
+		{
+			return str;
+		}
+		str = str.toLowerCase();
+		return capitalize(str, delimiters);
+	}
+
+	public static String capitalize(String str)
+	{
+		return capitalize(str, null);
+	}
+
+	public static String capitalize(String str, char... delimiters)
+	{
+		int delimLen = delimiters == null ? -1 : delimiters.length;
+		if (str.isEmpty() || delimLen == 0)
+		{
+			return str;
+		}
+		char[] buffer = str.toCharArray();
+		boolean capitalizeNext = true;
+		for (int i = 0; i < buffer.length; i++)
+		{
+			char ch = buffer[i];
+			if (isDelimiter(ch, delimiters))
+			{
+				capitalizeNext = true;
+			}
+			else
+				if (capitalizeNext)
+				{
+					buffer[i] = Character.toTitleCase(ch);
+					capitalizeNext = false;
+				}
+		}
+		return new String(buffer);
+	}
+	
+    private static boolean isDelimiter(char ch, char[] delimiters) {
+        if (delimiters == null) {
+            return Character.isWhitespace(ch);
+        }
+        for (char delimiter : delimiters) {
+            if (ch == delimiter) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

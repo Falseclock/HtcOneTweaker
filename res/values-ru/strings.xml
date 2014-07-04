@@ -19,6 +19,9 @@
     <string name="fourteen">14</string>
     <string name="thirty">30</string>
     <string name="sixty">60</string>
+    <string name="eightyfive">85</string>
+    <string name="eightyseven">87</string>
+    <string name="eightyeight">88</string>
     <string name="one_eighty">180</string>
     <string name="three_sixty">160</string>
     <string name="twenty">20</string>
@@ -214,33 +217,39 @@
     <string name="google_play"><b>Google Play Market</b></string>
     <string name="xda_support"><b>Поддержка на XDA</b></string>
     <string name="change_log_text">
-<big><b>Version 3.3.1</b></big>\n
+<big><b>Версия 3.3.2</b></big>\n
+<font fgcolor="#FFFF0000"><b>*</b></font> (fix) Кнопка записи появляется даже если отключена запись\n
+<font fgcolor="#FFFF0000"><b>*</b></font> (fix) Префикс к файлам камеры на Sense 6\n
+<font fgcolor="#FFFF0000"><b>*</b></font> (fix) Ссылка на XDA в случае отсутствия Xposed\n
+<font fgcolor="#FFFF0000"><b>*</b></font> (fix) Проверка двухсимных аппаратов на Android 4.2\n
+\n
+<big><b>Версия 3.3.1</b></big>\n
 <font fgcolor="#FF009000"><b>*</b></font> (new) Запрет рисовать интерфейс заглавными буквами (причуда HTC) для яыков использующих латинский алфавит\n
 <font fgcolor="#FF009000"><b>*</b></font> (new) Кнопка записи на экране разговора перенесена в нижнюю панель\n
 \n
-<big><b>Version 3.3.0</b></big>\n
+<big><b>Версия 3.3.0</b></big>\n
 <font fgcolor="#FF009000"><b>*</b></font> (new) Включение всех мировых языков в стоковых настройках\n
 <font fgcolor="#FF009000"><b>*</b></font> (new) Оповещение о необходимости перезагрузке после изменения настроек\n
 <font fgcolor="#FF009000"><b>*</b></font> (new) Проверка минимальной установки Xposed\n
 <font fgcolor="#FF009000"><b>*</b></font> (new) Подавление оповещения Выберите способ ввода\n
 \n
-<big><b>Version 3.2.9</b></big>\n
+<big><b>Версия 3.2.9</b></big>\n
 <font fgcolor="#FF009000"><b>*</b></font> (new) Heads up notifications\n
 \n
-<big><b>Version 3.2.8</b></big>\n
+<big><b>Версия 3.2.8</b></big>\n
 <font fgcolor="#FFFF0000"><b>*</b></font> (fix) Запуск версии 3.2.7 на односимных версиях\n
 <font fgcolor="#FF009000"><b>*</b></font> (new) Старый вид звонилки как в Sense 5 (только для Sense 6)\n
 <font fgcolor="#FFFF0000"><b>*</b></font> (fix) Качественный цвет второго слота (только для Sense 6 и Dual SIM)\n
 <font fgcolor="#FF009000"><b>*</b></font> (new) Расширенная русская клавиатура в Sense 6\n
 <font fgcolor="#FF009000"><b>*</b></font> другие фиксы, касающиеся Sense 6\n
 \n
-<big><b>Version 3.2.7</b></big>\n
+<big><b>Версия 3.2.7</b></big>\n
 <font fgcolor="#FF009000"><b>*</b></font> (new) Подавление оповещения о передаче данных в роуминге\n
 <font fgcolor="#FFFF0000"><b>*</b></font> (fix) Настройки для двухсимников не доступны на 802d\n
 <font fgcolor="#FF009000"><b>*</b></font> (new) Настройки цвета индикаторов слотов (Телефон, Номеронабиратель, Сообщения, Контакты)\n
 <font fgcolor="#FF009000"><b>*</b></font> Проверка установки Xposed Framework\n
 \n        
-<big><b>Version 3.2.6</b></big>\n<font fgcolor="#FFFF0000"><b>*</b></font> (fix) запись для T-Mobile пользователей\n<font fgcolor="#FFFF0000"><b>*</b></font> (fix) WiFi иконка для Sense 6 \n<font fgcolor="#FF009000"><b>*</b></font> Более стабильное автоудаление записей\n<font fgcolor="#FF009000"><b>*</b></font> Стиль иконки Sense 6 на экране Настроек\n
+<big><b>Версия 3.2.6</b></big>\n<font fgcolor="#FFFF0000"><b>*</b></font> (fix) запись для T-Mobile пользователей\n<font fgcolor="#FFFF0000"><b>*</b></font> (fix) WiFi иконка для Sense 6 \n<font fgcolor="#FF009000"><b>*</b></font> Более стабильное автоудаление записей\n<font fgcolor="#FF009000"><b>*</b></font> Стиль иконки Sense 6 на экране Настроек\n
 \n    <big><b>Версия 3.2.5</b></big>\n<font fgcolor="#FFFF0000"><b>*</b></font> (fix) запись только в AMR-NB несмотря на настройки\n
 \n<big><b>Версия 3.2.4</b></big>\n<font fgcolor="#FFFF0000"><b>*</b></font> (fix) Автозапись не работала при свежей установке\n<font fgcolor="#FFFF0000"><b>*</b></font> (fix) неактивные настройки удаления\n<font fgcolor="#FF009000"><b>*</b></font> публикация исходного кода\n<font fgcolor="#FF009000"><b>*</b></font> скрытие некоторых настроек для двухсимников на односимной версии\n
 \n<big><b>Версия 3.2.3</b></big>\n<font fgcolor="#FF009000"><b>*</b></font> создание nomedia файла в папке с записями\n<font fgcolor="#FF009000"><b>*</b></font> включение SIP настроек в настройках двухсимного телефона\n<font fgcolor="#FF009000"><b>*</b></font> префикс в виде даты к названию файлов снятых камерой\n<font fgcolor="#FF009000"><b>*</b></font> окно с информацией о программе\n<font fgcolor="#FFFF0000"><b>*</b></font> (fix) настройки SMS для Sense 6.0\n<font fgcolor="#FFFF0000"><b>*</b></font> (fix) по умолчанию в настройках кнопки номеронабирателя выставлен латинский алфавит\n
@@ -280,7 +289,7 @@
     <string name="disableRoamingDataNotificationSummary">Подключение для передачи данных прервано.</string>
     <string name="SlotIconIndicator">Иконка индикатора слота</string>
     <string name="app_error">Ошибка приложения</string>
-    <string name="no_xposed">Xposed Framework не установлен! Пожалуйста установите его.</string>
+    <string name="no_xposed">Xposed Framework не установлен! Пожалуйста установите его. Инструкция по установку имеется на странице загрузки (Google Play или XDA). Хотите перейти на сайт поддержки?</string>
     <string name="enableOldSenseDialerTitle">Звонилка в стиле Sense 5</string>
     <string name="enableOldSenseDialerSummary">С приятным серым фоном</string>
     <string name="headsUpNotificationsTitle">Всплывающие оповещения</string>
@@ -296,4 +305,30 @@
     <string name="disableAllCapsSummary">В дизайне интерфейса для латинского алфавита</string>
     <string name="menu_start_record">Записать</string>
     <string name="menu_stop_record">Остановить</string>
+    
+    <string name="array_media_none">No Action</string>
+    <string name="array_media_playpause">Play/Pause</string>
+    <string name="array_media_next">Next track</string>
+    <string name="array_media_prev">Previous track</string>
+    
+    <string name="controls_vol_up_media_summ">The action for Volume Up long press</string>
+    <string name="controls_vol_up_media_title">Volume Up long press action</string>
+    <string name="controls_vol_down_media_title">Volume Down long press action</string>
+    <string name="controls_vol_down_media_summ">The action for Volume Down long press.</string>
+    
+    <string name="array_media_op_disabled">Mod is disabled</string>
+    <string name="array_media_op_screenon">Only when screen is ON</string>
+    <string name="array_media_op_screenoff">Only when screen is OFF</string>
+    <string name="array_media_op_always">Any state of screen</string>
+
+    
+    <string name="media_control_category">Media control</string>
+    <string name="controls_media_option_title">Volume key media control</string>
+    
+    <string name="enableColoredBatteryTitle">Цветная стоковая батарейка</string>
+    <string name="enableColoredBatterySummary">От зеленого до красного в зависимости от уровня заряда</string>
+
+    <string name="StatusBarCategory">Статус строка</string>
+    <string name="statusbarCondensedSummary">Узкий шрифт строки времени и уровня заряда для сокращения занимаемого места</string>
+    <string name="statusbarCondensedTitle">Уплотненный шрифт</string>
 </resources>

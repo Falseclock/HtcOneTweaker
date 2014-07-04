@@ -1,7 +1,9 @@
 package kz.virtex.htc.tweaker;
 
 import static de.robv.android.xposed.XposedHelpers.findAndHookMethod;
+
 import java.io.File;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.pm.ApplicationInfo;
@@ -17,6 +19,7 @@ import android.util.Log;
 import kz.virtex.htc.tweaker.mods.Android;
 import kz.virtex.htc.tweaker.mods.Camera;
 import kz.virtex.htc.tweaker.mods.Contacts;
+import kz.virtex.htc.tweaker.mods.Control;
 import kz.virtex.htc.tweaker.mods.Dialer;
 import kz.virtex.htc.tweaker.mods.HTCSync;
 import kz.virtex.htc.tweaker.mods.Keyboard;
@@ -107,6 +110,13 @@ public class XMain implements IXposedHookInitPackageResources, IXposedHookZygote
 	public void handleLoadPackage(LoadPackageParam paramLoadPackageParam) throws Throwable
 	{
 		String packageName = paramLoadPackageParam.packageName;
+		
+		
+		if (paramLoadPackageParam.processName.equals("android") && Integer.parseInt(XMain.pref.getString(Const.TWEAK_MEDIA_OPTION, "0")) != 0) {
+			Control.execHook_VolumeMediaButtons(paramLoadPackageParam, Integer.parseInt(XMain.pref.getString(Const.TWEAK_MEDIA_OPTION, "0")));
+		}
+		
+		
 		// TODO: hook own package to check is it active or not for Main activity
 		// usage and checking
 		if (packageName.equals("kz.virtex.htc.tweaker"))
@@ -163,7 +173,6 @@ public class XMain implements IXposedHookInitPackageResources, IXposedHookZygote
 		if (packageName.equals("com.android.mms") || packageName.equals("com.htc.sense.mms"))
 		{
 
-			
 			//Messaging.hookSupport8ColorLed(paramLoadPackageParam, packageName);
 			//Messaging.hookNotificationRemove(paramLoadPackageParam, packageName);
 
@@ -185,6 +194,15 @@ public class XMain implements IXposedHookInitPackageResources, IXposedHookZygote
 
 		if (packageName.equals("com.android.systemui"))
 		{
+			if (pref.getBoolean(Const.TWEAK_DISABLE_ALL_CAPS, false))
+				SystemUI.hookDateCase(paramLoadPackageParam);
+
+			if (pref.getBoolean(Const.TWEAK_STATUSBAR_CONDENSED, false))
+				SystemUI.hookBarFont(paramLoadPackageParam);
+			
+			if (pref.getBoolean(Const.TWEAK_COLORED_BATTERY, false))
+				SystemUI.hookBatteryController(paramLoadPackageParam);
+			
 			if (pref.getBoolean(Const.TWEAK_HEADS_UP_NOTIFICATION, false))
 				SystemUI.hookUseHeadsUp(paramLoadPackageParam);
 
@@ -219,12 +237,12 @@ public class XMain implements IXposedHookInitPackageResources, IXposedHookZygote
 				Media.hookMPTNotification(paramLoadPackageParam);
 		}
 
-		if (packageName.equals("com.android.camera"))
+		if (packageName.equals("com.android.camera") || packageName.equals("com.htc.camera"))
 		{
 			// Camera.hookCameraActivity(paramLoadPackageParam);
 
 			if (pref.getBoolean(Const.TWEAK_ENABLE_PHOTO_PREFIX, false))
-				Camera.hookCameraPrefix(paramLoadPackageParam);
+				Camera.hookCameraPrefix(paramLoadPackageParam, packageName);
 		}
 
 		if (packageName.equals("com.htc.lockscreen"))

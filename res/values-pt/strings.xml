@@ -16,6 +16,9 @@
     <string name="fourteen">14</string>
     <string name="thirty">30</string>
     <string name="sixty">60</string>
+    <string name="eightyfive">85</string>
+    <string name="eightyseven">87</string>
+    <string name="eightyeight">88</string>
     <string name="one_eighty">180</string>
     <string name="three_sixty">160</string>
     <string name="twenty">20</string>
@@ -216,6 +219,12 @@
     <string name="google_play"><b>Google Play Market</b></string>
     <string name="xda_support"><b>Support on XDA</b></string>
 <string name="change_log_text">
+<big><b>Version 3.3.2</b></big>\n
+<font fgcolor="#FFFF0000"><b>*</b></font> (fix) Call recording button appears even if tweak is disabled\n
+<font fgcolor="#FFFF0000"><b>*</b></font> (fix) Camera file prefix issue on Sense 6\n
+<font fgcolor="#FFFF0000"><b>*</b></font> (fix) Start application without Xposed - now link to XDA thread\n
+<font fgcolor="#FFFF0000"><b>*</b></font> (fix) Dual version check on Android 4.2\n
+\n
 <big><b>Version 3.3.1</b></big>\n
 <font fgcolor="#FF009000"><b>*</b></font> (new) Disable all CAPS (HTC feature) for lating alphabet languages\n
 <font fgcolor="#FF009000"><b>*</b></font> (new) Record button in CallScreen moved to bottom panel\n
@@ -281,7 +290,7 @@ Manual records stored as default to My Recordings directory.\n<font fgcolor="#F
     <string name="disableRoamingDataNotificationSummary">Você perdeu a conectividade de dados…</string>
     <string name="SlotIconIndicator">Slot indicator icon</string>
     <string name="app_error">Application error </string>
-    <string name="no_xposed">Xposed Framework not installed! Please install prior.</string>
+    <string name="no_xposed">Xposed Framework not installed! Please install prior. Instruction can be found on download page (Google Play or XDA). Would you like to go to supporting site?</string>
     <string name="enableOldSenseDialerTitle">Sense 5 dialer style</string>
     <string name="enableOldSenseDialerSummary">With gray background</string>
     <string name="headsUpNotificationsTitle">Heads up notifications</string>
@@ -297,4 +306,23 @@ Manual records stored as default to My Recordings directory.\n<font fgcolor="#F
     <string name="disableAllCapsSummary">In menus, tabs, buttons, etc. interface design</string>
     <string name="menu_start_record">Record</string>
     <string name="menu_stop_record">Stop</string>    
+    
+    <string name="array_media_none">No Action</string>
+    <string name="array_media_playpause">Play/Pause</string>
+    <string name="array_media_next">Next track</string>
+    <string name="array_media_prev">Previous track</string>
+    
+    <string name="controls_vol_up_media_summ">The action for Volume Up long press</string>
+    <string name="controls_vol_up_media_title">Volume Up long press action</string>
+    <string name="controls_vol_down_media_title">Volume Down long press action</string>
+    <string name="controls_vol_down_media_summ">The action for Volume Down long press.</string>
+    
+    <string name="array_media_op_disabled">Mod is disabled</string>
+    <string name="array_media_op_screenon">Only when screen is ON</string>
+    <string name="array_media_op_screenoff">Only when screen is OFF</string>
+    <string name="array_media_op_always">Any state of screen</string>
+
+    
+    <string name="media_control_category">Media control</string>
+    <string name="controls_media_option_title">Volume key media control</string>
 </resources>

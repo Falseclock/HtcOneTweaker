@@ -73,10 +73,10 @@
         <item>@string/array_media_op_always</item>
     </string-array>
         <string-array name="media_option_val">
-        <item>0</item>
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
+        <item>@string/zero</item>
+        <item>@string/one</item>
+        <item>@string/two</item>
+        <item>@string/three</item>
     </string-array>
     <string-array name="media_action">
         <item>@string/array_media_none</item>
@@ -85,9 +85,9 @@
         <item>@string/array_media_prev</item>
     </string-array>
     <string-array name="media_action_val">
-        <item>0</item>
-        <item>85</item>
-        <item>87</item>
-        <item>88</item>
+        <item>@string/zero</item>
+        <item>@string/eightyfive</item>
+        <item>@string/eightyseven</item>
+        <item>@string/eightyeight</item>
     </string-array>
     </resources>
