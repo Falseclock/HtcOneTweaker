@@ -1,6 +1,7 @@
 package kz.virtex.htc.tweaker;
 
 import java.util.ArrayList;
+
 import kz.virtex.htc.tweaker.utils.ColorFilterGenerator;
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -20,13 +21,22 @@ import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
 import android.view.View;
 import android.view.ViewGroup;
+
 import com.android.internal.telephony.HtcMessageHelper;
 import com.htc.customization.HtcCustomizationManager;
 import com.htc.customization.HtcCustomizationReader;
 
+import de.robv.android.xposed.XposedBridge;
+
 @SuppressLint("DefaultLocale")
 public class Misc
 {
+	public static void x (String string)
+	{
+		if (Const.DEBUG)
+			XposedBridge.log(string);
+	}
+	
 	public static Drawable createMarkerIcon(Drawable image, String text)
 	{
 
@@ -239,47 +249,6 @@ public class Misc
 			paramDrawable.setColorFilter(localColorFilter);
 
 		return paramDrawable;
-	}
-
-	public static void cleanUp()
-	{
-		try
-		{
-			Main.preferences.edit().remove("TweakColoredSimLevel").commit();
-			Main.preferences.edit().remove("AutoRecordingVibroKey").commit();
-			Main.preferences.edit().remove("enablePopupCharKey").commit();
-			Main.preferences.edit().remove("enableDialerHighLightKey_color").commit();
-			Main.preferences.edit().remove("TweakEnableCallRecording").commit();
-			Main.preferences.edit().remove("enableColoredWiFiKey").commit();
-			Main.preferences.edit().remove("TweakColoredWeather").commit();
-			Main.preferences.edit().remove("enableDialerHighLightKey_size").commit();
-			Main.preferences.edit().remove("enableCallRecordingKey").commit();
-			Main.preferences.edit().remove("TweakAllNotificationsExpanded").commit();
-			Main.preferences.edit().remove("disableDeliveryNotificationKey").commit();
-			Main.preferences.edit().remove("enableColoredWeatherKey").commit();
-			Main.preferences.edit().remove("allNotificationsExpandedKey").commit();
-			Main.preferences.edit().remove("enableColoredSimLevelKey").commit();
-			Main.preferences.edit().remove("TweakColoredWiFi").commit();
-			Main.preferences.edit().remove("enableAutoRecordingKey").commit();
-			Main.preferences.edit().remove("TweakEnableAutoRecording").commit();
-			Main.preferences.edit().remove("TweakColoredSimLevel").commit();
-			Main.preferences.edit().remove("TweakColoredSimLevel").commit();
-			Main.preferences.edit().remove("TweakColoredSimLevel").commit();
-			Main.preferences.edit().remove("TweakColoredSimLevel").commit();
-			Main.preferences.edit().remove("TweakColoredSimLevel").commit();
-			Main.preferences.edit().remove("TweakPopupChar").commit();
-			Main.preferences.edit().remove("ColorSIM1_hueValue").commit();
-			Main.preferences.edit().remove("ColorSIM2_hueValue").commit();
-			Main.preferences.edit().remove("ColorSIM1_satValue").commit();
-			Main.preferences.edit().remove("ColorSIM2_satValue").commit();
-			Main.preferences.edit().remove("ColorSIM1_lightValue").commit();
-			Main.preferences.edit().remove("ColorSIM2_lightValue").commit();
-
-		}
-		catch (Exception e)
-		{
-
-		}
 	}
 
 	public static Bitmap drawableToBitmap(Drawable drawable)

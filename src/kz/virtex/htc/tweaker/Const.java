@@ -2,6 +2,8 @@ package kz.virtex.htc.tweaker;
 
 public class Const
 {
+	public static final boolean DEBUG = true;
+	
 	public static final String PACKAGE_NAME = "kz.virtex.htc.tweaker";
 	public static final String WEATHER_PACKAGE_NAME = "kz.virtex.htc.tweaker.weather";
 	public static final String WEATHER_PACKAGE_APK = "tweak_weather_pack_apk";

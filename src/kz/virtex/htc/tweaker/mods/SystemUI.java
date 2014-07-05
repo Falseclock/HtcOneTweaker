@@ -58,7 +58,7 @@ public class SystemUI
 			}
 		});
 		
-		findAndHookMethod("com.android.systemui.statusbar.policy.BatteryController", paramLoadPackageParam.classLoader, "updateClock", new XC_MethodHook()
+		findAndHookMethod("com.android.systemui.statusbar.policy.BatteryController", paramLoadPackageParam.classLoader, "onReceive", Context.class, Intent.class, new XC_MethodHook()
 		{
 			@SuppressWarnings("unchecked")
 			@Override
@@ -75,10 +75,10 @@ public class SystemUI
 	{
 		findAndHookMethod("com.android.systemui.statusbar.policy.BatteryController", paramLoadPackageParam.classLoader, "onReceive", Context.class, Intent.class, new XC_MethodHook()
 		{
+			@SuppressWarnings("unchecked")
 			@Override
 			protected void afterHookedMethod(MethodHookParam param) throws Throwable
 			{
-				@SuppressWarnings("unchecked")
 				ArrayList<ImageView> mIconViews = (ArrayList<ImageView>) XposedHelpers.getObjectField(param.thisObject, "mIconViews");
 
 				int level = XposedHelpers.getIntField(param.thisObject, "level");
@@ -88,7 +88,7 @@ public class SystemUI
 
 				float[] hsv = new float[3];
 				hsv[0] = level;
-				hsv[1] = 1.0F;
+				hsv[1] = 0.5F;
 				hsv[2] = 1.0F;
 				int color = Color.HSVToColor(hsv);
 

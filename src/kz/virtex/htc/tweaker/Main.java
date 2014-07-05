@@ -169,7 +169,6 @@ public class Main extends HtcPreferenceActivity implements HtcPreference.OnPrefe
 		setupCamera();
 		setupSlotSaturation();
 		setupMediaKey();
-		Misc.cleanUp();
 	}
 
 	private void setupMediaKey()

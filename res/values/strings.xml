@@ -223,8 +223,10 @@
 <string name="change_log_text">
 <big><b>Version 3.3.3</b></big>\n
 <font fgcolor="#FFFF0000"><b>*</b></font> (fix) Uppercase date string in pulled down status bar in case of All CAPS enabled tweak\n
-<font fgcolor="#FF009000"><b>*</b></font> (new) Colored battery level from green to red based on charge level\n
-<font fgcolor="#FF009000"><b>*</b></font> (new) Condensed font face for time and battery charge level\n
+<font fgcolor="#FFFF0000"><b>*</b></font> (fix) Roaming data icons for 802d model\n
+<font fgcolor="#FF009000"><b>*</b></font> (new) Colored battery level from green to red based on charging level\n
+<font fgcolor="#FF009000"><b>*</b></font> (new) Condensed font face for time and battery charging level\n
+<font fgcolor="#FF009000"><b>*</b></font> (improvement) All world languages implemented with hook instead of database change\n
 \n
 <big><b>Version 3.3.2</b></big>\n
 <font fgcolor="#FFFF0000"><b>*</b></font> (fix) Call recording button appears even if tweak is disabled\n

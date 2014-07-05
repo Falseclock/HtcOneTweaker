@@ -89,22 +89,20 @@ public class XMain implements IXposedHookInitPackageResources, IXposedHookZygote
 		if (pref.getBoolean(Const.TWEAK_DISABLE_ALL_CAPS, false))
 			Android.hookAllCapsLocale();
 
-		
+		// KEEP this at least 3 version to remove old traces
+		// System should'nt be touched
 		try
 		{
 			SQLiteDatabase mydb = SQLiteDatabase.openDatabase("/data/data/com.htc.provider.CustomizationSettings/databases/customization_settings.db", null, SQLiteDatabase.OPEN_READWRITE);
-			if (pref.getBoolean(Const.TWEAK_ENABLE_ALL_LANGUAGES, false))
-			{
-				mydb.execSQL("UPDATE SettingTable set key='tweak_system_locale' WHERE key='system_locale'");
-			} else
-			{
-				mydb.execSQL("UPDATE SettingTable set key='system_locale' WHERE key='tweak_system_locale'");
-			}
+			mydb.execSQL("UPDATE SettingTable set key='system_locale' WHERE key='tweak_system_locale'");
 			mydb.close();
 		} catch (SQLiteException e)
 		{
 			XposedBridge.log(e);
 		}
+		
+		if (pref.getBoolean(Const.TWEAK_ENABLE_ALL_LANGUAGES, false))
+			Settings.hookSystemLocales();
 	}
 
 	public void handleLoadPackage(LoadPackageParam paramLoadPackageParam) throws Throwable
@@ -115,8 +113,7 @@ public class XMain implements IXposedHookInitPackageResources, IXposedHookZygote
 		if (paramLoadPackageParam.processName.equals("android") && Integer.parseInt(XMain.pref.getString(Const.TWEAK_MEDIA_OPTION, "0")) != 0) {
 			Control.execHook_VolumeMediaButtons(paramLoadPackageParam, Integer.parseInt(XMain.pref.getString(Const.TWEAK_MEDIA_OPTION, "0")));
 		}
-		
-		
+
 		// TODO: hook own package to check is it active or not for Main activity
 		// usage and checking
 		if (packageName.equals("kz.virtex.htc.tweaker"))
@@ -172,7 +169,6 @@ public class XMain implements IXposedHookInitPackageResources, IXposedHookZygote
 
 		if (packageName.equals("com.android.mms") || packageName.equals("com.htc.sense.mms"))
 		{
-
 			//Messaging.hookSupport8ColorLed(paramLoadPackageParam, packageName);
 			//Messaging.hookNotificationRemove(paramLoadPackageParam, packageName);
 
@@ -224,7 +220,7 @@ public class XMain implements IXposedHookInitPackageResources, IXposedHookZygote
 			if (pref.getBoolean(Const.TWEAK_SYNC_NOTIFY, false))
 				HTCSync.hookHTCSyncNotification(paramLoadPackageParam);
 		}
-
+		
 		if (packageName.equals("com.android.settings"))
 		{
 			if (pref.getBoolean(Const.TWEAK_USB_NOTIFY, false))
