@@ -20,6 +20,7 @@ import android.util.Log;
 public class TweakerService extends Service
 {
 	public static final String ACTION_CLEANUP_RECORDS = "tweaker.intent.action.CLEANUP_RECORDS";
+	public static final String ACTION_GET_SETTINGS = "tweaker.intent.action.SETTINGS";
 
 	private SharedPreferences preferences;
 	private static ArrayList <Ls> mFileList = new ArrayList <Ls>();

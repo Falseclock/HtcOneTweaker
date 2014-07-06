@@ -169,8 +169,24 @@ public class Main extends HtcPreferenceActivity implements HtcPreference.OnPrefe
 		setupCamera();
 		setupSlotSaturation();
 		setupMediaKey();
+		setupLogact();
+		
+		removeSettings();
+	}
+	
+	private void removeSettings()
+	{
+		HtcPreferenceScreen screen = (HtcPreferenceScreen) findPreference(Const.OTHER_SETTINGS_SCREEN_KEY);
+		screen.removePreference(findPreference(Const.TWEAK_LOGCAT_FILTER));
+		screen.removePreference(findPreference(Const.MEDIA_CONTROL_CAT));
 	}
 
+	private void setupLogact()
+	{
+		MultiCheckPreference logcat = (MultiCheckPreference) findPreference(Const.TWEAK_LOGCAT_FILTER);
+		logcat.unsetMinimum();
+	}
+	
 	private void setupMediaKey()
 	{
 		final HtcPreferenceCategory mediaCategory = (HtcPreferenceCategory) findPreference(Const.MEDIA_CONTROL_CAT);

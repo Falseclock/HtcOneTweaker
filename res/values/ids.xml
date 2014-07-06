@@ -2,6 +2,7 @@
 <resources>
 
     
+    <item name="miuiStatusBar" type="id">false</item>
     <item name="disableAllCaps" type="id">false</item>
     <item name="disableInputMethodNotification" type="id">false</item>
     <item name="enableAllLanguages" type="id">false</item>

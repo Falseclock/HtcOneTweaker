@@ -2,7 +2,8 @@ package kz.virtex.htc.tweaker;
 
 public class Const
 {
-	public static final boolean DEBUG = true;
+	public static final boolean DEBUG = false;
+	public static final String TAG = "HTC_Tweaker";
 	
 	public static final String PACKAGE_NAME = "kz.virtex.htc.tweaker";
 	public static final String WEATHER_PACKAGE_NAME = "kz.virtex.htc.tweaker.weather";
@@ -39,6 +40,7 @@ public class Const
 	public static final String TWEAK_MEDIA_KEY_UP = "tweak_media_key_up";
 	public static final String TWEAK_MEDIA_KEY_DOWN = "tweak_media_key_down";
 	public static final String TWEAK_MEDIA_OPTION = "tweak_media_option";
+	public static final String TWEAK_LOGCAT_FILTER = "tweak_logcat_filter";
 	
 	
 	
@@ -73,8 +75,9 @@ public class Const
 	public static final String TWEAK_OLD_SENSE_DIALER= "tweak_old_sense_dialer";
 	public static final String TWEAK_COLORED_BATTERY= "tweak_colored_battery";
 	public static final String TWEAK_STATUSBAR_CONDENSED = "tweak_statusbar_condensed";
+	public static final String TWEAK_MIUI_BATTERY = "tweak_miui_battery";
 	
-
+	
 	public static final String GUI_SCREEN_KEY = "gui_screen_key";
 	public static final String DATA_SCREEN_KEY = "data_screen_key";
 	public static final String CONTACT_DATA_SCREEN_KEY = "contact_data_screen_key";

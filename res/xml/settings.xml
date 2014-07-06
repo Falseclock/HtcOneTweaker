@@ -300,17 +300,18 @@
             <com.htc.preference.HtcPreferenceCategory
                 android:key="status_bar_category"
                 android:title="@string/StatusBarCategory" >
-                
                 <com.htc.preference.HtcSwitchPreference
                     android:key="tweak_colored_battery"
                     android:summary="@string/enableColoredBatterySummary"
                     android:title="@string/enableColoredBatteryTitle" />
-                
+                <com.htc.preference.HtcSwitchPreference
+                    android:key="tweak_miui_battery"
+                    android:summary="@string/enableMIUIBatterySummary"
+                    android:title="@string/enableMIUIBatteryTitle" />
                 <com.htc.preference.HtcSwitchPreference
                     android:key="tweak_statusbar_condensed"
                     android:summary="@string/statusbarCondensedSummary"
                     android:title="@string/statusbarCondensedTitle" />
-                
             </com.htc.preference.HtcPreferenceCategory>
         </com.htc.preference.HtcPreferenceScreen>
         <com.htc.preference.HtcPreferenceScreen
@@ -336,6 +337,13 @@
                 android:key="tweak_disable_all_caps"
                 android:summary="@string/disableAllCapsSummary"
                 android:title="@string/disableAllCapsTitle" />
+
+            <kz.virtex.htc.tweaker.preference.MultiCheckPreference
+                android:key="tweak_logcat_filter"
+                android:summary="@string/logcatFilterSummary"
+                android:title="@string/logcatFilterTitle"
+                tweaker:entryKeys="@array/logcatFilterKeys"
+                tweaker:entryTitles="@array/logcatFilterKeys" />
 
             <com.htc.preference.HtcPreferenceCategory
                 android:key="media_control_cat"

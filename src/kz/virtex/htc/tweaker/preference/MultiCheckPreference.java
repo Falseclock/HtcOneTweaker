@@ -13,7 +13,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.content.res.TypedArray;
-
+import android.graphics.Typeface;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.View;
@@ -28,8 +28,9 @@ public class MultiCheckPreference extends HtcDialogPreference implements Checkbo
 	public CharSequence[] keys;
 	public CharSequence[] summs;
 	public String mKey;
-	public ArrayList <Row> rows;
+	public ArrayList<Row> rows;
 	public SharedPreferences prefs;
+	public boolean useAtLeastOne = true;
 
 	public MultiCheckPreference(Context paramContext, AttributeSet paramAttributeSet)
 	{
@@ -49,11 +50,21 @@ public class MultiCheckPreference extends HtcDialogPreference implements Checkbo
 		}
 		a.recycle();
 
-		rows = new ArrayList <Row>();
+		rows = new ArrayList<Row>();
 		for (int i = 0; i < titles.length; i++)
 		{
 			rows.add(new Row(titles[i], summs[i], keys[i]));
 		}
+	}
+
+	public void unsetMinimum()
+	{
+		useAtLeastOne = false;
+	}
+	
+	public void setMinimum()
+	{
+		useAtLeastOne = true;
 	}
 	
 	@Override
@@ -61,22 +72,24 @@ public class MultiCheckPreference extends HtcDialogPreference implements Checkbo
 	{
 		rows.get(checkBox.getId()).setState(checkBox.isChecked());
 
-		if (checkBox.isChecked() == false)
+		if (useAtLeastOne)
 		{
-
-			boolean found = false;
-			for (int i = 0; i < rows.size(); i++)
+			if (checkBox.isChecked() == false)
 			{
-				if (rows.get(i).getState() == true)
+				boolean found = false;
+				for (int i = 0; i < rows.size(); i++)
 				{
-					found = true;
+					if (rows.get(i).getState() == true)
+					{
+						found = true;
+					}
 				}
-			}
-			if (found == false)
-			{
-				rows.get(checkBox.getId()).setState(true);
-				checkBox.setChecked(true);
-				return;
+				if (found == false)
+				{
+					rows.get(checkBox.getId()).setState(true);
+					checkBox.setChecked(true);
+					return;
+				}
 			}
 		}
 
@@ -147,10 +160,10 @@ public class MultiCheckPreference extends HtcDialogPreference implements Checkbo
 
 	public class CheckPreferenceAdapter extends BaseAdapter
 	{
-		ArrayList <Row> data = new ArrayList <Row>();
+		ArrayList<Row> data = new ArrayList<Row>();
 		Context context;
 
-		public CheckPreferenceAdapter(MultiCheckPreference multiCheckPreference, ArrayList <Row> paramRow)
+		public CheckPreferenceAdapter(MultiCheckPreference multiCheckPreference, ArrayList<Row> paramRow)
 		{
 			if (paramRow != null)
 			{
@@ -183,6 +196,7 @@ public class MultiCheckPreference extends HtcDialogPreference implements Checkbo
 
 			TextView title = returnView.textTitle;
 			title.setText(data.get(position).mTitle);
+			title.setTypeface(Typeface.create("sans-serif-condensed", Typeface.NORMAL));
 
 			if (data.get(position).mSummary != null)
 			{

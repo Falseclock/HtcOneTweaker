@@ -74,6 +74,8 @@ public class XMain implements IXposedHookInitPackageResources, IXposedHookZygote
 
 		Services.hookForceSetFlashing(pref.getInt(Const.TWEAK_FLASH_TIMEOUT, 5));
 
+		//Android.hookAndroidLog();
+		
 		if (Android.hookWeatherBitmapPreload())
 			Android.hookWeatherBitmap();
 
@@ -103,6 +105,8 @@ public class XMain implements IXposedHookInitPackageResources, IXposedHookZygote
 		
 		if (pref.getBoolean(Const.TWEAK_ENABLE_ALL_LANGUAGES, false))
 			Settings.hookSystemLocales();
+		
+		Control.hookVolumeOnMusic();
 	}
 
 	public void handleLoadPackage(LoadPackageParam paramLoadPackageParam) throws Throwable
@@ -190,6 +194,9 @@ public class XMain implements IXposedHookInitPackageResources, IXposedHookZygote
 
 		if (packageName.equals("com.android.systemui"))
 		{
+			if (pref.getBoolean(Const.TWEAK_MIUI_BATTERY, false))
+				SystemUI.hookStatusBarMIUIBattery(paramLoadPackageParam);
+
 			if (pref.getBoolean(Const.TWEAK_DISABLE_ALL_CAPS, false))
 				SystemUI.hookDateCase(paramLoadPackageParam);
 
@@ -308,8 +315,7 @@ public class XMain implements IXposedHookInitPackageResources, IXposedHookZygote
 		}
 
 		if (resparam.packageName.equals("com.android.systemui"))
-		{
-
+		{			
 			if (pref.getBoolean(Const.TWEAK_COLORED_SIM, false))
 				SystemUI.handleColoredSIM(resparam, MODULE_PATH);
 

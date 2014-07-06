@@ -19,6 +19,7 @@ import android.graphics.Typeface;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -37,9 +38,14 @@ public class Misc
 			XposedBridge.log(string);
 	}
 	
+	public static void d (String string)
+	{
+		if (Const.DEBUG)
+			Log.d(Const.TAG, string);
+	}
+	
 	public static Drawable createMarkerIcon(Drawable image, String text)
 	{
-
 		image.setColorFilter(Color.parseColor("#c2ffb6"), android.graphics.PorterDuff.Mode.SRC_ATOP);
 
 		final int width = image.getIntrinsicWidth();
