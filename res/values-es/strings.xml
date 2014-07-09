@@ -89,7 +89,6 @@
     <string name="saturation_settings">Saturación</string>
     <string name="light_settings">Brillo</string>
     <string name="contrast_settings">Contraste</string>
-    
     <string name="qwerty_rus">Full Qwerty Russian</string>
     <string name="land_qwerty_rus">Landscape Qwerty Russian</string>
     <string name="alternates_for_slash">\\ /</string>
@@ -120,9 +119,8 @@
     <string name="alternates_for_dquotation">\" « »</string>
     <string name="alternates_for_6">6</string>
     <string name="alternates_for_underscore">_</string>
-	<string name="alternates_label_equal">=</string>
-	<string name="alternates_for_graveaccent">`</string>
-	
+    <string name="alternates_label_equal">=</string>
+    <string name="alternates_for_graveaccent">`</string>
     <string name="recordingSeparateDir">En carpetas Entrante y Saliente</string>
     <string name="recordingFileFlag">Agregar "IN" y "SAL" al nombre del archivo</string>
     <string name="RecordingStorageSummary" />
@@ -218,46 +216,14 @@
 * Date preffix to the Camera shots filename</string>
     <string name="google_play"><b>Google Play</b></string>
     <string name="xda_support"><b>Soporte en XDA</b></string>
-<string name="change_log_text">
-<big><b>Version 3.3.3</b></big>\n
-<font fgcolor="#FFFF0000"><b>*</b></font> (fix) Uppercase date string in pulled down status bar in case of All CAPS enabled tweak\n
-<font fgcolor="#FFFF0000"><b>*</b></font> (fix) Roaming data icons for 802d model\n
-<font fgcolor="#FF009000"><b>*</b></font> (new) Colored battery level from green to red based on charging level\n
-<font fgcolor="#FF009000"><b>*</b></font> (new) Condensed font face for time and battery charging level\n
-<font fgcolor="#FF009000"><b>*</b></font> (imp) All world languages implemented with hook instead of database change\n
-<font fgcolor="#FF009000"><b>*</b></font> (new) MIUI colored bar\n
-\n
-<big><b>Version 3.3.2</b></big>\n
-<font fgcolor="#FFFF0000"><b>*</b></font> (fix) Call recording button appears even if tweak is disabled\n
-<font fgcolor="#FFFF0000"><b>*</b></font> (fix) Camera file prefix issue on Sense 6\n
-<font fgcolor="#FFFF0000"><b>*</b></font> (fix) Start application without Xposed - now link to XDA thread\n
-<font fgcolor="#FFFF0000"><b>*</b></font> (fix) Dual version check on Android 4.2\n
-\n
-<big><b>Version 3.3.1</b></big>\n
-<font fgcolor="#FF009000"><b>*</b></font> (new) Disable all CAPS (HTC feature) for lating alphabet languages\n
-<font fgcolor="#FF009000"><b>*</b></font> (new) Record button in CallScreen moved to bottom panel\n
-\n
-<big><b>Version 3.3.0</b></big>\n
-<font fgcolor="#FF009000"><b>*</b></font> (new) World languages tweak\n
-<font fgcolor="#FF009000"><b>*</b></font> (new) Restart notification after settings change\n
-<font fgcolor="#FF009000"><b>*</b></font> (new) Minimum Xposed version check\n
-<font fgcolor="#FF009000"><b>*</b></font> (new) Choose input method notification suppress\n
-\n
-<big><b>Version 3.2.9</b></big>\n
-<font fgcolor="#FF009000"><b>*</b></font> (new) Heads up notifications\n
-\n
-<big><b>Version 3.2.8</b></big>\n
-<font fgcolor="#FFFF0000"><b>*</b></font> (fix) App crash on Single sim version\n
-<font fgcolor="#FF009000"><b>*</b></font> (new) Old style dialer background (Sense 6 only)\n
-<font fgcolor="#FFFF0000"><b>*</b></font> (fix) Color improvement for SIM2 slot\n
-<font fgcolor="#FF009000"><b>*</b></font> (new) Advanced keyboard for Russian layout\n
-<font fgcolor="#FF009000"><b>*</b></font> other minor Sense 6 related fixes\n
-\n
-<big><b>Version 3.2.7</b></big>\n
-<font fgcolor="#FF009000"><b>*</b></font> (new) Data Roaming notification suppress\n
-<font fgcolor="#FFFF0000"><b>*</b></font> (fix) Dual sim network manager not available on Chinese 802d\n
-<font fgcolor="#FF009000"><b>*</b></font> (new) Color settings for slot indicator icon (Phone, Dialer, Messaging, Contacts) (Sense 6 only)\n
-<font fgcolor="#FF009000"><b>*</b></font> XposedFramework installation check\n
+    <string name="change_log_text"><big><b>Version 3.3.4</b></big>\n<font fgcolor="#FFFF0000"><b>*</b></font> (fix) Volume button dysfunction in media applications\n<font fgcolor="#FFFF0000"><b>*</b></font> (fix) Spontaneous enabled colored weather option\n<font fgcolor="#FF009000"><b>*</b></font> (fix) Colored signal strength for 4 level indicators on 802d models now colored and have 5 levels\n<font fgcolor="#FF009000"><b>*</b></font> (imp) Choose date format for camera shot prefix\n<font fgcolor="#FF009000"><b>*</b></font> (imp) Colored battery and bar green until 50%, then from green to red with encreasing saturation\n<font fgcolor="#FF009000"><b>*</b></font> (imp) Screen area settings for Quick Settings pulldown\n
+\n<big><b>Version 3.3.3</b></big>\n<font fgcolor="#FFFF0000"><b>*</b></font> (fix) Uppercase date string in pulled down status bar in case of All CAPS enabled tweak\n<font fgcolor="#FFFF0000"><b>*</b></font> (fix) Roaming data icons for 802d model\n<font fgcolor="#FF009000"><b>*</b></font> (new) Colored battery level from green to red based on charging level\n<font fgcolor="#FF009000"><b>*</b></font> (new) Condensed font face for time and battery charging level\n<font fgcolor="#FF009000"><b>*</b></font> (imp) All world languages implemented with hook instead of database change\n<font fgcolor="#FF009000"><b>*</b></font> (new) MIUI colored bar\n
+\n<big><b>Version 3.3.2</b></big>\n<font fgcolor="#FFFF0000"><b>*</b></font> (fix) Call recording button appears even if tweak is disabled\n<font fgcolor="#FFFF0000"><b>*</b></font> (fix) Camera file prefix issue on Sense 6\n<font fgcolor="#FFFF0000"><b>*</b></font> (fix) Start application without Xposed - now link to XDA thread\n<font fgcolor="#FFFF0000"><b>*</b></font> (fix) Dual version check on Android 4.2\n
+\n<big><b>Version 3.3.1</b></big>\n<font fgcolor="#FF009000"><b>*</b></font> (new) Disable all CAPS (HTC feature) for lating alphabet languages\n<font fgcolor="#FF009000"><b>*</b></font> (new) Record button in CallScreen moved to bottom panel\n
+\n<big><b>Version 3.3.0</b></big>\n<font fgcolor="#FF009000"><b>*</b></font> (new) World languages tweak\n<font fgcolor="#FF009000"><b>*</b></font> (new) Restart notification after settings change\n<font fgcolor="#FF009000"><b>*</b></font> (new) Minimum Xposed version check\n<font fgcolor="#FF009000"><b>*</b></font> (new) Choose input method notification suppress\n
+\n<big><b>Version 3.2.9</b></big>\n<font fgcolor="#FF009000"><b>*</b></font> (new) Heads up notifications\n
+\n<big><b>Version 3.2.8</b></big>\n<font fgcolor="#FFFF0000"><b>*</b></font> (fix) App crash on Single sim version\n<font fgcolor="#FF009000"><b>*</b></font> (new) Old style dialer background (Sense 6 only)\n<font fgcolor="#FFFF0000"><b>*</b></font> (fix) Color improvement for SIM2 slot\n<font fgcolor="#FF009000"><b>*</b></font> (new) Advanced keyboard for Russian layout\n<font fgcolor="#FF009000"><b>*</b></font> other minor Sense 6 related fixes\n
+\n<big><b>Version 3.2.7</b></big>\n<font fgcolor="#FF009000"><b>*</b></font> (new) Data Roaming notification suppress\n<font fgcolor="#FFFF0000"><b>*</b></font> (fix) Dual sim network manager not available on Chinese 802d\n<font fgcolor="#FF009000"><b>*</b></font> (new) Color settings for slot indicator icon (Phone, Dialer, Messaging, Contacts) (Sense 6 only)\n<font fgcolor="#FF009000"><b>*</b></font> XposedFramework installation check\n
 \n<big><b>Version 3.2.6</b></big>\n<font fgcolor="#FFFF0000"><b>*</b></font> (fix) recorder for T-Mobile users\n<font fgcolor="#FFFF0000"><b>*</b></font> (fix) Sense 6 WiFi icon\n<font fgcolor="#FF009000"><b>*</b></font> Auto deletion service improvement\n<font fgcolor="#FF009000"><b>*</b></font> Sense 6 style icon in Settings screen\n
 \n        <big><b>Versión 3.2.5</b></big>\n<font fgcolor="#FFFF0000"><b>*</b></font> (fix) recorder writes only in AMR-NB despite settings\n
 \n<big><b>Version 3.2.4</b></big>\n<font fgcolor="#FFFF0000"><b>*</b></font> (fix) Autorecording for new install\n<font fgcolor="#FFFF0000"><b>*</b></font> (fix) disabled deletion settings\n<font fgcolor="#FF009000"><b>*</b></font> source code publishing\n<font fgcolor="#FF009000"><b>*</b></font> some settings now not visible to single sim version\n
@@ -307,39 +273,31 @@ Manual records stored as default to My Recordings directory.\n<font fgcolor="#F
     <string name="enableAllLanguagesTitle">Enable all world languages</string>
     <string name="restartRequired">Phone restart required</string>
     <string name="restartRequiredSummary">You have changed some settings and need to restart phone for changes to take effect. In most cases soft restart is enough, but hard is better.</string>
-  
     <string name="disableInputMethodNotificationTitle">Selecciona un método de entrada</string>
     <string name="disableInputMethodNotificationSummary">HTC Sense Input</string>
     <string name="disableAllCapsTitle">Disable all CAPS</string>
     <string name="disableAllCapsSummary">In menus, tabs, buttons, etc. interface design</string>
     <string name="menu_start_record">Record</string>
-    <string name="menu_stop_record">Stop</string>    
-    
+    <string name="menu_stop_record">Stop</string>
     <string name="array_media_none">No Action</string>
     <string name="array_media_playpause">Play/Pause</string>
     <string name="array_media_next">Next track</string>
     <string name="array_media_prev">Previous track</string>
-    
     <string name="controls_vol_up_media_summ">The action for Volume Up long press</string>
     <string name="controls_vol_up_media_title">Volume Up long press action</string>
     <string name="controls_vol_down_media_title">Volume Down long press action</string>
     <string name="controls_vol_down_media_summ">The action for Volume Down long press.</string>
-    
     <string name="array_media_op_disabled">Mod is disabled</string>
     <string name="array_media_op_screenon">Only when screen is ON</string>
     <string name="array_media_op_screenoff">Only when screen is OFF</string>
     <string name="array_media_op_always">Any state of screen</string>
-
-    
     <string name="media_control_category">Media control</string>
     <string name="controls_media_option_title">Volume key media control</string>
     <string name="enableColoredBatteryTitle">Colored stock battery</string>
     <string name="enableColoredBatterySummary">From green to red depends on current charge level</string>
-    
     <string name="StatusBarCategory">Status bar</string>
     <string name="statusbarCondensedSummary">Narrow font for time and battery level to reduce occupied space</string>
     <string name="statusbarCondensedTitle">Condensed font face</string>
-    
     <string name="enableMIUIBatteryTitle">MIUI battery indicator</string>
     <string name="enableMIUIBatterySummary">Colored line on top of status bar</string>
     <string name="logcatFilterTitle">Logcat filter</string>
@@ -349,4 +307,31 @@ Manual records stored as default to My Recordings directory.\n<font fgcolor="#F
     <string name="logcat_info">Info</string>
     <string name="logcat_verbose">Verbose</string>
     <string name="logcat_warn">Warn</string>
-    </resources>
+    <string name="prefix_option_0">No prefix</string>
+    <string name="prefix_option_1">2014</string>
+    <string name="prefix_option_2">2014‐52</string>
+    <string name="prefix_option_3">2014‐12</string>
+    <string name="prefix_option_4">2014‐12‐13</string>
+    <string name="prefix_option_5">2014‐12‐13‐16‐00</string>
+    <string name="prefix_option_6">2014‐12‐13‐16‐00‐00</string>
+    <string name="prefix_option_val1">yyyy</string>
+    <string name="prefix_option_val2">yyyy‐w</string>
+    <string name="prefix_option_val3">yyyy‐MM</string>
+    <string name="prefix_option_val4">yyyy‐MM‐dd</string>
+    <string name="prefix_option_val5">yyyy‐MM‐dd‐HH‐mm</string>
+    <string name="prefix_option_val6">yyyy‐MM‐dd‐HH‐mm‐ss</string>
+    <string name="swipe_option_0">QS by swiping right side of screen is disabled</string>
+    <string name="swipe_option_1">Swipe on 1/2 of screen</string>
+    <string name="swipe_option_2">Swipe on 1/3 of screen</string>
+    <string name="swipe_option_3">Swipe on 1/4 of screen</string>
+    <string name="swipe_option_4">Swipe on 1/5 of screen</string>
+    <string name="swipe_option_5">Swipe on 1/6 of screen</string>
+    <string name="swipe_option_6">Swipe on 1/7 of screen</string>
+    
+    <string name="swipe_option_val1">0.50F</string>
+    <string name="swipe_option_val2">0.3333333F</string>
+    <string name="swipe_option_val3">0.25F</string>
+    <string name="swipe_option_val4">0.20F</string>   
+    <string name="swipe_option_val5">0.1666666F</string>
+    <string name="swipe_option_val6">0.1428571F</string>
+</resources>

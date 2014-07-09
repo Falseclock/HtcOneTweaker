@@ -14,6 +14,7 @@ import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Bundle;
 import android.os.IBinder;
 import android.util.Log;
 
@@ -21,10 +22,12 @@ public class TweakerService extends Service
 {
 	public static final String ACTION_CLEANUP_RECORDS = "tweaker.intent.action.CLEANUP_RECORDS";
 	public static final String ACTION_GET_SETTINGS = "tweaker.intent.action.SETTINGS";
+	public static final String ACTION_VOLUME_KEY_PRESS = "tweaker.intent.action.VOLUME_KEY";
 
 	private SharedPreferences preferences;
-	private static ArrayList <Ls> mFileList = new ArrayList <Ls>();
-	private final int deleteCooldown = 60*60; // One in an hour
+	private static ArrayList<Ls> mFileList = new ArrayList<Ls>();
+	private final int deleteCooldown = 60 * 60; // One in an hour
+	private static boolean isVolumePressed = false;
 
 	public void onCreate()
 	{
@@ -36,20 +39,53 @@ public class TweakerService extends Service
 		if (intent != null)
 		{
 			String action = intent.getAction();
-			//Toast.makeText(this, intent.getAction(), Toast.LENGTH_LONG).show();
-			
+			// Toast.makeText(this, intent.getAction(),
+			// Toast.LENGTH_LONG).show();
+
 			if (action == null)
 				action = "UNKNOWN";
-				
+
+			Misc.d("TweakerService received action: " + action);
 			if (action.equals(ACTION_CLEANUP_RECORDS))
 			{
 				cleanUpRecords();
+			}
+			if (action.equals(ACTION_VOLUME_KEY_PRESS))
+			{
+				processVolKeyPress(intent);
 			}
 		}
 		return super.onStartCommand(intent, flags, startId);
 	}
 
-	@SuppressLint({ "WorldReadableFiles", "WorldWriteableFiles" })
+	private void processVolKeyPress(Intent intent)
+	{
+		Bundle extras = intent.getExtras();
+		String task = "get";
+		Boolean status = false;
+
+		if (extras != null)
+		{
+			task = extras.getString("task");
+			status = extras.getBoolean("status");
+		}
+		Misc.d("TweakerService processVolKeyPress, task is " + task);
+		if (task.equals("set"))
+		{
+			Misc.d("TweakerService processVolKeyPress, setting isVolumePressed to " + status);
+			isVolumePressed = status;
+		}
+		else
+		{
+			Intent brIntent = new Intent(ACTION_VOLUME_KEY_PRESS);
+			brIntent.putExtra("status", isVolumePressed);
+			sendBroadcast(brIntent);
+			Misc.d("TweakerService processVolKeyPress, sending broadcast with isVolumePressed = " + isVolumePressed);
+		}
+	}
+
+	@SuppressLint(
+	{ "WorldReadableFiles", "WorldWriteableFiles" })
 	private void cleanUpRecords()
 	{
 		preferences = getBaseContext().getSharedPreferences(Const.PREFERENCE_FILE, Context.MODE_WORLD_READABLE + Context.MODE_WORLD_WRITEABLE);
@@ -59,32 +95,32 @@ public class TweakerService extends Service
 		int deleteInterval = preferences.getInt(Const.TWEAK_CALL_REC_AUTO_DELETE_INTERVAL, 30);
 		long lastDelete = preferences.getLong(Const.TWEAK_CALL_REC_AUTO_LAST_DELETE, 0);
 		long now = System.currentTimeMillis() / 1000l;
-		
+
 		if (deleteType != 0 && (now - lastDelete) > deleteCooldown)
 		{
-			Log.d("TweakerService","last delete was performed seconds ago: " + (now - lastDelete));
+			Log.d("TweakerService", "last delete was performed seconds ago: " + (now - lastDelete));
 			preferences.edit().putLong(Const.TWEAK_CALL_REC_AUTO_LAST_DELETE, now).commit();
-			
+
 			getRecords();
-			
+
 			switch (deleteType)
 			{
-			case 0:
-				return; // ubreachable code
-			case 1:
-				cleanUpRecordsByCount(deleteCount);
-				break;
-			case 2:
-				cleanUpRecordsByInterval(deleteInterval);
-				break;
+				case 0:
+					return; // ubreachable code
+				case 1:
+					cleanUpRecordsByCount(deleteCount);
+					break;
+				case 2:
+					cleanUpRecordsByInterval(deleteInterval);
+					break;
 			}
 		}
 	}
 
 	private void cleanUpRecordsByInterval(int deleteInterval)
 	{
-		Log.d("TweakerService","deleting by interval: " + deleteInterval);
-		
+		Log.d("TweakerService", "deleting by interval: " + deleteInterval);
+
 		Calendar now = Calendar.getInstance();
 		Date date = new Date();
 		now.setTime(date);
@@ -98,8 +134,8 @@ public class TweakerService extends Service
 			{
 				try
 				{
-					Log.d("TweakerService","deleting " + mFileList.get(i).getName());
-					
+					Log.d("TweakerService", "deleting " + mFileList.get(i).getName());
+
 					File file = new File(mFileList.get(i).getPath());
 					file.delete();
 				}
@@ -122,16 +158,16 @@ public class TweakerService extends Service
 
 	private void cleanUpRecordsByCount(int deleteCount)
 	{
-		Log.d("TweakerService","deleting by count: " + deleteCount);
-		
+		Log.d("TweakerService", "deleting by count: " + deleteCount);
+
 		for (int i = 0; i < mFileList.size(); i++)
 		{
 			if (deleteCount <= 0)
 			{
 				try
 				{
-					Log.d("TweakerService","deleting " + mFileList.get(i).getName());
-					
+					Log.d("TweakerService", "deleting " + mFileList.get(i).getName());
+
 					File file = new File(mFileList.get(i).getPath());
 					file.delete();
 				}
@@ -146,12 +182,12 @@ public class TweakerService extends Service
 
 	private void getRecords()
 	{
-		mFileList = new ArrayList <Ls>();
-		
+		mFileList = new ArrayList<Ls>();
+
 		getRecordsList(MediaStorageMgr.getSDCardFullPath() + "/" + Const.AUTO_REC_MAIN);
 		getRecordsList(MediaStorageMgr.getPhoneStorageFullPath() + "/" + Const.AUTO_REC_MAIN);
 
-		Collections.sort(mFileList, new Comparator <Ls>()
+		Collections.sort(mFileList, new Comparator<Ls>()
 		{
 			public int compare(Ls rowOne, Ls rowTwo)
 			{
@@ -159,10 +195,11 @@ public class TweakerService extends Service
 				{
 					return -1;
 				}
-				else if (rowOne.getTime() < rowTwo.getTime())
-				{
-					return 1;
-				}
+				else
+					if (rowOne.getTime() < rowTwo.getTime())
+					{
+						return 1;
+					}
 				return 0;
 			}
 		});

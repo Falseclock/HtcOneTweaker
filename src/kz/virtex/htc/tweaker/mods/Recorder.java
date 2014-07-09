@@ -37,6 +37,8 @@ import de.robv.android.xposed.callbacks.XC_LoadPackage.LoadPackageParam;
 
 public class Recorder
 {
+	// AndroidAppHelper.currentApplication(). Then, use that context to create a context for your own app (see Context.createContext(...))
+	
 	private static Boolean is_incoming;
 	private static Connection mConnection;
 	private static boolean CallRecording;

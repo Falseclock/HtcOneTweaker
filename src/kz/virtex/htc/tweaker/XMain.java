@@ -19,7 +19,6 @@ import android.util.Log;
 import kz.virtex.htc.tweaker.mods.Android;
 import kz.virtex.htc.tweaker.mods.Camera;
 import kz.virtex.htc.tweaker.mods.Contacts;
-import kz.virtex.htc.tweaker.mods.Control;
 import kz.virtex.htc.tweaker.mods.Dialer;
 import kz.virtex.htc.tweaker.mods.HTCSync;
 import kz.virtex.htc.tweaker.mods.Keyboard;
@@ -51,7 +50,7 @@ public class XMain implements IXposedHookInitPackageResources, IXposedHookZygote
 	public static XSharedPreferences pref;
 	public static String MODULE_PATH;
 	public static String weather_apk;
-
+	
 	@SuppressLint("SdCardPath")
 	public void initZygote(StartupParam startupParam) throws Throwable
 	{
@@ -106,7 +105,7 @@ public class XMain implements IXposedHookInitPackageResources, IXposedHookZygote
 		if (pref.getBoolean(Const.TWEAK_ENABLE_ALL_LANGUAGES, false))
 			Settings.hookSystemLocales();
 		
-		Control.hookVolumeOnMusic();
+		//Control.hookVolumeMediaButtons();
 	}
 
 	public void handleLoadPackage(LoadPackageParam paramLoadPackageParam) throws Throwable
@@ -114,10 +113,11 @@ public class XMain implements IXposedHookInitPackageResources, IXposedHookZygote
 		String packageName = paramLoadPackageParam.packageName;
 		
 		
-		if (paramLoadPackageParam.processName.equals("android") && Integer.parseInt(XMain.pref.getString(Const.TWEAK_MEDIA_OPTION, "0")) != 0) {
-			Control.execHook_VolumeMediaButtons(paramLoadPackageParam, Integer.parseInt(XMain.pref.getString(Const.TWEAK_MEDIA_OPTION, "0")));
-		}
-
+		//if (paramLoadPackageParam.processName.equals("android") && Integer.parseInt(XMain.pref.getString(Const.TWEAK_MEDIA_OPTION, "0")) != 0) {
+			//Control.execHook_VoluhookVolumeMediaButtonsmeMediaButtons(paramLoadPackageParam, Integer.parseInt(XMain.pref.getString(Const.TWEAK_MEDIA_OPTION, "0")));
+			//Control.hookVolumeMediaButtons(paramLoadPackageParam);
+		//}
+	
 		// TODO: hook own package to check is it active or not for Main activity
 		// usage and checking
 		if (packageName.equals("kz.virtex.htc.tweaker"))
@@ -125,6 +125,18 @@ public class XMain implements IXposedHookInitPackageResources, IXposedHookZygote
 
 		}
 
+		if (packageName.equals("com.android.internal.policy.impl"))
+			Misc.x("-------com.android.internal.policy.impl");
+		
+		if (packageName.equals("com.android.internal.policy"))
+			Misc.x("-------com.android.internal.policy");
+		
+		if (packageName.equals("com.android.internal"))
+			Misc.x("-------com.android.internal");
+		
+		if (packageName.equals("com.android"))
+			Misc.x("-------com.android");
+		
 		if (packageName.equals("android.net.sip"))
 		{
 			if (pref.getBoolean(Const.TWEAK_ENABLE_SIP, false))
@@ -194,6 +206,9 @@ public class XMain implements IXposedHookInitPackageResources, IXposedHookZygote
 
 		if (packageName.equals("com.android.systemui"))
 		{
+			if (pref.getBoolean(Const.TWEAK_COLORED_SIM, false))
+				SystemUI.handleColoredSIM(paramLoadPackageParam);
+			
 			if (pref.getBoolean(Const.TWEAK_MIUI_BATTERY, false))
 				SystemUI.hookStatusBarMIUIBattery(paramLoadPackageParam);
 
@@ -212,8 +227,8 @@ public class XMain implements IXposedHookInitPackageResources, IXposedHookZygote
 			/*----------------*/
 			/* QUICK PULLDOWN */
 			/*----------------*/
-			if (pref.getBoolean(Const.TWEAK_QUICK_PULLDOWN, false))
-				SystemUI.hookOnTouchEvent(paramLoadPackageParam);
+			if (!pref.getString(Const.TWEAK_QUICK_SETTINGS, "0").equals("0"))
+				SystemUI.hookOnTouchEvent(paramLoadPackageParam, pref.getString(Const.TWEAK_QUICK_SETTINGS, "0"));
 
 			/*------------------------*/
 			/* EXPANDED NOTIFICATIONS */
@@ -244,8 +259,8 @@ public class XMain implements IXposedHookInitPackageResources, IXposedHookZygote
 		{
 			// Camera.hookCameraActivity(paramLoadPackageParam);
 
-			if (pref.getBoolean(Const.TWEAK_ENABLE_PHOTO_PREFIX, false))
-				Camera.hookCameraPrefix(paramLoadPackageParam, packageName);
+			if (!pref.getString(Const.TWEAK_PHOTO_PREFIX, "0").equals("0"))
+				Camera.hookCameraPrefix(paramLoadPackageParam, packageName, pref.getString(Const.TWEAK_PHOTO_PREFIX, "0"));
 		}
 
 		if (packageName.equals("com.htc.lockscreen"))

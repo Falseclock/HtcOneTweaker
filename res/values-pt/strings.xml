@@ -216,7 +216,8 @@
 * Date preffix to the Câmera shots filename</string>
     <string name="google_play"><b>Google Play Market</b></string>
     <string name="xda_support"><b>Support on XDA</b></string>
-    <string name="change_log_text"><big><b>Version 3.3.3</b></big>\n<font fgcolor="#FFFF0000"><b>*</b></font> (fix) Uppercase date string in pulled down status bar in case of All CAPS enabled tweak\n<font fgcolor="#FFFF0000"><b>*</b></font> (fix) Roaming data icons for 802d model\n<font fgcolor="#FF009000"><b>*</b></font> (new) Colored battery level from green to red based on charging level\n<font fgcolor="#FF009000"><b>*</b></font> (new) Condensed font face for time and battery charging level\n<font fgcolor="#FF009000"><b>*</b></font> (imp) All world languages implemented with hook instead of database change\n<font fgcolor="#FF009000"><b>*</b></font> (new) MIUI colored bar\n
+    <string name="change_log_text"><big><b>Version 3.3.4</b></big>\n<font fgcolor="#FFFF0000"><b>*</b></font> (fix) Volume button dysfunction in media applications\n<font fgcolor="#FFFF0000"><b>*</b></font> (fix) Spontaneous enabled colored weather option\n<font fgcolor="#FF009000"><b>*</b></font> (fix) Colored signal strength for 4 level indicators on 802d models now colored and have 5 levels\n<font fgcolor="#FF009000"><b>*</b></font> (imp) Choose date format for camera shot prefix\n<font fgcolor="#FF009000"><b>*</b></font> (imp) Colored battery and bar green until 50%, then from green to red with encreasing saturation\n<font fgcolor="#FF009000"><b>*</b></font> (imp) Screen area settings for Quick Settings pulldown\n
+\n<big><b>Version 3.3.3</b></big>\n<font fgcolor="#FFFF0000"><b>*</b></font> (fix) Uppercase date string in pulled down status bar in case of All CAPS enabled tweak\n<font fgcolor="#FFFF0000"><b>*</b></font> (fix) Roaming data icons for 802d model\n<font fgcolor="#FF009000"><b>*</b></font> (new) Colored battery level from green to red based on charging level\n<font fgcolor="#FF009000"><b>*</b></font> (new) Condensed font face for time and battery charging level\n<font fgcolor="#FF009000"><b>*</b></font> (imp) All world languages implemented with hook instead of database change\n<font fgcolor="#FF009000"><b>*</b></font> (new) MIUI colored bar\n
 \n<big><b>Version 3.3.2</b></big>\n<font fgcolor="#FFFF0000"><b>*</b></font> (fix) Call recording button appears even if tweak is disabled\n<font fgcolor="#FFFF0000"><b>*</b></font> (fix) Camera file prefix issue on Sense 6\n<font fgcolor="#FFFF0000"><b>*</b></font> (fix) Start application without Xposed - now link to XDA thread\n<font fgcolor="#FFFF0000"><b>*</b></font> (fix) Dual version check on Android 4.2\n
 \n<big><b>Version 3.3.1</b></big>\n<font fgcolor="#FF009000"><b>*</b></font> (new) Disable all CAPS (HTC feature) for lating alphabet languages\n<font fgcolor="#FF009000"><b>*</b></font> (new) Record button in CallScreen moved to bottom panel\n
 \n<big><b>Version 3.3.0</b></big>\n<font fgcolor="#FF009000"><b>*</b></font> (new) World languages tweak\n<font fgcolor="#FF009000"><b>*</b></font> (new) Restart notification after settings change\n<font fgcolor="#FF009000"><b>*</b></font> (new) Minimum Xposed version check\n<font fgcolor="#FF009000"><b>*</b></font> (new) Choose input method notification suppress\n
@@ -306,4 +307,32 @@ Manual records stored as default to My Recordings directory.\n<font fgcolor="#F
     <string name="logcat_info">Info</string>
     <string name="logcat_verbose">Verbose</string>
     <string name="logcat_warn">Warn</string>
+    <string name="prefix_option_0">No prefix</string>
+    <string name="prefix_option_1">2014</string>
+    <string name="prefix_option_2">2014‐52</string>
+    <string name="prefix_option_3">2014‐12</string>
+    <string name="prefix_option_4">2014‐12‐13</string>
+    <string name="prefix_option_5">2014‐12‐13‐16‐00</string>
+    <string name="prefix_option_6">2014‐12‐13‐16‐00‐00</string>
+    <string name="prefix_option_val1">yyyy</string>
+    <string name="prefix_option_val2">yyyy‐w</string>
+    <string name="prefix_option_val3">yyyy‐MM</string>
+    <string name="prefix_option_val4">yyyy‐MM‐dd</string>
+    <string name="prefix_option_val5">yyyy‐MM‐dd‐HH‐mm</string>
+    <string name="prefix_option_val6">yyyy‐MM‐dd‐HH‐mm‐ss</string>
+    <string name="swipe_option_0">QS by swiping right side of screen is disabled</string>
+    <string name="swipe_option_1">Swipe on 1/2 of screen</string>
+    <string name="swipe_option_2">Swipe on 1/3 of screen</string>
+    <string name="swipe_option_3">Swipe on 1/4 of screen</string>
+    <string name="swipe_option_4">Swipe on 1/5 of screen</string>
+    <string name="swipe_option_5">Swipe on 1/6 of screen</string>
+    <string name="swipe_option_6">Swipe on 1/7 of screen</string>
+    
+    <string name="swipe_option_val1">0.50F</string>
+    <string name="swipe_option_val2">0.3333333F</string>
+    <string name="swipe_option_val3">0.25F</string>
+    <string name="swipe_option_val4">0.20F</string>   
+    <string name="swipe_option_val5">0.1666666F</string>
+    <string name="swipe_option_val6">0.1428571F</string>
+
 </resources>

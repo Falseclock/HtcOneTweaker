@@ -96,5 +96,40 @@
         <item>@string/logcat_verbose</item>
         <item>@string/logcat_warn</item>
     </string-array>
-
+    <string-array name="prefix_option">
+        <item>@string/prefix_option_0</item>
+        <item>@string/prefix_option_1</item>
+        <item>@string/prefix_option_2</item>
+        <item>@string/prefix_option_3</item>
+        <item>@string/prefix_option_4</item>
+        <item>@string/prefix_option_5</item>
+        <item>@string/prefix_option_6</item>
+    </string-array>
+    <string-array name="prefix_option_val">
+        <item>@string/zero</item>
+        <item>@string/prefix_option_val1</item>
+        <item>@string/prefix_option_val2</item>
+        <item>@string/prefix_option_val3</item>
+        <item>@string/prefix_option_val4</item>
+        <item>@string/prefix_option_val5</item>
+        <item>@string/prefix_option_val6</item>
+    </string-array>
+    <string-array name="swipe_option">
+        <item>@string/swipe_option_0</item>
+        <item>@string/swipe_option_1</item>
+        <item>@string/swipe_option_2</item>
+        <item>@string/swipe_option_3</item>
+        <item>@string/swipe_option_4</item>
+        <item>@string/swipe_option_5</item>
+        <item>@string/swipe_option_6</item>
+        </string-array>
+    <string-array name="swipe_option_val">
+        <item>@string/zero</item>
+        <item>@string/swipe_option_val1</item>
+        <item>@string/swipe_option_val2</item>
+        <item>@string/swipe_option_val3</item>
+        <item>@string/swipe_option_val4</item>
+        <item>@string/swipe_option_val5</item>
+        <item>@string/swipe_option_val6</item>
+        </string-array>
 </resources>

@@ -10,17 +10,14 @@ import kz.virtex.htc.tweaker.Misc;
 import kz.virtex.htc.tweaker.R;
 import kz.virtex.htc.tweaker.XMain;
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.content.res.XModuleResources;
 import android.content.res.XResources;
 import android.graphics.Color;
 import android.graphics.Point;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
-import android.os.BatteryManager;
 import android.os.Build;
 import android.text.format.DateFormat;
 import android.view.Display;
@@ -28,12 +25,11 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.LinearLayout.LayoutParams;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.LinearLayout.LayoutParams;
 import de.robv.android.xposed.XC_MethodHook;
 import de.robv.android.xposed.XC_MethodReplacement;
 import de.robv.android.xposed.XposedHelpers;
@@ -45,7 +41,29 @@ public class SystemUI
 	private static LinearLayout miuiBar;
 	private static View miuiBarLeftSide;
 	private static View miuiBarRightSide;
-	
+
+	public static void handleColoredSIM(final LoadPackageParam paramLoadPackageParam)
+	{
+		findAndHookMethod("com.android.systemui.statusbar.policy.NetworkControllerDual", paramLoadPackageParam.classLoader, "updateIconBySlot", int.class, new XC_MethodHook()
+		{
+			@Override
+			protected void beforeHookedMethod(MethodHookParam param) throws Throwable
+			{
+				Class <?> TelephonyIconsDual = XposedHelpers.findClass("com.android.systemui.statusbar.policy.TelephonyIconsDual", paramLoadPackageParam.classLoader);
+				
+				int[] HTC_SIGNAL_S1_5LEVEL = (int[]) XposedHelpers.getStaticObjectField(TelephonyIconsDual, "HTC_SIGNAL_S1_5LEVEL");
+				int[] HTC_SIGNAL_S2_5LEVEL = (int[]) XposedHelpers.getStaticObjectField(TelephonyIconsDual, "HTC_SIGNAL_S2_5LEVEL");
+				int[] HTC_SIGNAL_S1_5LEVEL_R = (int[]) XposedHelpers.getStaticObjectField(TelephonyIconsDual, "HTC_SIGNAL_S1_5LEVEL_R");
+				int[] HTC_SIGNAL_S2_5LEVEL_R = (int[]) XposedHelpers.getStaticObjectField(TelephonyIconsDual, "HTC_SIGNAL_S2_5LEVEL_R");
+
+				XposedHelpers.setStaticObjectField(TelephonyIconsDual, "HTC_SIGNAL_S1_4LEVEL", HTC_SIGNAL_S1_5LEVEL);
+				XposedHelpers.setStaticObjectField(TelephonyIconsDual, "HTC_SIGNAL_S2_4LEVEL", HTC_SIGNAL_S2_5LEVEL);
+				XposedHelpers.setStaticObjectField(TelephonyIconsDual, "HTC_SIGNAL_S1_4LEVEL_R", HTC_SIGNAL_S1_5LEVEL_R);
+				XposedHelpers.setStaticObjectField(TelephonyIconsDual, "HTC_SIGNAL_S2_4LEVEL_R", HTC_SIGNAL_S2_5LEVEL_R);
+			}
+		});
+	}
+
 	public static void hookStatusBarMIUIBattery(LoadPackageParam paramLoadPackageParam)
 	{
 		findAndHookMethod("com.android.systemui.statusbar.phone.PhoneStatusBar", paramLoadPackageParam.classLoader, "makeStatusBarView", new XC_MethodHook()
@@ -55,14 +73,14 @@ public class SystemUI
 			{
 				ViewGroup mStatusBarView = (ViewGroup) XposedHelpers.getObjectField(param.thisObject, "mStatusBarView");
 				Context mContext = (Context) XposedHelpers.getObjectField(param.thisObject, "mContext");
-							
+
 				miuiBar = new LinearLayout(mContext);
 				RelativeLayout.LayoutParams miuiBarParams = new RelativeLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
 				miuiBarParams.addRule(RelativeLayout.ALIGN_PARENT_TOP, RelativeLayout.TRUE);
 				miuiBarParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT, RelativeLayout.TRUE);
 				miuiBar.setLayoutParams(miuiBarParams);
 				miuiBar.setBackgroundColor(Color.TRANSPARENT);
-				
+
 				miuiBarLeftSide = new View(mContext);
 				miuiBarLeftSide.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, 4, 0.5F));
 				miuiBarLeftSide.setBackgroundColor(Color.TRANSPARENT);
@@ -70,48 +88,53 @@ public class SystemUI
 				miuiBarRightSide = new View(mContext);
 				miuiBarRightSide.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, 4, 0.5F));
 				miuiBarRightSide.setBackgroundColor(Color.TRANSPARENT);
-				
+
 				miuiBar.addView(miuiBarLeftSide);
 				miuiBar.addView(miuiBarRightSide);
-				
-				mStatusBarView.addView(miuiBar,0,miuiBarParams);
+
+				mStatusBarView.addView(miuiBar, 0, miuiBarParams);
 			}
 		});
-		
+
 		findAndHookMethod("com.android.systemui.statusbar.policy.BatteryController", paramLoadPackageParam.classLoader, "onReceive", Context.class, Intent.class, new XC_MethodHook()
 		{
 			protected void afterHookedMethod(MethodHookParam param) throws Throwable
 			{
 				Context mContext = (Context) XposedHelpers.getObjectField(param.thisObject, "mContext");
-				
+
 				WindowManager wm = (WindowManager) mContext.getSystemService(Context.WINDOW_SERVICE);
 				Display display = wm.getDefaultDisplay();
 				Point size = new Point();
 				display.getSize(size);
 				int screenWidth = size.x;
-				
+
 				int level = XposedHelpers.getIntField(param.thisObject, "level");
 
 				Misc.x("screen width: " + screenWidth);
-				Misc.x("Battery level: " + level);				
-				Misc.x("layout width: " + level*screenWidth/100);
-				Misc.x("left precent: " + (float)level/100);
-				Misc.x("right precent: " + (float)(1.0F - (float)level/100));
-								
-				miuiBarLeftSide.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, 4, (float)level/100));
-				miuiBarRightSide.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, 4, (float)(1.0F - (float)level/100)));
-				
+				Misc.x("Battery level: " + level);
+				Misc.x("layout width: " + level * screenWidth / 100);
+				Misc.x("left precent: " + (float) level / 100);
+				Misc.x("right precent: " + (float) (1.0F - (float) level / 100));
+
+				miuiBarLeftSide.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, 4, (float) level / 100));
+				miuiBarRightSide.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, 4, (float) (1.0F - (float) level / 100)));
+
 				float[] hsv = new float[3];
-				hsv[0] = level;
-				hsv[1] = 0.5F;
+				if (level >= 50) {
+					hsv[0] = 100;
+					hsv[1] = 0.5F;					
+				} else {
+					hsv[0] = level > 0 ? ((float)level * 2.0F) - 2.0F : 0.0F;
+					hsv[1] = level > 0 ? (1.0F - ((float)level * 0.5F / (float)50)) : 1.0F;
+				}
 				hsv[2] = 1.0F;
 				int color = Color.HSVToColor(hsv);
-				
+
 				miuiBarRightSide.setBackgroundColor(color);
 			}
 		});
 	}
-	
+
 	@SuppressLint("DefaultLocale")
 	public static void hookDateCase(LoadPackageParam paramLoadPackageParam)
 	{
@@ -122,15 +145,15 @@ public class SystemUI
 			{
 				TextView date = (TextView) param.thisObject;
 				CharSequence text = date.getText();
-				
+
 				Misc.x("updateClock happen: " + DateFormat.format("EEE MMM d HH:mm:ss zz yyyy", new Date()).toString());
-				
+
 				date.setText(String.valueOf(text.charAt(0)).toUpperCase() + text.subSequence(1, text.length()));
 				date.setAllCaps(false);
 			}
 		});
 	}
-	
+
 	public static void hookBarFont(LoadPackageParam paramLoadPackageParam)
 	{
 		findAndHookMethod("com.android.systemui.statusbar.policy.Clock", paramLoadPackageParam.classLoader, "updateClock", new XC_MethodHook()
@@ -141,7 +164,7 @@ public class SystemUI
 				XposedHelpers.callMethod(param.thisObject, "setTypeface", Typeface.create("sans-serif-condensed", Typeface.NORMAL));
 			}
 		});
-		
+
 		findAndHookMethod("com.android.systemui.statusbar.policy.BatteryController", paramLoadPackageParam.classLoader, "onReceive", Context.class, Intent.class, new XC_MethodHook()
 		{
 			@SuppressWarnings("unchecked")
@@ -149,12 +172,12 @@ public class SystemUI
 			protected void afterHookedMethod(MethodHookParam param) throws Throwable
 			{
 				ArrayList<TextView> mLabelViews = (ArrayList<TextView>) XposedHelpers.getObjectField(param.thisObject, "mLabelViews");
-				TextView localObject = (TextView)mLabelViews.get(0);
+				TextView localObject = (TextView) mLabelViews.get(0);
 				localObject.setTypeface(Typeface.create("sans-serif-condensed", Typeface.NORMAL));
 			}
 		});
 	}
-	
+
 	public static void hookBatteryController(LoadPackageParam paramLoadPackageParam)
 	{
 		findAndHookMethod("com.android.systemui.statusbar.policy.BatteryController", paramLoadPackageParam.classLoader, "onReceive", Context.class, Intent.class, new XC_MethodHook()
@@ -171,14 +194,18 @@ public class SystemUI
 				Drawable battery = localImageView.getDrawable();
 
 				float[] hsv = new float[3];
-				hsv[0] = level;
-				hsv[1] = 0.5F;
+				if (level >= 50) {
+					hsv[0] = 100;
+					hsv[1] = 0.5F;					
+				} else {
+					hsv[0] = level > 0 ? ((float)level * 2.0F) - 2.0F : 0.0F;
+					hsv[1] = level > 0 ? (1.0F - ((float)level * 0.5F / (float)50)) : 1.0F;
+				}
 				hsv[2] = 1.0F;
 				int color = Color.HSVToColor(hsv);
 
 				battery.setColorFilter(color, android.graphics.PorterDuff.Mode.SRC_ATOP);
-				
-				
+
 			}
 		});
 	}
@@ -265,7 +292,7 @@ public class SystemUI
 		 */
 	}
 
-	public static void hookOnTouchEvent(LoadPackageParam paramLoadPackageParam)
+	public static void hookOnTouchEvent(LoadPackageParam paramLoadPackageParam, final String string)
 	{
 		findAndHookMethod("com.android.systemui.statusbar.phone.NotificationPanelView", paramLoadPackageParam.classLoader, "onTouchEvent", "android.view.MotionEvent", new XC_MethodHook()
 		{
@@ -275,8 +302,19 @@ public class SystemUI
 				MotionEvent paramMotionEvent = (MotionEvent) param.args[0];
 
 				// TODO: landscape mode
+				
+				Context context = (Context) XposedHelpers.callMethod(param.thisObject, "getContext");
+				WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+				Display display = wm.getDefaultDisplay();
+				Point size = new Point();
+				display.getSize(size);
+				int screenWidth = size.x;
+				
+				float option = Float.parseFloat(string);
+				
+				float limit = screenWidth - (screenWidth * option);
 
-				if (paramMotionEvent.getY(0) < 100 && paramMotionEvent.getX(0) > 1000)
+				if (paramMotionEvent.getY(0) < 100 && paramMotionEvent.getX(0) >= limit)
 				{
 					Object StatusBar = XposedHelpers.getObjectField(param.thisObject, "mStatusBar");
 					XposedHelpers.callMethod(StatusBar, "flipToSettings");
@@ -1624,7 +1662,7 @@ public class SystemUI
 
 		}
 		// 802d KK 3GR END
-		
+
 		// 802d KK 1XR
 		try
 		{
@@ -1670,7 +1708,7 @@ public class SystemUI
 
 		}
 		// 802d KK 1XR END
-		
+
 		// 802d KK 3GR1XR
 		try
 		{
@@ -1852,7 +1890,6 @@ public class SystemUI
 					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_3g4_r_1x4signal4), Const.TWEAK_COLOR_SIM1, XMain.pref);
 				}
 			});
-
 
 		}
 		catch (Throwable t)

@@ -62,7 +62,7 @@ public class Const
 	public static final String TWEAK_EXPANDED_NOTIFICATIONS = "tweak_expanded_notifications";
 	public static final String TWEAK_COLOR_SIM1 = "tweak_color_sim1";
 	public static final String TWEAK_COLOR_SIM2 = "tweak_color_sim2";
-	public static final String TWEAK_QUICK_PULLDOWN = "tweak_quick_pulldown";
+	public static final String TWEAK_QUICK_SETTINGS= "tweak_quick_settings";
 	public static final String TWEAK_DATA_ICONS = "tweak_data_icons";
 	public static final String TWEAK_DATA_ICONS_COLOR = "tweak_data_icons_color";
 	public static final String TWEAK_COLORED_WIFI = "tweak_colored_wifi";
@@ -71,7 +71,7 @@ public class Const
 	public static final String TWEAK_SMS_NOTIFY_TO_DIALOG = "tweak_sms_notify_to_dialog";
 	public static final String TWEAK_SMS_HIDE_BADGE = "tweak_sms_hide_badge";
 	public static final String TWEAK_COLOR_CALL_INDICATOR= "tweak_color_call_indicator";
-	public static final String TWEAK_ENABLE_PHOTO_PREFIX= "tweak_enable_photo_prefix";
+	public static final String TWEAK_PHOTO_PREFIX= "tweak_photo_prefix";
 	public static final String TWEAK_OLD_SENSE_DIALER= "tweak_old_sense_dialer";
 	public static final String TWEAK_COLORED_BATTERY= "tweak_colored_battery";
 	public static final String TWEAK_STATUSBAR_CONDENSED = "tweak_statusbar_condensed";

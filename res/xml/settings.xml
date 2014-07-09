@@ -7,12 +7,10 @@
 
     <com.htc.preference.HtcPreferenceCategory android:title="@string/systemBuildProperties" >
         <kz.virtex.htc.tweaker.preference.RecorderPreference
-            android:id="@id/enableCallRecording"
             android:key="tweak_call_recording"
             android:summary="@string/enableCallRecordingSummary"
             android:title="@string/enableCallRecordingTitle" />
         <kz.virtex.htc.tweaker.preference.RecorderPreference
-            android:id="@id/enableAutoRecording"
             android:key="tweak_call_recording_auto"
             android:summary="@string/enableAutoRecordingSummary"
             android:title="@string/enableAutoRecordingTitle" />
@@ -53,7 +51,6 @@
                     android:title="@string/RecordingDeleteTitle" />
 
                 <kz.virtex.htc.tweaker.preference.NumberPickerPreference
-                    android:id="@id/RecordingDeleteCount"
                     android:entries="@array/RecordingDeleteCount"
                     android:key="tweak_call_recording_auto_delete_count"
                     android:summary="@string/save_last_summary"
@@ -61,7 +58,6 @@
                     tweaker:defaultValue="50"
                     tweaker:hint="@string/messages_of" />
                 <kz.virtex.htc.tweaker.preference.NumberPickerPreference
-                    android:id="@id/RecordingDeleteInterval"
                     android:entries="@array/RecordingDeleteInterval"
                     android:key="tweak_call_recording_auto_delete_interval"
                     android:summary="@string/delete_after_summary"
@@ -77,29 +73,27 @@
             android:summary="@string/SystemScreenSummary"
             android:title="@string/SystemScreenTitle" >
             <com.htc.preference.HtcSwitchPreference
-                android:id="@id/sdcardPermission"
                 android:key="tweak_fix_sdcard_permission"
                 android:summary="@string/sdcardPermissionSummary"
                 android:title="@string/sdcardPermissionTitle" />
             <com.htc.preference.HtcSwitchPreference
-                android:id="@id/allNotificationsExpanded"
                 android:key="tweak_expanded_notifications"
                 android:summary="@string/allNotificationsExpandedSummary"
                 android:title="@string/allNotificationsExpandedTitle" />
             <com.htc.preference.HtcSwitchPreference
-                android:id="@id/headsUpNotifications"
                 android:key="tweak_heads_up_notifications"
                 android:summary="@string/headsUpNotificationsSummary"
                 android:title="@string/headsUpNotificationsTitle" />
             <com.htc.preference.HtcSwitchPreference
-                android:id="@id/enablePopupChar"
                 android:key="tweak_popup_keyboard"
                 android:summary="@string/enablePopupCharSummary"
                 android:title="@string/enablePopupCharTitle" />
-            <com.htc.preference.HtcSwitchPreference
-                android:id="@id/quickPullDown"
-                android:key="tweak_quick_pulldown"
-                android:summary="@string/quickPullDownSummary"
+
+            <com.htc.preference.HtcListPreference
+                android:defaultValue="0"
+                android:entries="@array/swipe_option"
+                android:entryValues="@array/swipe_option_val"
+                android:key="tweak_quick_settings"
                 android:title="@string/quickPullDownTitle" />
 
             <com.htc.preference.HtcPreferenceScreen
@@ -107,13 +101,11 @@
                 android:summary="@string/LedScreenSummary"
                 android:title="@string/LedScreenTitle" >
                 <com.htc.preference.HtcSwitchPreference
-                    android:id="@id/flashlightDuringCharging"
                     android:key="tweak_charging_flash"
                     android:summary="@string/flashlightDuringChargingSummary"
                     android:title="@string/flashlightDuringChargingTitle" />
 
                 <kz.virtex.htc.tweaker.preference.NumberPickerPreference
-                    android:id="@id/flashlightTimeout"
                     android:key="tweak_flash_timeout"
                     android:summary="@string/flashlightTimeoutSummary"
                     android:title="@string/flashlightTimeoutTitle"
@@ -123,7 +115,6 @@
                     tweaker:rangeStart="0" />
 
                 <com.htc.preference.HtcSwitchPreference
-                    android:id="@id/disableChargindLed"
                     android:key="tweak_charging_led"
                     android:summary="@string/chargingLedSummary"
                     android:title="@string/chargingLedTitle" />
@@ -133,12 +124,10 @@
                 android:key="dual_settings_screen"
                 android:title="@string/dual_settings_title" >
                 <com.htc.preference.HtcEditTextPreference
-                    android:id="@id/slot1"
                     android:key="slot_1_user_text"
                     android:summary=""
                     android:title="@string/slot1_name_title" />
                 <com.htc.preference.HtcEditTextPreference
-                    android:id="@id/slot2"
                     android:key="slot_2_user_text"
                     android:summary=""
                     android:title="@string/slot2_name_title" />
@@ -166,33 +155,26 @@
             android:summary="@string/NotificationScreenSummary"
             android:title="@string/NotificationScreenTitle" >
             <com.htc.preference.HtcCheckBoxPreference
-                android:id="@id/disableDeliveryNotification"
                 android:key="tweak_delivery_notification"
                 android:summary="@string/disableDeliveryNotificationSummary"
                 android:title="@string/disableDeliveryNotificationTitle" />
             <com.htc.preference.HtcCheckBoxPreference
-                android:id="@id/disableADBNotification"
                 android:key="tweak_adb_notify"
                 android:title="@string/disableADBNotificationTitle" />
             <com.htc.preference.HtcCheckBoxPreference
-                android:id="@id/disableUSBNotification"
                 android:key="tweak_usb_notify"
                 android:title="@string/disableUSBNotificationTitle" />
             <com.htc.preference.HtcCheckBoxPreference
-                android:id="@id/disableSyncNotification"
                 android:key="tweak_sync_notify"
                 android:title="@string/disableSyncNotificationTitle" />
             <com.htc.preference.HtcCheckBoxPreference
-                android:id="@id/disableMTPNotification"
                 android:key="tweak_mtp_notify"
                 android:title="@string/disableMTPNotificationTitle" />
             <com.htc.preference.HtcCheckBoxPreference
-                android:id="@id/disableRoamingDataNotification"
                 android:key="tweak_roaming_data_notify"
                 android:summary="@string/disableRoamingDataNotificationSummary"
                 android:title="@string/disableRoamingDataNotification" />
             <com.htc.preference.HtcCheckBoxPreference
-                android:id="@id/disableInputMethodNotification"
                 android:key="tweak_input_method_notify"
                 android:summary="@string/disableInputMethodNotificationSummary"
                 android:title="@string/disableInputMethodNotificationTitle" />
@@ -206,7 +188,6 @@
                 android:summary="@string/DataScreenSummary"
                 android:title="@string/DataScreenTitle" >
                 <com.htc.preference.HtcSwitchPreference
-                    android:id="@id/enableColoredSimLevel"
                     android:key="tweak_colored_sim"
                     android:summary="@string/enableColoredSimLevelSummary"
                     android:title="@string/enableColoredSimLevelTitle" />
@@ -239,7 +220,6 @@
                     android:title="@string/ColoredDataIconsColorTitle" />
 
                 <com.htc.preference.HtcSwitchPreference
-                    android:id="@id/enableColoredWiFi"
                     android:key="tweak_colored_wifi"
                     android:summary="@string/enableColoredWiFiSummary"
                     android:title="@string/enableColoredWiFiTitle" />
@@ -255,19 +235,16 @@
                 android:summary="@string/ContactDialScreenSummary"
                 android:title="@string/ContactDialScreenTitle" >
                 <com.htc.preference.HtcSwitchPreference
-                    android:id="@id/enableOldSenseDialer"
                     android:key="tweak_old_sense_dialer"
                     android:summary="@string/enableOldSenseDialerSummary"
                     android:title="@string/enableOldSenseDialerTitle" />
 
                 <kz.virtex.htc.tweaker.preference.DialerButtonPreference
-                    android:id="@id/enableDialerHighLight"
                     android:key="tweak_dialer_btn"
                     android:summary="@string/enableDialerHighLightSummary"
                     android:title="@string/enableDialerHighLightTitle" />
 
                 <com.htc.preference.HtcSwitchPreference
-                    android:id="@id/enableColorCallIndicator"
                     android:icon="@drawable/icon_indicator_incoming_light_s"
                     android:key="tweak_color_call_indicator"
                     android:summary="@string/enableColorCallIndicatorSummary"
@@ -275,24 +252,20 @@
             </com.htc.preference.HtcPreferenceScreen>
             <com.htc.preference.HtcPreferenceScreen android:title="@string/MessagingScreenTitle" >
                 <com.htc.preference.HtcSwitchPreference
-                    android:id="@id/enableUnreadHighLight"
                     android:key="tweak_sms_unread_highlight"
                     android:summary="@string/enableUnreadHighLightSummary"
                     android:title="@string/enableUnreadHighLightTitle" />
                 <com.htc.preference.HtcSwitchPreference
-                    android:id="@id/enableHideSMSBadge"
                     android:key="tweak_sms_hide_badge"
                     android:summary="@string/enableHideSMSBadgeSummary"
                     android:title="@string/enableHideSMSBadgeTitle" />
                 <com.htc.preference.HtcSwitchPreference
-                    android:id="@id/enableSMSNotifyToDialog"
                     android:key="tweak_sms_notify_to_dialog"
                     android:summary="@string/enableSMSNotifyToDialogSummary"
                     android:title="@string/enableSMSNotifyToDialogTitle" />
             </com.htc.preference.HtcPreferenceScreen>
 
             <com.htc.preference.HtcSwitchPreference
-                android:id="@id/enableColoredWeather"
                 android:key="tweak_colored_weather"
                 android:summary="@string/enableColoredWeatherSummary"
                 android:title="@string/enableColoredWeatherTitle" />
@@ -318,22 +291,22 @@
             android:key="other_settings_screen"
             android:title="@string/otherSettingsTitle" >
             <com.htc.preference.HtcSwitchPreference
-                android:id="@id/enableSIP"
                 android:key="tweak_enable_SIP"
                 android:summary="@string/enableSIPSummary"
                 android:title="@string/enableSIPTitle" />
-            <com.htc.preference.HtcSwitchPreference
-                android:id="@id/enablePhotoPrefix"
-                android:key="tweak_enable_photo_prefix"
-                android:summary="@string/enablePhotoPrefixSummary"
+
+            <com.htc.preference.HtcListPreference
+                android:defaultValue="0"
+                android:entries="@array/prefix_option"
+                android:entryValues="@array/prefix_option_val"
+                android:key="tweak_photo_prefix"
                 android:title="@string/enablePhotoPrefixTitle" />
+
             <com.htc.preference.HtcSwitchPreference
-                android:id="@id/enableAllLanguages"
                 android:key="tweak_enable_all_languages"
                 android:summary="@string/enableAllLanguagesSummary"
                 android:title="@string/enableAllLanguagesTitle" />
             <com.htc.preference.HtcSwitchPreference
-                android:id="@id/disableAllCaps"
                 android:key="tweak_disable_all_caps"
                 android:summary="@string/disableAllCapsSummary"
                 android:title="@string/disableAllCapsTitle" />

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="kz.virtex.htc.tweaker"
-    android:versionCode="43"
-    android:versionName="3.3.3" >
+    android:versionCode="44"
+    android:versionName="3.3.4" >
 
     <uses-sdk
         android:maxSdkVersion="19"
@@ -90,7 +90,8 @@
                 <action android:name="tweaker.intent.action.DELETE_MESSAGE" />
                 <action android:name="tweaker.intent.action.CALL_TO_CONTACT" />
                 <action android:name="tweaker.intent.action.SETTINGS" />
-                </intent-filter>
+                <action android:name="tweaker.intent.action.VOLUME_KEY" />
+            </intent-filter>
         </service>
 
         <receiver
@@ -99,7 +100,6 @@
             android:permission="android.permission.RECEIVE_BOOT_COMPLETED" >
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
-
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </receiver>

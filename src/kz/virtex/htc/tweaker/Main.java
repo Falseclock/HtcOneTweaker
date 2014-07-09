@@ -260,10 +260,36 @@ public class Main extends HtcPreferenceActivity implements HtcPreference.OnPrefe
 	@SuppressLint("SimpleDateFormat")
 	private void setupCamera()
 	{
-		HtcSwitchPreference tweak = (HtcSwitchPreference) findPreference(Const.TWEAK_ENABLE_PHOTO_PREFIX);
-		CharSequence summ = tweak.getSummary();
-		String date = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
-		tweak.setSummary(date + "_" + summ);
+		final HtcListPreference tweak = (HtcListPreference) findPreference(Const.TWEAK_PHOTO_PREFIX);
+		
+		String value = preferences.getString(Const.TWEAK_PHOTO_PREFIX, "0");
+		if (!value.equals("0")) {
+			String date = new SimpleDateFormat(value).format(new Date());
+			tweak.setSummary(date + "_" + getResources().getString(R.string.enablePhotoPrefixSummary));
+		}
+		tweak.setOnPreferenceChangeListener(new HtcPreference.OnPreferenceChangeListener()
+		{
+			public boolean onPreferenceChange(HtcPreference preference, Object object)
+			{
+				String value = object.toString();
+				
+				if (!value.equals("0")) {
+					String date = new SimpleDateFormat(value).format(new Date());
+					tweak.setSummary(date + "_" + getResources().getString(R.string.enablePhotoPrefixSummary));
+				} else {
+					tweak.setSummary(getResources().getString(R.string.prefix_option_0));
+				}
+				
+				return true;
+			}
+		});
+		
+		//CharSequence summ = tweak.getSummary();
+		//String date = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
+		//tweak.setSummary(date + "_" + summ);
+		// enablePhotoPrefixSummary
+		
+		
 	}
 
 	private void setupSense6()
@@ -324,14 +350,14 @@ public class Main extends HtcPreferenceActivity implements HtcPreference.OnPrefe
 
 		if (Misc.isPackageInstalled(Const.WEATHER_PACKAGE_NAME, weatherPref.getContext()))
 		{
-			weatherPref.setChecked(true);
-			putBoolean(Const.TWEAK_COLORED_WEATHER, true);
+			//weatherPref.setChecked(true);
+			//putBoolean(Const.TWEAK_COLORED_WEATHER, true);
 			storeWeatherApkPath();
 		}
 		else
 		{
-			weatherPref.setChecked(false);
-			putBoolean(Const.TWEAK_COLORED_WEATHER, false);
+			//weatherPref.setChecked(false);
+			//putBoolean(Const.TWEAK_COLORED_WEATHER, false);
 		}
 	}
 
