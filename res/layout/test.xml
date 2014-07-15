@@ -8,40 +8,24 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
 
-        <View
-            android:id="@+id/view1"
+        <RelativeLayout
+            android:id="@id/test1"
             android:layout_width="wrap_content"
-            android:layout_height="40dip"
-            android:layout_weight="0.60"
-            android:background="@color/button_call_font_color_dual" />
+            android:layout_height="4px"
+            android:layout_weight="25" />
 
-        <View
-            android:id="@+id/view2"
+        <RelativeLayout
+            android:id="@id/test2"
             android:layout_width="wrap_content"
-            android:layout_height="40dip"
-            android:layout_weight="0.40"
+            android:layout_height="4px"
+            android:layout_weight="50"
             android:background="@color/red" />
 
+        <RelativeLayout
+            android:id="@id/test3"
+            android:layout_width="wrap_content"
+            android:layout_height="4px"
+            android:layout_weight="25"/>
         </LinearLayout>
-
-    <TableRow
-        android:id="@+id/tableRow1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.60" >
-
-        <TextView
-            android:id="@+id/textView1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="CPU load:" />
-
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="38%" />
-
-    </TableRow>
 
 </LinearLayout>

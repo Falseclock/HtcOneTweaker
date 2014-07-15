@@ -121,8 +121,7 @@
         <item>@string/swipe_option_3</item>
         <item>@string/swipe_option_4</item>
         <item>@string/swipe_option_5</item>
-        <item>@string/swipe_option_6</item>
-        </string-array>
+    </string-array>
     <string-array name="swipe_option_val">
         <item>@string/zero</item>
         <item>@string/swipe_option_val1</item>
@@ -130,6 +129,21 @@
         <item>@string/swipe_option_val3</item>
         <item>@string/swipe_option_val4</item>
         <item>@string/swipe_option_val5</item>
-        <item>@string/swipe_option_val6</item>
-        </string-array>
+    </string-array>
+    <string-array name="swipe_side">
+        <item>@string/right</item>
+        <item>@string/left</item>
+    </string-array>
+    <string-array name="swipe_side_val">
+        <item>@string/zero</item>
+        <item>@string/one</item>
+    </string-array>
+    <string-array name="showSimTitles">
+        <item>@string/sim1</item>
+        <item>@string/sim2</item>
+    </string-array>
+    <string-array name="showSimKeys">
+        <item>@string/sim1Key</item>
+        <item>@string/sim2Key</item>
+    </string-array>
 </resources>

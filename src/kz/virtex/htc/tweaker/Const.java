@@ -2,7 +2,7 @@ package kz.virtex.htc.tweaker;
 
 public class Const
 {
-	public static final boolean DEBUG = false;
+	public static final boolean DEBUG = true;
 	public static final String TAG = "HTC_Tweaker";
 	
 	public static final String PACKAGE_NAME = "kz.virtex.htc.tweaker";
@@ -24,6 +24,10 @@ public class Const
 	public static final String TWEAK_CALL_REC_AUTO_DELETE_INTERVAL = "tweak_call_recording_auto_delete_interval"; 
 	public static final String TWEAK_CALL_REC_AUTO_DELETE_COUNT = "tweak_call_recording_auto_delete_count"; 
 	public static final String TWEAK_CALL_REC_AUTO_LAST_DELETE = "tweak_call_recording_auto_last_delete"; 
+	public static final String TWEAK_SHOW_SIM_CARD = "tweak_show_sim_card"; 
+	public static final String TWEAK_SHOW_SIM_CARD_SMS = "tweak_show_sim_card_sms"; 
+	
+	
 	
 	// FULL restart tweaks
 	public static final String TWEAK_ENABLE_ALL_LANGUAGES= "tweak_enable_all_languages";
@@ -76,7 +80,8 @@ public class Const
 	public static final String TWEAK_COLORED_BATTERY= "tweak_colored_battery";
 	public static final String TWEAK_STATUSBAR_CONDENSED = "tweak_statusbar_condensed";
 	public static final String TWEAK_MIUI_BATTERY = "tweak_miui_battery";
-	
+	public static final String TWEAK_STOCK_BATTERY = "tweak_stock_battery";
+	public static final String TWEAK_QUICK_SETTINGS_SIDE = "tweak_quick_settings_side";
 	
 	public static final String GUI_SCREEN_KEY = "gui_screen_key";
 	public static final String DATA_SCREEN_KEY = "data_screen_key";
@@ -86,8 +91,7 @@ public class Const
 	public static final String TWEAK_CALL_REC_AUTO_SCREEN = "autorecording_settings_screen"; 
 	public static final String TWEAK_CALL_REC_AUTO_DELETE_CAT = "autorecording_delete_cat"; 
 	public static final String MEDIA_CONTROL_CAT = "media_control_cat"; 
-	
-	
+	public static final String QUICK_SETTINGS_CAT = "qs_category"; 
 	
 	
 	public static final int[] tweak_color_sim1 = { R.drawable.cdma_stat_sys_s1_5signal_0, R.drawable.cdma_stat_sys_s1_5signal_1, R.drawable.cdma_stat_sys_s1_5signal_2, R.drawable.cdma_stat_sys_s1_5signal_3, R.drawable.cdma_stat_sys_s1_5signal_4, R.drawable.cdma_stat_sys_s1_5signal_5, R.drawable.cdma_stat_sys_s1_5signal_null };

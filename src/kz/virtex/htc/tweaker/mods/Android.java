@@ -22,6 +22,20 @@ public class Android
 	private static HashMap<String, Integer> mapTweak;
 	private static HashMap<Integer, String> mapWeather;
 
+	public static void hookDebugFlag()
+	{
+		final Class<?> PowerManagerService = XposedHelpers.findClass("com.htc.htcjavaflag.HtcDebugFlag", null);
+
+		XposedHelpers.findAndHookMethod(PowerManagerService, "getHtcDebugFlag", new XC_MethodReplacement()
+		{
+			@Override
+			protected Object replaceHookedMethod(MethodHookParam param) throws Throwable
+			{
+				return Boolean.valueOf(Const.DEBUG);
+			}
+		});
+	}
+	
 	public static void hookAndroidLog()
 	{
 		final Class<?> Log = XposedHelpers.findClass("android.util.Log", null);

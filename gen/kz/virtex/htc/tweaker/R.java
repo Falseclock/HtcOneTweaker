@@ -28,8 +28,12 @@ public final class R {
         public static final int media_option_val=0x7f05000d;
         public static final int prefix_option=0x7f050011;
         public static final int prefix_option_val=0x7f050012;
+        public static final int showSimKeys=0x7f050018;
+        public static final int showSimTitles=0x7f050017;
         public static final int swipe_option=0x7f050013;
         public static final int swipe_option_val=0x7f050014;
+        public static final int swipe_side=0x7f050015;
+        public static final int swipe_side_val=0x7f050016;
     }
     public static final class attr {
         /** <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
@@ -388,24 +392,24 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int switch_thumb_disabled_holo_light=0x7f0200e4;
         public static final int switch_thumb_holo_light=0x7f0200e5;
         public static final int switch_thumb_pressed_holo_light=0x7f0200e6;
+        public static final int test=0x7f0200e7;
     }
     public static final class id {
         public static final int RecordingButton=0x7f060002;
-        public static final int author=0x7f060008;
-        public static final int change_log_text=0x7f060004;
+        public static final int author=0x7f06000b;
+        public static final int change_log_text=0x7f060007;
         public static final int dark=0x7f060001;
-        public static final int implemented=0x7f060009;
+        public static final int implemented=0x7f06000c;
         public static final int light=0x7f060000;
-        public static final int pager=0x7f06000a;
-        public static final int pager_title_strip=0x7f06000b;
-        public static final int scroll=0x7f060003;
-        public static final int tableRow1=0x7f06000e;
-        public static final int textView1=0x7f060005;
-        public static final int textView2=0x7f06000f;
-        public static final int title=0x7f060006;
-        public static final int version=0x7f060007;
-        public static final int view1=0x7f06000c;
-        public static final int view2=0x7f06000d;
+        public static final int pager=0x7f06000d;
+        public static final int pager_title_strip=0x7f06000e;
+        public static final int scroll=0x7f060006;
+        public static final int test1=0x7f060003;
+        public static final int test2=0x7f060004;
+        public static final int test3=0x7f060005;
+        public static final int textView1=0x7f060008;
+        public static final int title=0x7f060009;
+        public static final int version=0x7f06000a;
     }
     public static final class layout {
         public static final int about_change_log=0x7f030000;
@@ -452,6 +456,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int NotificationScreenSummary=0x7f090040;
         public static final int NotificationScreenTitle=0x7f090041;
         public static final int PhoneticSet=0x7f09007e;
+        public static final int QuickPullDownCat=0x7f090115;
         public static final int RecordingCallerAll=0x7f090088;
         public static final int RecordingCallerByDate=0x7f09008f;
         public static final int RecordingCallerKnown=0x7f090089;
@@ -612,6 +617,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int implemented=0x7f0900c0;
         public static final int incoming=0x7f090093;
         public static final int land_qwerty_rus=0x7f09005a;
+        public static final int left=0x7f090113;
         public static final int light_settings=0x7f090057;
         public static final int logcatFilterSummary=0x7f0900f2;
         public static final int logcatFilterTitle=0x7f0900f1;
@@ -646,6 +652,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int prefix_option_val4=0x7f090102;
         public static final int prefix_option_val5=0x7f090103;
         public static final int prefix_option_val6=0x7f090104;
+        public static final int quickPullDownSideTitle=0x7f090112;
         public static final int quickPullDownSummary=0x7f090091;
         public static final int quickPullDownTitle=0x7f090092;
         public static final int qwerty_rus=0x7f090059;
@@ -655,6 +662,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int recordingSeparateDir=0x7f090079;
         public static final int restartRequired=0x7f0900d4;
         public static final int restartRequiredSummary=0x7f0900d5;
+        public static final int right=0x7f090114;
         public static final int saturation_settings=0x7f090056;
         public static final int save_last=0x7f090096;
         public static final int save_last_summary=0x7f09009e;
@@ -662,6 +670,12 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int sdcardPermissionTitle=0x7f0900b9;
         public static final int settingsAutoRecordingTitle=0x7f090030;
         public static final int seven=0x7f09000b;
+        public static final int showSimSMSTitle=0x7f090117;
+        public static final int showSimTitle=0x7f090116;
+        public static final int sim1=0x7f090118;
+        public static final int sim1Key=0x7f09011a;
+        public static final int sim2=0x7f090119;
+        public static final int sim2Key=0x7f09011b;
         public static final int six=0x7f09000a;
         public static final int sixty=0x7f090011;
         public static final int slot1_name_title=0x7f090080;
@@ -669,19 +683,19 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int source_code=0x7f0900c8;
         public static final int statusbarCondensedSummary=0x7f0900ed;
         public static final int statusbarCondensedTitle=0x7f0900ee;
+        public static final int stockBatterySummary=0x7f090111;
+        public static final int stockBatteryTitle=0x7f090110;
         public static final int swipe_option_0=0x7f090105;
         public static final int swipe_option_1=0x7f090106;
         public static final int swipe_option_2=0x7f090107;
         public static final int swipe_option_3=0x7f090108;
         public static final int swipe_option_4=0x7f090109;
         public static final int swipe_option_5=0x7f09010a;
-        public static final int swipe_option_6=0x7f09010b;
-        public static final int swipe_option_val1=0x7f09010c;
-        public static final int swipe_option_val2=0x7f09010d;
-        public static final int swipe_option_val3=0x7f09010e;
-        public static final int swipe_option_val4=0x7f09010f;
-        public static final int swipe_option_val5=0x7f090110;
-        public static final int swipe_option_val6=0x7f090111;
+        public static final int swipe_option_val1=0x7f09010b;
+        public static final int swipe_option_val2=0x7f09010c;
+        public static final int swipe_option_val3=0x7f09010d;
+        public static final int swipe_option_val4=0x7f09010e;
+        public static final int swipe_option_val5=0x7f09010f;
         public static final int systemBuildProperties=0x7f09001e;
         public static final int ten=0x7f09000e;
         public static final int thanks=0x7f0900bf;

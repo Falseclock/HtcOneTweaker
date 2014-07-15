@@ -170,10 +170,82 @@ public class Main extends HtcPreferenceActivity implements HtcPreference.OnPrefe
 		setupSlotSaturation();
 		setupMediaKey();
 		setupLogact();
-		
+		setupBattery();
+		setupQS();
+		setupSimShow(Const.TWEAK_SHOW_SIM_CARD);
+		setupSimShow(Const.TWEAK_SHOW_SIM_CARD_SMS);
 		removeSettings();
 	}
-	
+
+	private void setupSimShow(final String key)
+	{
+		final String[] optional = new String[2];
+		String slot1_name = Settings.System.getString(getContentResolver(), "slot_1_user_text");
+		String slot2_name = Settings.System.getString(getContentResolver(), "slot_2_user_text");
+
+		if (TextUtils.isEmpty(slot1_name))
+			optional[0] = getResources().getString(R.string.preferred_network_1);
+		else
+			optional[0]= slot1_name;
+		
+		if (TextUtils.isEmpty(slot2_name))
+			optional[1] = getResources().getString(R.string.preferred_network_2);
+		else
+			optional[1]= slot2_name;
+		
+		
+		final MultiCheckPreference pref = (MultiCheckPreference) findPreference(key);
+		changeFilterSummary(pref, pref.rows, optional);
+
+		pref.setOnPreferenceChangeListener(new HtcPreference.OnPreferenceChangeListener()
+		{
+			@SuppressWarnings("unchecked")
+			public boolean onPreferenceChange(HtcPreference preference, Object object)
+			{
+				changeFilterSummary((MultiCheckPreference) preference, (ArrayList<Row>) object, optional);
+
+				ArrayList<Row> rows = (ArrayList<Row>) object;
+
+				for (int i = 0; i < rows.size(); i++)
+				{
+					Settings.System.putInt(getContentResolver(), key + "_" + rows.get(i).getKey(), Misc.toInt(rows.get(i).getState()));
+				}
+
+				return true;
+			}
+		});
+	}
+
+	private void setupQS()
+	{
+		final HtcPreferenceCategory screen = (HtcPreferenceCategory) findPreference(Const.QUICK_SETTINGS_CAT);
+		final HtcListPreference side = (HtcListPreference) findPreference(Const.TWEAK_QUICK_SETTINGS_SIDE);
+		HtcListPreference qs = (HtcListPreference) findPreference(Const.TWEAK_QUICK_SETTINGS);
+		if (preferences.getString(Const.TWEAK_QUICK_SETTINGS, "0").equals("0"))
+		{
+			screen.removePreference(side);
+		}
+		
+		qs.setOnPreferenceChangeListener(new HtcListPreference.OnPreferenceChangeListener()
+		{
+			@Override
+			public boolean onPreferenceChange(HtcPreference arg0, Object object)
+			{
+				if (object.toString().equals("0"))
+					screen.removePreference(side);
+				else
+					screen.addPreference(side);
+				return true;
+			}
+		});
+	}
+
+	private void setupBattery()
+	{
+		HtcSwitchPreference colorBat = (HtcSwitchPreference) findPreference(Const.TWEAK_COLORED_BATTERY);
+		colorBat.setDependency(Const.TWEAK_STOCK_BATTERY);
+	}
+
 	private void removeSettings()
 	{
 		HtcPreferenceScreen screen = (HtcPreferenceScreen) findPreference(Const.OTHER_SETTINGS_SCREEN_KEY);
@@ -186,7 +258,7 @@ public class Main extends HtcPreferenceActivity implements HtcPreference.OnPrefe
 		MultiCheckPreference logcat = (MultiCheckPreference) findPreference(Const.TWEAK_LOGCAT_FILTER);
 		logcat.unsetMinimum();
 	}
-	
+
 	private void setupMediaKey()
 	{
 		final HtcPreferenceCategory mediaCategory = (HtcPreferenceCategory) findPreference(Const.MEDIA_CONTROL_CAT);
@@ -221,7 +293,7 @@ public class Main extends HtcPreferenceActivity implements HtcPreference.OnPrefe
 			}
 		});
 	}
-	
+
 	private void setupSlotSaturation()
 	{
 		if (Misc.isSense6() && Misc.isDual())
@@ -261,9 +333,10 @@ public class Main extends HtcPreferenceActivity implements HtcPreference.OnPrefe
 	private void setupCamera()
 	{
 		final HtcListPreference tweak = (HtcListPreference) findPreference(Const.TWEAK_PHOTO_PREFIX);
-		
+
 		String value = preferences.getString(Const.TWEAK_PHOTO_PREFIX, "0");
-		if (!value.equals("0")) {
+		if (!value.equals("0"))
+		{
 			String date = new SimpleDateFormat(value).format(new Date());
 			tweak.setSummary(date + "_" + getResources().getString(R.string.enablePhotoPrefixSummary));
 		}
@@ -272,24 +345,26 @@ public class Main extends HtcPreferenceActivity implements HtcPreference.OnPrefe
 			public boolean onPreferenceChange(HtcPreference preference, Object object)
 			{
 				String value = object.toString();
-				
-				if (!value.equals("0")) {
+
+				if (!value.equals("0"))
+				{
 					String date = new SimpleDateFormat(value).format(new Date());
 					tweak.setSummary(date + "_" + getResources().getString(R.string.enablePhotoPrefixSummary));
-				} else {
+				}
+				else
+				{
 					tweak.setSummary(getResources().getString(R.string.prefix_option_0));
 				}
-				
+
 				return true;
 			}
 		});
-		
-		//CharSequence summ = tweak.getSummary();
-		//String date = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
-		//tweak.setSummary(date + "_" + summ);
+
+		// CharSequence summ = tweak.getSummary();
+		// String date = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
+		// tweak.setSummary(date + "_" + summ);
 		// enablePhotoPrefixSummary
-		
-		
+
 	}
 
 	private void setupSense6()
@@ -350,14 +425,14 @@ public class Main extends HtcPreferenceActivity implements HtcPreference.OnPrefe
 
 		if (Misc.isPackageInstalled(Const.WEATHER_PACKAGE_NAME, weatherPref.getContext()))
 		{
-			//weatherPref.setChecked(true);
-			//putBoolean(Const.TWEAK_COLORED_WEATHER, true);
+			// weatherPref.setChecked(true);
+			// putBoolean(Const.TWEAK_COLORED_WEATHER, true);
 			storeWeatherApkPath();
 		}
 		else
 		{
-			//weatherPref.setChecked(false);
-			//putBoolean(Const.TWEAK_COLORED_WEATHER, false);
+			// weatherPref.setChecked(false);
+			// putBoolean(Const.TWEAK_COLORED_WEATHER, false);
 		}
 	}
 
@@ -727,20 +802,23 @@ public class Main extends HtcPreferenceActivity implements HtcPreference.OnPrefe
 					Settings.System.putInt(getContentResolver(), Const.TWEAK_CALL_REC_AUTO_FILTER + "_" + rows.get(i).getKey(), Misc.toInt(rows.get(i).getState()));
 				}
 
-				return false;
+				return true;
 			}
 		});
 	}
 
-	private void changeFilterSummary(MultiCheckPreference pref, ArrayList<Row> rows)
+	private void changeFilterSummary(MultiCheckPreference pref, ArrayList<Row> rows, String... optional)
 	{
 		ArrayList<String> summs = new ArrayList<String>();
-
+		
 		for (int i = 0; i < rows.size(); i++)
 		{
 			if (rows.get(i).getState() == true)
 			{
-				summs.add(rows.get(i).getSummary());
+				if (optional.length > 0 && optional[i] != null)
+					summs.add(optional[i]);
+				else
+					summs.add(rows.get(i).getSummary());
 			}
 		}
 		StringBuilder builder = new StringBuilder();

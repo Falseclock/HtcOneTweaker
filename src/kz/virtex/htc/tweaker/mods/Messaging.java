@@ -56,7 +56,6 @@ public class Messaging
 	{ "icon_indicator_slot1", "icon_indicator_slot1", "icon_indicator_slot1_s", "icon_indicator_slot1_s", "icon_indicator_slot2", "icon_indicator_slot2_s" };
 	private static Drawable[] tweakedDrawable = new Drawable[icons.length];
 
-	
 	public static void hookSupport8ColorLed(final LoadPackageParam paramLoadPackageParam, String packageName)
 	{
 		findAndHookMethod(packageName + ".MmsConfig",  paramLoadPackageParam.classLoader, "isSupport8ColorLed", new XC_MethodReplacement()
@@ -66,6 +65,23 @@ public class Messaging
 			{
 				XposedBridge.log("hookSupport8ColorLed");
 				return Boolean.valueOf(true);
+			}
+		});
+	}
+	
+	public static void hookSendButton(final LoadPackageParam paramLoadPackageParam, String packageName)
+	{
+		findAndHookMethod(packageName + ".ui.MessageEditorPanel",  paramLoadPackageParam.classLoader, "setChinaButtonEnable", boolean.class, boolean.class, new XC_MethodHook()
+		{
+			@Override
+			protected void beforeHookedMethod(MethodHookParam param) throws Throwable
+			{
+				boolean sim1 = XMain.pref.getBoolean(Const.TWEAK_SHOW_SIM_CARD_SMS+"_sim1", true);
+				boolean sim2 = XMain.pref.getBoolean(Const.TWEAK_SHOW_SIM_CARD_SMS+"_sim2", true);
+				if (!sim1)
+					param.args[0] = Boolean.valueOf(false);
+				if (!sim2)
+					param.args[1] = Boolean.valueOf(false);
 			}
 		});
 	}

@@ -14,10 +14,17 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.XModuleResources;
 import android.content.res.XResources;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.graphics.Point;
 import android.graphics.Typeface;
+import android.graphics.drawable.AnimationDrawable;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.LayerDrawable;
 import android.os.Build;
 import android.text.format.DateFormat;
 import android.view.Display;
@@ -39,8 +46,9 @@ import de.robv.android.xposed.callbacks.XC_LoadPackage.LoadPackageParam;
 public class SystemUI
 {
 	private static LinearLayout miuiBar;
-	private static View miuiBarLeftSide;
-	private static View miuiBarRightSide;
+	private static RelativeLayout miuiBarLeftSide;
+	private static RelativeLayout miuiBarRightSide;
+	private static RelativeLayout miuiBarCenterSide;
 
 	public static void handleColoredSIM(final LoadPackageParam paramLoadPackageParam)
 	{
@@ -49,8 +57,8 @@ public class SystemUI
 			@Override
 			protected void beforeHookedMethod(MethodHookParam param) throws Throwable
 			{
-				Class <?> TelephonyIconsDual = XposedHelpers.findClass("com.android.systemui.statusbar.policy.TelephonyIconsDual", paramLoadPackageParam.classLoader);
-				
+				Class<?> TelephonyIconsDual = XposedHelpers.findClass("com.android.systemui.statusbar.policy.TelephonyIconsDual", paramLoadPackageParam.classLoader);
+
 				int[] HTC_SIGNAL_S1_5LEVEL = (int[]) XposedHelpers.getStaticObjectField(TelephonyIconsDual, "HTC_SIGNAL_S1_5LEVEL");
 				int[] HTC_SIGNAL_S2_5LEVEL = (int[]) XposedHelpers.getStaticObjectField(TelephonyIconsDual, "HTC_SIGNAL_S2_5LEVEL");
 				int[] HTC_SIGNAL_S1_5LEVEL_R = (int[]) XposedHelpers.getStaticObjectField(TelephonyIconsDual, "HTC_SIGNAL_S1_5LEVEL_R");
@@ -81,15 +89,20 @@ public class SystemUI
 				miuiBar.setLayoutParams(miuiBarParams);
 				miuiBar.setBackgroundColor(Color.TRANSPARENT);
 
-				miuiBarLeftSide = new View(mContext);
-				miuiBarLeftSide.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, 4, 0.5F));
+				miuiBarLeftSide = new RelativeLayout(mContext);
+				miuiBarLeftSide.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, 4, 50));
 				miuiBarLeftSide.setBackgroundColor(Color.TRANSPARENT);
 
-				miuiBarRightSide = new View(mContext);
-				miuiBarRightSide.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, 4, 0.5F));
+				miuiBarCenterSide = new RelativeLayout(mContext);
+				miuiBarCenterSide.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, 4, 0));
+				miuiBarCenterSide.setBackgroundColor(Color.TRANSPARENT);
+
+				miuiBarRightSide = new RelativeLayout(mContext);
+				miuiBarRightSide.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, 4, 50));
 				miuiBarRightSide.setBackgroundColor(Color.TRANSPARENT);
 
 				miuiBar.addView(miuiBarLeftSide);
+				miuiBar.addView(miuiBarCenterSide);
 				miuiBar.addView(miuiBarRightSide);
 
 				mStatusBarView.addView(miuiBar, 0, miuiBarParams);
@@ -101,38 +114,118 @@ public class SystemUI
 			protected void afterHookedMethod(MethodHookParam param) throws Throwable
 			{
 				Context mContext = (Context) XposedHelpers.getObjectField(param.thisObject, "mContext");
-
-				WindowManager wm = (WindowManager) mContext.getSystemService(Context.WINDOW_SERVICE);
-				Display display = wm.getDefaultDisplay();
-				Point size = new Point();
-				display.getSize(size);
-				int screenWidth = size.x;
+				boolean plugged = XposedHelpers.getBooleanField(param.thisObject, "plugged");
 
 				int level = XposedHelpers.getIntField(param.thisObject, "level");
 
-				Misc.x("screen width: " + screenWidth);
-				Misc.x("Battery level: " + level);
-				Misc.x("layout width: " + level * screenWidth / 100);
-				Misc.x("left precent: " + (float) level / 100);
-				Misc.x("right precent: " + (float) (1.0F - (float) level / 100));
+				//Misc.x("Battery level: " + level);
+				//Misc.x("Is plugged: " + plugged);
 
-				miuiBarLeftSide.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, 4, (float) level / 100));
-				miuiBarRightSide.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, 4, (float) (1.0F - (float) level / 100)));
+				int sideWidth = getSideWidth(mContext, level);
+				miuiBarLeftSide.setLayoutParams(new LayoutParams(sideWidth, 4));
+				miuiBarCenterSide.setLayoutParams(new LayoutParams(getScreenWidth(mContext) - sideWidth * 2, 4));
+				miuiBarRightSide.setLayoutParams(new LayoutParams(sideWidth, 4));
 
 				float[] hsv = new float[3];
-				if (level >= 50) {
+				if (level >= 50)
+				{
 					hsv[0] = 100;
-					hsv[1] = 0.5F;					
-				} else {
-					hsv[0] = level > 0 ? ((float)level * 2.0F) - 2.0F : 0.0F;
-					hsv[1] = level > 0 ? (1.0F - ((float)level * 0.5F / (float)50)) : 1.0F;
+					hsv[1] = 0.5F;
+				}
+				else
+				{
+					hsv[0] = level > 0 ? ((float) level * 2.0F) - 2.0F : 0.0F;
+					hsv[1] = level > 0 ? (1.0F - ((float) level * 0.5F / (float) 50)) : 1.0F;
 				}
 				hsv[2] = 1.0F;
 				int color = Color.HSVToColor(hsv);
 
-				miuiBarRightSide.setBackgroundColor(color);
+				miuiBarCenterSide.setBackgroundColor(color);
+
+				if (plugged && level <= 98)
+				{
+					AnimationDrawable animLeft = createAnim(mContext, level, color, true);
+					animLeft.setOneShot(false);
+					AnimationDrawable animRight = createAnim(mContext, level, color, false);
+					animRight.setOneShot(false);
+
+					miuiBarLeftSide.setBackgroundDrawable(animLeft);
+					miuiBarRightSide.setBackgroundDrawable(animRight);
+
+					animLeft.start();
+					animRight.start();
+				}
+				else
+				{
+					miuiBarLeftSide.setBackgroundDrawable(new ColorDrawable(mContext.getResources().getColor(android.R.color.transparent)));
+					miuiBarRightSide.setBackgroundDrawable(new ColorDrawable(mContext.getResources().getColor(android.R.color.transparent)));
+				}
 			}
 		});
+	}
+
+	private static AnimationDrawable createAnim(Context context, int level, int color, boolean isLeft)
+	{
+		int side = getSideWidth(context, level);
+		float gravitAccel = 9.81F;
+		// Скорость падения в конце
+		// u = sqrt(2gh)
+		int endSpeed = (int) Math.sqrt(2 * gravitAccel * side);
+		//Misc.d("side: " + side + ", End speed: " + endSpeed + ", Drop width: " + (side / 10));
+
+		AnimationDrawable anim = new AnimationDrawable();
+		Drawable[] layers = new Drawable[2];
+		layers[0] = new BitmapDrawable(context.getResources(), Bitmap.createBitmap(side, 4, Bitmap.Config.ARGB_8888));
+		layers[1] = new BitmapDrawable(context.getResources(), Bitmap.createBitmap(side, 4, Bitmap.Config.ARGB_8888));
+		LayerDrawable layerDrawable = new LayerDrawable(layers);
+		anim.addFrame(layerDrawable, endSpeed * 3);
+
+		int dropWidth = side / 20;
+		int position = -dropWidth;
+
+		while (position < side)
+		{
+			layers = new Drawable[2];
+			layers[0] = new BitmapDrawable(context.getResources(), Bitmap.createBitmap(side, 4, Bitmap.Config.ARGB_8888));
+			layers[1] = new BitmapDrawable(context.getResources(), Bitmap.createBitmap(side, 4, Bitmap.Config.ARGB_8888));
+
+			Canvas mCanvas = new Canvas(Misc.drawableToBitmap(layers[1]));
+			Paint mPoint = new Paint();
+			mPoint.setStyle(Paint.Style.FILL);
+			mPoint.setColor(color);
+
+			if (isLeft)
+				mCanvas.drawRect(position, 0, position + dropWidth, 4, mPoint);
+			else
+				mCanvas.drawRect(side - position - dropWidth, 0, side - position, 4, mPoint);
+
+			layerDrawable = new LayerDrawable(layers);
+
+			int speed = (int) Math.sqrt(2 * gravitAccel * position);
+
+			anim.addFrame(layerDrawable, endSpeed - speed);
+
+			position += dropWidth;
+			// Misc.d("Position: " + position + "speed: " + (endSpeed - speed));
+		}
+
+		return anim;
+	}
+
+	private static int getScreenWidth(Context context)
+	{
+		WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+		Display display = wm.getDefaultDisplay();
+		Point size = new Point();
+		display.getSize(size);
+
+		return size.x;
+	}
+
+	private static int getSideWidth(Context context, int level)
+	{
+		int screenWidth = getScreenWidth(context);
+		return (screenWidth - (level * getScreenWidth(context) / 100)) / 2;
 	}
 
 	@SuppressLint("DefaultLocale")
@@ -146,7 +239,7 @@ public class SystemUI
 				TextView date = (TextView) param.thisObject;
 				CharSequence text = date.getText();
 
-				Misc.x("updateClock happen: " + DateFormat.format("EEE MMM d HH:mm:ss zz yyyy", new Date()).toString());
+				//Misc.x("updateClock is happen: " + DateFormat.format("EEE MMM d HH:mm:ss zz yyyy", new Date()).toString());
 
 				date.setText(String.valueOf(text.charAt(0)).toUpperCase() + text.subSequence(1, text.length()));
 				date.setAllCaps(false);
@@ -178,6 +271,22 @@ public class SystemUI
 		});
 	}
 
+	public static void hookDisableStockBattery(LoadPackageParam paramLoadPackageParam)
+	{
+		findAndHookMethod("com.android.systemui.statusbar.policy.BatteryController", paramLoadPackageParam.classLoader, "onReceive", Context.class, Intent.class, new XC_MethodHook()
+		{
+			@SuppressWarnings("unchecked")
+			@Override
+			protected void afterHookedMethod(MethodHookParam param) throws Throwable
+			{
+				ArrayList<ImageView> mIconViews = (ArrayList<ImageView>) XposedHelpers.getObjectField(param.thisObject, "mIconViews");
+
+				ImageView localImageView = (ImageView) mIconViews.get(0);
+				localImageView.setVisibility(ImageView.GONE);
+			}
+		});
+	}
+
 	public static void hookBatteryController(LoadPackageParam paramLoadPackageParam)
 	{
 		findAndHookMethod("com.android.systemui.statusbar.policy.BatteryController", paramLoadPackageParam.classLoader, "onReceive", Context.class, Intent.class, new XC_MethodHook()
@@ -194,12 +303,15 @@ public class SystemUI
 				Drawable battery = localImageView.getDrawable();
 
 				float[] hsv = new float[3];
-				if (level >= 50) {
+				if (level >= 50)
+				{
 					hsv[0] = 100;
-					hsv[1] = 0.5F;					
-				} else {
-					hsv[0] = level > 0 ? ((float)level * 2.0F) - 2.0F : 0.0F;
-					hsv[1] = level > 0 ? (1.0F - ((float)level * 0.5F / (float)50)) : 1.0F;
+					hsv[1] = 0.5F;
+				}
+				else
+				{
+					hsv[0] = level > 0 ? ((float) level * 2.0F) - 2.0F : 0.0F;
+					hsv[1] = level > 0 ? (1.0F - ((float) level * 0.5F / (float) 50)) : 1.0F;
 				}
 				hsv[2] = 1.0F;
 				int color = Color.HSVToColor(hsv);
@@ -302,22 +414,33 @@ public class SystemUI
 				MotionEvent paramMotionEvent = (MotionEvent) param.args[0];
 
 				// TODO: landscape mode
-				
-				Context context = (Context) XposedHelpers.callMethod(param.thisObject, "getContext");
-				WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
-				Display display = wm.getDefaultDisplay();
-				Point size = new Point();
-				display.getSize(size);
-				int screenWidth = size.x;
-				
-				float option = Float.parseFloat(string);
-				
-				float limit = screenWidth - (screenWidth * option);
 
-				if (paramMotionEvent.getY(0) < 100 && paramMotionEvent.getX(0) >= limit)
+				Context context = (Context) XposedHelpers.callMethod(param.thisObject, "getContext");
+				int screenWidth = getScreenWidth(context);
+
+				float option = Float.parseFloat(string);
+
+				int side = Integer.parseInt(XMain.pref.getString(Const.TWEAK_QUICK_SETTINGS_SIDE, "0"));
+
+				if (side == 0)
 				{
-					Object StatusBar = XposedHelpers.getObjectField(param.thisObject, "mStatusBar");
-					XposedHelpers.callMethod(StatusBar, "flipToSettings");
+					float limit = screenWidth - (screenWidth * option);
+					
+					if (paramMotionEvent.getY(0) <= 100 && paramMotionEvent.getX(0) >= limit)
+					{
+						Object StatusBar = XposedHelpers.getObjectField(param.thisObject, "mStatusBar");
+						XposedHelpers.callMethod(StatusBar, "flipToSettings");
+					}
+				}
+				else
+				{
+					float limit = (screenWidth * option);
+
+					if (paramMotionEvent.getY(0) <= 100 && paramMotionEvent.getX(0) <= limit)
+					{
+						Object StatusBar = XposedHelpers.getObjectField(param.thisObject, "mStatusBar");
+						XposedHelpers.callMethod(StatusBar, "flipToSettings");
+					}
 				}
 			}
 		});

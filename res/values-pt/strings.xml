@@ -216,7 +216,8 @@
 * Date preffix to the Câmera shots filename</string>
     <string name="google_play"><b>Google Play Market</b></string>
     <string name="xda_support"><b>Support on XDA</b></string>
-    <string name="change_log_text"><big><b>Version 3.3.4</b></big>\n<font fgcolor="#FFFF0000"><b>*</b></font> (fix) Volume button dysfunction in media applications\n<font fgcolor="#FFFF0000"><b>*</b></font> (fix) Spontaneous enabled colored weather option\n<font fgcolor="#FF009000"><b>*</b></font> (fix) Colored signal strength for 4 level indicators on 802d models now colored and have 5 levels\n<font fgcolor="#FF009000"><b>*</b></font> (imp) Choose date format for camera shot prefix\n<font fgcolor="#FF009000"><b>*</b></font> (imp) Colored battery and bar green until 50%, then from green to red with encreasing saturation\n<font fgcolor="#FF009000"><b>*</b></font> (imp) Screen area settings for Quick Settings pulldown\n
+    <string name="change_log_text"><big><b>Version 3.3.5</b></big>\n<font fgcolor="#FF009000"><b>*</b></font> (new) Battery bar-line charging animation\n<font fgcolor="#FFFF0000"><b>*</b></font> (new) Hide stock battery\n<font fgcolor="#FFFF0000"><b>*</b></font> (new) Option to choose edge of screen for QS swipe\n<font fgcolor="#FFFF0000"><b>*</b></font> (new) Hide useless SIM slot button in Dialer (Dual SIM only)\n<font fgcolor="#FFFF0000"><b>*</b></font> (new) Hide useless SIM slot button in Messenger (Dual SIM only)\n
+\n<big><b>Version 3.3.4</b></big>\n<font fgcolor="#FFFF0000"><b>*</b></font> (fix) Volume button dysfunction in media applications\n<font fgcolor="#FFFF0000"><b>*</b></font> (fix) Spontaneous enabled colored weather option\n<font fgcolor="#FF009000"><b>*</b></font> (fix) Colored signal strength for 4 level indicators on 802d models now colored and have 5 levels\n<font fgcolor="#FF009000"><b>*</b></font> (imp) Choose date format for camera shot prefix\n<font fgcolor="#FF009000"><b>*</b></font> (imp) Colored battery and bar green until 50%, then from green to red with encreasing saturation\n<font fgcolor="#FF009000"><b>*</b></font> (imp) Screen area settings for Quick Settings pulldown\n
 \n<big><b>Version 3.3.3</b></big>\n<font fgcolor="#FFFF0000"><b>*</b></font> (fix) Uppercase date string in pulled down status bar in case of All CAPS enabled tweak\n<font fgcolor="#FFFF0000"><b>*</b></font> (fix) Roaming data icons for 802d model\n<font fgcolor="#FF009000"><b>*</b></font> (new) Colored battery level from green to red based on charging level\n<font fgcolor="#FF009000"><b>*</b></font> (new) Condensed font face for time and battery charging level\n<font fgcolor="#FF009000"><b>*</b></font> (imp) All world languages implemented with hook instead of database change\n<font fgcolor="#FF009000"><b>*</b></font> (new) MIUI colored bar\n
 \n<big><b>Version 3.3.2</b></big>\n<font fgcolor="#FFFF0000"><b>*</b></font> (fix) Call recording button appears even if tweak is disabled\n<font fgcolor="#FFFF0000"><b>*</b></font> (fix) Camera file prefix issue on Sense 6\n<font fgcolor="#FFFF0000"><b>*</b></font> (fix) Start application without Xposed - now link to XDA thread\n<font fgcolor="#FFFF0000"><b>*</b></font> (fix) Dual version check on Android 4.2\n
 \n<big><b>Version 3.3.1</b></big>\n<font fgcolor="#FF009000"><b>*</b></font> (new) Disable all CAPS (HTC feature) for lating alphabet languages\n<font fgcolor="#FF009000"><b>*</b></font> (new) Record button in CallScreen moved to bottom panel\n
@@ -320,19 +321,28 @@ Manual records stored as default to My Recordings directory.\n<font fgcolor="#F
     <string name="prefix_option_val4">yyyy‐MM‐dd</string>
     <string name="prefix_option_val5">yyyy‐MM‐dd‐HH‐mm</string>
     <string name="prefix_option_val6">yyyy‐MM‐dd‐HH‐mm‐ss</string>
-    <string name="swipe_option_0">QS by swiping right side of screen is disabled</string>
+    <string name="swipe_option_0">QS by swiping side of screen is disabled</string>
     <string name="swipe_option_1">Swipe on 1/2 of screen</string>
     <string name="swipe_option_2">Swipe on 1/3 of screen</string>
-    <string name="swipe_option_3">Swipe on 1/4 of screen</string>
-    <string name="swipe_option_4">Swipe on 1/5 of screen</string>
-    <string name="swipe_option_5">Swipe on 1/6 of screen</string>
-    <string name="swipe_option_6">Swipe on 1/7 of screen</string>
-    
+    <string name="swipe_option_3">Swipe on 1/6 of screen</string>
+    <string name="swipe_option_4">Swipe on 1/10 of screen</string>
+    <string name="swipe_option_5">Swipe on 1/20 of screen</string>
     <string name="swipe_option_val1">0.50F</string>
     <string name="swipe_option_val2">0.3333333F</string>
-    <string name="swipe_option_val3">0.25F</string>
-    <string name="swipe_option_val4">0.20F</string>   
-    <string name="swipe_option_val5">0.1666666F</string>
-    <string name="swipe_option_val6">0.1428571F</string>
+    <string name="swipe_option_val3">0.1666666F</string>
+    <string name="swipe_option_val4">0.10F</string>
+    <string name="swipe_option_val5">0.05F</string>
+    <string name="stockBatteryTitle">Stock battery icon</string>
+    <string name="stockBatterySummary">Will be shown if enabled</string>
+    <string name="quickPullDownSideTitle">Side of screen to swipe</string>
+    <string name="left">On the left</string>
+    <string name="right">On the right</string>
+    <string name="QuickPullDownCat">Quick pull down</string>
+    <string name="showSimTitle">SIM card used in Dialer</string>
+    <string name="showSimSMSTitle">SIM card used in Messenger</string>
+    <string name="sim1">SIM 1</string>
+    <string name="sim2">SIM 2</string>
+    <string name="sim1Key">sim1</string>
+    <string name="sim2Key">sim2</string>
 
 </resources>

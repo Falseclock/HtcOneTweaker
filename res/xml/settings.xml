@@ -89,13 +89,6 @@
                 android:summary="@string/enablePopupCharSummary"
                 android:title="@string/enablePopupCharTitle" />
 
-            <com.htc.preference.HtcListPreference
-                android:defaultValue="0"
-                android:entries="@array/swipe_option"
-                android:entryValues="@array/swipe_option_val"
-                android:key="tweak_quick_settings"
-                android:title="@string/quickPullDownTitle" />
-
             <com.htc.preference.HtcPreferenceScreen
                 android:key="led_settings_screen"
                 android:summary="@string/LedScreenSummary"
@@ -147,7 +140,20 @@
                         android:max="360"
                         android:title="@string/hue_settings" >
                     </kz.virtex.htc.tweaker.preference.SeekBarPreference>
-                </com.htc.preference.HtcPreferenceCategory>
+                    
+                    <kz.virtex.htc.tweaker.preference.MultiCheckPreference
+                    android:key="tweak_show_sim_card"
+                    android:title="@string/showSimTitle"
+                    tweaker:entryKeys="@array/showSimKeys"
+                    tweaker:entryTitles="@array/showSimTitles" />
+                                    
+                    <kz.virtex.htc.tweaker.preference.MultiCheckPreference
+                    android:key="tweak_show_sim_card_sms"
+                    android:title="@string/showSimSMSTitle"
+                    tweaker:entryKeys="@array/showSimKeys"
+                    tweaker:entryTitles="@array/showSimTitles" />
+                    
+                    </com.htc.preference.HtcPreferenceCategory>
             </com.htc.preference.HtcPreferenceScreen>
         </com.htc.preference.HtcPreferenceScreen>
         <com.htc.preference.HtcPreferenceScreen
@@ -274,6 +280,11 @@
                 android:key="status_bar_category"
                 android:title="@string/StatusBarCategory" >
                 <com.htc.preference.HtcSwitchPreference
+                    android:defaultValue="true"
+                    android:key="tweak_stock_battery"
+                    android:summary="@string/stockBatterySummary"
+                    android:title="@string/stockBatteryTitle" />
+                <com.htc.preference.HtcSwitchPreference
                     android:key="tweak_colored_battery"
                     android:summary="@string/enableColoredBatterySummary"
                     android:title="@string/enableColoredBatteryTitle" />
@@ -285,6 +296,22 @@
                     android:key="tweak_statusbar_condensed"
                     android:summary="@string/statusbarCondensedSummary"
                     android:title="@string/statusbarCondensedTitle" />
+            </com.htc.preference.HtcPreferenceCategory>
+            <com.htc.preference.HtcPreferenceCategory
+                android:key="qs_category"
+                android:title="@string/QuickPullDownCat" >
+                <com.htc.preference.HtcListPreference
+                    android:defaultValue="0"
+                    android:entries="@array/swipe_option"
+                    android:entryValues="@array/swipe_option_val"
+                    android:key="tweak_quick_settings"
+                    android:title="@string/quickPullDownTitle" />
+                <com.htc.preference.HtcListPreference
+                    android:defaultValue="0"
+                    android:entries="@array/swipe_side"
+                    android:entryValues="@array/swipe_side_val"
+                    android:key="tweak_quick_settings_side"
+                    android:title="@string/quickPullDownSideTitle" />
             </com.htc.preference.HtcPreferenceCategory>
         </com.htc.preference.HtcPreferenceScreen>
         <com.htc.preference.HtcPreferenceScreen

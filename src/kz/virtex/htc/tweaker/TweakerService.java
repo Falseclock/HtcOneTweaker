@@ -54,10 +54,42 @@ public class TweakerService extends Service
 			{
 				processVolKeyPress(intent);
 			}
+			if (action.equals(ACTION_GET_SETTINGS))
+			{
+				processGetSettings(intent);
+			}
 		}
 		return super.onStartCommand(intent, flags, startId);
 	}
+	
+	@SuppressLint({ "WorldReadableFiles", "WorldWriteableFiles" })
+	private void processGetSettings(Intent intent)
+	{
+		preferences = getBaseContext().getSharedPreferences(Const.PREFERENCE_FILE, Context.MODE_WORLD_READABLE + Context.MODE_WORLD_WRITEABLE);
+		
+		Bundle extras = intent.getExtras();
+		String type = extras.getString("type");
+		String deflt = extras.getString("default");
+		String name = extras.getString("name");
+		Object value = null;
+		
+		if (type.equals("string"))
+			value = preferences.getString(name, deflt);
+		if (type.equals("float"))
+			value = preferences.getFloat(name, Float.valueOf(deflt));
+		if (type.equals("int"))
+			value = preferences.getInt(name, Integer.valueOf(deflt));
+		if (type.equals("boolean"))
+			value = preferences.getBoolean(name, Boolean.valueOf(deflt));
+		if (type.equals("long"))
+			value = preferences.getLong(name, Long.valueOf(deflt));
 
+		Intent brIntent = new Intent(ACTION_GET_SETTINGS);
+		brIntent.putExtra("value", String.valueOf(value));
+		sendBroadcast(brIntent);
+		Misc.d("TweakerService processGetSettings, sending broadcast for " + name + " = " + value);
+	}
+	
 	private void processVolKeyPress(Intent intent)
 	{
 		Bundle extras = intent.getExtras();

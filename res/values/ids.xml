@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <item name="RecordingButton" type="id">false</item>
+    <item name="test1" type="id">false</item>
+    <item name="test2" type="id">false</item>
+    <item name="test3" type="id">false</item>
 </resources>

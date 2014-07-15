@@ -213,7 +213,8 @@
 * Префикс в виде даты к названию файлов снятых камерой</string>
     <string name="google_play"><b>Google Play Market</b></string>
     <string name="xda_support"><b>Поддержка на XDA</b></string>
-    <string name="change_log_text"><big><b>Version 3.3.4</b></big>\n<font fgcolor="#FFFF0000"><b>*</b></font> (fix) Неработающая кнопка громкости в медиа приложениях\n<font fgcolor="#FFFF0000"><b>*</b></font> (fix) Спонтанное включение опции цветной погоды\n<font fgcolor="#FF009000"><b>*</b></font> (fix) Цветные индикации уровня сигнала для 802d моделей с 5 уровнями вместо 4\n<font fgcolor="#FF009000"><b>*</b></font> (imp) Опция выбора формата даты для префикса к файлам камеры\n<font fgcolor="#FF009000"><b>*</b></font> (imp) Цветная батарейка и строка зеленые до 50%, и далее от зеленого до красного с увеличением насыщенности\n<font fgcolor="#FF009000"><b>*</b></font> (imp) Выбор размера экрана для доступа к быстрым настройкам\n
+    <string name="change_log_text"><big><b>Version 3.3.5</b></big>\n<font fgcolor="#FF009000"><b>*</b></font> (new) Анимация заряда MIUI батарейки\n<font fgcolor="#FFFF0000"><b>*</b></font> (new) Скрытие стоковой индикации батарейки\n<font fgcolor="#FFFF0000"><b>*</b></font> (new) Опция выбора стороны экрана для быстрых настроек\n<font fgcolor="#FFFF0000"><b>*</b></font> (new) Скрытие неиспользуемого слота SIM карты в номеронабирателе (только Dual SIM)\n<font fgcolor="#FFFF0000"><b>*</b></font> (new) Скрытие неиспользуемого слота SIM карты в мессенджере (только Dual SIM)\n
+\n<big><b>Version 3.3.4</b></big>\n<font fgcolor="#FFFF0000"><b>*</b></font> (fix) Неработающая кнопка громкости в медиа приложениях\n<font fgcolor="#FFFF0000"><b>*</b></font> (fix) Спонтанное включение опции цветной погоды\n<font fgcolor="#FF009000"><b>*</b></font> (fix) Цветные индикации уровня сигнала для 802d моделей с 5 уровнями вместо 4\n<font fgcolor="#FF009000"><b>*</b></font> (imp) Опция выбора формата даты для префикса к файлам камеры\n<font fgcolor="#FF009000"><b>*</b></font> (imp) Цветная батарейка и строка зеленые до 50%, и далее от зеленого до красного с увеличением насыщенности\n<font fgcolor="#FF009000"><b>*</b></font> (imp) Выбор размера экрана для доступа к быстрым настройкам\n
 \n<big><b>Version 3.3.3</b></big>\n<font fgcolor="#FFFF0000"><b>*</b></font> (fix) День недели и месяц написан заглавными буквами в случае запрета в настройках.\n<font fgcolor="#FFFF0000"><b>*</b></font> (fix) Дополнительные иконки уровня сигнала в роуминге для 802d моделей\n<font fgcolor="#FF009000"><b>*</b></font> (new) Цветная батарейка в зависимости от уровня заряда\n<font fgcolor="#FF009000"><b>*</b></font> (new) Уплотненный шрифт для текстового отображения заряда батареи и времени\n<font fgcolor="#FF009000"><b>*</b></font> (imp) Запрет на заглавные буквы без изменения системной базы данных\n<font fgcolor="#FF009000"><b>*</b></font> (new) Индикатор зарада батареи в стиле MIUI\n
 \n<big><b>Версия 3.3.2</b></big>\n<font fgcolor="#FFFF0000"><b>*</b></font> (fix) Кнопка записи появляется даже если отключена запись\n<font fgcolor="#FFFF0000"><b>*</b></font> (fix) Префикс к файлам камеры на Sense 6\n<font fgcolor="#FFFF0000"><b>*</b></font> (fix) Ссылка на XDA в случае отсутствия Xposed\n<font fgcolor="#FFFF0000"><b>*</b></font> (fix) Проверка двухсимных аппаратов на Android 4.2\n
 \n<big><b>Версия 3.3.1</b></big>\n<font fgcolor="#FF009000"><b>*</b></font> (new) Запрет рисовать интерфейс заглавными буквами (причуда HTC) для яыков использующих латинский алфавит\n<font fgcolor="#FF009000"><b>*</b></font> (new) Кнопка записи на экране разговора перенесена в нижнюю панель\n
@@ -295,7 +296,7 @@
     <string name="StatusBarCategory">Статус строка</string>
     <string name="statusbarCondensedSummary">Узкий шрифт строки времени и уровня заряда для сокращения занимаемого места</string>
     <string name="statusbarCondensedTitle">Уплотненный шрифт</string>
-    <string name="enableMIUIBatteryTitle">Индикатор батареии MIUI</string>
+    <string name="enableMIUIBatteryTitle">Индикатор батареи MIUI</string>
     <string name="enableMIUIBatterySummary">Цветная полоска вверху статус строки</string>
     <string name="logcatFilterTitle">Logcat filter</string>
     <string name="logcatFilterSummary">Select message types to record. This will reduce battery consuption and encrease system response</string>
@@ -317,18 +318,28 @@
     <string name="prefix_option_val4">yyyy‐MM‐dd</string>
     <string name="prefix_option_val5">yyyy‐MM‐dd‐HH‐mm</string>
     <string name="prefix_option_val6">yyyy‐MM‐dd‐HH‐mm‐ss</string>
-    <string name="swipe_option_0">Свайп правой части экрана для быстрых настроек - отключено</string>
+    <string name="swipe_option_0">Свайп боковой части экрана для быстрых настроек - отключено</string>
     <string name="swipe_option_1">Задействовать 1/2 экрана</string>
     <string name="swipe_option_2">Задействовать 1/3 экрана</string>
-    <string name="swipe_option_3">Задействовать 1/4 экрана</string>
-    <string name="swipe_option_4">Задействовать 1/5 экрана</string>
-    <string name="swipe_option_5">Задействовать 1/6 экрана</string>
-    <string name="swipe_option_6">Задействовать 1/7 экрана</string>
+    <string name="swipe_option_3">Задействовать 1/6 экрана</string>
+    <string name="swipe_option_4">Задействовать 1/10 экрана</string>
+    <string name="swipe_option_5">Задействовать 1/20 экрана</string>
     <string name="swipe_option_val1">0.50F</string>
     <string name="swipe_option_val2">0.3333333F</string>
-    <string name="swipe_option_val3">0.25F</string>
-    <string name="swipe_option_val4">0.20F</string>
-    <string name="swipe_option_val5">0.1666666F</string>
-    <string name="swipe_option_val6">0.1428571F</string>
-    
+    <string name="swipe_option_val3">0.1666666F</string>
+    <string name="swipe_option_val4">0.10F</string>
+    <string name="swipe_option_val5">0.05F</string>
+    <string name="stockBatteryTitle">Иконка стоковой батарейки</string>
+    <string name="stockBatterySummary">Будет отображаться, если опция включена</string>
+    <string name="quickPullDownSideTitle">Сторона экрана для смахивания</string>
+    <string name="left">С левой стороны</string>
+    <string name="right">С правой стороны</string>
+    <string name="QuickPullDownCat">Быстрые настройки</string>
+    <string name="showSimTitle">SIM карты в номеронабирателе</string>
+    <string name="showSimSMSTitle">SIM карты в мессенджере</string>
+    <string name="sim1">SIM 1</string>
+    <string name="sim2">SIM 2</string>
+    <string name="sim1Key">sim1</string>
+    <string name="sim2Key">sim2</string>
+
 </resources>

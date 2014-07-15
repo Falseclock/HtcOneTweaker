@@ -7,8 +7,13 @@ import java.util.Arrays;
 import kz.virtex.htc.tweaker.Const;
 import kz.virtex.htc.tweaker.Misc;
 import kz.virtex.htc.tweaker.R;
+import kz.virtex.htc.tweaker.TweakerService;
 import kz.virtex.htc.tweaker.XMain;
+import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.res.TypedArray;
 import android.content.res.XModuleResources;
 import android.graphics.Color;
@@ -24,10 +29,36 @@ import de.robv.android.xposed.callbacks.XC_LoadPackage.LoadPackageParam;
 
 public class Dialer
 {
-	public static String[] Btn =
-	{};
-	public static String[] Lat =
-	{};
+	public static String[] Btn = {};
+	public static String[] Lat = {};
+	
+	private static final BroadcastReceiver br = new BroadcastReceiver()
+	{
+		public void onReceive(Context context, Intent intent)
+		{
+			// TODO: sfsdf
+		}
+	};
+
+	public static Object getSettings(Context context, String name, String type, String deflt) throws NameNotFoundException
+	{
+		// Registering our receiver to get key press state
+
+		IntentFilter intFilt = new IntentFilter(TweakerService.ACTION_VOLUME_KEY_PRESS);
+		context.registerReceiver(br, intFilt);
+		Misc.x("Dialer, BroadcastReceiver registered");
+		
+		Context tweakContext = context.createPackageContext(Const.PACKAGE_NAME, Context.CONTEXT_IGNORE_SECURITY);
+		Intent intent = new Intent(tweakContext, TweakerService.class).setAction(TweakerService.ACTION_VOLUME_KEY_PRESS);
+		tweakContext.startService(intent);
+		Misc.x("Dialer, Service requested");
+		
+		
+		
+		return new Object();
+	}
+	
+	
 	
 	private static String[] push(String[] array, String push)
 	{
@@ -37,7 +68,24 @@ public class Dialer
 
 		return longer;
 	}
-
+	
+	public static void hookSimCallButton(final LoadPackageParam paramLoadPackageParam)
+	{
+		findAndHookMethod("com.htc.htcdialer.Dialer", paramLoadPackageParam.classLoader, "updateDMDSCallButton", boolean.class, boolean.class, new XC_MethodHook()
+		{
+			@Override
+			protected void beforeHookedMethod(MethodHookParam param) throws Throwable
+			{
+				boolean sim1 = XMain.pref.getBoolean(Const.TWEAK_SHOW_SIM_CARD+"_sim1", true);
+				boolean sim2 = XMain.pref.getBoolean(Const.TWEAK_SHOW_SIM_CARD+"_sim2", true);
+				if (!sim1)
+					param.args[0] = Boolean.valueOf(true);
+				if (!sim2)
+					param.args[1] = Boolean.valueOf(true);
+			}
+		});
+	}
+	
 	public static void hookSpecificHtcShowKeypad(final LoadPackageParam paramLoadPackageParam)
 	{
 		findAndHookMethod("com.htc.htcdialer.widget.keypadbtn.HtcKeypadBgBtn", paramLoadPackageParam.classLoader, "setEnabled", "boolean", new XC_MethodHook()
