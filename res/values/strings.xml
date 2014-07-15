@@ -221,10 +221,10 @@
     <string name="change_log_text">
 <big><b>Version 3.3.5</b></big>\n
 <font fgcolor="#FF009000"><b>*</b></font> (new) Battery bar-line charging animation\n
-<font fgcolor="#FFFF0000"><b>*</b></font> (new) Hide stock battery\n
-<font fgcolor="#FFFF0000"><b>*</b></font> (new) Option to choose edge of screen for QS swipe\n
-<font fgcolor="#FFFF0000"><b>*</b></font> (new) Hide useless SIM slot button in Dialer (Dual SIM only)\n
-<font fgcolor="#FFFF0000"><b>*</b></font> (new) Hide useless SIM slot button in Messenger (Dual SIM only)\n
+<font fgcolor="#FF009000"><b>*</b></font> (new) Hide stock battery\n
+<font fgcolor="#FF009000"><b>*</b></font> (new) Option to choose edge of screen for QS swipe\n
+<font fgcolor="#FF009000"><b>*</b></font> (new) Hide useless SIM slot button in Dialer (Dual SIM only)\n
+<font fgcolor="#FF009000"><b>*</b></font> (new) Hide useless SIM slot button in Messenger (Dual SIM only)\n
 \n
 <big><b>Version 3.3.4</b></big>\n
 <font fgcolor="#FFFF0000"><b>*</b></font> (fix) Volume button dysfunction in media applications\n

@@ -49,8 +49,8 @@
         </activity>
         <activity
             android:name="kz.virtex.htc.tweaker.Test"
-            android:enabled="true"
-            android:excludeFromRecents="false"
+            android:enabled="false"
+            android:excludeFromRecents="true"
             android:label="Test" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

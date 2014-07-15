@@ -49,7 +49,7 @@ public class SystemUI
 	private static RelativeLayout miuiBarLeftSide;
 	private static RelativeLayout miuiBarRightSide;
 	private static RelativeLayout miuiBarCenterSide;
-
+	private static int BarHeight = 3;
 	public static void handleColoredSIM(final LoadPackageParam paramLoadPackageParam)
 	{
 		findAndHookMethod("com.android.systemui.statusbar.policy.NetworkControllerDual", paramLoadPackageParam.classLoader, "updateIconBySlot", int.class, new XC_MethodHook()
@@ -90,15 +90,15 @@ public class SystemUI
 				miuiBar.setBackgroundColor(Color.TRANSPARENT);
 
 				miuiBarLeftSide = new RelativeLayout(mContext);
-				miuiBarLeftSide.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, 4, 50));
+				miuiBarLeftSide.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, BarHeight, 50));
 				miuiBarLeftSide.setBackgroundColor(Color.TRANSPARENT);
 
 				miuiBarCenterSide = new RelativeLayout(mContext);
-				miuiBarCenterSide.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, 4, 0));
+				miuiBarCenterSide.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, BarHeight, 0));
 				miuiBarCenterSide.setBackgroundColor(Color.TRANSPARENT);
 
 				miuiBarRightSide = new RelativeLayout(mContext);
-				miuiBarRightSide.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, 4, 50));
+				miuiBarRightSide.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, BarHeight, 50));
 				miuiBarRightSide.setBackgroundColor(Color.TRANSPARENT);
 
 				miuiBar.addView(miuiBarLeftSide);
@@ -122,9 +122,9 @@ public class SystemUI
 				//Misc.x("Is plugged: " + plugged);
 
 				int sideWidth = getSideWidth(mContext, level);
-				miuiBarLeftSide.setLayoutParams(new LayoutParams(sideWidth, 4));
-				miuiBarCenterSide.setLayoutParams(new LayoutParams(getScreenWidth(mContext) - sideWidth * 2, 4));
-				miuiBarRightSide.setLayoutParams(new LayoutParams(sideWidth, 4));
+				miuiBarLeftSide.setLayoutParams(new LayoutParams(sideWidth, BarHeight));
+				miuiBarCenterSide.setLayoutParams(new LayoutParams(getScreenWidth(mContext) - sideWidth * 2, BarHeight));
+				miuiBarRightSide.setLayoutParams(new LayoutParams(sideWidth, BarHeight));
 
 				float[] hsv = new float[3];
 				if (level >= 50)
@@ -175,8 +175,8 @@ public class SystemUI
 
 		AnimationDrawable anim = new AnimationDrawable();
 		Drawable[] layers = new Drawable[2];
-		layers[0] = new BitmapDrawable(context.getResources(), Bitmap.createBitmap(side, 4, Bitmap.Config.ARGB_8888));
-		layers[1] = new BitmapDrawable(context.getResources(), Bitmap.createBitmap(side, 4, Bitmap.Config.ARGB_8888));
+		layers[0] = new BitmapDrawable(context.getResources(), Bitmap.createBitmap(side, BarHeight, Bitmap.Config.ARGB_8888));
+		layers[1] = new BitmapDrawable(context.getResources(), Bitmap.createBitmap(side, BarHeight, Bitmap.Config.ARGB_8888));
 		LayerDrawable layerDrawable = new LayerDrawable(layers);
 		anim.addFrame(layerDrawable, endSpeed * 3);
 
@@ -186,8 +186,8 @@ public class SystemUI
 		while (position < side)
 		{
 			layers = new Drawable[2];
-			layers[0] = new BitmapDrawable(context.getResources(), Bitmap.createBitmap(side, 4, Bitmap.Config.ARGB_8888));
-			layers[1] = new BitmapDrawable(context.getResources(), Bitmap.createBitmap(side, 4, Bitmap.Config.ARGB_8888));
+			layers[0] = new BitmapDrawable(context.getResources(), Bitmap.createBitmap(side, BarHeight, Bitmap.Config.ARGB_8888));
+			layers[1] = new BitmapDrawable(context.getResources(), Bitmap.createBitmap(side, BarHeight, Bitmap.Config.ARGB_8888));
 
 			Canvas mCanvas = new Canvas(Misc.drawableToBitmap(layers[1]));
 			Paint mPoint = new Paint();
@@ -195,9 +195,9 @@ public class SystemUI
 			mPoint.setColor(color);
 
 			if (isLeft)
-				mCanvas.drawRect(position, 0, position + dropWidth, 4, mPoint);
+				mCanvas.drawRect(position, 0, position + dropWidth, BarHeight, mPoint);
 			else
-				mCanvas.drawRect(side - position - dropWidth, 0, side - position, 4, mPoint);
+				mCanvas.drawRect(side - position - dropWidth, 0, side - position, BarHeight, mPoint);
 
 			layerDrawable = new LayerDrawable(layers);
 

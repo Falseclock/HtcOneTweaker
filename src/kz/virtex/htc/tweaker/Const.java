@@ -2,7 +2,7 @@ package kz.virtex.htc.tweaker;
 
 public class Const
 {
-	public static final boolean DEBUG = true;
+	public static final boolean DEBUG = false;
 	public static final String TAG = "HTC_Tweaker";
 	
 	public static final String PACKAGE_NAME = "kz.virtex.htc.tweaker";
@@ -24,10 +24,10 @@ public class Const
 	public static final String TWEAK_CALL_REC_AUTO_DELETE_INTERVAL = "tweak_call_recording_auto_delete_interval"; 
 	public static final String TWEAK_CALL_REC_AUTO_DELETE_COUNT = "tweak_call_recording_auto_delete_count"; 
 	public static final String TWEAK_CALL_REC_AUTO_LAST_DELETE = "tweak_call_recording_auto_last_delete"; 
+
+	// TODO: make without restart
 	public static final String TWEAK_SHOW_SIM_CARD = "tweak_show_sim_card"; 
 	public static final String TWEAK_SHOW_SIM_CARD_SMS = "tweak_show_sim_card_sms"; 
-	
-	
 	
 	// FULL restart tweaks
 	public static final String TWEAK_ENABLE_ALL_LANGUAGES= "tweak_enable_all_languages";
