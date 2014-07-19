@@ -44,64 +44,76 @@ public class MultiCheckPreference extends HtcDialogPreference implements Checkbo
 		keys = a.getTextArray(R.styleable.MultiCheckbox_entryKeys);
 		summs = a.getTextArray(R.styleable.MultiCheckbox_entrySummaries);
 
-		if (summs == null)
-		{
+		if (summs == null) {
 			summs = new CharSequence[titles.length];
 		}
 		a.recycle();
 
 		rows = new ArrayList<Row>();
-		for (int i = 0; i < titles.length; i++)
-		{
+		for (int i = 0; i < titles.length; i++) {
 			rows.add(new Row(titles[i], summs[i], keys[i]));
 		}
+	}
+
+	public void setAllChecked()
+	{
+		for (int i = 0; i < rows.size(); i++) {
+			rows.get(i).setState(true);
+		}
+		callChangeListener(rows);
+	}
+
+	public void setAllUnChecked()
+	{
+		for (int i = 0; i < rows.size(); i++) {
+			rows.get(i).setState(false);
+		}
+		callChangeListener(rows);
+	}
+
+	public void setChecked(int i)
+	{
+		rows.get(i).setState(true);
+		callChangeListener(rows);
 	}
 
 	public void unsetMinimum()
 	{
 		useAtLeastOne = false;
 	}
-	
+
 	public void setMinimum()
 	{
 		useAtLeastOne = true;
 	}
-	
+
 	@Override
 	public void onCheck(String key, HtcCheckBox checkBox)
 	{
 		rows.get(checkBox.getId()).setState(checkBox.isChecked());
 
-		if (useAtLeastOne)
-		{
-			if (checkBox.isChecked() == false)
-			{
+		if (useAtLeastOne) {
+			if (checkBox.isChecked() == false) {
 				boolean found = false;
-				for (int i = 0; i < rows.size(); i++)
-				{
-					if (rows.get(i).getState() == true)
-					{
+				for (int i = 0; i < rows.size(); i++) {
+					if (rows.get(i).getState() == true) {
 						found = true;
 					}
 				}
-				if (found == false)
-				{
+				if (found == false) {
 					rows.get(checkBox.getId()).setState(true);
 					checkBox.setChecked(true);
 					return;
 				}
 			}
 		}
-
 	}
 
 	public void onClick(DialogInterface paramDialogInterface, int paramInt)
 	{
 		super.onClick(paramDialogInterface, paramInt);
-		if (paramInt == DialogInterface.BUTTON_POSITIVE)
-		{
-			for (int i = 0; i < rows.size(); i++)
-			{
+		if (paramInt == DialogInterface.BUTTON_POSITIVE) {
+			for (int i = 0; i < rows.size(); i++) {
 				Main.putBoolean(mKey + "_" + rows.get(i).getKey(), rows.get(i).getState());
 			}
 		}
@@ -165,8 +177,7 @@ public class MultiCheckPreference extends HtcDialogPreference implements Checkbo
 
 		public CheckPreferenceAdapter(MultiCheckPreference multiCheckPreference, ArrayList<Row> paramRow)
 		{
-			if (paramRow != null)
-			{
+			if (paramRow != null) {
 				data = paramRow;
 			}
 			this.context = multiCheckPreference.getContext();
@@ -198,8 +209,7 @@ public class MultiCheckPreference extends HtcDialogPreference implements Checkbo
 			title.setText(data.get(position).mTitle);
 			title.setTypeface(Typeface.create("sans-serif-condensed", Typeface.NORMAL));
 
-			if (data.get(position).mSummary != null)
-			{
+			if (data.get(position).mSummary != null) {
 				TextView summary = returnView.textSummary;
 				summary.setText(data.get(position).mSummary);
 				summary.setTextSize(TypedValue.COMPLEX_UNIT_SP, Misc.densify(5));

@@ -140,20 +140,85 @@
                         android:max="360"
                         android:title="@string/hue_settings" >
                     </kz.virtex.htc.tweaker.preference.SeekBarPreference>
-                    
-                    <kz.virtex.htc.tweaker.preference.MultiCheckPreference
-                    android:key="tweak_show_sim_card"
-                    android:title="@string/showSimTitle"
-                    tweaker:entryKeys="@array/showSimKeys"
-                    tweaker:entryTitles="@array/showSimTitles" />
-                                    
-                    <kz.virtex.htc.tweaker.preference.MultiCheckPreference
-                    android:key="tweak_show_sim_card_sms"
-                    android:title="@string/showSimSMSTitle"
-                    tweaker:entryKeys="@array/showSimKeys"
-                    tweaker:entryTitles="@array/showSimTitles" />
-                    
-                    </com.htc.preference.HtcPreferenceCategory>
+                </com.htc.preference.HtcPreferenceCategory>
+                <com.htc.preference.HtcPreferenceCategory
+                    android:key="sim_cards_settings_cat"
+                    android:title="@string/SIMCardSettings" >
+                    <com.htc.preference.HtcPreferenceScreen
+                        android:key="sim_card_selector_screen"
+                        android:summary="@string/SimCardSelectorScreenSummary"
+                        android:title="@string/SimCardSelectorScreen" >
+                        <com.htc.preference.HtcPreferenceCategory
+                            android:key="sim_card_selector_dial_screen"
+                            android:title="@string/SIMCardSelectorDial" >
+                            <kz.virtex.htc.tweaker.preference.MultiCheckPreference
+                                android:key="tweak_show_sim_card_dial"
+                                android:title="@string/showSimDialTitle"
+                                tweaker:entryKeys="@array/showSimKeys"
+                                tweaker:entryTitles="@array/showSimTitles" />
+
+                            <com.htc.preference.HtcListPreference
+                                android:defaultValue="0"
+                                android:entries="@array/tweak_show_sim_card_dial_action"
+                                android:entryValues="@array/tweak_show_sim_card_dial_action_val"
+                                android:key="tweak_show_sim_card_dial_action"
+                                android:title="@string/tweak_show_sim_card_dial_action" />
+                        </com.htc.preference.HtcPreferenceCategory>
+                        <com.htc.preference.HtcPreferenceCategory
+                            android:key="sim_card_selector_mess_screen"
+                            android:title="@string/SIMCardSelectorMess" >
+                            <kz.virtex.htc.tweaker.preference.MultiCheckPreference
+                                android:key="tweak_show_sim_card_mess"
+                                android:title="@string/showSimMessTitle"
+                                tweaker:entryKeys="@array/showSimKeys"
+                                tweaker:entryTitles="@array/showSimTitles" />
+
+                            <com.htc.preference.HtcListPreference
+                                android:defaultValue="0"
+                                android:entries="@array/tweak_show_sim_card_mess_action"
+                                android:entryValues="@array/tweak_show_sim_card_mess_action_val"
+                                android:key="tweak_show_sim_card_mess_action"
+                                android:title="@string/tweak_show_sim_card_mess_action" />
+                        </com.htc.preference.HtcPreferenceCategory>
+                    </com.htc.preference.HtcPreferenceScreen>
+                    <com.htc.preference.HtcPreferenceScreen
+                        android:key="sim_card_force_screen"
+                        android:summary="@string/SimCardForceScreenSummary"
+                        android:title="@string/SimCardForceScreen" >
+                        <com.htc.preference.HtcPreferenceCategory
+                            android:key="sim_card_force_dial_cat"
+                            android:title="@string/SIMCardForceDial" >
+                            <com.htc.preference.HtcListPreference
+                                android:defaultValue="0"
+                                android:entries="@array/tweak_force_dial"
+                                android:entryValues="@array/tweak_force_dial_val"
+                                android:key="tweak_force_dial"
+                                android:title="@string/tweak_force_dial" />
+                            <com.htc.preference.HtcListPreference
+                                android:defaultValue="0"
+                                android:entries="@array/tweak_force_dial_action"
+                                android:entryValues="@array/tweak_force_dial_action_val"
+                                android:key="tweak_force_dial_action"
+                                android:title="@string/tweak_force_action" />
+                        </com.htc.preference.HtcPreferenceCategory>
+                        <com.htc.preference.HtcPreferenceCategory
+                            android:key="sim_card_force_mess_cat"
+                            android:title="@string/SIMCardForceMess" >
+                            <com.htc.preference.HtcListPreference
+                                android:defaultValue="0"
+                                android:entries="@array/tweak_force_mess"
+                                android:entryValues="@array/tweak_force_mess_val"
+                                android:key="tweak_force_mess"
+                                android:title="@string/tweak_force_mess" />
+                            <com.htc.preference.HtcListPreference
+                                android:defaultValue="0"
+                                android:entries="@array/tweak_force_mess_action"
+                                android:entryValues="@array/tweak_force_mess_action_val"
+                                android:key="tweak_force_mess_action"
+                                android:title="@string/tweak_force_action" />
+                        </com.htc.preference.HtcPreferenceCategory>
+                    </com.htc.preference.HtcPreferenceScreen>
+                </com.htc.preference.HtcPreferenceCategory>
             </com.htc.preference.HtcPreferenceScreen>
         </com.htc.preference.HtcPreferenceScreen>
         <com.htc.preference.HtcPreferenceScreen

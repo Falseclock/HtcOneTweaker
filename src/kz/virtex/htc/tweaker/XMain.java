@@ -150,6 +150,8 @@ public class XMain implements IXposedHookInitPackageResources, IXposedHookZygote
 
 		if (packageName.equals("com.android.phone"))
 		{
+			Phone.hookCopyDialExtra(paramLoadPackageParam);
+			
 			if (pref.getBoolean(Const.TWEAK_ENABLE_SIP, false))
 				Phone.hookSIP(paramLoadPackageParam);
 
@@ -194,7 +196,7 @@ public class XMain implements IXposedHookInitPackageResources, IXposedHookZygote
 		if (packageName.equals("com.android.mms") || packageName.equals("com.htc.sense.mms"))
 		{
 			if (Misc.isDual())
-				Messaging.hookSendButton(paramLoadPackageParam, packageName);
+				Messaging.hookSendSMSButton(paramLoadPackageParam, packageName);
 
 			// Messaging.hookNotificationRemove(paramLoadPackageParam,
 			// packageName);

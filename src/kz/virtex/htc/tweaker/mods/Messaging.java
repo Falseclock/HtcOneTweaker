@@ -58,7 +58,7 @@ public class Messaging
 
 	public static void hookSupport8ColorLed(final LoadPackageParam paramLoadPackageParam, String packageName)
 	{
-		findAndHookMethod(packageName + ".MmsConfig",  paramLoadPackageParam.classLoader, "isSupport8ColorLed", new XC_MethodReplacement()
+		findAndHookMethod(packageName + ".MmsConfig", paramLoadPackageParam.classLoader, "isSupport8ColorLed", new XC_MethodReplacement()
 		{
 			@Override
 			protected Object replaceHookedMethod(MethodHookParam param) throws Throwable
@@ -68,24 +68,168 @@ public class Messaging
 			}
 		});
 	}
-	
-	public static void hookSendButton(final LoadPackageParam paramLoadPackageParam, String packageName)
+
+	public static void hookSendSMSButton(final LoadPackageParam paramLoadPackageParam, String packageName)
 	{
-		findAndHookMethod(packageName + ".ui.MessageEditorPanel",  paramLoadPackageParam.classLoader, "setChinaButtonEnable", boolean.class, boolean.class, new XC_MethodHook()
+		findAndHookMethod(packageName + ".ui.MessageEditorPanel", paramLoadPackageParam.classLoader, "setDualModeButtonEnableandVisibiltiy", packageName + ".ui.MessageEditorPanel$DualModeButtonParams[]", new XC_MethodReplacement()
 		{
 			@Override
-			protected void beforeHookedMethod(MethodHookParam param) throws Throwable
+			protected Object replaceHookedMethod(MethodHookParam param) throws Throwable
 			{
-				boolean sim1 = XMain.pref.getBoolean(Const.TWEAK_SHOW_SIM_CARD_SMS+"_sim1", true);
-				boolean sim2 = XMain.pref.getBoolean(Const.TWEAK_SHOW_SIM_CARD_SMS+"_sim2", true);
-				if (!sim1)
-					param.args[0] = Boolean.valueOf(false);
-				if (!sim2)
-					param.args[1] = Boolean.valueOf(false);
+				Activity mActivity = (Activity) XposedHelpers.getObjectField(param.thisObject, "mActivity");
+				Context mContext = mActivity.getApplicationContext();
+				
+				boolean showSim1 = Misc.toBoolean(Misc.getSystemSettingsInt(mContext, Const.TWEAK_SHOW_SIM_CARD_MESS + "_sim1", 1));
+				boolean showSim2 = Misc.toBoolean(Misc.getSystemSettingsInt(mContext, Const.TWEAK_SHOW_SIM_CARD_MESS + "_sim2", 1));
+
+				boolean[] showSim = new boolean[2];
+				showSim[0] = showSim1;
+				showSim[1] = showSim2;
+				
+				HtcSpecificInputField mEditorPanel = (HtcSpecificInputField) XposedHelpers.getObjectField(param.thisObject, "mEditorPanel");
+				Object[] paramArrayOfDualModeButtonParams = (Object[]) param.args[0];
+
+				if ((paramArrayOfDualModeButtonParams != null) && (mEditorPanel != null))
+				{
+					boolean mIsDuringSendState = XposedHelpers.getBooleanField(param.thisObject, "mIsDuringSendState");
+					Object[] mDualModeButtons = (Object[]) XposedHelpers.getObjectField(param.thisObject, "mDualModeButtons");
+
+					if (mIsDuringSendState)
+					{
+						Misc.x("mIsDuringSendState");
+						if (!showSim1)
+							XposedHelpers.setIntField(paramArrayOfDualModeButtonParams[0], "visibility", View.GONE);
+						if (!showSim2)
+							XposedHelpers.setIntField(paramArrayOfDualModeButtonParams[1], "visibility", View.GONE);
+						mEditorPanel.setButtonEnable(XposedHelpers.getIntField(mDualModeButtons[0], "index"), false);
+						mEditorPanel.setButtonEnable(XposedHelpers.getIntField(mDualModeButtons[1], "index"), false);
+						return null;
+					}
+
+					if (!XposedHelpers.getBooleanField(paramArrayOfDualModeButtonParams[0], "enabled") && !XposedHelpers.getBooleanField(paramArrayOfDualModeButtonParams[1], "enabled"))
+					{
+						Misc.x("both not enabled");
+
+						if (!showSim1)
+						{
+							XposedHelpers.setIntField(paramArrayOfDualModeButtonParams[0], "visibility", View.GONE);
+							mEditorPanel.setButtonEnable(XposedHelpers.getIntField(paramArrayOfDualModeButtonParams[0], "index"), false);
+						}
+						else
+						{
+							XposedHelpers.setIntField(paramArrayOfDualModeButtonParams[0], "visibility", View.VISIBLE);
+							mEditorPanel.setButtonEnable(XposedHelpers.getIntField(paramArrayOfDualModeButtonParams[0], "index"), XposedHelpers.getBooleanField(paramArrayOfDualModeButtonParams[0], "enabled"));
+						}
+
+						if (!showSim2)
+						{
+							XposedHelpers.setIntField(paramArrayOfDualModeButtonParams[1], "visibility", View.GONE);
+							mEditorPanel.setButtonEnable(XposedHelpers.getIntField(paramArrayOfDualModeButtonParams[1], "index"), false);
+						}
+						else
+						{
+							XposedHelpers.setIntField(paramArrayOfDualModeButtonParams[1], "visibility", View.VISIBLE);
+							mEditorPanel.setButtonEnable(XposedHelpers.getIntField(paramArrayOfDualModeButtonParams[1], "index"), XposedHelpers.getBooleanField(paramArrayOfDualModeButtonParams[1], "enabled"));
+						}
+						return null;
+					}
+
+					Misc.x("something or both enabled");
+					
+					Object button;
+					
+					// SIM1
+					button = paramArrayOfDualModeButtonParams[0];
+					XposedHelpers.setIntField(button, "visibility", XposedHelpers.getBooleanField(button, "enabled") ? View.VISIBLE : View.GONE);
+					mEditorPanel.setButtonEnable(XposedHelpers.getIntField(button, "index"), XposedHelpers.getBooleanField(button, "enabled"));
+					
+					// SIM2
+					button = paramArrayOfDualModeButtonParams[1];
+					XposedHelpers.setIntField(button, "visibility", XposedHelpers.getBooleanField(button, "enabled") ? View.VISIBLE : View.GONE);
+					mEditorPanel.setButtonEnable(XposedHelpers.getIntField(button, "index"), XposedHelpers.getBooleanField(button, "enabled"));
+					
+					//------------------------------------------------------
+					// now do our dirty job
+					int action = Misc.getSystemSettingsInt(mContext, Const.TWEAK_SHOW_SIM_CARD_MESS_ACTION, 0);
+					
+					// If do not show SIM2
+					if (!showSim2)
+					{
+						//get our main SIM buttom state
+						Object buttonSIM1 = paramArrayOfDualModeButtonParams[0];
+						Object buttonSIM2 = paramArrayOfDualModeButtonParams[1];
+						
+						boolean slotReadySIM1 = XposedHelpers.getBooleanField(buttonSIM1, "slotReady");
+						
+						// If SIM 1 is not callable but could be visible
+						if (!slotReadySIM1)
+						{
+							Misc.x("SIM 1 state is NOT ready");
+							switch (action)
+							{
+								// then show SIM2 and hide SIM1
+								default:
+								case 0:
+									Misc.x("show SIM2 and hide SIM1");
+									XposedHelpers.setIntField(buttonSIM1, "visibility", View.GONE);
+									XposedHelpers.setIntField(buttonSIM2, "visibility", View.VISIBLE);
+									return null;
+								// then hide SIM2, show SIM1 and make in disabled
+								case 1:
+									Misc.x("hide SIM2, show SIM1 and make in disabled");
+									XposedHelpers.setIntField(buttonSIM1, "visibility", View.VISIBLE);
+									XposedHelpers.setIntField(buttonSIM2, "visibility", View.GONE);
+									return null;
+							}
+						} else {
+							Misc.x("SIM 1 state is OK");
+							// Show SIM1 and hide SIM2
+							XposedHelpers.setIntField(buttonSIM1, "visibility", View.VISIBLE);
+							XposedHelpers.setIntField(buttonSIM2, "visibility", View.GONE);
+						}
+					}
+					// If do not show SIM1
+					if (!showSim1)
+					{
+						//get our main SIM buttom state
+						Object buttonSIM1 = paramArrayOfDualModeButtonParams[0];
+						Object buttonSIM2 = paramArrayOfDualModeButtonParams[1];
+						
+						boolean slotReadySIM2 = XposedHelpers.getBooleanField(buttonSIM2, "slotReady");
+						
+						// If SIM 2 is not callable but could be visible
+						if (!slotReadySIM2)
+						{
+							Misc.x("SIM 2 state is NOT ready");
+							switch (action)
+							{
+								// then show SIM1 and hide SIM2
+								default:
+								case 0:
+									Misc.x("show SIM1 and hide SIM2");
+									XposedHelpers.setIntField(buttonSIM2, "visibility", View.GONE);
+									XposedHelpers.setIntField(buttonSIM1, "visibility", View.VISIBLE);
+									return null;
+								// then hide SIM1, show SIM2 and make in disabled
+								case 1:
+									Misc.x("hide SIM1, show SIM2 and make in disabled");
+									XposedHelpers.setIntField(buttonSIM2, "visibility", View.VISIBLE);
+									XposedHelpers.setIntField(buttonSIM1, "visibility", View.GONE);
+									return null;
+							}
+						} else {
+							Misc.x("SIM 2 state is OK");
+							// Show SIM2 and hide SIM1
+							XposedHelpers.setIntField(buttonSIM2, "visibility", View.VISIBLE);
+							XposedHelpers.setIntField(buttonSIM1, "visibility", View.GONE);
+						}
+					}
+				}
+				return null;
 			}
 		});
 	}
-	
+
 	public static void hookNotificationRemove(final LoadPackageParam paramLoadPackageParam, String packageName)
 	{
 		findAndHookMethod(packageName + ".transaction.SmsReceiverService.ServiceHandler", paramLoadPackageParam.classLoader, "handleMessage", "android.os.Message", new XC_MethodHook()
@@ -154,7 +298,8 @@ public class Messaging
 			if (mThreadSize > 1 || mMessageCount > 1)
 			{
 				return paramNotification;
-			} else
+			}
+			else
 			{
 				IntentFilter intentFilter = new IntentFilter();
 				intentFilter.addAction(TweakerBroadcastReceiver.ACTION_DELETE_MESSAGE);
@@ -169,7 +314,7 @@ public class Messaging
 				intentDeleteMsg.putExtra("ContactId", mContactId);
 				intentDeleteMsg.putExtra("ThreadId", mThreadId);
 				intentDeleteMsg.putExtra("Sender", paramSender);
-				
+
 				@SuppressWarnings("unused")
 				PendingIntent mPintentDeleteMsg = PendingIntent.getBroadcast(mContext, paramNotificationId, intentDeleteMsg, 0);
 
@@ -205,9 +350,9 @@ public class Messaging
 				localBuilder.setContentText(mContentText);
 				localBuilder.setStyle(new Notification.BigTextStyle().bigText(mContentText));
 				localBuilder.setContentIntent(mPendingIntent);
-				//localBuilder.addAction(0, "Удалить", mPintentDeleteMsg);
-				//localBuilder.addAction(0, "Звонок", mPintentCallToContact);
-				//localBuilder.addAction(0, "Ответ", mPintentReplyMsg);
+				// localBuilder.addAction(0, "Удалить", mPintentDeleteMsg);
+				// localBuilder.addAction(0, "Звонок", mPintentCallToContact);
+				// localBuilder.addAction(0, "Ответ", mPintentReplyMsg);
 
 				Class<?> MessagingNotification = XposedHelpers.findClass(packageName + ".transaction.MessagingNotification", classLoader);
 
@@ -224,7 +369,8 @@ public class Messaging
 				if (Misc.isSense6())
 				{
 					XposedHelpers.callStaticMethod(MessagingNotification, "setJogBall", mContext, localNotification, str3);
-				} else
+				}
+				else
 				{
 					XposedHelpers.callStaticMethod(MessagingNotification, "setJogBall_JB", mContext, localNotification, str3);
 				}
@@ -361,7 +507,8 @@ public class Messaging
 					XModuleResources modRes = XModuleResources.createInstance(XMain.MODULE_PATH, null);
 
 					row.setBackgroundDrawable(modRes.getDrawable(R.drawable.list_background_unread));
-				} else
+				}
+				else
 				{
 					row.setBackgroundDrawable(Background);
 				}
@@ -470,7 +617,8 @@ public class Messaging
 
 						mBadges[index] = tweakedDrawable[iconIndex];
 
-					} else
+					}
+					else
 					{
 						mBadges[index] = context.getResources().getDrawable(id);
 					}
@@ -526,7 +674,8 @@ public class Messaging
 									{
 										m = localContext.getResources().getColor(apkRes.getIdentifier("dualButton_1_color", "color", packageName));
 										m = Misc.colorTransform(m, Misc.getHueValue(XMain.pref.getInt(Const.TWEAK_SLOT1_COLOR, 0)));
-									} else
+									}
+									else
 									{
 										m = localContext.getResources().getColor(apkRes.getIdentifier("dualButton_2_color", "color", packageName));
 										m = Misc.colorTransform(Color.parseColor("#33e5b1"), Misc.getHueValue(XMain.pref.getInt(Const.TWEAK_SLOT2_COLOR, 0)));

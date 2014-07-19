@@ -104,6 +104,9 @@
         <item>@string/prefix_option_4</item>
         <item>@string/prefix_option_5</item>
         <item>@string/prefix_option_6</item>
+        <item>@string/prefix_option_7</item>
+        <item>@string/prefix_option_8</item>
+        <item>@string/prefix_option_9</item>
     </string-array>
     <string-array name="prefix_option_val">
         <item>@string/zero</item>
@@ -113,6 +116,9 @@
         <item>@string/prefix_option_val4</item>
         <item>@string/prefix_option_val5</item>
         <item>@string/prefix_option_val6</item>
+        <item>@string/prefix_option_val7</item>
+        <item>@string/prefix_option_val8</item>
+        <item>@string/prefix_option_val9</item>
     </string-array>
     <string-array name="swipe_option">
         <item>@string/swipe_option_0</item>
@@ -145,5 +151,57 @@
     <string-array name="showSimKeys">
         <item>@string/sim1Key</item>
         <item>@string/sim2Key</item>
+    </string-array>
+    <string-array name="tweak_show_sim_card_dial_action">
+        <item>@string/show_another_sim</item>
+        <item>@string/show_emergency_call</item>
+    </string-array>
+    <string-array name="tweak_show_sim_card_dial_action_val">
+        <item>@string/zero</item>
+        <item>@string/one</item>
+    </string-array>
+    <string-array name="tweak_show_sim_card_mess_action">
+        <item>@string/show_another_sim</item>
+        <item>@string/disable_messaging</item>
+    </string-array>
+    <string-array name="tweak_show_sim_card_mess_action_val">
+        <item>@string/zero</item>
+        <item>@string/one</item>
+    </string-array>
+    <string-array name="tweak_force_dial">
+        <item>@string/disabled</item>
+        <item>@string/slot1</item>
+        <item>@string/slot2</item>
+    </string-array>
+    <string-array name="tweak_force_dial_val">
+        <item>@string/zero</item>
+        <item>@string/one</item>
+        <item>@string/two</item>
+    </string-array>
+        <string-array name="tweak_force_mess">
+        <item>@string/disabled</item>
+        <item>@string/slot1</item>
+        <item>@string/slot2</item>
+    </string-array>
+    <string-array name="tweak_force_mess_val">
+        <item>@string/zero</item>
+        <item>@string/one</item>
+        <item>@string/two</item>
+    </string-array>
+    <string-array name="tweak_force_dial_action">
+        <item>@string/dial_through_available</item>
+        <item>@string/dial_is_disabled</item>
+    </string-array>
+    <string-array name="tweak_force_dial_action_val">
+        <item>@string/zero</item>
+        <item>@string/one</item>
+    </string-array>
+        <string-array name="tweak_force_mess_action">
+        <item>@string/mess_through_available</item>
+        <item>@string/mess_is_disabled</item>
+    </string-array>
+    <string-array name="tweak_force_mess_action_val">
+        <item>@string/zero</item>
+        <item>@string/one</item>
     </string-array>
 </resources>

@@ -305,19 +305,25 @@
     <string name="logcat_info">Info</string>
     <string name="logcat_verbose">Verbose</string>
     <string name="logcat_warn">Warn</string>
-    <string name="prefix_option_0">Без префикса</string>
+    <string name="prefix_option_0">No prefix</string>
     <string name="prefix_option_1">2014</string>
-    <string name="prefix_option_2">2014‐52</string>
-    <string name="prefix_option_3">2014‐12</string>
-    <string name="prefix_option_4">2014‐12‐13</string>
-    <string name="prefix_option_5">2014‐12‐13‐16‐00</string>
-    <string name="prefix_option_6">2014‐12‐13‐16‐00‐00</string>
+    <string name="prefix_option_2">2014-52</string>
+    <string name="prefix_option_3">2014-12</string>
+    <string name="prefix_option_4">2014-12-13</string>
+    <string name="prefix_option_5">2014-12-13-16-00</string>
+    <string name="prefix_option_6">2014-12-13-16-00-00</string>
+    <string name="prefix_option_7">20141213</string>
+    <string name="prefix_option_8">20141213-1600</string>
+    <string name="prefix_option_9">20141213-160000</string>
     <string name="prefix_option_val1">yyyy</string>
-    <string name="prefix_option_val2">yyyy‐w</string>
-    <string name="prefix_option_val3">yyyy‐MM</string>
-    <string name="prefix_option_val4">yyyy‐MM‐dd</string>
-    <string name="prefix_option_val5">yyyy‐MM‐dd‐HH‐mm</string>
-    <string name="prefix_option_val6">yyyy‐MM‐dd‐HH‐mm‐ss</string>
+    <string name="prefix_option_val2">yyyy-w</string>
+    <string name="prefix_option_val3">yyyy-MM</string>
+    <string name="prefix_option_val4">yyyy-MM-dd</string>
+    <string name="prefix_option_val5">yyyy-MM-dd-HH-mm</string>
+    <string name="prefix_option_val6">yyyy-MM-dd-HH-mm-ss</string>
+    <string name="prefix_option_val7">yyyyMMdd</string>
+    <string name="prefix_option_val8">yyyyMMdd-HHmm</string>
+    <string name="prefix_option_val9">yyyyMMdd-HHmmss</string>
     <string name="swipe_option_0">Свайп боковой части экрана для быстрых настроек - отключено</string>
     <string name="swipe_option_1">Задействовать 1/2 экрана</string>
     <string name="swipe_option_2">Задействовать 1/3 экрана</string>
@@ -335,11 +341,21 @@
     <string name="left">С левой стороны</string>
     <string name="right">С правой стороны</string>
     <string name="QuickPullDownCat">Быстрые настройки</string>
-    <string name="showSimTitle">SIM карты в номеронабирателе</string>
-    <string name="showSimSMSTitle">SIM карты в мессенджере</string>
+
+    <string name="showSimDialTitle">SIM карты в номеронабирателе</string>
+    <string name="showSimMessTitle">SIM карты в мессенджере</string>
+    
     <string name="sim1">SIM 1</string>
     <string name="sim2">SIM 2</string>
     <string name="sim1Key">sim1</string>
     <string name="sim2Key">sim2</string>
-
+    
+    <string name="SIMCardSelectorDial">Dialer SIM card selector</string>
+    <string name="tweak_show_sim_card_dial_action">Action when SIM is unavailable</string>
+    <string name="show_another_sim">Show another SIM</string>
+    <string name="show_emergency_call">Show Emergency call</string>
+    
+    <string name="SIMCardSelectorMess">Messenger SIM card selector</string>
+    <string name="tweak_show_sim_card_mess_action">Action when SIM is unavailable</string>
+    <string name="disable_messaging">Disable message sending</string>
 </resources>

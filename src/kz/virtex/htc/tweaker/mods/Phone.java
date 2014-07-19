@@ -1,8 +1,11 @@
 package kz.virtex.htc.tweaker.mods;
 
 import static de.robv.android.xposed.XposedHelpers.findAndHookMethod;
+import kz.virtex.htc.tweaker.Const;
 import kz.virtex.htc.tweaker.Misc;
 import kz.virtex.htc.tweaker.R;
+import android.content.Context;
+import android.content.Intent;
 import android.content.res.XModuleResources;
 import android.content.res.XResources;
 import android.graphics.drawable.Drawable;
@@ -17,13 +20,70 @@ public class Phone
 	private static Object DualCallSettingsPreference;
 	private static Object CallFeaturesSetting;
 
+	public static void hookCopyDialExtra(final LoadPackageParam paramLoadPackageParam)
+	{
+		findAndHookMethod("com.android.phone.PhoneUtils", paramLoadPackageParam.classLoader, "copyDialExtra", Intent.class, Intent.class, new XC_MethodHook()
+		{
+			@Override
+			protected void afterHookedMethod(MethodHookParam param) throws Throwable
+			{
+				Intent paramIntent2 = (Intent) param.args[1];
+				
+				Class<?> PhoneGlobals = XposedHelpers.findClass("com.android.phone.PhoneGlobals", paramLoadPackageParam.classLoader);
+				Object getInstance = XposedHelpers.callStaticMethod(PhoneGlobals, "getInstance");
+				Context mContext = (Context) XposedHelpers.callMethod(getInstance, "getApplicationContext");
+
+				int force = Misc.getSystemSettingsInt(mContext, Const.TWEAK_FORCE_DIAL, 0);
+
+				if (force != 0) {
+					Class<?> PhoneUtils = XposedHelpers.findClass("com.android.phone.PhoneUtils", paramLoadPackageParam.classLoader);
+					
+					int action = Misc.getSystemSettingsInt(mContext, Const.TWEAK_FORCE_DIAL_ACTION, 0);
+					int phoneType;
+
+					if (force == 1)
+						phoneType = (Integer) XposedHelpers.callStaticMethod(PhoneUtils, "getSlot1PhoneType");
+					else
+						phoneType = (Integer) XposedHelpers.callStaticMethod(PhoneUtils, "getSlot2PhoneType");
+
+					// dial through available
+					if (action == 0) {
+						// check if slot is available
+						if ((Boolean) XposedHelpers.callStaticMethod(PhoneUtils, "isSimReady", phoneType)) {
+							// dial through desired slot
+							paramIntent2.putExtra("phone_type", phoneType);
+						} else {
+							// slot not available, so lets get state of another slot
+							int anotherSlot;
+							if (force == 1)
+								anotherSlot = (Integer) XposedHelpers.callStaticMethod(PhoneUtils, "getSlot2PhoneType");
+							else
+								anotherSlot = (Integer) XposedHelpers.callStaticMethod(PhoneUtils, "getSlot1PhoneType");
+							
+							// If another slot is ready
+							if ((Boolean) XposedHelpers.callStaticMethod(PhoneUtils, "isSimReady", anotherSlot))
+							{
+								// then dial through another
+								paramIntent2.putExtra("phone_type", anotherSlot);
+							} else {
+								// otherwise get failed on desired slot
+								paramIntent2.putExtra("phone_type", phoneType);
+							}
+						}
+					} else {
+						// Dial and we do not care
+						paramIntent2.putExtra("phone_type", phoneType);
+					}
+				}
+			}
+		});
+	}
+
 	public static void handleSlotIndicator1(InitPackageResourcesParam resparam, String path, final int value)
 	{
 		final XModuleResources modRes = XModuleResources.createInstance(path, resparam.res);
-		if (resparam.packageName.equals("com.htc.sense.mms"))
-		{
-			try
-			{
+		if (resparam.packageName.equals("com.htc.sense.mms")) {
+			try {
 				resparam.res.setReplacement(resparam.packageName, "drawable", "l_icon_indicator_slot1_s", new XResources.DrawableLoader()
 				{
 					public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
@@ -31,12 +91,10 @@ public class Phone
 						return Misc.adjustHue(modRes.getDrawable(R.drawable.icon_indicator_slot1_s), Misc.getHueValue(value));
 					}
 				});
-			} catch (Throwable t)
-			{
+			} catch (Throwable t) {
 			}
 
-			try
-			{
+			try {
 				resparam.res.setReplacement(resparam.packageName, "drawable", "l_icon_indicator_slot1", new XResources.DrawableLoader()
 				{
 					public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
@@ -44,13 +102,11 @@ public class Phone
 						return Misc.adjustHue(modRes.getDrawable(R.drawable.icon_indicator_slot1), Misc.getHueValue(value));
 					}
 				});
-			} catch (Throwable t)
-			{
+			} catch (Throwable t) {
 			}
 
 		}
-		try
-		{
+		try {
 			resparam.res.setReplacement(resparam.packageName, "drawable", "icon_indicator_slot1", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
@@ -58,12 +114,10 @@ public class Phone
 					return Misc.adjustHue(modRes.getDrawable(R.drawable.icon_indicator_slot1), Misc.getHueValue(value));
 				}
 			});
-		} catch (Throwable t)
-		{
+		} catch (Throwable t) {
 			// XposedBridge.log(t);
 		}
-		try
-		{
+		try {
 			resparam.res.setReplacement(resparam.packageName, "drawable", "icon_indicator_slot1_dark_s", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
@@ -71,12 +125,10 @@ public class Phone
 					return Misc.adjustHue(modRes.getDrawable(R.drawable.icon_indicator_slot1_s), Misc.getHueValue(value));
 				}
 			});
-		} catch (Throwable t)
-		{
+		} catch (Throwable t) {
 
 		}
-		try
-		{
+		try {
 			resparam.res.setReplacement(resparam.packageName, "drawable", "icon_indicator_slot1_light_s", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
@@ -84,12 +136,10 @@ public class Phone
 					return Misc.adjustHue(modRes.getDrawable(R.drawable.icon_indicator_slot1_s), Misc.getHueValue(value));
 				}
 			});
-		} catch (Throwable t)
-		{
+		} catch (Throwable t) {
 
 		}
-		try
-		{
+		try {
 			resparam.res.setReplacement(resparam.packageName, "drawable", "icon_indicator_slot1_s", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
@@ -97,8 +147,7 @@ public class Phone
 					return Misc.adjustHue(modRes.getDrawable(R.drawable.icon_indicator_slot1_s), Misc.getHueValue(value));
 				}
 			});
-		} catch (Throwable t)
-		{
+		} catch (Throwable t) {
 
 		}
 	}
@@ -106,10 +155,8 @@ public class Phone
 	public static void handleSlotIndicator2(InitPackageResourcesParam resparam, String path, final int value)
 	{
 		final XModuleResources modRes = XModuleResources.createInstance(path, resparam.res);
-		if (resparam.packageName.equals("com.htc.sense.mms"))
-		{
-			try
-			{
+		if (resparam.packageName.equals("com.htc.sense.mms")) {
+			try {
 				resparam.res.setReplacement(resparam.packageName, "drawable", "l_icon_indicator_slot2_s", new XResources.DrawableLoader()
 				{
 					public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
@@ -117,12 +164,10 @@ public class Phone
 						return Misc.adjustHue(modRes.getDrawable(R.drawable.icon_indicator_slot2_s), Misc.getHueValue(value));
 					}
 				});
-			} catch (Throwable t)
-			{
+			} catch (Throwable t) {
 			}
 
-			try
-			{
+			try {
 				resparam.res.setReplacement(resparam.packageName, "drawable", "l_icon_indicator_slot2", new XResources.DrawableLoader()
 				{
 					public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
@@ -130,12 +175,10 @@ public class Phone
 						return Misc.adjustHue(modRes.getDrawable(R.drawable.icon_indicator_slot2), Misc.getHueValue(value));
 					}
 				});
-			} catch (Throwable t)
-			{
+			} catch (Throwable t) {
 			}
 		}
-		try
-		{
+		try {
 			resparam.res.setReplacement(resparam.packageName, "drawable", "icon_indicator_slot2", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
@@ -143,12 +186,10 @@ public class Phone
 					return Misc.adjustHue(modRes.getDrawable(R.drawable.icon_indicator_slot2), Misc.getHueValue(value));
 				}
 			});
-		} catch (Throwable t)
-		{
+		} catch (Throwable t) {
 			// XposedBridge.log(t);
 		}
-		try
-		{
+		try {
 			resparam.res.setReplacement(resparam.packageName, "drawable", "icon_indicator_slot2_dark_s", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
@@ -156,12 +197,10 @@ public class Phone
 					return Misc.adjustHue(modRes.getDrawable(R.drawable.icon_indicator_slot2_s), Misc.getHueValue(value));
 				}
 			});
-		} catch (Throwable t)
-		{
+		} catch (Throwable t) {
 
 		}
-		try
-		{
+		try {
 			resparam.res.setReplacement(resparam.packageName, "drawable", "icon_indicator_slot2_light_s", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
@@ -169,12 +208,10 @@ public class Phone
 					return Misc.adjustHue(modRes.getDrawable(R.drawable.icon_indicator_slot2_s), Misc.getHueValue(value));
 				}
 			});
-		} catch (Throwable t)
-		{
+		} catch (Throwable t) {
 
 		}
-		try
-		{
+		try {
 			resparam.res.setReplacement(resparam.packageName, "drawable", "icon_indicator_slot2_s", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
@@ -182,8 +219,7 @@ public class Phone
 					return Misc.adjustHue(modRes.getDrawable(R.drawable.icon_indicator_slot2_s), Misc.getHueValue(value));
 				}
 			});
-		} catch (Throwable t)
-		{
+		} catch (Throwable t) {
 
 		}
 	}
@@ -265,14 +301,12 @@ public class Phone
 				Object localHtcListPreference2 = XposedHelpers.callMethod(DualCallSettingsPreference, "findPreference", "sip_call_options_wifi_only_key");
 				Object localHtcPreferenceGroup = XposedHelpers.callMethod(DualCallSettingsPreference, "findPreference", "sip_settings_category_key");
 				Boolean isSipWifiOnly = (Boolean) XposedHelpers.callStaticMethod(SipManager, "isSipWifiOnly", param.thisObject);
-				if (isSipWifiOnly)
-				{
+				if (isSipWifiOnly) {
 					XposedHelpers.callMethod(localHtcPreferenceGroup, "removePreference", localHtcListPreference1);
 
 					mButtonSipCallOptions = localHtcListPreference2;
 					XposedHelpers.setObjectField(param.thisObject, "mButtonSipCallOptions", localHtcListPreference2);
-				} else
-				{
+				} else {
 					XposedHelpers.callMethod(localHtcPreferenceGroup, "removePreference", localHtcListPreference2);
 
 					mButtonSipCallOptions = localHtcListPreference1;

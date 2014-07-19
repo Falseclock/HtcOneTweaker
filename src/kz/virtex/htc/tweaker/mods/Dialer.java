@@ -29,9 +29,11 @@ import de.robv.android.xposed.callbacks.XC_LoadPackage.LoadPackageParam;
 
 public class Dialer
 {
-	public static String[] Btn = {};
-	public static String[] Lat = {};
-	
+	public static String[] Btn =
+	{};
+	public static String[] Lat =
+	{};
+
 	private static final BroadcastReceiver br = new BroadcastReceiver()
 	{
 		public void onReceive(Context context, Intent intent)
@@ -40,26 +42,23 @@ public class Dialer
 		}
 	};
 
-	public static Object getSettings(Context context, String name, String type, String deflt) throws NameNotFoundException
+	@SuppressWarnings("unused")
+	private static Object getSettings(Context context, String name, String type, String deflt) throws NameNotFoundException
 	{
 		// Registering our receiver to get key press state
 
 		IntentFilter intFilt = new IntentFilter(TweakerService.ACTION_VOLUME_KEY_PRESS);
 		context.registerReceiver(br, intFilt);
 		Misc.x("Dialer, BroadcastReceiver registered");
-		
+
 		Context tweakContext = context.createPackageContext(Const.PACKAGE_NAME, Context.CONTEXT_IGNORE_SECURITY);
 		Intent intent = new Intent(tweakContext, TweakerService.class).setAction(TweakerService.ACTION_VOLUME_KEY_PRESS);
 		tweakContext.startService(intent);
 		Misc.x("Dialer, Service requested");
-		
-		
-		
+
 		return new Object();
 	}
-	
-	
-	
+
 	private static String[] push(String[] array, String push)
 	{
 		String[] longer = new String[array.length + 1];
@@ -68,7 +67,8 @@ public class Dialer
 
 		return longer;
 	}
-	
+
+
 	public static void hookSimCallButton(final LoadPackageParam paramLoadPackageParam)
 	{
 		findAndHookMethod("com.htc.htcdialer.Dialer", paramLoadPackageParam.classLoader, "updateDMDSCallButton", boolean.class, boolean.class, new XC_MethodHook()
@@ -76,16 +76,77 @@ public class Dialer
 			@Override
 			protected void beforeHookedMethod(MethodHookParam param) throws Throwable
 			{
-				boolean sim1 = XMain.pref.getBoolean(Const.TWEAK_SHOW_SIM_CARD+"_sim1", true);
-				boolean sim2 = XMain.pref.getBoolean(Const.TWEAK_SHOW_SIM_CARD+"_sim2", true);
-				if (!sim1)
-					param.args[0] = Boolean.valueOf(true);
-				if (!sim2)
-					param.args[1] = Boolean.valueOf(true);
+				Context mContext = (Context) XposedHelpers.getObjectField(param.thisObject, "mContext");
+
+				boolean showSim1 = Misc.toBoolean(Misc.getSystemSettingsInt(mContext, Const.TWEAK_SHOW_SIM_CARD_DIAL + "_sim1", 1));
+				boolean showSim2 = Misc.toBoolean(Misc.getSystemSettingsInt(mContext, Const.TWEAK_SHOW_SIM_CARD_DIAL + "_sim2", 1));
+
+				boolean sim1hide = (Boolean) param.args[0];
+				boolean sim2hide = (Boolean) param.args[0];
+
+				// If user choosed to hide SIM 1 (Kcell)
+				if (!showSim1)
+				{
+					// if SIM 2 (Beeline) also going to be disabled by the system
+					if (sim2hide)
+					{
+						// Let's get what we should do
+						int action = Misc.getSystemSettingsInt(mContext, Const.TWEAK_SHOW_SIM_CARD_DIAL_ACTION, 0);
+						switch (action)
+						{
+							// show another sim
+							case 0:
+							default:
+								// if SIM 1 also not available
+								if (sim1hide) {
+									// do nothing, both SIMs are not visible
+									return;
+								} else {
+									param.args[0] = Boolean.valueOf(true);
+								}
+							case 1:
+								param.args[0] = Boolean.valueOf(true);
+						}
+					}
+					else
+					{
+						param.args[0] = Boolean.valueOf(true);
+					}
+				}
+				
+				// If user choosed to hide SIM 2 (Beeline)
+				if (!showSim2)
+				{
+					// if SIM 1 (Kcell) also going to be disabled by the system
+					if (sim1hide)
+					{
+						// Let's get what we should do
+						int action = Misc.getSystemSettingsInt(mContext, "tweak_show_sim_card_dial_action", 0);
+						switch (action)
+						{
+							// show another sim
+							case 0:
+							default:
+								// if SIM 2 also not available
+								if (sim2hide) {
+									// do nothing, both SIMs are not visible
+									return;
+								} else {
+									param.args[1] = Boolean.valueOf(true);
+								}
+							case 1:
+								param.args[1] = Boolean.valueOf(true);
+						}
+					}
+					else
+					{
+						param.args[1] = Boolean.valueOf(true);
+					}
+				}
 			}
 		});
 	}
-	
+
 	public static void hookSpecificHtcShowKeypad(final LoadPackageParam paramLoadPackageParam)
 	{
 		findAndHookMethod("com.htc.htcdialer.widget.keypadbtn.HtcKeypadBgBtn", paramLoadPackageParam.classLoader, "setEnabled", "boolean", new XC_MethodHook()
@@ -96,17 +157,17 @@ public class Dialer
 				float alpha = (Float) XposedHelpers.callMethod(param.thisObject, "getAlpha");
 				if (alpha <= 0.4F) // to avoid background set every time
 				{
-					 View btn = (View) param.thisObject;
-					 View parent = (View) btn.getParent();
-					 View main = (View) parent.getParent();
-					 					 
-					 XModuleResources modRes = XModuleResources.createInstance(XMain.MODULE_PATH, null);
-					 Drawable bg = modRes.getDrawable(R.drawable.phone_keypad_bg);
-					 main.setBackground(bg);
+					View btn = (View) param.thisObject;
+					View parent = (View) btn.getParent();
+					View main = (View) parent.getParent();
+
+					XModuleResources modRes = XModuleResources.createInstance(XMain.MODULE_PATH, null);
+					Drawable bg = modRes.getDrawable(R.drawable.phone_keypad_bg);
+					main.setBackground(bg);
 				}
 			}
 		});
-		
+
 		XposedHelpers.findAndHookConstructor("com.htc.htcdialer.widget.DividerDrawable", paramLoadPackageParam.classLoader, "android.content.Context", "android.graphics.drawable.Drawable", new XC_MethodHook()
 		{
 			protected void afterHookedMethod(MethodHookParam param) throws Throwable

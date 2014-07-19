@@ -19,6 +19,7 @@ import android.graphics.Typeface;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,6 +33,14 @@ import de.robv.android.xposed.XposedBridge;
 @SuppressLint("DefaultLocale")
 public class Misc
 {
+	public static int getSystemSettingsInt(Context context, String key, int default_value)
+	{
+		int value = Settings.System.getInt(context.getContentResolver(), key, default_value);
+
+		return value;
+	}
+
+	
 	public static void x (String string)
 	{
 		if (Const.DEBUG)

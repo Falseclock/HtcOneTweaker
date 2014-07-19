@@ -2,7 +2,7 @@ package kz.virtex.htc.tweaker;
 
 public class Const
 {
-	public static final boolean DEBUG = false;
+	public static final boolean DEBUG = true;
 	public static final String TAG = "HTC_Tweaker";
 	
 	public static final String PACKAGE_NAME = "kz.virtex.htc.tweaker";
@@ -26,8 +26,16 @@ public class Const
 	public static final String TWEAK_CALL_REC_AUTO_LAST_DELETE = "tweak_call_recording_auto_last_delete"; 
 
 	// TODO: make without restart
-	public static final String TWEAK_SHOW_SIM_CARD = "tweak_show_sim_card"; 
-	public static final String TWEAK_SHOW_SIM_CARD_SMS = "tweak_show_sim_card_sms"; 
+	public static final String TWEAK_SHOW_SIM_CARD_DIAL = "tweak_show_sim_card_dial";
+	public static final String TWEAK_SHOW_SIM_CARD_MESS = "tweak_show_sim_card_mess";
+	
+	public static final String TWEAK_SHOW_SIM_CARD_DIAL_ACTION = "tweak_show_sim_card_dial_action";
+	public static final String TWEAK_SHOW_SIM_CARD_MESS_ACTION = "tweak_show_sim_card_mess_action";
+	
+	public static final String TWEAK_FORCE_DIAL= "tweak_force_dial";
+	public static final String TWEAK_FORCE_MESS= "tweak_force_mess";
+	public static final String TWEAK_FORCE_DIAL_ACTION = "tweak_force_dial_action";
+	public static final String TWEAK_FORCE_MESS_ACTION = "tweak_force_mess_action";
 	
 	// FULL restart tweaks
 	public static final String TWEAK_ENABLE_ALL_LANGUAGES= "tweak_enable_all_languages";
@@ -45,8 +53,6 @@ public class Const
 	public static final String TWEAK_MEDIA_KEY_DOWN = "tweak_media_key_down";
 	public static final String TWEAK_MEDIA_OPTION = "tweak_media_option";
 	public static final String TWEAK_LOGCAT_FILTER = "tweak_logcat_filter";
-	
-	
 	
 	// SOFT restart tweaks
 	public static final String TWEAK_ENABLE_SIP = "tweak_enable_SIP"; 
@@ -92,7 +98,11 @@ public class Const
 	public static final String TWEAK_CALL_REC_AUTO_DELETE_CAT = "autorecording_delete_cat"; 
 	public static final String MEDIA_CONTROL_CAT = "media_control_cat"; 
 	public static final String QUICK_SETTINGS_CAT = "qs_category"; 
-	
+	public static final String SIM_CARD_FORCE_DIAL_CAT = "sim_card_force_dial_cat"; 
+	public static final String SIM_CARD_FORCE_MESS_CAT = "sim_card_force_mess_cat"; 
+
+	public static final String SIM_CARD_SEL_DIAL_SCREEN = "sim_card_selector_dial_screen"; 
+	public static final String SIM_CARD_SEL_MESS_SCREEN = "sim_card_selector_mess_screen"; 
 	
 	public static final int[] tweak_color_sim1 = { R.drawable.cdma_stat_sys_s1_5signal_0, R.drawable.cdma_stat_sys_s1_5signal_1, R.drawable.cdma_stat_sys_s1_5signal_2, R.drawable.cdma_stat_sys_s1_5signal_3, R.drawable.cdma_stat_sys_s1_5signal_4, R.drawable.cdma_stat_sys_s1_5signal_5, R.drawable.cdma_stat_sys_s1_5signal_null };
 	public static final int[] tweak_color_sim2 = { R.drawable.cdma_stat_sys_s2_5signal_0, R.drawable.cdma_stat_sys_s2_5signal_1, R.drawable.cdma_stat_sys_s2_5signal_2, R.drawable.cdma_stat_sys_s2_5signal_3, R.drawable.cdma_stat_sys_s2_5signal_4, R.drawable.cdma_stat_sys_s2_5signal_5, R.drawable.cdma_stat_sys_s2_5signal_null };

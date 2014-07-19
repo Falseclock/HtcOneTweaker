@@ -310,17 +310,23 @@ Manual records stored as default to My Recordings directory.\n<font fgcolor="#F
     <string name="logcat_warn">Warn</string>
     <string name="prefix_option_0">No prefix</string>
     <string name="prefix_option_1">2014</string>
-    <string name="prefix_option_2">2014‐52</string>
-    <string name="prefix_option_3">2014‐12</string>
-    <string name="prefix_option_4">2014‐12‐13</string>
-    <string name="prefix_option_5">2014‐12‐13‐16‐00</string>
-    <string name="prefix_option_6">2014‐12‐13‐16‐00‐00</string>
+    <string name="prefix_option_2">2014-52</string>
+    <string name="prefix_option_3">2014-12</string>
+    <string name="prefix_option_4">2014-12-13</string>
+    <string name="prefix_option_5">2014-12-13-16-00</string>
+    <string name="prefix_option_6">2014-12-13-16-00-00</string>
+    <string name="prefix_option_7">20141213</string>
+    <string name="prefix_option_8">20141213-1600</string>
+    <string name="prefix_option_9">20141213-160000</string>
     <string name="prefix_option_val1">yyyy</string>
-    <string name="prefix_option_val2">yyyy‐w</string>
-    <string name="prefix_option_val3">yyyy‐MM</string>
-    <string name="prefix_option_val4">yyyy‐MM‐dd</string>
-    <string name="prefix_option_val5">yyyy‐MM‐dd‐HH‐mm</string>
-    <string name="prefix_option_val6">yyyy‐MM‐dd‐HH‐mm‐ss</string>
+    <string name="prefix_option_val2">yyyy-w</string>
+    <string name="prefix_option_val3">yyyy-MM</string>
+    <string name="prefix_option_val4">yyyy-MM-dd</string>
+    <string name="prefix_option_val5">yyyy-MM-dd-HH-mm</string>
+    <string name="prefix_option_val6">yyyy-MM-dd-HH-mm-ss</string>
+    <string name="prefix_option_val7">yyyyMMdd</string>
+    <string name="prefix_option_val8">yyyyMMdd-HHmm</string>
+    <string name="prefix_option_val9">yyyyMMdd-HHmmss</string>
     <string name="swipe_option_0">QS by swiping side of screen is disabled</string>
     <string name="swipe_option_1">Swipe on 1/2 of screen</string>
     <string name="swipe_option_2">Swipe on 1/3 of screen</string>
@@ -338,11 +344,20 @@ Manual records stored as default to My Recordings directory.\n<font fgcolor="#F
     <string name="left">On the left</string>
     <string name="right">On the right</string>
     <string name="QuickPullDownCat">Quick pull down</string>
-    <string name="showSimTitle">SIM card used in Dialer</string>
-    <string name="showSimSMSTitle">SIM card used in Messenger</string>
+    <string name="showSimDialTitle">SIM card used in Dialer</string>
+    <string name="showSimMessTitle">SIM card used in Messenger</string>
+    
     <string name="sim1">SIM 1</string>
     <string name="sim2">SIM 2</string>
     <string name="sim1Key">sim1</string>
     <string name="sim2Key">sim2</string>
-
+    
+    <string name="SIMCardSelectorDial">Dialer SIM card selector</string>
+    <string name="tweak_show_sim_card_dial_action">Action when SIM is unavailable</string>
+    <string name="show_another_sim">Show another SIM</string>
+    <string name="show_emergency_call">Show Emergency call</string>
+    
+    <string name="SIMCardSelectorMess">Messenger SIM card selector</string>
+    <string name="tweak_show_sim_card_mess_action">Action when SIM is unavailable</string>
+    <string name="disable_messaging">Disable message sending</string>
 </resources>
