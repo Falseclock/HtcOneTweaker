@@ -213,102 +213,242 @@
 * Colored weather icons from Sense 4+.\n
 * Clicking on SMS notification will open dialog with contact instead of show dialog listings\n
 * SIP settings in Dialer options for Dual version\n
-* Date preffix to the Camera shots filename</string>
+* Date preffix to the Camera shots filename
+</string>
     <string name="google_play"><b>Google Play</b></string>
     <string name="xda_support"><b>Soporte en XDA</b></string>
-    <string name="change_log_text"><big><b>Version 3.3.5</b></big>\n<font fgcolor="#FF009000"><b>*</b></font> (new) Battery bar-line charging animation\n<font fgcolor="#FF009000"><b>*</b></font> (new) Hide stock battery\n<font fgcolor="#FF009000"><b>*</b></font> (new) Option to choose edge of screen for QS swipe\n<font fgcolor="#FF009000"><b>*</b></font> (new) Hide useless SIM slot button in Dialer (Dual SIM only)\n<font fgcolor="#FF009000"><b>*</b></font> (new) Hide useless SIM slot button in Messenger (Dual SIM only)\n
-\n<big><b>Version 3.3.4</b></big>\n<font fgcolor="#FFFF0000"><b>*</b></font> (fix) Volume button dysfunction in media applications\n<font fgcolor="#FFFF0000"><b>*</b></font> (fix) Spontaneous enabled colored weather option\n<font fgcolor="#FF009000"><b>*</b></font> (fix) Colored signal strength for 4 level indicators on 802d models now colored and have 5 levels\n<font fgcolor="#FF009000"><b>*</b></font> (imp) Choose date format for camera shot prefix\n<font fgcolor="#FF009000"><b>*</b></font> (imp) Colored battery and bar green until 50%, then from green to red with encreasing saturation\n<font fgcolor="#FF009000"><b>*</b></font> (imp) Screen area settings for Quick Settings pulldown\n
-\n<big><b>Version 3.3.3</b></big>\n<font fgcolor="#FFFF0000"><b>*</b></font> (fix) Uppercase date string in pulled down status bar in case of All CAPS enabled tweak\n<font fgcolor="#FFFF0000"><b>*</b></font> (fix) Roaming data icons for 802d model\n<font fgcolor="#FF009000"><b>*</b></font> (new) Colored battery level from green to red based on charging level\n<font fgcolor="#FF009000"><b>*</b></font> (new) Condensed font face for time and battery charging level\n<font fgcolor="#FF009000"><b>*</b></font> (imp) All world languages implemented with hook instead of database change\n<font fgcolor="#FF009000"><b>*</b></font> (new) MIUI colored bar\n
-\n<big><b>Version 3.3.2</b></big>\n<font fgcolor="#FFFF0000"><b>*</b></font> (fix) Call recording button appears even if tweak is disabled\n<font fgcolor="#FFFF0000"><b>*</b></font> (fix) Camera file prefix issue on Sense 6\n<font fgcolor="#FFFF0000"><b>*</b></font> (fix) Start application without Xposed - now link to XDA thread\n<font fgcolor="#FFFF0000"><b>*</b></font> (fix) Dual version check on Android 4.2\n
-\n<big><b>Version 3.3.1</b></big>\n<font fgcolor="#FF009000"><b>*</b></font> (new) Disable all CAPS (HTC feature) for lating alphabet languages\n<font fgcolor="#FF009000"><b>*</b></font> (new) Record button in CallScreen moved to bottom panel\n
-\n<big><b>Version 3.3.0</b></big>\n<font fgcolor="#FF009000"><b>*</b></font> (new) World languages tweak\n<font fgcolor="#FF009000"><b>*</b></font> (new) Restart notification after settings change\n<font fgcolor="#FF009000"><b>*</b></font> (new) Minimum Xposed version check\n<font fgcolor="#FF009000"><b>*</b></font> (new) Choose input method notification suppress\n
-\n<big><b>Version 3.2.9</b></big>\n<font fgcolor="#FF009000"><b>*</b></font> (new) Heads up notifications\n
-\n<big><b>Version 3.2.8</b></big>\n<font fgcolor="#FFFF0000"><b>*</b></font> (fix) App crash on Single sim version\n<font fgcolor="#FF009000"><b>*</b></font> (new) Old style dialer background (Sense 6 only)\n<font fgcolor="#FFFF0000"><b>*</b></font> (fix) Color improvement for SIM2 slot\n<font fgcolor="#FF009000"><b>*</b></font> (new) Advanced keyboard for Russian layout\n<font fgcolor="#FF009000"><b>*</b></font> other minor Sense 6 related fixes\n
-\n<big><b>Version 3.2.7</b></big>\n<font fgcolor="#FF009000"><b>*</b></font> (new) Data Roaming notification suppress\n<font fgcolor="#FFFF0000"><b>*</b></font> (fix) Dual sim network manager not available on Chinese 802d\n<font fgcolor="#FF009000"><b>*</b></font> (new) Color settings for slot indicator icon (Phone, Dialer, Messaging, Contacts) (Sense 6 only)\n<font fgcolor="#FF009000"><b>*</b></font> XposedFramework installation check\n
-\n<big><b>Version 3.2.6</b></big>\n<font fgcolor="#FFFF0000"><b>*</b></font> (fix) recorder for T-Mobile users\n<font fgcolor="#FFFF0000"><b>*</b></font> (fix) Sense 6 WiFi icon\n<font fgcolor="#FF009000"><b>*</b></font> Auto deletion service improvement\n<font fgcolor="#FF009000"><b>*</b></font> Sense 6 style icon in Settings screen\n
-\n        <big><b>Versión 3.2.5</b></big>\n<font fgcolor="#FFFF0000"><b>*</b></font> (fix) recorder writes only in AMR-NB despite settings\n
-\n<big><b>Version 3.2.4</b></big>\n<font fgcolor="#FFFF0000"><b>*</b></font> (fix) Autorecording for new install\n<font fgcolor="#FFFF0000"><b>*</b></font> (fix) disabled deletion settings\n<font fgcolor="#FF009000"><b>*</b></font> source code publishing\n<font fgcolor="#FF009000"><b>*</b></font> some settings now not visible to single sim version\n
-\n<big><b>Version 3.2.3</b></big>\n<font fgcolor="#FF009000"><b>*</b></font> nomedia file creating in autorecordind folder\n<font fgcolor="#FF009000"><b>*</b></font> SIP settings in Dialer options for Dual version\n<font fgcolor="#FF009000"><b>*</b></font> About intent added\n<font fgcolor="#FF009000"><b>*</b></font> date preffix to the Camera shots filename\n<font fgcolor="#FFFF0000"><b>*</b></font> (fix) SMS settings for Sense 6.0\n<font fgcolor="#FFFF0000"><b>*</b></font> (fix) Latin aplhabet on dialer button settings now default\n
-\n<big><b>Version 3.2.2</b></big>\n<font fgcolor="#FFFF0000"><b>*</b></font> fix application crash with Sense 6.0\n<font fgcolor="#FF009000"><b>*</b></font> ability to give full access to SD card\n<font fgcolor="#FFFF0000"><b>*</b></font> (fix) recording button still clickable with screen off\n
-\n<big><b>Version 3.2.1</b></big>\n<font fgcolor="#FF009000"><b>*</b></font> bigger weather icons for hourly and daily forecast\n<font fgcolor="#FF009000"><b>*</b></font> Record button on call screen if auto recording switched off\n<font fgcolor="#FF009000"><b>*</b></font> ability to remove contact photo badge in SMS listing\n<font fgcolor="#FF009000"><b>*</b></font> More highlighted unread messages in SMS dialog listings\n<font fgcolor="#FF009000"><b>*</b></font> Colored identification for incoming and outgoing calls in call journal\n<font fgcolor="#FF009000"><b>*</b></font> additional data icons for 802d model\n<font fgcolor="#FF009000"><b>*</b></font> Clicking on SMS notification will open dialog with contact instead of show dialog listings\n<font fgcolor="#FF009000"><b>*</b></font> Settings menu refactoring\n
-\n<big><b>Version 3.1.9</b></big>\n<font fgcolor="#FF009000"><b>*</b></font> weather for lockscreen and  BlinkFeed. For correct work need to update Weather Pack\n
-\n<big><b>Version 3.1.8</b></big>\n<font fgcolor="#FF009000"><b>*</b></font> data transfer tweak added\n<font fgcolor="#FF009000"><b>*</b></font> Network signal icons added for 802d\n<font fgcolor="#FF009000"><b>*</b></font> Network signal icons added for M7 and M8\n<font fgcolor="#FF009000"><b>*</b></font> ability to change color of WiFi icon\n<font fgcolor="#FF009000"><b>*</b></font> Spanish language added\n<font fgcolor="#FF009000"><b>*</b></font> Portuguese language added\n
-\n<big><b>Version 3.1.7</b></big>\n<font fgcolor="#FFFF0000"><b>*</b></font> records auto deletion after certain (configurable) days or by defined max records count\n
-\n<big><b>Version 3.1.6</b></big>\n<font fgcolor="#FFFF0000"><b>*</b></font>Weather icons in separate apk\n
-\n<big><b>Version 3.1.5</b></big>\n<font fgcolor="#FFFF0000"><b>*</b></font> fix with LED settings\n<font fgcolor="#FFFF0000"><b>*</b></font> design change for some settings\n<font fgcolor="#FFFF0000"><b>*</b></font> filter by call type added for auto recordings\n<font fgcolor="#FFFF0000"><b>*</b></font> filter by calling/called party added for auto recordings\n<font fgcolor="#FFFF0000"><b>*</b></font> all auto recordings now save under Auto Recordings folder\n<font fgcolor="#FFFF0000"><b>*</b></font> ability to invoke tweaker from stock settings\n<font fgcolor="#FFFF0000"><b>*</b></font> weather icon pack now in separate application to reduce tweaker size\n
-\n<big><b>Version 3.1.4</b></big>\n<font fgcolor="#FFFF0000"><b>*</b></font> ability to change color &amp; size for latin alphabet in dialer\n<font fgcolor="#FFFF0000"><b>*</b></font> ability to change SIM card name without string length limit\n<font fgcolor="#FFFF0000"><b>*</b></font> access to Quick Settings by swiping right side of screen\n<font fgcolor="#FFFF0000"><b>*</b></font> 3G icon fix for Sense 5 ToolBox\n<font fgcolor="#FFFF0000"><b>*</b></font> fix with Recording settings saving for new installations\n
-\n<big><b>Version 3.1.3</b></big>\n<font fgcolor="#FFFF0000"><b>*</b></font> latin alphabet color and size change in dialer\n<font fgcolor="#FFFFA500"><b>*</b></font> SIM name change without length restriction\n
-\n<big><b>Version 3.1.2</b></big>\n<font fgcolor="#FFFFA500"><b>*</b></font> fix with recording settings\n<font fgcolor="#FFFF0000"><b>*</b></font> notification flashlight during charging\n<font fgcolor="#FFFF0000"><b>*</b></font> flashlight timeout\n
-\n<big><b>Version 3.1.1</b></big>\n<font fgcolor="#FFFF0000"><b>*</b></font> menu re-factoring\n<font fgcolor="#FFFF0000"><b>*</b></font> disable flashlight for charging\n<font fgcolor="#FFFF0000"><b>*</b></font> autorecording settings: separate dirs or file flag\n<font fgcolor="#FFFF0000"><b>*</b></font> pinch zoom for dialer button text size fix\n<font fgcolor="#FFFF0000"><b>*</b></font> fix with min/max values in color settings\n<font fgcolor="#FFFF0000"><b>*</b></font> fix second sim card sprite\n<font fgcolor="#FFFF0000"><b>*</b></font> fix with values between sim cards\n
-\n<big><b>Version 3.1.0</b></big>\n<font fgcolor="#FFFF0000"><b>*</b></font> Automatic call records now stored in specific folder depends on call type:\n
+    <string name="change_log_text"><big><b>Version 3.3.5</b></big>\n
+<font fgcolor="#FF009000"><b>*</b></font> (new) Battery bar-line charging animation\n
+<font fgcolor="#FF009000"><b>*</b></font> (new) Hide stock battery\n
+<font fgcolor="#FF009000"><b>*</b></font> (new) Option to choose edge of screen for QS swipe\n
+<font fgcolor="#FF009000"><b>*</b></font> (new) Hide useless SIM slot button in Dialer (Dual SIM only)\n
+<font fgcolor="#FF009000"><b>*</b></font> (new) Hide useless SIM slot button in Messenger (Dual SIM only)\n
+\n
+<big><b>Version 3.3.4</b></big>\n
+<font fgcolor="#FFFF0000"><b>*</b></font> (fix) Volume button dysfunction in media applications\n
+<font fgcolor="#FFFF0000"><b>*</b></font> (fix) Spontaneous enabled colored weather option\n
+<font fgcolor="#FF009000"><b>*</b></font> (fix) Colored signal strength for 4 level indicators on 802d models now colored and have 5 levels\n
+<font fgcolor="#FF009000"><b>*</b></font> (imp) Choose date format for camera shot prefix\n
+<font fgcolor="#FF009000"><b>*</b></font> (imp) Colored battery and bar green until 50%, then from green to red with encreasing saturation\n
+<font fgcolor="#FF009000"><b>*</b></font> (imp) Screen area settings for Quick Settings pulldown\n
+\n
+<big><b>Version 3.3.3</b></big>\n
+<font fgcolor="#FFFF0000"><b>*</b></font> (fix) Uppercase date string in pulled down status bar in case of All CAPS enabled tweak\n
+<font fgcolor="#FFFF0000"><b>*</b></font> (fix) Roaming data icons for 802d model\n
+<font fgcolor="#FF009000"><b>*</b></font> (new) Colored battery level from green to red based on charging level\n
+<font fgcolor="#FF009000"><b>*</b></font> (new) Condensed font face for time and battery charging level\n
+<font fgcolor="#FF009000"><b>*</b></font> (imp) All world languages implemented with hook instead of database change\n
+<font fgcolor="#FF009000"><b>*</b></font> (new) MIUI colored bar\n
+\n
+<big><b>Version 3.3.2</b></big>\n
+<font fgcolor="#FFFF0000"><b>*</b></font> (fix) Call recording button appears even if tweak is disabled\n
+<font fgcolor="#FFFF0000"><b>*</b></font> (fix) Camera file prefix issue on Sense 6\n
+<font fgcolor="#FFFF0000"><b>*</b></font> (fix) Start application without Xposed - now link to XDA thread\n
+<font fgcolor="#FFFF0000"><b>*</b></font> (fix) Dual version check on Android 4.2\n
+\n
+<big><b>Version 3.3.1</b></big>\n
+<font fgcolor="#FF009000"><b>*</b></font> (new) Disable all CAPS (HTC feature) for lating alphabet languages\n
+<font fgcolor="#FF009000"><b>*</b></font> (new) Record button in CallScreen moved to bottom panel\n
+\n
+<big><b>Version 3.3.0</b></big>\n
+<font fgcolor="#FF009000"><b>*</b></font> (new) World languages tweak\n
+<font fgcolor="#FF009000"><b>*</b></font> (new) Restart notification after settings change\n
+<font fgcolor="#FF009000"><b>*</b></font> (new) Minimum Xposed version check\n
+<font fgcolor="#FF009000"><b>*</b></font> (new) Choose input method notification suppress\n
+\n
+<big><b>Version 3.2.9</b></big>\n
+<font fgcolor="#FF009000"><b>*</b></font> (new) Heads up notifications\n
+\n
+<big><b>Version 3.2.8</b></big>\n
+<font fgcolor="#FFFF0000"><b>*</b></font> (fix) App crash on Single sim version\n
+<font fgcolor="#FF009000"><b>*</b></font> (new) Old style dialer background (Sense 6 only)\n
+<font fgcolor="#FFFF0000"><b>*</b></font> (fix) Color improvement for SIM2 slot\n
+<font fgcolor="#FF009000"><b>*</b></font> (new) Advanced keyboard for Russian layout\n
+<font fgcolor="#FF009000"><b>*</b></font> other minor Sense 6 related fixes\n
+\n
+<big><b>Version 3.2.7</b></big>\n
+<font fgcolor="#FF009000"><b>*</b></font> (new) Data Roaming notification suppress\n
+<font fgcolor="#FFFF0000"><b>*</b></font> (fix) Dual sim network manager not available on Chinese 802d\n
+<font fgcolor="#FF009000"><b>*</b></font> (new) Color settings for slot indicator icon (Phone, Dialer, Messaging, Contacts) (Sense 6 only)\n
+<font fgcolor="#FF009000"><b>*</b></font> XposedFramework installation check\n
+\n
+<big><b>Version 3.2.6</b></big>\n
+<font fgcolor="#FFFF0000"><b>*</b></font> (fix) recorder for T-Mobile users\n
+<font fgcolor="#FFFF0000"><b>*</b></font> (fix) Sense 6 WiFi icon\n
+<font fgcolor="#FF009000"><b>*</b></font> Auto deletion service improvement\n
+<font fgcolor="#FF009000"><b>*</b></font> Sense 6 style icon in Settings screen\n
+\n        
+<big><b>Versión 3.2.5</b></big>\n
+<font fgcolor="#FFFF0000"><b>*</b></font> (fix) recorder writes only in AMR-NB despite settings\n
+\n
+<big><b>Version 3.2.4</b></big>\n
+<font fgcolor="#FFFF0000"><b>*</b></font> (fix) Autorecording for new install\n
+<font fgcolor="#FFFF0000"><b>*</b></font> (fix) disabled deletion settings\n
+<font fgcolor="#FF009000"><b>*</b></font> source code publishing\n
+<font fgcolor="#FF009000"><b>*</b></font> some settings now not visible to single sim version\n
+\n
+<big><b>Version 3.2.3</b></big>\n
+<font fgcolor="#FF009000"><b>*</b></font> nomedia file creating in autorecordind folder\n
+<font fgcolor="#FF009000"><b>*</b></font> SIP settings in Dialer options for Dual version\n
+<font fgcolor="#FF009000"><b>*</b></font> About intent added\n
+<font fgcolor="#FF009000"><b>*</b></font> date preffix to the Camera shots filename\n
+<font fgcolor="#FFFF0000"><b>*</b></font> (fix) SMS settings for Sense 6.0\n
+<font fgcolor="#FFFF0000"><b>*</b></font> (fix) Latin aplhabet on dialer button settings now default\n
+\n
+<big><b>Version 3.2.2</b></big>\n
+<font fgcolor="#FFFF0000"><b>*</b></font> fix application crash with Sense 6.0\n
+<font fgcolor="#FF009000"><b>*</b></font> ability to give full access to SD card\n
+<font fgcolor="#FFFF0000"><b>*</b></font> (fix) recording button still clickable with screen off\n
+\n
+<big><b>Version 3.2.1</b></big>\n
+<font fgcolor="#FF009000"><b>*</b></font> bigger weather icons for hourly and daily forecast\n
+<font fgcolor="#FF009000"><b>*</b></font> Record button on call screen if auto recording switched off\n
+<font fgcolor="#FF009000"><b>*</b></font> ability to remove contact photo badge in SMS listing\n
+<font fgcolor="#FF009000"><b>*</b></font> More highlighted unread messages in SMS dialog listings\n
+<font fgcolor="#FF009000"><b>*</b></font> Colored identification for incoming and outgoing calls in call journal\n
+<font fgcolor="#FF009000"><b>*</b></font> additional data icons for 802d model\n
+<font fgcolor="#FF009000"><b>*</b></font> Clicking on SMS notification will open dialog with contact instead of show dialog listings\n
+<font fgcolor="#FF009000"><b>*</b></font> Settings menu refactoring\n
+\n
+<big><b>Version 3.1.9</b></big>\n
+<font fgcolor="#FF009000"><b>*</b></font> weather for lockscreen and  BlinkFeed. For correct work need to update Weather Pack\n
+\n
+<big><b>Version 3.1.8</b></big>\n
+<font fgcolor="#FF009000"><b>*</b></font> data transfer tweak added\n
+<font fgcolor="#FF009000"><b>*</b></font> Network signal icons added for 802d\n
+<font fgcolor="#FF009000"><b>*</b></font> Network signal icons added for M7 and M8\n
+<font fgcolor="#FF009000"><b>*</b></font> ability to change color of WiFi icon\n
+<font fgcolor="#FF009000"><b>*</b></font> Spanish language added\n
+<font fgcolor="#FF009000"><b>*</b></font> Portuguese language added\n
+\n
+<big><b>Version 3.1.7</b></big>\n
+<font fgcolor="#FFFF0000"><b>*</b></font> records auto deletion after certain (configurable) days or by defined max records count\n
+\n
+<big><b>Version 3.1.6</b></big>\n
+<font fgcolor="#FFFF0000"><b>*</b></font>Weather icons in separate apk\n
+\n
+<big><b>Version 3.1.5</b></big>\n
+<font fgcolor="#FFFF0000"><b>*</b></font> fix with LED settings\n
+<font fgcolor="#FFFF0000"><b>*</b></font> design change for some settings\n
+<font fgcolor="#FFFF0000"><b>*</b></font> filter by call type added for auto recordings\n
+<font fgcolor="#FFFF0000"><b>*</b></font> filter by calling/called party added for auto recordings\n
+<font fgcolor="#FFFF0000"><b>*</b></font> all auto recordings now save under Auto Recordings folder\n
+<font fgcolor="#FFFF0000"><b>*</b></font> ability to invoke tweaker from stock settings\n
+<font fgcolor="#FFFF0000"><b>*</b></font> weather icon pack now in separate application to reduce tweaker size\n
+\n
+<big><b>Version 3.1.4</b></big>\n
+<font fgcolor="#FFFF0000"><b>*</b></font> ability to change color &amp; size for latin alphabet in dialer\n
+<font fgcolor="#FFFF0000"><b>*</b></font> ability to change SIM card name without string length limit\n
+<font fgcolor="#FFFF0000"><b>*</b></font> access to Quick Settings by swiping right side of screen\n
+<font fgcolor="#FFFF0000"><b>*</b></font> 3G icon fix for Sense 5 ToolBox\n
+<font fgcolor="#FFFF0000"><b>*</b></font> fix with Recording settings saving for new installations\n
+\n
+<big><b>Version 3.1.3</b></big>\n
+<font fgcolor="#FFFF0000"><b>*</b></font> latin alphabet color and size change in dialer\n
+<font fgcolor="#FFFFA500"><b>*</b></font> SIM name change without length restriction\n
+\n
+<big><b>Version 3.1.2</b></big>\n
+<font fgcolor="#FFFFA500"><b>*</b></font> fix with recording settings\n
+<font fgcolor="#FFFF0000"><b>*</b></font> notification flashlight during charging\n
+<font fgcolor="#FFFF0000"><b>*</b></font> flashlight timeout\n
+\n
+<big><b>Version 3.1.1</b></big>\n
+<font fgcolor="#FFFF0000"><b>*</b></font> menu re-factoring\n
+<font fgcolor="#FFFF0000"><b>*</b></font> disable flashlight for charging\n
+<font fgcolor="#FFFF0000"><b>*</b></font> autorecording settings: separate dirs or file flag\n
+<font fgcolor="#FFFF0000"><b>*</b></font> pinch zoom for dialer button text size fix\n
+<font fgcolor="#FFFF0000"><b>*</b></font> fix with min/max values in color settings\n
+<font fgcolor="#FFFF0000"><b>*</b></font> fix second sim card sprite\n
+<font fgcolor="#FFFF0000"><b>*</b></font> fix with values between sim cards\n
+\n
+<big><b>Version 3.1.0</b></big>\n
+<font fgcolor="#FFFF0000"><b>*</b></font> Automatic call records now stored in specific folder depends on call type:\n
  - Automatic records/Incoming/ - for incoming calls\n
  - Automatic records/Outgoing/ - for outgoing calls\n
-Manual records stored as default to My Recordings directory.\n<font fgcolor="#FFFF0000"><b>*</b></font> Ability to suppress notification:\n
+Manual records stored as default to My Recordings directory.\n
+<font fgcolor="#FFFF0000"><b>*</b></font> Ability to suppress notification:\n
  - USB debugging connected\n
  - USB connected\n
  - HTC Sync Manager\n
- - Media device [MTP] connected\n<font fgcolor="#FFFF0000"><b>*</b></font> minor fixes and additions\n
-\n<big><b>Version 3.0.8</b></big>\n<font fgcolor="#FFFF0000"><b>*</b></font> phonetic bux fix\n
-\n<big><b>Version 3.0.7</b></big>\n<font fgcolor="#FFFF0000"><b>*</b></font> pinch zoom for phonetic letter sizing\n
-\n<big><b>Version 3.0.6</b></big>\n<font fgcolor="#FFFF0000"><b>*</b></font> extended russian keyboard\n
-\n<big><b>Version 3.0.5</b></big>\n<font fgcolor="#FFFF0000"><b>*</b></font> fixed roaming SIM sprites for KitKat \n<font fgcolor="#FFFF0000"><b>*</b></font> added ability to setup highlight color for dialer phonetic letters.\n
-\n<big><b>Version 3.0.4</b></big>\n<font fgcolor="#FFFF0000"><b>*</b></font> fixed mistake with dialer highlighting.\n
-\n<big><b>Version 3.0.3</b></big>\n<font fgcolor="#FFFF0000"><b>*</b></font> Colored scheme for SIM cards\n
-\n<big><b>Version 3.0.2</b></big>\n<font fgcolor="#FFFF0000"><b>*</b></font> fully working settings</string>
+ - Media device [MTP] connected\n
+<font fgcolor="#FFFF0000"><b>*</b></font> minor fixes and additions\n
+\n
+<big><b>Version 3.0.8</b></big>\n
+<font fgcolor="#FFFF0000"><b>*</b></font> phonetic bux fix\n
+\n
+<big><b>Version 3.0.7</b></big>\n
+<font fgcolor="#FFFF0000"><b>*</b></font> pinch zoom for phonetic letter sizing\n
+\n
+<big><b>Version 3.0.6</b></big>\n
+<font fgcolor="#FFFF0000"><b>*</b></font> extended russian keyboard\n
+\n
+<big><b>Version 3.0.5</b></big>\n
+<font fgcolor="#FFFF0000"><b>*</b></font> fixed roaming SIM sprites for KitKat \n
+<font fgcolor="#FFFF0000"><b>*</b></font> added ability to setup highlight color for dialer phonetic letters.\n
+\n
+<big><b>Version 3.0.4</b></big>\n
+<font fgcolor="#FFFF0000"><b>*</b></font> fixed mistake with dialer highlighting.\n
+\n
+<big><b>Version 3.0.3</b></big>\n
+<font fgcolor="#FFFF0000"><b>*</b></font> Colored scheme for SIM cards\n
+\n
+<big><b>Version 3.0.2</b></big>\n
+<font fgcolor="#FFFF0000"><b>*</b></font> fully working settings
+</string>
     <string name="enableSIPTitle">Telefono SIP en SIM Dual</string>
     <string name="enableSIPSummary">Simplemente la activa</string>
     <string name="enablePhotoPrefixTitle">Prefijo de fotos</string>
     <string name="enablePhotoPrefixSummary">IMAG0001.jpg</string>
-    <string name="author">Autor: <b>Nurlan Mukhanov</b> aka <a href="mailto:nurike@gmail.com">Falseclock</a></string>
+    <string name="author">Autor: <b>Nurlan Mukhanov</b> también conocido como <a href="mailto:nurike@gmail.com">Falseclock</a></string>
     <string name="source_code">Código fuente</string>
     <string name="disableRoamingDataNotification">Roaming de datos</string>
     <string name="disableRoamingDataNotificationSummary">Has perdido la conectividad de datos…</string>
-    <string name="SlotIconIndicator">Slot indicator icon</string>
-    <string name="app_error">Application error </string>
-    <string name="no_xposed">Xposed Framework not installed! Please install prior. Instruction can be found on download page (Google Play or XDA). Would you like to go to supporting site?</string>
-    <string name="enableOldSenseDialerTitle">Sense 5 dialer style</string>
-    <string name="enableOldSenseDialerSummary">With gray background</string>
-    <string name="headsUpNotificationsTitle">Heads up notifications</string>
-    <string name="headsUpNotificationsSummary">All notifications will float in just below the notification bar</string>
-    <string name="enableAllLanguagesSummary">You will able choose any world language for your phone under stock Settings menu</string>
-    <string name="enableAllLanguagesTitle">Enable all world languages</string>
-    <string name="restartRequired">Phone restart required</string>
-    <string name="restartRequiredSummary">You have changed some settings and need to restart phone for changes to take effect. In most cases soft restart is enough, but hard is better.</string>
+    <string name="SlotIconIndicator">Ícono indicador de ranura</string>
+    <string name="app_error">Error de aplicación</string>
+    <string name="no_xposed">¡Xposed Framework no se encuentra instalado! Por favor, instalarlo antes de éste módulo. Las instrucciones pueden encontrarse en la página de descarga (Google Play or XDA). ¿Desea ir al sitio de soporte?</string>
+    <string name="enableOldSenseDialerTitle">Estilo del marcador Sense 5</string>
+    <string name="enableOldSenseDialerSummary">Con fondo gris</string>
+    <string name="headsUpNotificationsTitle">Notificationes tipo alerta</string>
+    <string name="headsUpNotificationsSummary">Todas las notificaciones flotaran debajo de la barra de notificación</string>
+    <string name="enableAllLanguagesSummary">Se podrá seleccionar cualquier idioma en el menú Idioma y Teclado en Ajustes en el sistema de fábrica</string>
+    <string name="enableAllLanguagesTitle">Activar todos los lenguajes</string>
+    <string name="restartRequired">Reinicio del dispositivo requerido</string>
+    <string name="restartRequiredSummary">Ha realizado algunos ajustes que requieren reiniciar el dispositivo para que surtan efecto. En la mayoría de los casos un reinico rápido es suficiente, pero un reincio completo es recomendado.</string>
     <string name="disableInputMethodNotificationTitle">Selecciona un método de entrada</string>
-    <string name="disableInputMethodNotificationSummary">HTC Sense Input</string>
-    <string name="disableAllCapsTitle">Disable all CAPS</string>
-    <string name="disableAllCapsSummary">In menus, tabs, buttons, etc. interface design</string>
-    <string name="menu_start_record">Record</string>
-    <string name="menu_stop_record">Stop</string>
-    <string name="array_media_none">No Action</string>
-    <string name="array_media_playpause">Play/Pause</string>
-    <string name="array_media_next">Next track</string>
-    <string name="array_media_prev">Previous track</string>
-    <string name="controls_vol_up_media_summ">The action for Volume Up long press</string>
-    <string name="controls_vol_up_media_title">Volume Up long press action</string>
-    <string name="controls_vol_down_media_title">Volume Down long press action</string>
-    <string name="controls_vol_down_media_summ">The action for Volume Down long press.</string>
-    <string name="array_media_op_disabled">Mod is disabled</string>
-    <string name="array_media_op_screenon">Only when screen is ON</string>
-    <string name="array_media_op_screenoff">Only when screen is OFF</string>
-    <string name="array_media_op_always">Any state of screen</string>
-    <string name="media_control_category">Media control</string>
-    <string name="controls_media_option_title">Volume key media control</string>
-    <string name="enableColoredBatteryTitle">Colored stock battery</string>
-    <string name="enableColoredBatterySummary">From green to red depends on current charge level</string>
-    <string name="StatusBarCategory">Status bar</string>
-    <string name="statusbarCondensedSummary">Narrow font for time and battery level to reduce occupied space</string>
-    <string name="statusbarCondensedTitle">Condensed font face</string>
-    <string name="enableMIUIBatteryTitle">MIUI battery indicator</string>
-    <string name="enableMIUIBatterySummary">Colored line on top of status bar</string>
-    <string name="logcatFilterTitle">Logcat filter</string>
-    <string name="logcatFilterSummary">Select message types to record. This will reduce battery consuption and encrease system response</string>
-    <string name="logcat_debug">Debug</string>
+    <string name="disableInputMethodNotificationSummary">Entrada HTC Sense</string>
+    <string name="disableAllCapsTitle">Desactivar MAYÚSCULAS</string>
+    <string name="disableAllCapsSummary">En menús, pestañas, botones, etc de la interfaz de diseño</string>
+    <string name="menu_start_record">Grabar</string>
+    <string name="menu_stop_record">Detener</string>
+    <string name="array_media_none">Sin acción</string>
+    <string name="array_media_playpause">Reproducir/Pausa</string>
+    <string name="array_media_next">Pista siguiente</string>
+    <string name="array_media_prev">Pista anterior</string>
+    <string name="controls_vol_up_media_summ">La acción al dejar presionado el botón de Subir volumen</string>
+    <string name="controls_vol_up_media_title">Acción al dejar presionado Subir volumen</string>
+    <string name="controls_vol_down_media_title">Acción al dejar presionado Bajar volumen</string>
+    <string name="controls_vol_down_media_summ">Acción al dejar presionado Bajar volumen</string>
+    <string name="array_media_op_disabled">Modificación desactivada</string>
+    <string name="array_media_op_screenon">Sólo con la pantalla encendida</string>
+    <string name="array_media_op_screenoff">Sólo con la pantalla apagada</string>
+    <string name="array_media_op_always">En cualquier estado de pantalla</string>
+    <string name="media_control_category">Control multimedia</string>
+    <string name="controls_media_option_title">Control multimedia de las teclas de volumen</string>
+    <string name="enableColoredBatteryTitle">Batería de fábrica en colores</string>
+    <string name="enableColoredBatterySummary">De verde a rojo dependiendo del nivel de carga</string>
+    <string name="StatusBarCategory">Barra de estado</string>
+    <string name="statusbarCondensedSummary">Tipo de fuente más angosta para la hora y el nivel de batería para reducir el espacio ocupado</string>
+    <string name="statusbarCondensedTitle">Fuente condensada</string>
+    <string name="enableMIUIBatteryTitle">Indicador de batería tipo MIUI</string>
+    <string name="enableMIUIBatterySummary">Línea de color por encima de la barra de estado</string>
+    <string name="logcatFilterTitle">Filtro logcat</string>
+    <string name="logcatFilterSummary">Seleccione el tipo de mensajes a grabar. Esto reducirá el consumo de batería e incrementará la respuesta del sistema</string>
+    <string name="logcat_debug">Depurar</string>
     <string name="logcat_error">Error</string>
     <string name="logcat_info">Info</string>
-    <string name="logcat_verbose">Verbose</string>
-    <string name="logcat_warn">Warn</string>
-    <string name="prefix_option_0">No prefix</string>
+    <string name="logcat_verbose">Verboso</string>
+    <string name="logcat_warn">Advertencias</string>
+    <string name="prefix_option_0">Sin prefijo</string>
     <string name="prefix_option_1">2014</string>
     <string name="prefix_option_2">2014-52</string>
     <string name="prefix_option_3">2014-12</string>
@@ -327,38 +467,38 @@ Manual records stored as default to My Recordings directory.\n<font fgcolor="#F
     <string name="prefix_option_val7">yyyyMMdd</string>
     <string name="prefix_option_val8">yyyyMMdd-HHmm</string>
     <string name="prefix_option_val9">yyyyMMdd-HHmmss</string>
-    <string name="swipe_option_0">QS by swiping side of screen is disabled</string>
-    <string name="swipe_option_1">Swipe on 1/2 of screen</string>
-    <string name="swipe_option_2">Swipe on 1/3 of screen</string>
-    <string name="swipe_option_3">Swipe on 1/6 of screen</string>
-    <string name="swipe_option_4">Swipe on 1/10 of screen</string>
-    <string name="swipe_option_5">Swipe on 1/20 of screen</string>
+    <string name="swipe_option_0">Ajustes rápidos al deslizar el dedo por el lateral de la pantalla está desactivado</string>
+    <string name="swipe_option_1">Deslizar por 1/2 pantalla</string>
+    <string name="swipe_option_2">Deslizar por 1/3 pantalla</string>
+    <string name="swipe_option_3">Deslizar por 1/6 pantalla</string>
+    <string name="swipe_option_4">Deslizar por 1/10 pantalla</string>
+    <string name="swipe_option_5">Deslizar por 1/20 pantalla</string>
     <string name="swipe_option_val1">0.50F</string>
     <string name="swipe_option_val2">0.3333333F</string>
     <string name="swipe_option_val3">0.1666666F</string>
     <string name="swipe_option_val4">0.10F</string>
     <string name="swipe_option_val5">0.05F</string>
-    <string name="stockBatteryTitle">Stock battery icon</string>
-    <string name="stockBatterySummary">Will be shown if enabled</string>
-    <string name="quickPullDownSideTitle">Side of screen to swipe</string>
-    <string name="left">On the left</string>
-    <string name="right">On the right</string>
-    <string name="QuickPullDownCat">Quick pull down</string>
-    <string name="showSimDialTitle">SIM card used in Dialer</string>
-    <string name="showSimMessTitle">SIM card used in Messenger</string>
+    <string name="stockBatteryTitle">Ícono de batería de fábirca</string>
+    <string name="stockBatterySummary">Se mostrará si se activa</string>
+    <string name="quickPullDownSideTitle">Lateral de la pantalla para deslizar el dedo</string>
+    <string name="left">Izquierda</string>
+    <string name="right">Derecha</string>
+    <string name="QuickPullDownCat">Ajustes rápidos</string>
+    <string name="showSimDialTitle">Tarjeta SIM utilizada en Teléfono</string>
+    <string name="showSimMessTitle">Tarjeta SIM utilizada en Mensajes</string>
     
     <string name="sim1">SIM 1</string>
     <string name="sim2">SIM 2</string>
     <string name="sim1Key">sim1</string>
     <string name="sim2Key">sim2</string>
     
-    <string name="SIMCardSelectorDial">Dialer SIM card selector</string>
-    <string name="tweak_show_sim_card_dial_action">Action when SIM is unavailable</string>
-    <string name="show_another_sim">Show another SIM</string>
-    <string name="show_emergency_call">Show Emergency call</string>
+    <string name="SIMCardSelectorDial">Selector de tarjeta SIM en Teléfono</string>
+    <string name="tweak_show_sim_card_dial_action">Llevar a cabo esta acción cuando la tarjeta SIM no esté disponible</string>
+    <string name="show_another_sim">Mostrar la otra tarjeta SIM</string>
+    <string name="show_emergency_call">Mostrar llamada de emergencia</string>
     
-    <string name="SIMCardSelectorMess">Messenger SIM card selector</string>
-    <string name="tweak_show_sim_card_mess_action">Action when SIM is unavailable</string>
-    <string name="disable_messaging">Disable message sending</string>
+    <string name="SIMCardSelectorMess">Selector de tarjeta SIM en Mensajes</string>
+    <string name="tweak_show_sim_card_mess_action">Llevar a cabo esta acción cuando la tarjeta SIM no esté disponible</string>
+    <string name="disable_messaging">Desactivar el envío de mensajes</string>
 
 </resources>
