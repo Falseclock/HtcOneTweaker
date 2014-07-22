@@ -358,4 +358,25 @@
     <string name="SIMCardSelectorMess">Messenger SIM card selector</string>
     <string name="tweak_show_sim_card_mess_action">Action when SIM is unavailable</string>
     <string name="disable_messaging">Disable message sending</string>
+    
+    <string name="SimCardSelectorScreen">SIM card selector</string>
+    <string name="SimCardSelectorScreenSummary">Select which SIM card show in stock Dialer and Message applications</string>
+    <string name="SIMCardSettings">Per slot basis settings</string>
+    <string name="SimCardForceScreenSummary">Select which slot to use by default in case of custom dialer or messenger usage</string>
+    <string name="SimCardForceScreen">Activity forcing</string>
+    <string name="tweak_force_dial">Force outgoing calls through</string>
+    <string name="tweak_force_mess">Force outgoing messages through</string>
+    <string name="disabled">Disabled</string>
+    <string name="tweak_force_action">Action if SIM is unavailable</string>
+    <string name="dial_through_available">Dial through available slot</string>
+    <string name="dial_is_disabled">Disable dialing</string>
+    <string name="SIMCardForceDial">Dialing activity forcing</string>
+    <string name="SIMCardForceMess">Messaging activity forcing</string>
+    <string name="mess_through_available">Send message through available slot</string>
+    <string name="mess_is_disabled">Disable messaging</string>
+    <string name="slot1">Slot 1</string>
+    <string name="slot2">Slot 2</string>
+    <string name="debugOnTitle">Enable system full logcat debug</string>
+    <string name="debugOnSummary">This will drain battery. Useful for developers. Do not switch it ON if you do not need it.</string>
+ 
 </resources>

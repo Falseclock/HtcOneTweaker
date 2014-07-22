@@ -38,7 +38,9 @@ public class Const
 	public static final String TWEAK_FORCE_MESS_ACTION = "tweak_force_mess_action";
 	
 	// FULL restart tweaks
-	public static final String TWEAK_ENABLE_ALL_LANGUAGES= "tweak_enable_all_languages";
+	
+	public static final String TWEAK_DEBUG_ON = "tweak_debug_on";
+	public static final String TWEAK_ENABLE_ALL_LANGUAGES = "tweak_enable_all_languages";
 	public static final String TWEAK_FIX_SDCARD_PERMISSION = "tweak_fix_sdcard_permission"; 
 	public static final String TWEAK_ADB_NOTIFY = "tweak_adb_notify";
 	public static final String TWEAK_SYNC_NOTIFY = "tweak_sync_notify";

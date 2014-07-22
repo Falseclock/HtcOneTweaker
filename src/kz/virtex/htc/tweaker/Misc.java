@@ -19,6 +19,7 @@ import android.graphics.Typeface;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
+import android.os.SystemProperties;
 import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
@@ -27,12 +28,56 @@ import android.view.ViewGroup;
 import com.android.internal.telephony.HtcMessageHelper;
 import com.htc.customization.HtcCustomizationManager;
 import com.htc.customization.HtcCustomizationReader;
+import com.htc.service.HtcTelephonyManager;
 
 import de.robv.android.xposed.XposedBridge;
 
 @SuppressLint("DefaultLocale")
 public class Misc
 {
+	public static int getIccState(int i)
+	{
+		String s;
+		if (i == 10) {
+			if (HtcTelephonyManager.dualPhoneEnable()) {
+				if (HtcTelephonyManager.isDualGCPhone())
+					s = SystemProperties.get("gsm.icc.sim.state");
+				else
+					s = SystemProperties.get("gsm.icc.uim.state");
+			} else if (HtcTelephonyManager.dualGSMPhoneEnable())
+				s = SystemProperties.get("gsm.icc.sim.state");
+			else
+				s = SystemProperties.get("gsm.sim.state");
+		} else if (i == 11) {
+			if (HtcTelephonyManager.dualPhoneEnable()) {
+				if (HtcTelephonyManager.isDualGCPhone())
+					s = SystemProperties.get("gsm.icc.uim.state");
+				else
+					s = SystemProperties.get("gsm.icc.sim.state");
+			} else if (HtcTelephonyManager.dualGSMPhoneEnable())
+				s = SystemProperties.get("gsm.icc.sub.state");
+			else
+				s = SystemProperties.get("gsm.sim.state");
+		} else if (i == 1)
+			s = SystemProperties.get("gsm.icc.sim.state");
+		else if (i == 3)
+			s = SystemProperties.get("gsm.icc.sub.state");
+		else if (i == 2)
+			s = SystemProperties.get("gsm.icc.uim.state");
+		else
+			s = SystemProperties.get("gsm.sim.state");
+
+		if ("ABSENT".equals(s))
+			return HtcTelephonyManager.SIM_STATE_ABSENT;
+		if ("PIN_REQUIRED".equals(s))
+			return HtcTelephonyManager.SIM_STATE_PIN_REQUIRED;
+		if ("PUK_REQUIRED".equals(s))
+			return HtcTelephonyManager.SIM_STATE_PUK_REQUIRED;
+		if ("NETWORK_LOCKED".equals(s))
+			return HtcTelephonyManager.SIM_STATE_NETWORK_LOCKED;
+		return !"READY".equals(s) ? HtcTelephonyManager.SIM_STATE_UNKNOWN : HtcTelephonyManager.SIM_STATE_READY;
+	}
+
 	public static int getSystemSettingsInt(Context context, String key, int default_value)
 	{
 		int value = Settings.System.getInt(context.getContentResolver(), key, default_value);
@@ -40,19 +85,27 @@ public class Misc
 		return value;
 	}
 
-	
-	public static void x (String string)
+	public static void x(StackTraceElement[] stackTrace)
+	{
+		if (Const.DEBUG) {
+			for (StackTraceElement ste : stackTrace) {
+				XposedBridge.log(ste.toString());
+			}
+		}
+	}
+
+	public static void x(String string)
 	{
 		if (Const.DEBUG)
 			XposedBridge.log(string);
 	}
-	
-	public static void d (String string)
+
+	public static void d(String string)
 	{
 		if (Const.DEBUG)
 			Log.d(Const.TAG, string);
 	}
-	
+
 	public static Drawable createMarkerIcon(Drawable image, String text)
 	{
 		image.setColorFilter(Color.parseColor("#c2ffb6"), android.graphics.PorterDuff.Mode.SRC_ATOP);
@@ -99,8 +152,7 @@ public class Misc
 
 	public static ArrayList<View> getAllChildren(View v)
 	{
-		if (!(v instanceof ViewGroup))
-		{
+		if (!(v instanceof ViewGroup)) {
 			ArrayList<View> viewArrayList = new ArrayList<View>();
 			viewArrayList.add(v);
 			return viewArrayList;
@@ -109,8 +161,7 @@ public class Misc
 		ArrayList<View> result = new ArrayList<View>();
 
 		ViewGroup vg = (ViewGroup) v;
-		for (int i = 0; i < vg.getChildCount(); i++)
-		{
+		for (int i = 0; i < vg.getChildCount(); i++) {
 
 			View child = vg.getChildAt(i);
 			ArrayList<View> viewArrayList = new ArrayList<View>();
@@ -183,15 +234,9 @@ public class Misc
 
 	public static boolean isDual()
 	{
-		try
-		{
-			if (HtcMessageHelper.isDualSlotDevice())
-			{
-				return true;
-			}
-		}
-		catch (NoSuchMethodError e)
-		{
+		try {
+			if (HtcMessageHelper.isDualSlotDevice()) { return true; }
+		} catch (NoSuchMethodError e) {
 			return false;
 		}
 		return false;
@@ -199,28 +244,21 @@ public class Misc
 
 	public static int getHueValue(int value)
 	{
-		if (value == 0)
-		{
+		if (value == 0) {
 			return 0;
+		} else if (value > 180) {
+			value = -180 + (value - 180);
 		}
-		else
-			if (value > 180)
-			{
-				value = -180 + (value - 180);
-			}
 		return value;
 	}
 
 	public static boolean isPackageInstalled(String packagename, Context context)
 	{
 		PackageManager pm = context.getPackageManager();
-		try
-		{
+		try {
 			pm.getPackageInfo(packagename, PackageManager.GET_META_DATA);
 			return true;
-		}
-		catch (NameNotFoundException e)
-		{
+		} catch (NameNotFoundException e) {
 			return false;
 		}
 	}
@@ -268,10 +306,7 @@ public class Misc
 
 	public static Bitmap drawableToBitmap(Drawable drawable)
 	{
-		if (drawable instanceof BitmapDrawable)
-		{
-			return ((BitmapDrawable) drawable).getBitmap();
-		}
+		if (drawable instanceof BitmapDrawable) { return ((BitmapDrawable) drawable).getBitmap(); }
 
 		Bitmap bitmap = Bitmap.createBitmap(drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight(), Config.ARGB_8888);
 		Canvas canvas = new Canvas(bitmap);
@@ -286,40 +321,37 @@ public class Misc
 		String SENSE_VERSION = "5.0";
 
 		HtcCustomizationManager localHtcCustomizationManager = HtcCustomizationManager.getInstance();
-		if (localHtcCustomizationManager != null)
-		{
+		if (localHtcCustomizationManager != null) {
 			HtcCustomizationReader localHtcCustomizationReader = localHtcCustomizationManager.getCustomizationReader("system", 1, false);
-			if (localHtcCustomizationReader != null)
-			{
+			if (localHtcCustomizationReader != null) {
 				SENSE_VERSION = localHtcCustomizationReader.readString("sense_version", "5.0");
 			}
 		}
 		return SENSE_VERSION.equals("6.0");
 	}
 
-	
 	/*
-	* Licensed to the Apache Software Foundation (ASF) under one or more
-	* contributor license agreements.  See the NOTICE file distributed with
-	* this work for additional information regarding copyright ownership.
-	* The ASF licenses this file to You under the Apache License, Version 2.0
-	* (the "License"); you may not use this file except in compliance with
-	* the License.  You may obtain a copy of the License at
-	* 
-	*      http://www.apache.org/licenses/LICENSE-2.0
-	* 
-	* Unless required by applicable law or agreed to in writing, software
-	* distributed under the License is distributed on an "AS IS" BASIS,
-	* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-	* See the License for the specific language governing permissions and
-	* limitations under the License.
-	*/
-	
+	 * Licensed to the Apache Software Foundation (ASF) under one or more
+	 * contributor license agreements. See the NOTICE file distributed with this
+	 * work for additional information regarding copyright ownership. The ASF
+	 * licenses this file to You under the Apache License, Version 2.0 (the
+	 * "License"); you may not use this file except in compliance with the
+	 * License. You may obtain a copy of the License at
+	 * 
+	 * http://www.apache.org/licenses/LICENSE-2.0
+	 * 
+	 * Unless required by applicable law or agreed to in writing, software
+	 * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+	 * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+	 * License for the specific language governing permissions and limitations
+	 * under the License.
+	 */
+
 	public static String capitalizeFully(CharSequence str)
 	{
 		return capitalizeFully(str.toString(), null);
 	}
-	
+
 	public static String capitalizeFully(String str)
 	{
 		return capitalizeFully(str, null);
@@ -329,10 +361,7 @@ public class Misc
 	public static String capitalizeFully(String str, char... delimiters)
 	{
 		int delimLen = delimiters == null ? -1 : delimiters.length;
-		if (str.isEmpty() || delimLen == 0)
-		{
-			return str;
-		}
+		if (str.isEmpty() || delimLen == 0) { return str; }
 		str = str.toLowerCase();
 		return capitalize(str, delimiters);
 	}
@@ -345,38 +374,27 @@ public class Misc
 	public static String capitalize(String str, char... delimiters)
 	{
 		int delimLen = delimiters == null ? -1 : delimiters.length;
-		if (str.isEmpty() || delimLen == 0)
-		{
-			return str;
-		}
+		if (str.isEmpty() || delimLen == 0) { return str; }
 		char[] buffer = str.toCharArray();
 		boolean capitalizeNext = true;
-		for (int i = 0; i < buffer.length; i++)
-		{
+		for (int i = 0; i < buffer.length; i++) {
 			char ch = buffer[i];
-			if (isDelimiter(ch, delimiters))
-			{
+			if (isDelimiter(ch, delimiters)) {
 				capitalizeNext = true;
+			} else if (capitalizeNext) {
+				buffer[i] = Character.toTitleCase(ch);
+				capitalizeNext = false;
 			}
-			else
-				if (capitalizeNext)
-				{
-					buffer[i] = Character.toTitleCase(ch);
-					capitalizeNext = false;
-				}
 		}
 		return new String(buffer);
 	}
-	
-    private static boolean isDelimiter(char ch, char[] delimiters) {
-        if (delimiters == null) {
-            return Character.isWhitespace(ch);
-        }
-        for (char delimiter : delimiters) {
-            if (ch == delimiter) {
-                return true;
-            }
-        }
-        return false;
-    }
+
+	private static boolean isDelimiter(char ch, char[] delimiters)
+	{
+		if (delimiters == null) { return Character.isWhitespace(ch); }
+		for (char delimiter : delimiters) {
+			if (ch == delimiter) { return true; }
+		}
+		return false;
+	}
 }

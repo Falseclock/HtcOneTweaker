@@ -14,7 +14,6 @@ import android.util.Log;
 
 public class TweakerBroadcastReceiver extends BroadcastReceiver
 {
-
 	public static final String ACTION_DELETE_MESSAGE = "tweaker.intent.action.DELETE_MESSAGE";
 	public static final String ACTION_CALL_TO_CONTACT = "tweaker.intent.action.CALL_TO_CONTACT";
 	public static final String ACTION_MARK_THREAD_READ = "tweaker.intent.action.MARK_THREAD_READ";

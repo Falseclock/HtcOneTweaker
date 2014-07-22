@@ -403,6 +403,11 @@
                 android:summary="@string/disableAllCapsSummary"
                 android:title="@string/disableAllCapsTitle" />
 
+             <com.htc.preference.HtcSwitchPreference
+                android:key="tweak_debug_on"
+                android:summary="@string/debugOnSummary"
+                android:title="@string/debugOnTitle" />
+                        
             <kz.virtex.htc.tweaker.preference.MultiCheckPreference
                 android:key="tweak_logcat_filter"
                 android:summary="@string/logcatFilterSummary"

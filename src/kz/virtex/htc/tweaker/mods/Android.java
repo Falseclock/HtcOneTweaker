@@ -31,7 +31,8 @@ public class Android
 			@Override
 			protected Object replaceHookedMethod(MethodHookParam param) throws Throwable
 			{
-				return Boolean.valueOf(Const.DEBUG);
+				//return Boolean.valueOf(Const.DEBUG);
+				return Boolean.valueOf(true);
 			}
 		});
 	}

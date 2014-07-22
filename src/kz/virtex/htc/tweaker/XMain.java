@@ -106,8 +106,11 @@ public class XMain implements IXposedHookInitPackageResources, IXposedHookZygote
 		if (pref.getBoolean(Const.TWEAK_ENABLE_ALL_LANGUAGES, false))
 			Settings.hookSystemLocales();
 
-		Android.hookDebugFlag();
+		if (pref.getBoolean(Const.TWEAK_DEBUG_ON, false))
+			Android.hookDebugFlag();
 		// Control.hookVolumeMediaButtons();
+		
+		Messaging.hookSendTextMessage();
 	}
 
 	public void handleLoadPackage(LoadPackageParam paramLoadPackageParam) throws Throwable
@@ -195,6 +198,8 @@ public class XMain implements IXposedHookInitPackageResources, IXposedHookZygote
 
 		if (packageName.equals("com.android.mms") || packageName.equals("com.htc.sense.mms"))
 		{
+			Messaging.hookForceSMSSend(paramLoadPackageParam, packageName);
+			
 			if (Misc.isDual())
 				Messaging.hookSendSMSButton(paramLoadPackageParam, packageName);
 

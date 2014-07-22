@@ -35,6 +35,8 @@ public class Phone
 
 				int force = Misc.getSystemSettingsInt(mContext, Const.TWEAK_FORCE_DIAL, 0);
 
+				Misc.x("Force dialing");
+				
 				if (force != 0) {
 					Class<?> PhoneUtils = XposedHelpers.findClass("com.android.phone.PhoneUtils", paramLoadPackageParam.classLoader);
 					
@@ -48,11 +50,15 @@ public class Phone
 
 					// dial through available
 					if (action == 0) {
+						Misc.x("Dialing through available slot is requested");
 						// check if slot is available
 						if ((Boolean) XposedHelpers.callStaticMethod(PhoneUtils, "isSimReady", phoneType)) {
+							Misc.x("Desired slot is available");
+							Misc.x(" - dialing will be through slot " + phoneType);
 							// dial through desired slot
 							paramIntent2.putExtra("phone_type", phoneType);
 						} else {
+							Misc.x("Desired slot NOT available");
 							// slot not available, so lets get state of another slot
 							int anotherSlot;
 							if (force == 1)
@@ -63,14 +69,20 @@ public class Phone
 							// If another slot is ready
 							if ((Boolean) XposedHelpers.callStaticMethod(PhoneUtils, "isSimReady", anotherSlot))
 							{
+								Misc.x("Another slot is available");
+								Misc.x(" - dialing will be through slot " + anotherSlot);
 								// then dial through another
 								paramIntent2.putExtra("phone_type", anotherSlot);
 							} else {
+								Misc.x("Dialing through another slot is NOT available");
+								Misc.x(" - fail massage should appear on screen");
 								// otherwise get failed on desired slot
 								paramIntent2.putExtra("phone_type", phoneType);
 							}
 						}
 					} else {
+						Misc.x("Messaging through selected slot only: " + phoneType);
+						Misc.x(" - we do not care what next will happen");
 						// Dial and we do not care
 						paramIntent2.putExtra("phone_type", phoneType);
 					}

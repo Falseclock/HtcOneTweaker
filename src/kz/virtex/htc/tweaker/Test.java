@@ -5,11 +5,8 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.LinearGradient;
 import android.graphics.Paint;
 import android.graphics.Point;
-import android.graphics.Shader;
-import android.graphics.Shader.TileMode;
 import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
@@ -29,45 +26,41 @@ public class Test extends Activity
 		super.onCreate(paramBundle);
 
 		mContext = getBaseContext();
-		int level = 10;
+		int level = 59;
 
 		setContentView(R.layout.test);
 
-		RelativeLayout left = (RelativeLayout) findViewById(R.id.test1);
-		RelativeLayout center = (RelativeLayout) findViewById(R.id.test2);
-		center.setBackgroundColor(Color.GREEN);
-		RelativeLayout right = (RelativeLayout) findViewById(R.id.test3);
+		RelativeLayout charging = (RelativeLayout) findViewById(R.id.test2);
+		RelativeLayout center = (RelativeLayout) findViewById(R.id.test1);
 
-		left.setLayoutParams(new LayoutParams(getSideWidth(mContext, level), 4));
-		center.setLayoutParams(new LayoutParams(getScreenWidth(mContext) - getSideWidth(mContext, level) * 2, 4));
-		right.setLayoutParams(new LayoutParams(getSideWidth(mContext, level), 4));
+		//left.setLayoutParams(new LayoutParams(getSideWidth(mContext, level), 4));
+		RelativeLayout.LayoutParams layoutparams = new RelativeLayout.LayoutParams(getScreenWidth(mContext) - getSideWidth(mContext, level) * 2, 3);
+		layoutparams.addRule(RelativeLayout.CENTER_HORIZONTAL);
+		center.setLayoutParams(layoutparams);
+		
+		//right.setLayoutParams(new LayoutParams(getSideWidth(mContext, level), 4));
 
-		AnimationDrawable animLeft = createAnim(getBaseContext(), level, true);
-		animLeft.setOneShot(false);
-		AnimationDrawable animRight = createAnim(getBaseContext(), level, false);
-		animRight.setOneShot(false);
-
-		left.setBackgroundDrawable(animLeft);
-		right.setBackgroundDrawable(animRight);
-
-		animLeft.start();
-		animRight.start();
+		AnimationDrawable animation = createAnim(getBaseContext(), level);
+		animation.setOneShot(false);
+		charging.setBackgroundDrawable(animation);
+		animation.start();
 
 	}
 
-	private AnimationDrawable createAnim(Context context, int level, boolean isLeft)
+	private AnimationDrawable createAnim(Context context, int level)
 	{
 		int side = getSideWidth(context, level);
+		int screenWidth = getScreenWidth(context);
 		float gravitAccel = 9.81F;
 		// Скорость падения в конце
 		// u = sqrt(2gh)
 		int endSpeed = (int) Math.sqrt(2 * gravitAccel * side);
-		Misc.d("side: " + side + ", End speed: " + endSpeed + ", Drop width: " + (side/10));
+		Misc.d("width: " + screenWidth + ", End speed: " + endSpeed + ", Drop width: " + (side/10));
 
 		AnimationDrawable anim = new AnimationDrawable();
 		Drawable[] layers = new Drawable[2];
-		layers[0] = new BitmapDrawable(context.getResources(), Bitmap.createBitmap(side, 4, Bitmap.Config.ARGB_8888));
-		layers[1] = new BitmapDrawable(context.getResources(), Bitmap.createBitmap(side, 4, Bitmap.Config.ARGB_8888));
+		layers[0] = new BitmapDrawable(context.getResources(), Bitmap.createBitmap(side, 3, Bitmap.Config.ARGB_8888));
+		layers[1] = new BitmapDrawable(context.getResources(), Bitmap.createBitmap(side, 3, Bitmap.Config.ARGB_8888));
 		LayerDrawable layerDrawable = new LayerDrawable(layers);
 		anim.addFrame(layerDrawable, endSpeed * 3);
 
@@ -77,18 +70,16 @@ public class Test extends Activity
 		while (position < side)
 		{
 			layers = new Drawable[2];
-			layers[0] = new BitmapDrawable(context.getResources(), Bitmap.createBitmap(side, 4, Bitmap.Config.ARGB_8888));
-			layers[1] = new BitmapDrawable(context.getResources(), Bitmap.createBitmap(side, 4, Bitmap.Config.ARGB_8888));
+			layers[0] = new BitmapDrawable(context.getResources(), Bitmap.createBitmap(screenWidth, 3, Bitmap.Config.ARGB_8888));
+			layers[1] = new BitmapDrawable(context.getResources(), Bitmap.createBitmap(screenWidth, 3, Bitmap.Config.ARGB_8888));
 
 			Canvas mCanvas = new Canvas(Misc.drawableToBitmap(layers[1]));
 			Paint mPoint = new Paint();
 			mPoint.setStyle(Paint.Style.FILL);
 			mPoint.setColor(Color.GREEN);
 
-			if (isLeft)
-				mCanvas.drawRect(position, 0, position + dropWidth, 4, mPoint);
-			else
-				mCanvas.drawRect(side - position - dropWidth, 0, side - position, 4, mPoint);
+			mCanvas.drawRect(position, 0, position + dropWidth, 4, mPoint);
+			mCanvas.drawRect(screenWidth - position - dropWidth, 0, screenWidth - position, 4, mPoint);
 
 			layerDrawable = new LayerDrawable(layers);
 

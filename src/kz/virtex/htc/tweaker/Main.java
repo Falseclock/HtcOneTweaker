@@ -966,7 +966,7 @@ public class Main extends HtcPreferenceActivity implements HtcPreference.OnPrefe
 	public void onSharedPreferenceChanged(SharedPreferences pref, String key)
 	{
 		// Call recording works on the fly
-		if (!key.contains("tweak_call_rec") && !key.contains("tweak_show_sim")&& !key.contains("tweak_force")) {
+		if (!key.contains("tweak_call_rec") && !key.contains("tweak_show_sim")) { //&& !key.contains("tweak_force")
 			// let's remove cause we are switched back
 			if (mSettingsChanges.contains(key)) {
 				// before removing we should check if it is not integer

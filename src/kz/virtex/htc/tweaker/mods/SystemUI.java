@@ -3,7 +3,6 @@ package kz.virtex.htc.tweaker.mods;
 import static de.robv.android.xposed.XposedHelpers.findAndHookMethod;
 
 import java.util.ArrayList;
-import java.util.Date;
 
 import kz.virtex.htc.tweaker.Const;
 import kz.virtex.htc.tweaker.Misc;
@@ -12,6 +11,7 @@ import kz.virtex.htc.tweaker.XMain;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.content.res.XModuleResources;
 import android.content.res.XResources;
 import android.graphics.Bitmap;
@@ -26,7 +26,6 @@ import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
 import android.os.Build;
-import android.text.format.DateFormat;
 import android.view.Display;
 import android.view.MotionEvent;
 import android.view.View;
@@ -45,11 +44,11 @@ import de.robv.android.xposed.callbacks.XC_LoadPackage.LoadPackageParam;
 
 public class SystemUI
 {
-	private static LinearLayout miuiBar;
-	private static RelativeLayout miuiBarLeftSide;
-	private static RelativeLayout miuiBarRightSide;
-	private static RelativeLayout miuiBarCenterSide;
+	private static RelativeLayout miuiBar;
+	private static RelativeLayout miuiBarCharging;
+	private static RelativeLayout miuiBarBattery;
 	private static int BarHeight = 3;
+
 	public static void handleColoredSIM(final LoadPackageParam paramLoadPackageParam)
 	{
 		findAndHookMethod("com.android.systemui.statusbar.policy.NetworkControllerDual", paramLoadPackageParam.classLoader, "updateIconBySlot", int.class, new XC_MethodHook()
@@ -82,28 +81,23 @@ public class SystemUI
 				ViewGroup mStatusBarView = (ViewGroup) XposedHelpers.getObjectField(param.thisObject, "mStatusBarView");
 				Context mContext = (Context) XposedHelpers.getObjectField(param.thisObject, "mContext");
 
-				miuiBar = new LinearLayout(mContext);
-				RelativeLayout.LayoutParams miuiBarParams = new RelativeLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
+				miuiBar = new RelativeLayout(mContext);
+				RelativeLayout.LayoutParams miuiBarParams = new RelativeLayout.LayoutParams(getScreenWidth(mContext), LayoutParams.WRAP_CONTENT);
 				miuiBarParams.addRule(RelativeLayout.ALIGN_PARENT_TOP, RelativeLayout.TRUE);
-				miuiBarParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT, RelativeLayout.TRUE);
+				miuiBarParams.addRule(RelativeLayout.CENTER_HORIZONTAL, RelativeLayout.TRUE);
 				miuiBar.setLayoutParams(miuiBarParams);
 				miuiBar.setBackgroundColor(Color.TRANSPARENT);
 
-				miuiBarLeftSide = new RelativeLayout(mContext);
-				miuiBarLeftSide.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, BarHeight, 50));
-				miuiBarLeftSide.setBackgroundColor(Color.TRANSPARENT);
+				miuiBarCharging = new RelativeLayout(mContext);
+				miuiBarCharging.setLayoutParams(new RelativeLayout.LayoutParams(LayoutParams.FILL_PARENT, BarHeight));
+				miuiBarCharging.setBackgroundColor(Color.TRANSPARENT);
 
-				miuiBarCenterSide = new RelativeLayout(mContext);
-				miuiBarCenterSide.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, BarHeight, 0));
-				miuiBarCenterSide.setBackgroundColor(Color.TRANSPARENT);
+				miuiBarBattery = new RelativeLayout(mContext);
+				miuiBarBattery.setLayoutParams(new RelativeLayout.LayoutParams(0, BarHeight));
+				miuiBarBattery.setBackgroundColor(Color.TRANSPARENT);
 
-				miuiBarRightSide = new RelativeLayout(mContext);
-				miuiBarRightSide.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, BarHeight, 50));
-				miuiBarRightSide.setBackgroundColor(Color.TRANSPARENT);
-
-				miuiBar.addView(miuiBarLeftSide);
-				miuiBar.addView(miuiBarCenterSide);
-				miuiBar.addView(miuiBarRightSide);
+				miuiBar.addView(miuiBarCharging);
+				miuiBar.addView(miuiBarBattery);
 
 				mStatusBarView.addView(miuiBar, 0, miuiBarParams);
 			}
@@ -118,86 +112,72 @@ public class SystemUI
 
 				int level = XposedHelpers.getIntField(param.thisObject, "level");
 
-				//Misc.x("Battery level: " + level);
-				//Misc.x("Is plugged: " + plugged);
+				// Misc.x("Battery level: " + level);
+				// Misc.x("Is plugged: " + plugged);
 
-				int sideWidth = getSideWidth(mContext, level);
-				miuiBarLeftSide.setLayoutParams(new LayoutParams(sideWidth, BarHeight));
-				miuiBarCenterSide.setLayoutParams(new LayoutParams(getScreenWidth(mContext) - sideWidth * 2, BarHeight));
-				miuiBarRightSide.setLayoutParams(new LayoutParams(sideWidth, BarHeight));
+				RelativeLayout.LayoutParams layoutparams = new RelativeLayout.LayoutParams(getScreenWidth(mContext) - getSideWidth(mContext, level) * 2, BarHeight);
+				layoutparams.addRule(RelativeLayout.CENTER_HORIZONTAL);
+				miuiBarBattery.setLayoutParams(layoutparams);
 
 				float[] hsv = new float[3];
-				if (level >= 50)
-				{
+				if (level >= 50) {
 					hsv[0] = 100;
 					hsv[1] = 0.5F;
-				}
-				else
-				{
+				} else {
 					hsv[0] = level > 0 ? ((float) level * 2.0F) - 2.0F : 0.0F;
 					hsv[1] = level > 0 ? (1.0F - ((float) level * 0.5F / (float) 50)) : 1.0F;
 				}
 				hsv[2] = 1.0F;
 				int color = Color.HSVToColor(hsv);
 
-				miuiBarCenterSide.setBackgroundColor(color);
+				miuiBarBattery.setBackgroundColor(color);
 
-				if (plugged && level <= 98)
-				{
-					AnimationDrawable animLeft = createAnim(mContext, level, color, true);
-					animLeft.setOneShot(false);
-					AnimationDrawable animRight = createAnim(mContext, level, color, false);
-					animRight.setOneShot(false);
-
-					miuiBarLeftSide.setBackgroundDrawable(animLeft);
-					miuiBarRightSide.setBackgroundDrawable(animRight);
-
-					animLeft.start();
-					animRight.start();
-				}
-				else
-				{
-					miuiBarLeftSide.setBackgroundDrawable(new ColorDrawable(mContext.getResources().getColor(android.R.color.transparent)));
-					miuiBarRightSide.setBackgroundDrawable(new ColorDrawable(mContext.getResources().getColor(android.R.color.transparent)));
+				if (plugged && level <= 98) {
+					AnimationDrawable animation = createAnim(mContext, level, color);
+					animation.setOneShot(false);
+					miuiBarCharging.setBackgroundDrawable(animation);
+					animation.start();
+				} else {
+					miuiBarCharging.setBackgroundDrawable(new ColorDrawable(mContext.getResources().getColor(android.R.color.transparent)));
+					miuiBarCharging.setBackgroundDrawable(new ColorDrawable(mContext.getResources().getColor(android.R.color.transparent)));
 				}
 			}
 		});
 	}
 
-	private static AnimationDrawable createAnim(Context context, int level, int color, boolean isLeft)
+	private static AnimationDrawable createAnim(Context context, int level, int color)
 	{
 		int side = getSideWidth(context, level);
+		int screenWidth = getScreenWidth(context);
 		float gravitAccel = 9.81F;
 		// Скорость падения в конце
 		// u = sqrt(2gh)
 		int endSpeed = (int) Math.sqrt(2 * gravitAccel * side);
-		//Misc.d("side: " + side + ", End speed: " + endSpeed + ", Drop width: " + (side / 10));
+		// Misc.d("side: " + side + ", End speed: " + endSpeed +
+		// ", Drop width: " + (side / 10));
 
 		AnimationDrawable anim = new AnimationDrawable();
 		Drawable[] layers = new Drawable[2];
-		layers[0] = new BitmapDrawable(context.getResources(), Bitmap.createBitmap(side, BarHeight, Bitmap.Config.ARGB_8888));
-		layers[1] = new BitmapDrawable(context.getResources(), Bitmap.createBitmap(side, BarHeight, Bitmap.Config.ARGB_8888));
+		layers[0] = new BitmapDrawable(context.getResources(), Bitmap.createBitmap(screenWidth, BarHeight, Bitmap.Config.ARGB_8888));
+		layers[1] = new BitmapDrawable(context.getResources(), Bitmap.createBitmap(screenWidth, BarHeight, Bitmap.Config.ARGB_8888));
 		LayerDrawable layerDrawable = new LayerDrawable(layers);
 		anim.addFrame(layerDrawable, endSpeed * 3);
 
 		int dropWidth = side / 20;
 		int position = -dropWidth;
 
-		while (position < side)
-		{
+		while (position < side) {
 			layers = new Drawable[2];
-			layers[0] = new BitmapDrawable(context.getResources(), Bitmap.createBitmap(side, BarHeight, Bitmap.Config.ARGB_8888));
-			layers[1] = new BitmapDrawable(context.getResources(), Bitmap.createBitmap(side, BarHeight, Bitmap.Config.ARGB_8888));
+			layers[0] = new BitmapDrawable(context.getResources(), Bitmap.createBitmap(screenWidth, BarHeight, Bitmap.Config.ARGB_8888));
+			layers[1] = new BitmapDrawable(context.getResources(), Bitmap.createBitmap(screenWidth, BarHeight, Bitmap.Config.ARGB_8888));
 
 			Canvas mCanvas = new Canvas(Misc.drawableToBitmap(layers[1]));
 			Paint mPoint = new Paint();
 			mPoint.setStyle(Paint.Style.FILL);
 			mPoint.setColor(color);
 
-			if (isLeft)
-				mCanvas.drawRect(position, 0, position + dropWidth, BarHeight, mPoint);
-			else
-				mCanvas.drawRect(side - position - dropWidth, 0, side - position, BarHeight, mPoint);
+			mCanvas.drawRect(position, 0, position + dropWidth, BarHeight, mPoint);
+			mCanvas.drawRect(screenWidth - position - dropWidth, 0, screenWidth - position, BarHeight, mPoint);
 
 			layerDrawable = new LayerDrawable(layers);
 
@@ -219,7 +199,12 @@ public class SystemUI
 		Point size = new Point();
 		display.getSize(size);
 
-		return size.x;
+		Configuration config = context.getResources().getConfiguration();
+		if (config.orientation == Configuration.ORIENTATION_PORTRAIT) {
+			return size.x;
+		} else {
+			return size.y;
+		}
 	}
 
 	private static int getSideWidth(Context context, int level)
@@ -239,7 +224,9 @@ public class SystemUI
 				TextView date = (TextView) param.thisObject;
 				CharSequence text = date.getText();
 
-				//Misc.x("updateClock is happen: " + DateFormat.format("EEE MMM d HH:mm:ss zz yyyy", new Date()).toString());
+				// Misc.x("updateClock is happen: " +
+				// DateFormat.format("EEE MMM d HH:mm:ss zz yyyy", new
+				// Date()).toString());
 
 				date.setText(String.valueOf(text.charAt(0)).toUpperCase() + text.subSequence(1, text.length()));
 				date.setAllCaps(false);
@@ -303,13 +290,10 @@ public class SystemUI
 				Drawable battery = localImageView.getDrawable();
 
 				float[] hsv = new float[3];
-				if (level >= 50)
-				{
+				if (level >= 50) {
 					hsv[0] = 100;
 					hsv[1] = 0.5F;
-				}
-				else
-				{
+				} else {
 					hsv[0] = level > 0 ? ((float) level * 2.0F) - 2.0F : 0.0F;
 					hsv[1] = level > 0 ? (1.0F - ((float) level * 0.5F / (float) 50)) : 1.0F;
 				}
@@ -422,22 +406,17 @@ public class SystemUI
 
 				int side = Integer.parseInt(XMain.pref.getString(Const.TWEAK_QUICK_SETTINGS_SIDE, "0"));
 
-				if (side == 0)
-				{
+				if (side == 0) {
 					float limit = screenWidth - (screenWidth * option);
-					
-					if (paramMotionEvent.getY(0) <= 100 && paramMotionEvent.getX(0) >= limit)
-					{
+
+					if (paramMotionEvent.getY(0) <= 100 && paramMotionEvent.getX(0) >= limit) {
 						Object StatusBar = XposedHelpers.getObjectField(param.thisObject, "mStatusBar");
 						XposedHelpers.callMethod(StatusBar, "flipToSettings");
 					}
-				}
-				else
-				{
+				} else {
 					float limit = (screenWidth * option);
 
-					if (paramMotionEvent.getY(0) <= 100 && paramMotionEvent.getX(0) <= limit)
-					{
+					if (paramMotionEvent.getY(0) <= 100 && paramMotionEvent.getX(0) <= limit) {
 						Object StatusBar = XposedHelpers.getObjectField(param.thisObject, "mStatusBar");
 						XposedHelpers.callMethod(StatusBar, "flipToSettings");
 					}
@@ -448,8 +427,7 @@ public class SystemUI
 
 	public static void hookExpandedNotifications(LoadPackageParam paramLoadPackageParam)
 	{
-		if (Build.VERSION.SDK_INT < 19)
-		{
+		if (Build.VERSION.SDK_INT < 19) {
 			XposedHelpers.findAndHookMethod("com.android.systemui.statusbar.NotificationData", paramLoadPackageParam.classLoader, "getUserExpanded", View.class, new XC_MethodReplacement()
 			{
 				@Override
@@ -511,8 +489,7 @@ public class SystemUI
 			}
 		});
 
-		try
-		{
+		try {
 			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_wifi_signal_connected_0", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
@@ -658,9 +635,7 @@ public class SystemUI
 				}
 			});
 
-		}
-		catch (Throwable t)
-		{
+		} catch (Throwable t) {
 
 		}
 	}
@@ -670,8 +645,7 @@ public class SystemUI
 		final XModuleResources modRes = XModuleResources.createInstance(path, resparam.res);
 
 		// DATA 2G
-		try
-		{
+		try {
 			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_data_connected_2g", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
@@ -701,16 +675,13 @@ public class SystemUI
 				}
 			});
 
-		}
-		catch (Throwable t)
-		{
+		} catch (Throwable t) {
 
 		}
 		// END DATA 2G
 
 		// DATA 3G
-		try
-		{
+		try {
 			resparam.res.setReplacement(resparam.packageName, "drawable", "cdma_sys_data_connected_3g", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
@@ -740,13 +711,10 @@ public class SystemUI
 				}
 			});
 
-		}
-		catch (Throwable t)
-		{
+		} catch (Throwable t) {
 
 		}
-		try
-		{
+		try {
 			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_data_connected_3g", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
@@ -776,16 +744,13 @@ public class SystemUI
 				}
 			});
 
-		}
-		catch (Throwable t)
-		{
+		} catch (Throwable t) {
 
 		}
 		// END DATA 3G
 
 		// DATA 4G
-		try
-		{
+		try {
 			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_data_connected_4g", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
@@ -814,16 +779,13 @@ public class SystemUI
 					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_data_out_4g), Const.TWEAK_DATA_ICONS_COLOR, XMain.pref);
 				}
 			});
-		}
-		catch (Throwable t)
-		{
+		} catch (Throwable t) {
 
 		}
 		// END DATA 4G
 
 		// DATA E
-		try
-		{
+		try {
 			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_data_connected_e", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
@@ -852,16 +814,13 @@ public class SystemUI
 					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_data_out_e), Const.TWEAK_DATA_ICONS_COLOR, XMain.pref);
 				}
 			});
-		}
-		catch (Throwable t)
-		{
+		} catch (Throwable t) {
 
 		}
 		// END DATA E
 
 		// DATA G
-		try
-		{
+		try {
 			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_data_connected_g", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
@@ -890,16 +849,13 @@ public class SystemUI
 					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_data_out_g), Const.TWEAK_DATA_ICONS_COLOR, XMain.pref);
 				}
 			});
-		}
-		catch (Throwable t)
-		{
+		} catch (Throwable t) {
 
 		}
 		// END DATA G
 
 		// DATA H
-		try
-		{
+		try {
 			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_data_connected_h", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
@@ -928,16 +884,13 @@ public class SystemUI
 					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_data_out_h), Const.TWEAK_DATA_ICONS_COLOR, XMain.pref);
 				}
 			});
-		}
-		catch (Throwable t)
-		{
+		} catch (Throwable t) {
 
 		}
 		// END DATA H
 
 		// DATA H+
-		try
-		{
+		try {
 			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_data_connected_hplus", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
@@ -966,16 +919,13 @@ public class SystemUI
 					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_data_out_hplus), Const.TWEAK_DATA_ICONS_COLOR, XMain.pref);
 				}
 			});
-		}
-		catch (Throwable t)
-		{
+		} catch (Throwable t) {
 
 		}
 		// END DATA H+
 
 		// DATA LTE
-		try
-		{
+		try {
 			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_data_connected_lte", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
@@ -1004,9 +954,7 @@ public class SystemUI
 					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_data_out_lte), Const.TWEAK_DATA_ICONS_COLOR, XMain.pref);
 				}
 			});
-		}
-		catch (Throwable t)
-		{
+		} catch (Throwable t) {
 
 		}
 		// END DATA LTE
@@ -1017,8 +965,7 @@ public class SystemUI
 		final XModuleResources modRes = XModuleResources.createInstance(path, resparam.res);
 
 		// 802w KK
-		try
-		{
+		try {
 			resparam.res.setReplacement(resparam.packageName, "drawable", "cdma_stat_sys_s1_5signal_0", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
@@ -1118,16 +1065,13 @@ public class SystemUI
 					return Misc.applyTheme(modRes.getDrawable(R.drawable.cdma_stat_sys_s2_5signal_null), Const.TWEAK_COLOR_SIM2, XMain.pref);
 				}
 			});
-		}
-		catch (Throwable t)
-		{
+		} catch (Throwable t) {
 
 		}
 		// END 802W KK
 
 		// JB ROAMING
-		try
-		{
+		try {
 			resparam.res.setReplacement(resparam.packageName, "drawable", "cdma_stat_sys_s1_roaming_0", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
@@ -1213,16 +1157,13 @@ public class SystemUI
 					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_s2_r_5signal_5), Const.TWEAK_COLOR_SIM2, XMain.pref);
 				}
 			});
-		}
-		catch (Throwable t)
-		{
+		} catch (Throwable t) {
 
 		}
 		// END JB ROAMING
 
 		// KitKat ROAMING
-		try
-		{
+		try {
 			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_s1_r_5signal_0", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
@@ -1308,16 +1249,13 @@ public class SystemUI
 					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_s2_r_5signal_5), Const.TWEAK_COLOR_SIM2, XMain.pref);
 				}
 			});
-		}
-		catch (Throwable t)
-		{
+		} catch (Throwable t) {
 
 		}
 		// END KK ROAMING
 
 		// 802D KK SIM1
-		try
-		{
+		try {
 			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_1x_4signal_0", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
@@ -1529,16 +1467,13 @@ public class SystemUI
 					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_3g4_1x4signal4), Const.TWEAK_COLOR_SIM1, XMain.pref);
 				}
 			});
-		}
-		catch (Throwable t)
-		{
+		} catch (Throwable t) {
 
 		}
 		// END 802W KK SIM1
 
 		// 802W KK SIM2
-		try
-		{
+		try {
 			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_2g_4signal_0", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
@@ -1575,16 +1510,13 @@ public class SystemUI
 				}
 			});
 
-		}
-		catch (Throwable t)
-		{
+		} catch (Throwable t) {
 
 		}
 		// END 802W KK SIM2
 
 		// 802 KK SIM 1
-		try
-		{
+		try {
 			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_5signal_0", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
@@ -1634,16 +1566,13 @@ public class SystemUI
 					return Misc.applyTheme(modRes.getDrawable(R.drawable.stat_sys_5signal_null), Const.TWEAK_COLOR_SIM1, XMain.pref);
 				}
 			});
-		}
-		catch (Throwable t)
-		{
+		} catch (Throwable t) {
 
 		}
 		// END 802 KK
 
 		// 802 KK SIM 1 ROAMING
-		try
-		{
+		try {
 			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_r_5signal_0", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
@@ -1687,16 +1616,13 @@ public class SystemUI
 				}
 			});
 
-		}
-		catch (Throwable t)
-		{
+		} catch (Throwable t) {
 
 		}
 		// END 802 KK SIM 1 ROAMING
 
 		// 802d KK 2GR
-		try
-		{
+		try {
 			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_2g_r_4signal_0", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
@@ -1733,16 +1659,13 @@ public class SystemUI
 				}
 			});
 
-		}
-		catch (Throwable t)
-		{
+		} catch (Throwable t) {
 
 		}
 		// 802d KK 2GR END
 
 		// 802d KK 3GR
-		try
-		{
+		try {
 			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_3g_r_4signal_0", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
@@ -1779,16 +1702,13 @@ public class SystemUI
 				}
 			});
 
-		}
-		catch (Throwable t)
-		{
+		} catch (Throwable t) {
 
 		}
 		// 802d KK 3GR END
 
 		// 802d KK 1XR
-		try
-		{
+		try {
 			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_1x_r_4signal_0", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
@@ -1825,16 +1745,13 @@ public class SystemUI
 				}
 			});
 
-		}
-		catch (Throwable t)
-		{
+		} catch (Throwable t) {
 
 		}
 		// 802d KK 1XR END
 
 		// 802d KK 3GR1XR
-		try
-		{
+		try {
 			resparam.res.setReplacement(resparam.packageName, "drawable", "stat_sys_3g0_r_1x4signal0", new XResources.DrawableLoader()
 			{
 				public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
@@ -2014,9 +1931,7 @@ public class SystemUI
 				}
 			});
 
-		}
-		catch (Throwable t)
-		{
+		} catch (Throwable t) {
 
 		}
 		// 802d KK 3GR1XR END

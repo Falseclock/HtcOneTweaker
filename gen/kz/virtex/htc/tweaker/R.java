@@ -560,6 +560,8 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int controls_vol_up_media_title=0x7f0900e1;
         public static final int current_bugs=0x7f0900be;
         public static final int days_of=0x7f090097;
+        public static final int debugOnSummary=0x7f09013b;
+        public static final int debugOnTitle=0x7f09013a;
         public static final int delete_after=0x7f090098;
         public static final int delete_after_summary=0x7f09009d;
         public static final int dial_is_disabled=0x7f090133;
