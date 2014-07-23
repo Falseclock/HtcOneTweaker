@@ -5,6 +5,8 @@ import static de.robv.android.xposed.XposedHelpers.findAndHookMethod;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import kz.virtex.htc.tweaker.Const;
+import kz.virtex.htc.tweaker.XMain;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Color;
@@ -31,11 +33,18 @@ public class Camera
 			{
 				String file = (String) param.args[1];
 
+				String[] tokens = file.split("\\.(?=[^\\.]+$)");
+				String ext = tokens[1];
+				String name = tokens[0];
 				String date = new SimpleDateFormat(format).format(new Date());
 
-				file = date + "_" + file;
-
-				param.args[1] = file;
+				int posVal = Integer.parseInt(XMain.pref.getString(Const.TWEAK_PHOTO_PREFIX_POSITION, "0"));
+				
+				if (posVal == 0) {
+					param.args[1] = date + "_" + name + "." + ext;
+				} else {
+					param.args[1] = name + "_" + date + "." + ext;						
+				}
 			}
 		});
 	}

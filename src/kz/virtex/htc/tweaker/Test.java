@@ -14,7 +14,6 @@ import android.graphics.drawable.LayerDrawable;
 import android.os.Bundle;
 import android.view.Display;
 import android.view.WindowManager;
-import android.widget.LinearLayout.LayoutParams;
 import android.widget.RelativeLayout;
 
 public class Test extends Activity

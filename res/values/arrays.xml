@@ -178,7 +178,7 @@
         <item>@string/one</item>
         <item>@string/two</item>
     </string-array>
-        <string-array name="tweak_force_mess">
+    <string-array name="tweak_force_mess">
         <item>@string/disabled</item>
         <item>@string/slot1</item>
         <item>@string/slot2</item>
@@ -196,7 +196,7 @@
         <item>@string/zero</item>
         <item>@string/one</item>
     </string-array>
-        <string-array name="tweak_force_mess_action">
+    <string-array name="tweak_force_mess_action">
         <item>@string/mess_through_available</item>
         <item>@string/mess_is_disabled</item>
     </string-array>
@@ -204,4 +204,13 @@
         <item>@string/zero</item>
         <item>@string/one</item>
     </string-array>
+    <string-array name="prefix_position">
+        <item>@string/prefix_begin</item>
+        <item>@string/prefix_end</item>
+    </string-array>
+    <string-array name="prefix_position_val">
+        <item>@string/zero</item>
+        <item>@string/one</item>
+    </string-array>
+
 </resources>

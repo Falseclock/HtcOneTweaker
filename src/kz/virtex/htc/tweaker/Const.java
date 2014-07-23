@@ -2,7 +2,7 @@ package kz.virtex.htc.tweaker;
 
 public class Const
 {
-	public static final boolean DEBUG = true;
+	public static final boolean DEBUG = false;
 	public static final String TAG = "HTC_Tweaker";
 	
 	public static final String PACKAGE_NAME = "kz.virtex.htc.tweaker";
@@ -84,6 +84,7 @@ public class Const
 	public static final String TWEAK_SMS_HIDE_BADGE = "tweak_sms_hide_badge";
 	public static final String TWEAK_COLOR_CALL_INDICATOR= "tweak_color_call_indicator";
 	public static final String TWEAK_PHOTO_PREFIX= "tweak_photo_prefix";
+	public static final String TWEAK_PHOTO_PREFIX_POSITION = "tweak_photo_prefix_position";
 	public static final String TWEAK_OLD_SENSE_DIALER= "tweak_old_sense_dialer";
 	public static final String TWEAK_COLORED_BATTERY= "tweak_colored_battery";
 	public static final String TWEAK_STATUSBAR_CONDENSED = "tweak_statusbar_condensed";

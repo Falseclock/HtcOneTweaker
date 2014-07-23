@@ -394,6 +394,13 @@
                 android:key="tweak_photo_prefix"
                 android:title="@string/enablePhotoPrefixTitle" />
 
+            <com.htc.preference.HtcListPreference
+                android:defaultValue="0"
+                android:entries="@array/prefix_position"
+                android:entryValues="@array/prefix_position_val"
+                android:key="tweak_photo_prefix_position"
+                android:title="@string/PhotoPrefixPositionTitle" />
+            
             <com.htc.preference.HtcSwitchPreference
                 android:key="tweak_enable_all_languages"
                 android:summary="@string/enableAllLanguagesSummary"

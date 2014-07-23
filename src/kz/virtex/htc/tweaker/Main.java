@@ -433,13 +433,10 @@ public class Main extends HtcPreferenceActivity implements HtcPreference.OnPrefe
 	@SuppressLint("SimpleDateFormat")
 	private void setupCamera()
 	{
+		final HtcPreferenceScreen screen = (HtcPreferenceScreen) findPreference(Const.OTHER_SETTINGS_SCREEN_KEY);
 		final HtcListPreference tweak = (HtcListPreference) findPreference(Const.TWEAK_PHOTO_PREFIX);
-
-		String value = preferences.getString(Const.TWEAK_PHOTO_PREFIX, "0");
-		if (!value.equals("0")) {
-			String date = new SimpleDateFormat(value).format(new Date());
-			tweak.setSummary(date + "_" + getResources().getString(R.string.enablePhotoPrefixSummary));
-		}
+		final HtcListPreference position = (HtcListPreference) findPreference(Const.TWEAK_PHOTO_PREFIX_POSITION);
+				
 		tweak.setOnPreferenceChangeListener(new HtcPreference.OnPreferenceChangeListener()
 		{
 			public boolean onPreferenceChange(HtcPreference preference, Object object)
@@ -447,21 +444,63 @@ public class Main extends HtcPreferenceActivity implements HtcPreference.OnPrefe
 				String value = object.toString();
 
 				if (!value.equals("0")) {
+					screen.addPreference(position);
 					String date = new SimpleDateFormat(value).format(new Date());
-					tweak.setSummary(date + "_" + getResources().getString(R.string.enablePhotoPrefixSummary));
+					int posVal = Integer.parseInt(position.getValue());
+					String[] tokens = getResources().getString(R.string.enablePhotoPrefixSummary).split("\\.(?=[^\\.]+$)");
+					String ext = tokens[1];
+					String file = tokens[0];
+					
+					if (posVal == 0) {
+						tweak.setSummary(date + "_" + file + "." + ext);
+					} else {
+						tweak.setSummary(file + "_" + date + "." + ext);						
+					}
 				} else {
 					tweak.setSummary(getResources().getString(R.string.prefix_option_0));
+					screen.removePreference(position);
 				}
 
 				return true;
 			}
 		});
 
-		// CharSequence summ = tweak.getSummary();
-		// String date = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
-		// tweak.setSummary(date + "_" + summ);
-		// enablePhotoPrefixSummary
-
+		position.setOnPreferenceChangeListener(new HtcPreference.OnPreferenceChangeListener()
+		{
+			public boolean onPreferenceChange(HtcPreference preference, Object object)
+			{
+				int posVal = Integer.parseInt(object.toString());
+				String date = new SimpleDateFormat(tweak.getValue()).format(new Date());
+				
+				String[] tokens = getResources().getString(R.string.enablePhotoPrefixSummary).split("\\.(?=[^\\.]+$)");
+				String ext = tokens[1];
+				String file = tokens[0];
+				
+				if (posVal == 0) {
+					tweak.setSummary(date + "_" + file + "." + ext);
+				} else {
+					tweak.setSummary(file + "_" + date + "." + ext);						
+				}
+				return true;
+			}
+		});
+		
+		String value = preferences.getString(Const.TWEAK_PHOTO_PREFIX, "0");
+		if (!value.equals("0")) {
+			String date = new SimpleDateFormat(value).format(new Date());
+			int posVal = Integer.parseInt(position.getValue());
+			String[] tokens = getResources().getString(R.string.enablePhotoPrefixSummary).split("\\.(?=[^\\.]+$)");
+			String ext = tokens[1];
+			String file = tokens[0];
+			
+			if (posVal == 0) {
+				tweak.setSummary(date + "_" + file + "." + ext);
+			} else {
+				tweak.setSummary(file + "_" + date + "." + ext);						
+			}
+		} else {
+			screen.removePreference(position);
+		}
 	}
 
 	private void setupSense6()

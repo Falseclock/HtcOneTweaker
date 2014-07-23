@@ -28,6 +28,8 @@ public final class R {
         public static final int media_option_val=0x7f05000d;
         public static final int prefix_option=0x7f050011;
         public static final int prefix_option_val=0x7f050012;
+        public static final int prefix_position=0x7f050025;
+        public static final int prefix_position_val=0x7f050026;
         public static final int showSimKeys=0x7f050018;
         public static final int showSimTitles=0x7f050017;
         public static final int swipe_option=0x7f050013;
@@ -468,6 +470,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int NotificationScreenSummary=0x7f090040;
         public static final int NotificationScreenTitle=0x7f090041;
         public static final int PhoneticSet=0x7f09007e;
+        public static final int PhotoPrefixPositionTitle=0x7f09013c;
         public static final int QuickPullDownCat=0x7f09011b;
         public static final int RecordingCallerAll=0x7f090088;
         public static final int RecordingCallerByDate=0x7f09008f;
@@ -668,6 +671,8 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int outgoing=0x7f090094;
         public static final int preferred_network_1=0x7f090083;
         public static final int preferred_network_2=0x7f090084;
+        public static final int prefix_begin=0x7f09013d;
+        public static final int prefix_end=0x7f09013e;
         public static final int prefix_option_0=0x7f0900f8;
         public static final int prefix_option_1=0x7f0900f9;
         public static final int prefix_option_2=0x7f0900fa;

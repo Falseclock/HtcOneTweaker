@@ -194,7 +194,7 @@
     <string name="current_bugs">Текущие баги</string>
     <string name="thanks">Благодарности</string>
     <string name="implemented"><b>Что реализовано:</b>\n
-* Надоело каждый раз писать что уже релизовано. Много чего, помимо того, что написано ниже.
+* Надоело каждый раз писать что уже релизовано. Много чего, помимо того, что написано ниже.\n
 * Возможность записи телефонных разговоров с линии. Работает и на Bluetooth девайсах. Проверено!\n
 * Возможность автоматической записи с настройками.\n
 * Фильтрация автоматических записей по типу звонка и по абоненту\n
@@ -213,9 +213,21 @@
 * Префикс в виде даты к названию файлов снятых камерой</string>
     <string name="google_play"><b>Google Play Market</b></string>
     <string name="xda_support"><b>Поддержка на XDA</b></string>
-    <string name="change_log_text"><big><b>Version 3.3.5</b></big>\n<font fgcolor="#FF009000"><b>*</b></font> (new) Анимация заряда MIUI батарейки\n<font fgcolor="#FF009000"><b>*</b></font> (new) Скрытие стоковой индикации батарейки\n<font fgcolor="#FF009000"><b>*</b></font> (new) Опция выбора стороны экрана для быстрых настроек\n<font fgcolor="#FF009000"><b>*</b></font> (new) Скрытие неиспользуемого слота SIM карты в номеронабирателе (только Dual SIM)\n<font fgcolor="#FF009000"><b>*</b></font> (new) Скрытие неиспользуемого слота SIM карты в мессенджере (только Dual SIM)\n
-\n<big><b>Version 3.3.4</b></big>\n<font fgcolor="#FFFF0000"><b>*</b></font> (fix) Неработающая кнопка громкости в медиа приложениях\n<font fgcolor="#FFFF0000"><b>*</b></font> (fix) Спонтанное включение опции цветной погоды\n<font fgcolor="#FF009000"><b>*</b></font> (fix) Цветные индикации уровня сигнала для 802d моделей с 5 уровнями вместо 4\n<font fgcolor="#FF009000"><b>*</b></font> (imp) Опция выбора формата даты для префикса к файлам камеры\n<font fgcolor="#FF009000"><b>*</b></font> (imp) Цветная батарейка и строка зеленые до 50%, и далее от зеленого до красного с увеличением насыщенности\n<font fgcolor="#FF009000"><b>*</b></font> (imp) Выбор размера экрана для доступа к быстрым настройкам\n
-\n<big><b>Version 3.3.3</b></big>\n<font fgcolor="#FFFF0000"><b>*</b></font> (fix) День недели и месяц написан заглавными буквами в случае запрета в настройках.\n<font fgcolor="#FFFF0000"><b>*</b></font> (fix) Дополнительные иконки уровня сигнала в роуминге для 802d моделей\n<font fgcolor="#FF009000"><b>*</b></font> (new) Цветная батарейка в зависимости от уровня заряда\n<font fgcolor="#FF009000"><b>*</b></font> (new) Уплотненный шрифт для текстового отображения заряда батареи и времени\n<font fgcolor="#FF009000"><b>*</b></font> (imp) Запрет на заглавные буквы без изменения системной базы данных\n<font fgcolor="#FF009000"><b>*</b></font> (new) Индикатор зарада батареи в стиле MIUI\n
+    <string name="change_log_text"><big><b>Версия 3.3.6</b></big>\n
+<font fgcolor="#FFFF0000"><b>*</b></font> (fix) Вылет программы в Sense 5\n
+<font fgcolor="#FFFF0000"><b>*</b></font> (fix) Кривые символы дефиса в названиях файл камеры\n
+<font fgcolor="#FFFF0000"><b>*</b></font> (imp) Новые маски для файлов камеры\n
+<font fgcolor="#FF009000"><b>*</b></font> (new) Опция поведения для симкарт, если выбранная карта не доступна (только Dual SIM)\n
+<font fgcolor="#FF009000"><b>*</b></font> (new) Принудительные звонки или отправка SMS сообщений через выбранный слот с опцией поведения, если слот не доступен(Dual SIM only)\n
+<font fgcolor="#FF009000"><b>*</b></font> (new) Полное логирование в logcat\n
+<font fgcolor="#FFFF0000"><b>*</b></font> (fix) Асинхронная анимация заряда MIUI батарейки\n
+<font fgcolor="#FFFF0000"><b>*</b></font> (fix) Кривая MIUI батарейка при изменении ориентации экрана\n
+<font fgcolor="#FFFF0000"><b>*</b></font> (fix) Застывание анимации батарейки или зависание интерфейса\n
+<font fgcolor="#FF009000"><b>*</b></font> (new) Выбор позиции для префикса имен файлов камеры\n
+\n
+<big><b>Версия 3.3.5</b></big>\n<font fgcolor="#FF009000"><b>*</b></font> (new) Анимация заряда MIUI батарейки\n<font fgcolor="#FF009000"><b>*</b></font> (new) Скрытие стоковой индикации батарейки\n<font fgcolor="#FF009000"><b>*</b></font> (new) Опция выбора стороны экрана для быстрых настроек\n<font fgcolor="#FF009000"><b>*</b></font> (new) Скрытие неиспользуемого слота SIM карты в номеронабирателе (только Dual SIM)\n<font fgcolor="#FF009000"><b>*</b></font> (new) Скрытие неиспользуемого слота SIM карты в мессенджере (только Dual SIM)\n
+\n<big><b>Версия 3.3.4</b></big>\n<font fgcolor="#FFFF0000"><b>*</b></font> (fix) Неработающая кнопка громкости в медиа приложениях\n<font fgcolor="#FFFF0000"><b>*</b></font> (fix) Спонтанное включение опции цветной погоды\n<font fgcolor="#FF009000"><b>*</b></font> (fix) Цветные индикации уровня сигнала для 802d моделей с 5 уровнями вместо 4\n<font fgcolor="#FF009000"><b>*</b></font> (imp) Опция выбора формата даты для префикса к файлам камеры\n<font fgcolor="#FF009000"><b>*</b></font> (imp) Цветная батарейка и строка зеленые до 50%, и далее от зеленого до красного с увеличением насыщенности\n<font fgcolor="#FF009000"><b>*</b></font> (imp) Выбор размера экрана для доступа к быстрым настройкам\n
+\n<big><b>Версия 3.3.3</b></big>\n<font fgcolor="#FFFF0000"><b>*</b></font> (fix) День недели и месяц написан заглавными буквами в случае запрета в настройках.\n<font fgcolor="#FFFF0000"><b>*</b></font> (fix) Дополнительные иконки уровня сигнала в роуминге для 802d моделей\n<font fgcolor="#FF009000"><b>*</b></font> (new) Цветная батарейка в зависимости от уровня заряда\n<font fgcolor="#FF009000"><b>*</b></font> (new) Уплотненный шрифт для текстового отображения заряда батареи и времени\n<font fgcolor="#FF009000"><b>*</b></font> (imp) Запрет на заглавные буквы без изменения системной базы данных\n<font fgcolor="#FF009000"><b>*</b></font> (new) Индикатор зарада батареи в стиле MIUI\n
 \n<big><b>Версия 3.3.2</b></big>\n<font fgcolor="#FFFF0000"><b>*</b></font> (fix) Кнопка записи появляется даже если отключена запись\n<font fgcolor="#FFFF0000"><b>*</b></font> (fix) Префикс к файлам камеры на Sense 6\n<font fgcolor="#FFFF0000"><b>*</b></font> (fix) Ссылка на XDA в случае отсутствия Xposed\n<font fgcolor="#FFFF0000"><b>*</b></font> (fix) Проверка двухсимных аппаратов на Android 4.2\n
 \n<big><b>Версия 3.3.1</b></big>\n<font fgcolor="#FF009000"><b>*</b></font> (new) Запрет рисовать интерфейс заглавными буквами (причуда HTC) для яыков использующих латинский алфавит\n<font fgcolor="#FF009000"><b>*</b></font> (new) Кнопка записи на экране разговора перенесена в нижнюю панель\n
 \n<big><b>Версия 3.3.0</b></big>\n<font fgcolor="#FF009000"><b>*</b></font> (new) Включение всех мировых языков в стоковых настройках\n<font fgcolor="#FF009000"><b>*</b></font> (new) Оповещение о необходимости перезагрузке после изменения настроек\n<font fgcolor="#FF009000"><b>*</b></font> (new) Проверка минимальной установки Xposed\n<font fgcolor="#FF009000"><b>*</b></font> (new) Подавление оповещения Выберите способ ввода\n
@@ -305,7 +317,7 @@
     <string name="logcat_info">Info</string>
     <string name="logcat_verbose">Verbose</string>
     <string name="logcat_warn">Warn</string>
-    <string name="prefix_option_0">No prefix</string>
+    <string name="prefix_option_0">Без префикса</string>
     <string name="prefix_option_1">2014</string>
     <string name="prefix_option_2">2014-52</string>
     <string name="prefix_option_3">2014-12</string>
@@ -350,33 +362,35 @@
     <string name="sim1Key">sim1</string>
     <string name="sim2Key">sim2</string>
     
-    <string name="SIMCardSelectorDial">Dialer SIM card selector</string>
-    <string name="tweak_show_sim_card_dial_action">Action when SIM is unavailable</string>
-    <string name="show_another_sim">Show another SIM</string>
-    <string name="show_emergency_call">Show Emergency call</string>
+    <string name="SIMCardSelectorDial">Выбор SIM в номеронабирателе</string>
+    <string name="tweak_show_sim_card_dial_action">Действие когда сеть не доступна</string>
+    <string name="show_another_sim">Показывать другую SIM</string>
+    <string name="show_emergency_call">Показывать экстренный вызов</string>
     
-    <string name="SIMCardSelectorMess">Messenger SIM card selector</string>
-    <string name="tweak_show_sim_card_mess_action">Action when SIM is unavailable</string>
-    <string name="disable_messaging">Disable message sending</string>
+    <string name="SIMCardSelectorMess">Выбор SIM в мессенджере</string>
+    <string name="tweak_show_sim_card_mess_action">Действие когда сеть не доступна</string>
+    <string name="disable_messaging">Не отправлять сообщение</string>
     
-    <string name="SimCardSelectorScreen">SIM card selector</string>
-    <string name="SimCardSelectorScreenSummary">Select which SIM card show in stock Dialer and Message applications</string>
-    <string name="SIMCardSettings">Per slot basis settings</string>
-    <string name="SimCardForceScreenSummary">Select which slot to use by default in case of custom dialer or messenger usage</string>
-    <string name="SimCardForceScreen">Activity forcing</string>
-    <string name="tweak_force_dial">Force outgoing calls through</string>
-    <string name="tweak_force_mess">Force outgoing messages through</string>
-    <string name="disabled">Disabled</string>
-    <string name="tweak_force_action">Action if SIM is unavailable</string>
-    <string name="dial_through_available">Dial through available slot</string>
-    <string name="dial_is_disabled">Disable dialing</string>
-    <string name="SIMCardForceDial">Dialing activity forcing</string>
-    <string name="SIMCardForceMess">Messaging activity forcing</string>
-    <string name="mess_through_available">Send message through available slot</string>
-    <string name="mess_is_disabled">Disable messaging</string>
-    <string name="slot1">Slot 1</string>
-    <string name="slot2">Slot 2</string>
-    <string name="debugOnTitle">Enable system full logcat debug</string>
-    <string name="debugOnSummary">This will drain battery. Useful for developers. Do not switch it ON if you do not need it.</string>
- 
+    <string name="SimCardSelectorScreen">Фильтрация SIM карт</string>
+    <string name="SimCardSelectorScreenSummary">Выберите какие SIM карты показывать в стоковых номеронабирателе и Мессенджере</string>
+    <string name="SIMCardSettings">Настройки по слотам</string>
+    <string name="SimCardForceScreenSummary">Выберите какой использовать слот в случае использования кастомных приложений</string>
+    <string name="SimCardForceScreen">Принудительное использование</string>
+    <string name="tweak_force_dial">Принудительно звонить через</string>
+    <string name="tweak_force_mess">Принудительно отправлять sms через</string>
+    <string name="disabled">Отключено</string>
+    <string name="tweak_force_action">Действие когда сеть не доступна</string>
+    <string name="dial_through_available">Звонить через доступный слот</string>
+    <string name="dial_is_disabled">Не пытаться звонить</string>
+    <string name="SIMCardForceDial">Принудительный набор номера</string>
+    <string name="SIMCardForceMess">Принудительная отправка сообщений</string>
+    <string name="mess_through_available">Отправлять sms через доступный слот</string>
+    <string name="mess_is_disabled">Не пытаться отправить</string>
+    <string name="slot1">Слот 1</string>
+    <string name="slot2">Слот 2</string>
+    <string name="debugOnTitle">Полное логирование в logcat</string>
+    <string name="debugOnSummary">Эта штука отлично садит батарейку. Полезно для разработчиков. Не выключайте, если вы им не являетесь.</string>
+    <string name="PhotoPrefixPositionTitle">Расположение префикса</string>
+    <string name="prefix_begin">В начале</string>
+    <string name="prefix_end">В конце</string>
 </resources>

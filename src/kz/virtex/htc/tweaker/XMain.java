@@ -110,7 +110,8 @@ public class XMain implements IXposedHookInitPackageResources, IXposedHookZygote
 			Android.hookDebugFlag();
 		// Control.hookVolumeMediaButtons();
 		
-		Messaging.hookSendTextMessage();
+		if (Misc.isDual())
+			Messaging.hookSendTextMessage();
 	}
 
 	public void handleLoadPackage(LoadPackageParam paramLoadPackageParam) throws Throwable
@@ -153,7 +154,8 @@ public class XMain implements IXposedHookInitPackageResources, IXposedHookZygote
 
 		if (packageName.equals("com.android.phone"))
 		{
-			Phone.hookCopyDialExtra(paramLoadPackageParam);
+			if (Misc.isDual())
+				Phone.hookCopyDialExtra(paramLoadPackageParam);
 			
 			if (pref.getBoolean(Const.TWEAK_ENABLE_SIP, false))
 				Phone.hookSIP(paramLoadPackageParam);

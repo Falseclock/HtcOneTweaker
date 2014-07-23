@@ -219,7 +219,7 @@
     <string name="google_play"><b>Google Play Market</b></string>
     <string name="xda_support"><b>Support on XDA</b></string>
     <string name="change_log_text"><big><b>Version 3.3.6</b></big>\n
-<font fgcolor="#FFFF0000"><b>*</b></font> (fix) Application crush on Sense 5\n
+<font fgcolor="#FFFF0000"><b>*</b></font> (fix) Application crash on Sense 5\n
 <font fgcolor="#FFFF0000"><b>*</b></font> (fix) Camera file prefix unknown characters\n
 <font fgcolor="#FFFF0000"><b>*</b></font> (imp) New camera file prefix masks\n
 <font fgcolor="#FF009000"><b>*</b></font> (new) Options what to do if only one SIM choosed to be shown on screen but currently unavailable or not ready (Dual SIM only)\n
@@ -228,6 +228,7 @@
 <font fgcolor="#FFFF0000"><b>*</b></font> (fix) Battery bar asynchronous left &amp; right animation\n
 <font fgcolor="#FFFF0000"><b>*</b></font> (fix) Battery bar breakage with orientation change\n
 <font fgcolor="#FFFF0000"><b>*</b></font> (fix) Battery bar stack and UI freeze\n
+<font fgcolor="#FF009000"><b>*</b></font> (new) Camera prefix position\n
 \n
 <big><b>Version 3.3.5</b></big>\n
 <font fgcolor="#FF009000"><b>*</b></font> (new) Battery bar-line charging animation\n
@@ -527,5 +528,8 @@ Manual records stored as default to My Recordings directory.\n
     <string name="slot2">Slot 2</string>
     <string name="debugOnTitle">Enable system full logcat debug</string>
     <string name="debugOnSummary">This will drain battery. Useful for developers. Do not switch it ON if you do not need it.</string>
+    <string name="PhotoPrefixPositionTitle">Camera file prefix position</string>
+    <string name="prefix_begin">At the beginning</string>
+    <string name="prefix_end">At the end</string>
     
 </resources>
