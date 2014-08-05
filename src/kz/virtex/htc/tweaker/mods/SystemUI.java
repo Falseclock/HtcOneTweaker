@@ -43,10 +43,13 @@ import de.robv.android.xposed.callbacks.XC_LoadPackage.LoadPackageParam;
 
 public class SystemUI
 {
-	private static RelativeLayout miuiBar;
+	private static RelativeLayout miuiBar = null;
 	private static RelativeLayout miuiBarCharging;
 	private static RelativeLayout miuiBarBattery;
 	private static int BarHeight = 3;
+	private static int Lastlevel = 0;
+	private static boolean LastPlug;
+	private static int index = 0;
 
 	public static void handleColoredSIM(final LoadPackageParam paramLoadPackageParam)
 	{
@@ -77,39 +80,45 @@ public class SystemUI
 			@Override
 			protected void afterHookedMethod(MethodHookParam param) throws Throwable
 			{
-				ViewGroup mStatusBarView = (ViewGroup) XposedHelpers.getObjectField(param.thisObject, "mStatusBarView");
-				Context mContext = (Context) XposedHelpers.getObjectField(param.thisObject, "mContext");
+				if (miuiBar == null) {
+					ViewGroup mStatusBarView = (ViewGroup) XposedHelpers.getObjectField(param.thisObject, "mStatusBarView");
+					Context mContext = (Context) XposedHelpers.getObjectField(param.thisObject, "mContext");
 
-				miuiBar = new RelativeLayout(mContext);
-				RelativeLayout.LayoutParams miuiBarParams = new RelativeLayout.LayoutParams(getScreenWidth(mContext), LayoutParams.WRAP_CONTENT);
-				miuiBarParams.addRule(RelativeLayout.ALIGN_PARENT_TOP, RelativeLayout.TRUE);
-				miuiBarParams.addRule(RelativeLayout.CENTER_HORIZONTAL, RelativeLayout.TRUE);
-				miuiBar.setLayoutParams(miuiBarParams);
-				miuiBar.setBackgroundColor(Color.TRANSPARENT);
+					miuiBar = new RelativeLayout(mContext);
+					RelativeLayout.LayoutParams miuiBarParams = new RelativeLayout.LayoutParams(getScreenWidth(mContext), LayoutParams.WRAP_CONTENT);
+					miuiBarParams.addRule(RelativeLayout.ALIGN_PARENT_TOP, RelativeLayout.TRUE);
+					miuiBarParams.addRule(RelativeLayout.CENTER_HORIZONTAL, RelativeLayout.TRUE);
+					miuiBar.setLayoutParams(miuiBarParams);
+					miuiBar.setBackgroundColor(Color.TRANSPARENT);
 
-				miuiBarCharging = new RelativeLayout(mContext);
-				miuiBarCharging.setLayoutParams(new RelativeLayout.LayoutParams(LayoutParams.FILL_PARENT, BarHeight));
-				miuiBarCharging.setBackgroundColor(Color.TRANSPARENT);
+					miuiBarCharging = new RelativeLayout(mContext);
+					miuiBarCharging.setLayoutParams(new RelativeLayout.LayoutParams(LayoutParams.FILL_PARENT, BarHeight));
+					miuiBarCharging.setBackgroundColor(Color.TRANSPARENT);
 
-				miuiBarBattery = new RelativeLayout(mContext);
-				miuiBarBattery.setLayoutParams(new RelativeLayout.LayoutParams(0, BarHeight));
-				miuiBarBattery.setBackgroundColor(Color.TRANSPARENT);
+					miuiBarBattery = new RelativeLayout(mContext);
+					miuiBarBattery.setLayoutParams(new RelativeLayout.LayoutParams(0, BarHeight));
+					miuiBarBattery.setBackgroundColor(Color.TRANSPARENT);
 
-				miuiBar.addView(miuiBarCharging);
-				miuiBar.addView(miuiBarBattery);
+					miuiBar.addView(miuiBarCharging);
+					miuiBar.addView(miuiBarBattery);
 
-				mStatusBarView.addView(miuiBar, 0, miuiBarParams);
+					mStatusBarView.addView(miuiBar, 0, miuiBarParams);
+				}
 			}
 		});
 
 		findAndHookMethod("com.android.systemui.statusbar.policy.BatteryController", paramLoadPackageParam.classLoader, "onReceive", Context.class, Intent.class, new XC_MethodHook()
 		{
+
 			protected void afterHookedMethod(MethodHookParam param) throws Throwable
 			{
 				Context mContext = (Context) XposedHelpers.getObjectField(param.thisObject, "mContext");
 				boolean plugged = XposedHelpers.getBooleanField(param.thisObject, "plugged");
 
 				int level = XposedHelpers.getIntField(param.thisObject, "level");
+
+				if (Lastlevel == level && LastPlug == plugged)
+					return;
 
 				// Misc.x("Battery level: " + level);
 				// Misc.x("Is plugged: " + plugged);
@@ -131,15 +140,20 @@ public class SystemUI
 
 				miuiBarBattery.setBackgroundColor(color);
 
-				if (plugged && level <= 98) {
+				if (plugged && level <= 96) {
 					AnimationDrawable animation = createAnim(mContext, level, color);
 					animation.setOneShot(false);
+					miuiBarCharging.setBackgroundDrawable(null);
 					miuiBarCharging.setBackgroundDrawable(animation);
 					animation.start();
 				} else {
+					miuiBarCharging.setBackgroundDrawable(null);
 					miuiBarCharging.setBackgroundDrawable(new ColorDrawable(mContext.getResources().getColor(android.R.color.transparent)));
 					miuiBarCharging.setBackgroundDrawable(new ColorDrawable(mContext.getResources().getColor(android.R.color.transparent)));
 				}
+
+				Lastlevel = level;
+				LastPlug = plugged;
 			}
 		});
 	}
@@ -193,15 +207,29 @@ public class SystemUI
 
 	private static int getScreenWidth(Context context)
 	{
+		return getScreenWidth(context, false);
+	}
+
+	private static int getScreenWidth(Context context, Boolean forceX)
+	{
 		WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
 		Display display = wm.getDefaultDisplay();
 		Point size = new Point();
 		display.getSize(size);
 
 		Configuration config = context.getResources().getConfiguration();
+		// Misc.x("Screen orientation: " + config.orientation);
+		// Misc.x("Screen width: " + config.screenWidthDp);
+		// Misc.x("Screen height: " + config.screenHeightDp);
+
+		if (forceX)
+			return size.x;
+
 		if (config.orientation == Configuration.ORIENTATION_PORTRAIT) {
+			// Misc.x("Screen size: " + size.x);
 			return size.x;
 		} else {
+			// Misc.x("Screen size: " + size.y);
 			return size.y;
 		}
 	}
@@ -399,7 +427,7 @@ public class SystemUI
 				// TODO: landscape mode
 
 				Context context = (Context) XposedHelpers.callMethod(param.thisObject, "getContext");
-				int screenWidth = getScreenWidth(context);
+				int screenWidth = getScreenWidth(context, true);
 
 				float option = Float.parseFloat(string);
 
@@ -1934,5 +1962,28 @@ public class SystemUI
 
 		}
 		// 802d KK 3GR1XR END
+
+		// 802d KK EV1X
+		try {
+			final String[] ev =
+			{ "stat_sys_ev0_1x4signal0", "stat_sys_ev0_1x4signal1", "stat_sys_ev0_1x4signal2", "stat_sys_ev0_1x4signal3", "stat_sys_ev0_1x4signal4", "stat_sys_ev0_r_1x4signal0", "stat_sys_ev0_r_1x4signal1", "stat_sys_ev0_r_1x4signal2", "stat_sys_ev0_r_1x4signal3", "stat_sys_ev0_r_1x4signal4", "stat_sys_ev1_1x4signal0", "stat_sys_ev1_1x4signal1",
+					"stat_sys_ev1_1x4signal2", "stat_sys_ev1_1x4signal3", "stat_sys_ev1_1x4signal4", "stat_sys_ev1_r_1x4signal0", "stat_sys_ev1_r_1x4signal1", "stat_sys_ev1_r_1x4signal2", "stat_sys_ev1_r_1x4signal3", "stat_sys_ev1_r_1x4signal4", "stat_sys_ev2_1x4signal0", "stat_sys_ev2_1x4signal1", "stat_sys_ev2_1x4signal2", "stat_sys_ev2_1x4signal3",
+					"stat_sys_ev2_1x4signal4", "stat_sys_ev2_r_1x4signal0", "stat_sys_ev2_r_1x4signal1", "stat_sys_ev2_r_1x4signal2", "stat_sys_ev2_r_1x4signal3", "stat_sys_ev2_r_1x4signal4", "stat_sys_ev3_1x4signal0", "stat_sys_ev3_1x4signal1", "stat_sys_ev3_1x4signal2", "stat_sys_ev3_1x4signal3", "stat_sys_ev3_1x4signal4", "stat_sys_ev3_r_1x4signal0",
+					"stat_sys_ev3_r_1x4signal1", "stat_sys_ev3_r_1x4signal2", "stat_sys_ev3_r_1x4signal3", "stat_sys_ev3_r_1x4signal4", "stat_sys_ev4_1x4signal0", "stat_sys_ev4_1x4signal1", "stat_sys_ev4_1x4signal2", "stat_sys_ev4_1x4signal3", "stat_sys_ev4_1x4signal4", "stat_sys_ev4_r_1x4signal0", "stat_sys_ev4_r_1x4signal1", "stat_sys_ev4_r_1x4signal2",
+					"stat_sys_ev4_r_1x4signal3", "stat_sys_ev4_r_1x4signal4", };
+
+			for (index = 0; index < ev.length; index++) {
+				resparam.res.setReplacement(resparam.packageName, "drawable", ev[index], new XResources.DrawableLoader()
+				{
+					public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
+					{
+						return Misc.applyTheme(modRes.getDrawable(modRes.getIdentifier(ev[index], "drawable", Const.PACKAGE_NAME)), Const.TWEAK_COLOR_SIM1, XMain.pref);
+					}
+				});
+			}
+		} catch (Throwable t) {
+
+		}
+		// 802d KK EV1X END
 	}
 }

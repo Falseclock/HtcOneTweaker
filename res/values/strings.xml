@@ -218,7 +218,16 @@
 </string>
     <string name="google_play"><b>Google Play Market</b></string>
     <string name="xda_support"><b>Support on XDA</b></string>
-    <string name="change_log_text"><big><b>Version 3.3.6</b></big>\n
+    <string name="change_log_text">
+<big><b>Version 3.3.7</b></big>\n
+<font fgcolor="#FFFF0000"><b>*</b></font> (fix) Anormal screen width calculation for QS swipe in landscape mode \n
+<font fgcolor="#FFFF0000"><b>*</b></font> (fix) Message highlight broken on M7\n
+<font fgcolor="#FFFF0000"><b>*</b></font> (fix) Battery bar-line crash SystemUI on 97% while charging\n
+<font fgcolor="#FF009000"><b>*</b></font> (imp) Battery bar-line less battery consumption \n
+<font fgcolor="#FF009000"><b>*</b></font> (imp) Delivery report notification code re-factoring \n
+<font fgcolor="#FF009000"><b>*</b></font> (imp) New mobile signal strength icons for 802d models \n
+\n
+<big><b>Version 3.3.6</b></big>\n
 <font fgcolor="#FFFF0000"><b>*</b></font> (fix) Application crash on Sense 5\n
 <font fgcolor="#FFFF0000"><b>*</b></font> (fix) Camera file prefix unknown characters\n
 <font fgcolor="#FFFF0000"><b>*</b></font> (imp) New camera file prefix masks\n

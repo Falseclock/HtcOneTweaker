@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="kz.virtex.htc.tweaker"
-    android:versionCode="50"
-    android:versionName="3.3.6" >
+    android:versionCode="53"
+    android:versionName="3.3.7" >
 
     <uses-sdk
         android:maxSdkVersion="19"
@@ -50,7 +50,7 @@
         <activity
             android:name="kz.virtex.htc.tweaker.Test"
             android:enabled="false"
-            android:excludeFromRecents="true"
+            android:excludeFromRecents="false"
             android:label="Test" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

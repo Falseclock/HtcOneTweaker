@@ -193,7 +193,7 @@
     <string name="current_bugs">Errores actuales</string>
     <string name="thanks">Agradecimientos</string>
     <string name="implemented"><b>Actualmente implementado:</b>\n
-* I\'m tired to track what already implemented… There are a lot of new features.\n
+* I\'m tired to track what already implemented… There are a lot of new features.
 * Posibilidad de grabar todas las llamadas de voz directamente de línea. Funciona con dispositivos Bluetooth.\n
 * Grabación automática de llamas de voz utilizando el grabador por defecto.\n
 * Filtrado de grabación automática por tipo de llamada incluyendo entrante y/o saliente\n
@@ -217,7 +217,16 @@
 </string>
     <string name="google_play"><b>Google Play</b></string>
     <string name="xda_support"><b>Soporte en XDA</b></string>
-    <string name="change_log_text"><big><b>Version 3.3.6</b></big>\n
+    <string name="change_log_text">
+<big><b>Version 3.3.7</b></big>\n
+<font fgcolor="#FFFF0000"><b>*</b></font> (fix) Anormal screen width calculation for QS swipe in landscape mode \n
+<font fgcolor="#FFFF0000"><b>*</b></font> (fix) Message highlight broken on M7\n
+<font fgcolor="#FFFF0000"><b>*</b></font> (fix) Battery bar-line crash SystemUI on 97% while charging\n
+<font fgcolor="#FF009000"><b>*</b></font> (imp) Battery bar-line less battery consumption \n
+<font fgcolor="#FF009000"><b>*</b></font> (imp) Delivery report notification code re-factoring \n
+<font fgcolor="#FF009000"><b>*</b></font> (imp) New mobile signal strength icons for 802d models \n
+\n
+<big><b>Version 3.3.6</b></big>\n
 <font fgcolor="#FFFF0000"><b>*</b></font> (fix) Application crash on Sense 5\n
 <font fgcolor="#FFFF0000"><b>*</b></font> (fix) Camera file prefix unknown characters\n
 <font fgcolor="#FFFF0000"><b>*</b></font> (imp) New camera file prefix masks\n
@@ -513,25 +522,26 @@ Manual records stored as default to My Recordings directory.\n
     <string name="tweak_show_sim_card_mess_action">Llevar a cabo esta acción cuando la tarjeta SIM no esté disponible</string>
     <string name="disable_messaging">Desactivar el envío de mensajes</string>
 
-    <string name="SimCardSelectorScreen">SIM card selector</string>
-    <string name="SimCardSelectorScreenSummary">Select which SIM card show in stock Dialer and Message applications</string>
-    <string name="SIMCardSettings">Per slot basis settings</string>
-    <string name="SimCardForceScreenSummary">Select which slot to use by default in case of custom dialer or messenger usage</string>
-    <string name="SimCardForceScreen">Activity forcing</string>
-    <string name="tweak_force_dial">Force outgoing calls through</string>
-    <string name="tweak_force_mess">Force outgoing messages through</string>
-    <string name="disabled">Disabled</string>
-    <string name="tweak_force_action">Action if SIM is unavailable</string>
-    <string name="dial_through_available">Dial through available slot</string>
-    <string name="dial_is_disabled">Disable dialing</string>
-    <string name="SIMCardForceDial">Dialing activity forcing</string>
-    <string name="SIMCardForceMess">Messaging activity forcing</string>
-    <string name="mess_through_available">Send message through available slot</string>
-    <string name="mess_is_disabled">Disable messaging</string>
-    <string name="slot1">Slot 1</string>
-    <string name="slot2">Slot 2</string>
-    <string name="debugOnTitle">Enable system full logcat debug</string>
-    <string name="debugOnSummary">This will drain battery. Useful for developers. Do not switch it ON if you do not need it.</string>
+    <string name="SimCardSelectorScreen">Selector de tarjeta SIM</string>
+    <string name="SimCardSelectorScreenSummary">Seleccione cuál tarjeta SIM a mostrar las aplicaciones Teléfono y Mensajes de fábrica</string>
+    <string name="SIMCardSettings">Ajustes por ranura</string>
+    <string name="SimCardForceScreenSummary">Seleccione que ranura usar por defecto en caso del uso de aplicaciones de teléfono o mensajería de terceros</string>
+    <string name="SimCardForceScreen">Actividad forzada</string>
+    <string name="tweak_force_dial">Forzar llamadas salientes a través de</string>
+    <string name="tweak_force_mess">Forzar mensajes salientes a través de</string>
+    <string name="disabled">Desactivado</string>
+    <string name="tweak_force_action">Acción si la SIM no está disponible</string>
+    <string name="dial_through_available">Discar a través de la ranura disponible</string>
+    <string name="dial_is_disabled">Desactivar marcado</string>
+    <string name="SIMCardForceDial">Desactivar actividad forzada</string>
+    <string name="SIMCardForceMess">Actividad forzada para mensajes</string>
+    <string name="mess_through_available">Enviar mensaje a través de la ranura disponible</string>
+    <string name="mess_is_disabled">Desactivar mensajería</string>
+    <string name="slot1">Ranura 1</string>
+    <string name="slot2">Ranura 2</string>
+    <string name="debugOnTitle">Activar registro de depuración del sistema completo</string>
+    <string name="debugOnSummary">Esta opción consumirá batería. Útil para desarrolladores. No activar si no es realmente necesario.</string>
+    
     <string name="PhotoPrefixPositionTitle">Camera file prefix position</string>
     <string name="prefix_begin">At the beginning</string>
     <string name="prefix_end">At the end</string>

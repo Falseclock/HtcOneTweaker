@@ -23,4 +23,23 @@
         
 </RelativeLayout>
 
+<RelativeLayout
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="50dp" >
+
+        <RelativeLayout
+            android:id="@id/test4"
+            android:layout_width="fill_parent"
+            android:layout_height="3px"
+            android:gravity="top" />
+        <RelativeLayout
+            android:id="@id/test3"
+            android:layout_width="100dp"
+            android:layout_height="3px"
+            android:layout_centerHorizontal="true"/>
+        
+</RelativeLayout>
+
+
 </LinearLayout>

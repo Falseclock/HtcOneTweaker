@@ -213,12 +213,21 @@
 * Префикс в виде даты к названию файлов снятых камерой</string>
     <string name="google_play"><b>Google Play Market</b></string>
     <string name="xda_support"><b>Поддержка на XDA</b></string>
-    <string name="change_log_text"><big><b>Версия 3.3.6</b></big>\n
+    <string name="change_log_text">
+<big><b>Версия 3.3.7</b></big>\n
+<font fgcolor="#FFFF0000"><b>*</b></font> (fix) Неправильный расчет стороны экрана для быстрых настроек в ландшафтном режиме \n
+<font fgcolor="#FFFF0000"><b>*</b></font> (fix) Отсутствие подкраски непрочитанных сообщений на M7\n
+<font fgcolor="#FFFF0000"><b>*</b></font> (fix) Падание процесса SystemUI при 97% зараде батарейки\n
+<font fgcolor="#FF009000"><b>*</b></font> (imp) Анимация батарейки стала менее энергоемкой \n
+<font fgcolor="#FF009000"><b>*</b></font> (imp) Переписан программный код подавления уведомления о доставке \n
+<font fgcolor="#FF009000"><b>*</b></font> (imp) Новые иконки уровня сигнала для 802d моделей \n
+\n        
+<big><b>Версия 3.3.6</b></big>\n
 <font fgcolor="#FFFF0000"><b>*</b></font> (fix) Вылет программы в Sense 5\n
 <font fgcolor="#FFFF0000"><b>*</b></font> (fix) Кривые символы дефиса в названиях файл камеры\n
 <font fgcolor="#FFFF0000"><b>*</b></font> (imp) Новые маски для файлов камеры\n
 <font fgcolor="#FF009000"><b>*</b></font> (new) Опция поведения для симкарт, если выбранная карта не доступна (только Dual SIM)\n
-<font fgcolor="#FF009000"><b>*</b></font> (new) Принудительные звонки или отправка SMS сообщений через выбранный слот с опцией поведения, если слот не доступен(Dual SIM only)\n
+<font fgcolor="#FF009000"><b>*</b></font> (new) Принудительные звонки или отправка SMS сообщений через выбранный слот с опцией поведения, если слот не доступен(только Dual SIM)\n
 <font fgcolor="#FF009000"><b>*</b></font> (new) Полное логирование в logcat\n
 <font fgcolor="#FFFF0000"><b>*</b></font> (fix) Асинхронная анимация заряда MIUI батарейки\n
 <font fgcolor="#FFFF0000"><b>*</b></font> (fix) Кривая MIUI батарейка при изменении ориентации экрана\n
@@ -389,7 +398,7 @@
     <string name="slot1">Слот 1</string>
     <string name="slot2">Слот 2</string>
     <string name="debugOnTitle">Полное логирование в logcat</string>
-    <string name="debugOnSummary">Эта штука отлично садит батарейку. Полезно для разработчиков. Не выключайте, если вы им не являетесь.</string>
+    <string name="debugOnSummary">Эта штука отлично садит батарейку. Полезно для разработчиков. Не включайте, если вы им не являетесь.</string>
     <string name="PhotoPrefixPositionTitle">Расположение префикса</string>
     <string name="prefix_begin">В начале</string>
     <string name="prefix_end">В конце</string>

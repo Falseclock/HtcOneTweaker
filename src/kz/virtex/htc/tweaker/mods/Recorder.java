@@ -31,8 +31,10 @@ import com.android.internal.telephony.Connection;
 import com.htc.widget.HtcIconButton;
 
 import de.robv.android.xposed.XC_MethodHook;
+import de.robv.android.xposed.XC_MethodReplacement;
 import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.XposedHelpers;
+import de.robv.android.xposed.XC_MethodHook.MethodHookParam;
 import de.robv.android.xposed.callbacks.XC_LoadPackage.LoadPackageParam;
 
 public class Recorder
@@ -47,9 +49,82 @@ public class Recorder
 	private static boolean RecordOut;
 	private static int RecordCaller;
 	private static int AutoRecordingStorage;
+	
+	public static void hookIsEnableAudioRecord(final LoadPackageParam paramLoadPackageParam)
+	{
+		Misc.x("hookIsEnableAudioRecord");
+		findAndHookMethod("com.htc.soundrecorder.PausableAudioRecorder", paramLoadPackageParam.classLoader, "isEnableAudioRecord", new XC_MethodHook()
+		{
+			protected void afterHookedMethod(MethodHookParam param) throws Throwable
+			{
+				//Misc.x("isEnableAudioRecord: " + param.getResult());
+				//XposedHelpers.setBooleanField(param.thisObject, "mIsInCallRecording", true);
+				//param.setResult(Boolean.valueOf(true));
+			}
+		});
+		findAndHookMethod("com.htc.soundrecorder.PausableAudioRecorder", paramLoadPackageParam.classLoader, "isInCallRecording", String.class, new XC_MethodHook()
+		{
+			protected void afterHookedMethod(MethodHookParam param) throws Throwable
+			{
+				//param.setResult(Boolean.valueOf(true));
+			}
+		});
+		findAndHookMethod("com.htc.soundrecorder.InCallRecorder", paramLoadPackageParam.classLoader, "start", new XC_MethodHook()
+		{
+			protected void afterHookedMethod(MethodHookParam param) throws Throwable
+			{
+				//Misc.x("InCallRecorder: invoke");
+			}
+		});
+		findAndHookMethod("com.htc.soundrecorder.PausableAudioRecorder", paramLoadPackageParam.classLoader, "initAudioRecorder", new XC_MethodHook()
+		{
+			protected void afterHookedMethod(MethodHookParam param) throws Throwable
+			{
+				//Object mRecorder = XposedHelpers.getObjectField(param.thisObject, "mRecorder");
+				//XposedHelpers.callMethod(mRecorder, "setAudioSource", 4);
+			}
+		});
+	}
+	
+	public static void hookAudioRecord()
+	{
+		Misc.x("hookAudioRecord");
+		final Class<?> AudioRecord = XposedHelpers.findClass("android.media.AudioRecord", null);
+
+		XposedHelpers.findAndHookConstructor(AudioRecord, int.class, int.class, int.class, int.class, int.class, new XC_MethodHook()
+		{
+			@Override
+			protected void beforeHookedMethod(MethodHookParam param) throws Throwable
+			{
+				//Misc.x("AudioRecord");
+				//param.args[0] = 4;
+			}
+		});
+		
+		XposedHelpers.findAndHookMethod("android.media.MediaRecorder", null, "setAudioSource", int.class, new XC_MethodHook()
+		{
+			@Override
+			protected void beforeHookedMethod(MethodHookParam param) throws Throwable
+			{
+				//Misc.x("MediaRecorder want's source" + param.args[0]);
+				//param.args[0] = 4;
+			}
+		});
+		
+		
+		XposedHelpers.findAndHookMethod(AudioRecord, "audioParamCheck", int.class, int.class, int.class, int.class, new XC_MethodHook()
+		{
+			@Override
+			protected void beforeHookedMethod(MethodHookParam param) throws Throwable
+			{
+				//Misc.x("audioParamCheck");
+				//param.args[0] = 4;
+			}
+		});
+	}
 
 	public static void hookPausableAudioRecorderStart(final LoadPackageParam paramLoadPackageParam)
-	{
+	{	
 		findAndHookMethod("com.htc.soundrecorder.PausableAudioRecorder", paramLoadPackageParam.classLoader, "start", "long", "java.lang.String", "java.lang.String", new XC_MethodHook()
 		{
 			protected void beforeHookedMethod(MethodHookParam param) throws Throwable
@@ -151,6 +226,7 @@ public class Recorder
 				if (CallRecording)
 				{
 					XposedHelpers.setStaticBooleanField(Features, "FEATURE_SUPPORT_VOICE_RECORDING", true);
+					//XposedHelpers.setStaticBooleanField(Features, "FEATURE_DISABLE_GSM_VOICE_RECORDING", false);
 				}
 			}
 		});

@@ -29,7 +29,6 @@ import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Handler;
 import android.os.Message;
 import android.telephony.TelephonyManager;
 import android.view.View;
@@ -50,7 +49,6 @@ import de.robv.android.xposed.callbacks.XC_LoadPackage.LoadPackageParam;
 
 public class Messaging
 {
-	public static Boolean NotificationFlag = false;
 	public static Drawable Background;
 	public static Context messageContext;
 	private static MessageData mMessageData;
@@ -158,35 +156,6 @@ public class Messaging
 			{
 				XposedBridge.log("hookSupport8ColorLed");
 				return Boolean.valueOf(true);
-			}
-		});
-	}
-
-	public static void hookForceSMSSend(final LoadPackageParam paramLoadPackageParam, String packageName)
-	{
-		XposedHelpers.findAndHookConstructor(packageName + ".data.WorkingMessage.SmsSendParameter", paramLoadPackageParam.classLoader, Handler.class, packageName + ".ui.ComposeMessageFragment.SendMsgResultCallback", "java.lang.String[]", long.class, Uri.class, long.class, String.class, boolean.class, boolean.class, String.class, int.class, int.class,
-				new XC_MethodHook()
-				{
-					protected void beforeHookedMethod(MethodHookParam param) throws Throwable
-					{
-						// Misc.x("SmsSendParameter constructor phoneType: " +
-						// param.args[11] + ", setting to 5");
-						// param.args[11] = 5;
-					}
-				});
-
-		findAndHookMethod(packageName + ".data.WorkingMessage", paramLoadPackageParam.classLoader, "setSendParameter", packageName + ".data.WorkingMessage.SmsSendParameter", new XC_MethodHook()
-		{
-			protected void beforeHookedMethod(MethodHookParam param) throws Throwable
-			{
-				// Object paramSmsSendParameter = param.args[0];
-				// int phoneType =
-				// XposedHelpers.getIntField(paramSmsSendParameter,
-				// "phoneType");
-				// Misc.x("setSendParameter phoneType: " + phoneType +
-				// ", setting to 5");
-				// XposedHelpers.setIntField(paramSmsSendParameter, "phoneType",
-				// 5);
 			}
 		});
 	}
@@ -621,25 +590,14 @@ public class Messaging
 
 	public static void hookMessageNotification(final LoadPackageParam paramLoadPackageParam, String packageName)
 	{
-		findAndHookMethod(packageName + ".transaction.MessageStatusReceiver", paramLoadPackageParam.classLoader, "updateMessageStatus", "android.content.Context", "android.net.Uri", "byte[]", new XC_MethodHook()
-		{
-			protected void beforeHookedMethod(MethodHookParam param) throws Throwable
-			{
-				NotificationFlag = true;
-			}
-
-			protected void afterHookedMethod(MethodHookParam param) throws Throwable
-			{
-				NotificationFlag = false;
-			}
-		});
-
-		findAndHookMethod(packageName + ".transaction.MessagingNotification", paramLoadPackageParam.classLoader, "showReportNotification", "android.content.Context", "int", "int", "long", "long", "boolean", new XC_MethodHook()
+		findAndHookMethod(packageName + ".transaction.MessagingNotification", paramLoadPackageParam.classLoader, "showReportNotification", android.content.Context.class, int.class, int.class, long.class, long.class, boolean.class, int.class, new XC_MethodHook()
 		{
 			@Override
 			protected void beforeHookedMethod(MethodHookParam param) throws Throwable
 			{
-				if (NotificationFlag) {
+				Context context = (Context) param.args[0];
+				String title = context.getResources().getResourceEntryName((Integer) param.args[1]);
+				if (title.equals("delivery_report_title_text")) {
 					param.setResult(null);
 					return;
 				}

@@ -17,6 +17,7 @@ import android.graphics.drawable.Drawable;
 import android.media.AudioManager;
 import android.util.Log;
 import kz.virtex.htc.tweaker.mods.Android;
+import kz.virtex.htc.tweaker.mods.Bugs;
 import kz.virtex.htc.tweaker.mods.Camera;
 import kz.virtex.htc.tweaker.mods.Contacts;
 import kz.virtex.htc.tweaker.mods.Dialer;
@@ -112,6 +113,10 @@ public class XMain implements IXposedHookInitPackageResources, IXposedHookZygote
 		
 		if (Misc.isDual())
 			Messaging.hookSendTextMessage();
+		
+		//Bugs.killServicesLocked();
+		
+		//Recorder.hookAudioRecord();
 	}
 
 	public void handleLoadPackage(LoadPackageParam paramLoadPackageParam) throws Throwable
@@ -178,6 +183,7 @@ public class XMain implements IXposedHookInitPackageResources, IXposedHookZygote
 			/*--------------------*/
 			Recorder.getStorageRoot(paramLoadPackageParam);
 			Recorder.hookPausableAudioRecorderStart(paramLoadPackageParam);
+			//Recorder.hookIsEnableAudioRecord(paramLoadPackageParam);
 		}
 
 		if (packageName.equals("com.htc.htcdialer"))
@@ -200,7 +206,6 @@ public class XMain implements IXposedHookInitPackageResources, IXposedHookZygote
 
 		if (packageName.equals("com.android.mms") || packageName.equals("com.htc.sense.mms"))
 		{
-			Messaging.hookForceSMSSend(paramLoadPackageParam, packageName);
 			
 			if (Misc.isDual())
 				Messaging.hookSendSMSButton(paramLoadPackageParam, packageName);

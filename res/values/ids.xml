@@ -4,4 +4,5 @@
     <item name="test1" type="id">false</item>
     <item name="test2" type="id">false</item>
     <item name="test3" type="id">false</item>
+    <item name="test4" type="id">false</item>
 </resources>
