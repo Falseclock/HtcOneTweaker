@@ -91,6 +91,8 @@ public class Const
 	public static final String TWEAK_MIUI_BATTERY = "tweak_miui_battery";
 	public static final String TWEAK_STOCK_BATTERY = "tweak_stock_battery";
 	public static final String TWEAK_QUICK_SETTINGS_SIDE = "tweak_quick_settings_side";
+	public static final String TWEAK_FIX_81970 = "tweak_fix81970";
+	public static final String TWEAK_FIX_98918 = "tweak_fix98918";
 	
 	public static final String GUI_SCREEN_KEY = "gui_screen_key";
 	public static final String DATA_SCREEN_KEY = "data_screen_key";

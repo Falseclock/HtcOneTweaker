@@ -91,19 +91,6 @@ public class XMain implements IXposedHookInitPackageResources, IXposedHookZygote
 		if (pref.getBoolean(Const.TWEAK_DISABLE_ALL_CAPS, false))
 			Android.hookAllCapsLocale();
 
-		// KEEP this at least 3 version to remove old traces
-		// System should'nt be touched
-		try
-		{
-			SQLiteDatabase mydb = SQLiteDatabase.openDatabase("/data/data/com.htc.provider.CustomizationSettings/databases/customization_settings.db", null, SQLiteDatabase.OPEN_READWRITE);
-			mydb.execSQL("UPDATE SettingTable set key='system_locale' WHERE key='tweak_system_locale'");
-			mydb.close();
-		}
-		catch (SQLiteException e)
-		{
-			XposedBridge.log(e);
-		}
-
 		if (pref.getBoolean(Const.TWEAK_ENABLE_ALL_LANGUAGES, false))
 			Settings.hookSystemLocales();
 
@@ -114,7 +101,12 @@ public class XMain implements IXposedHookInitPackageResources, IXposedHookZygote
 		if (Misc.isDual())
 			Messaging.hookSendTextMessage();
 		
-		//Bugs.killServicesLocked();
+		if (pref.getBoolean(Const.TWEAK_FIX_81970, false))
+			Bugs.tweak_fix81970();
+		
+		if (pref.getBoolean(Const.TWEAK_FIX_98918, false))
+			Bugs.tweak_fix98918();
+		
 		
 		//Recorder.hookAudioRecord();
 	}

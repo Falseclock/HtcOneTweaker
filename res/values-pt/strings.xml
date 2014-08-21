@@ -217,6 +217,10 @@
     <string name="google_play"><b>Google Play Market</b></string>
     <string name="xda_support"><b>Support on XDA</b></string>
     <string name="change_log_text">
+<big><b>Version 4.0.0 Beta</b></big>\n
+<font fgcolor="#FF009000"><b>*</b></font> (imp) Menu refactoring \n
+<font fgcolor="#FF009000"><b>*</b></font> (new) Android BUGs fixing \n
+\n
 <big><b>Version 3.3.7</b></big>\n
 <font fgcolor="#FFFF0000"><b>*</b></font> (fix) Anormal screen width calculation for QS swipe in landscape mode \n
 <font fgcolor="#FFFF0000"><b>*</b></font> (fix) Message highlight broken on M7\n
@@ -404,4 +408,27 @@ Manual records stored as default to My Recordings directory.\n<font fgcolor="#F
     <string name="PhotoPrefixPositionTitle">Camera file prefix position</string>
     <string name="prefix_begin">At the beginning</string>
     <string name="prefix_end">At the end</string>
+    <string name="screen_call_dial">Call &amp; Dialer</string>
+    <string name="screen_messaging">Messaging</string>
+    <string name="screen_notifications">Notifications</string>
+    <string name="screen_statusbar">Status bar</string>
+    <string name="screen_battery">Battery and charging</string>
+    <string name="screen_icons_coloring">Icons coloring</string>
+    <string name="screen_media">Media &amp; controls</string>
+    <string name="screen_miscellaneous">Miscellaneous</string>
+    <string name="screen_global">System / Global</string>
+    <string name="screen_dual">Dual SIM</string>
+    <string name="screen_bugs">BUGs fixes</string>
+    <string name="screen_advanced">Advanced</string>
+    <string name="screen_tweaks">Tweaks</string>
+    
+    <string name="callRecordingCat">Call recording</string>
+    <string name="otherSettingsCat">Other settings</string>
+    <string name="summary81970">All service returning START_STICKY do not restart after it is being killed.</string>
+    <string name="title81970">Fix 81970</string>
+    <string name="summary98918">If all activities of a given stack were finishing, no activity was marked as front-of-task.</string>
+    <string name="title98918">Fix 98918</string>
+    <string name="thanks_title">Special thanks to</string>
+    <string name="thanks_summary"><b>J_M_V_S</b>, <b>Talon</b>, <b>bgcngm</b> and many other great people from XDA and 4PDA</string>
+   
 </resources>

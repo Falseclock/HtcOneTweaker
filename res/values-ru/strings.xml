@@ -214,6 +214,10 @@
     <string name="google_play"><b>Google Play Market</b></string>
     <string name="xda_support"><b>Поддержка на XDA</b></string>
     <string name="change_log_text">
+<big><b>Версия 4.0.0 Beta</b></big>\n
+<font fgcolor="#FF009000"><b>*</b></font> (imp) Обновленное меню настроек \n
+<font fgcolor="#FF009000"><b>*</b></font> (new) Исправление ошибок Android \n
+\n
 <big><b>Версия 3.3.7</b></big>\n
 <font fgcolor="#FFFF0000"><b>*</b></font> (fix) Неправильный расчет стороны экрана для быстрых настроек в ландшафтном режиме \n
 <font fgcolor="#FFFF0000"><b>*</b></font> (fix) Отсутствие подкраски непрочитанных сообщений на M7\n
@@ -276,7 +280,7 @@
 \n<big><b>Версия 3.0.2</b></big>\n<font fgcolor="#FFFF0000"><b>*</b></font> полностью рабочие настройки.\n<font fgcolor="#FFFF0000"><b>*</b></font> настраиваемое вибро подтверждение при начале автозаписи.\n</string>
     <string name="enableSIPTitle">SIP телефония на Dual версии</string>
     <string name="enableSIPSummary">включение этой возможности</string>
-    <string name="enablePhotoPrefixTitle">Префикс к файлам Камеры</string>
+    <string name="enablePhotoPrefixTitle">Дата в названиях файлов Камеры</string>
     <string name="enablePhotoPrefixSummary">IMAG0001.jpg</string>
     <string name="source_code">Исходный код</string>
     <string name="disableRoamingDataNotification">Передача данных в роуминге</string>
@@ -326,7 +330,7 @@
     <string name="logcat_info">Info</string>
     <string name="logcat_verbose">Verbose</string>
     <string name="logcat_warn">Warn</string>
-    <string name="prefix_option_0">Без префикса</string>
+    <string name="prefix_option_0">Без даты</string>
     <string name="prefix_option_1">2014</string>
     <string name="prefix_option_2">2014-52</string>
     <string name="prefix_option_3">2014-12</string>
@@ -399,7 +403,30 @@
     <string name="slot2">Слот 2</string>
     <string name="debugOnTitle">Полное логирование в logcat</string>
     <string name="debugOnSummary">Эта штука отлично садит батарейку. Полезно для разработчиков. Не включайте, если вы им не являетесь.</string>
-    <string name="PhotoPrefixPositionTitle">Расположение префикса</string>
+    <string name="PhotoPrefixPositionTitle">Расположение даты</string>
     <string name="prefix_begin">В начале</string>
     <string name="prefix_end">В конце</string>
+    <string name="screen_call_dial">Звонки &amp; Набор номера</string>
+    <string name="screen_messaging">Сообщения</string>
+    <string name="screen_notifications">Оповещения</string>
+    <string name="screen_statusbar">Статус строка</string>
+    <string name="screen_battery">Батарея и зарядка</string>
+    <string name="screen_icons_coloring">Цвета иконок</string>
+    <string name="screen_media">Медия &amp; управление</string>
+    <string name="screen_miscellaneous">Разное</string>
+    <string name="screen_global">Системные</string>
+    <string name="screen_dual">Dual SIM</string>
+    <string name="screen_bugs">Исправление ошибок</string>
+    <string name="screen_advanced">Продвинутые настройки</string>
+    <string name="screen_tweaks">Твики</string>
+    
+    <string name="callRecordingCat">Запись звонков</string>
+    <string name="otherSettingsCat">Другие настройки</string>
+    <string name="summary81970">Все сервисы запущенные с флагом START_STICKY не запускаются снова если были завершены системой принудительно.</string>
+    <string name="title81970">Фикс 81970</string>
+    <string name="summary98918">Быстрое нажатие кнопки "назад" может повлечь вывод на экран приложения</string>
+    <string name="title98918">Фикс 98918</string>
+    <string name="thanks_title">Отдельное спасибо</string>
+    <string name="thanks_summary"><b>J_M_V_S</b>, <b>Talon</b>, <b>bgcngm</b> и другим замечательным людям с XDA и 4PDA</string>
+   
 </resources>

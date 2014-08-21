@@ -31,7 +31,7 @@
     <string name="hundred3">300</string>
     <string name="hundred5">500</string>
     <string name="nine3">999</string>
-    <string name="systemBuildProperties">Firmware settings</string>
+
     <string name="enableCallRecordingTitle">Voice Call Recording</string>
     <string name="enableCallRecordingSummary">Enables or disables voice call recording.</string>
     <string name="callSettingsTitle">Calling &amp; Dialing settings</string>
@@ -45,8 +45,8 @@
     <string name="enableColoredSimLevelTitle">Colored SIM level</string>
     <string name="enableColoredWiFiSummary">Blue WiFi level icon</string>
     <string name="enableColoredWiFiTitle">Colored WiFi</string>
-    <string name="enableColoredWeatherSummary">Replaces B&amp;W weather icons from Sense 4+</string>
-    <string name="enableColoredWeatherTitle">Colored weather</string>
+    <string name="enableColoredWeatherSummary">Replaces B&amp;W icons</string>
+    <string name="enableColoredWeatherTitle">Sense 4 weather icons</string>
     <string name="enableDialerHighLightSummary">Phonetic letters color</string>
     <string name="enableDialerHighLightTitle">Highlight dialer buttons</string>
     <string name="settingsAutoRecordingTitle">Autorecording settings</string>
@@ -66,7 +66,7 @@
     <string name="ColoredSimLevelPreferenceTitle1">SIM1 color scheme</string>
     <string name="ColoredSimLevelPreferenceTitle2">SIM2 color scheme</string>
     <string name="NotificationScreenSummary">Status bar and slider</string>
-    <string name="NotificationScreenTitle">Notification suppress</string>
+    <string name="NotificationScreenTitle">Hide notifications</string>
     <string name="disableDeliveryNotificationTitle">SMS delivery notification</string>
     <string name="disableDeliveryNotificationSummary">if delivery request is enabled</string>
     <string name="disableADBNotificationTitle">USB debugging connected</string>
@@ -76,7 +76,7 @@
     <string name="SystemScreenSummary">related to the whole device and software</string>
     <string name="SystemScreenTitle">System wide tweaks</string>
     <string name="LedScreenSummary">notifications &amp; charging</string>
-    <string name="LedScreenTitle">Front flashlight LED</string>
+    <string name="LedScreenTitle">Notification LED</string>
     <string name="chargingLedSummary">removes only charging for charging</string>
     <string name="chargingLedTitle">Disable charging flashlight</string>
     <string name="flashlightDuringChargingSummary">notifications will have priority</string>
@@ -180,7 +180,7 @@
     <string name="enableColorCallIndicatorSummary">In call history to identify incoming and outgoing</string>
     <string name="enableUnreadHighLightTitle">Highlight unread message threads</string>
     <string name="enableUnreadHighLightSummary">Dialor will have blue background</string>
-    <string name="MessagingScreenTitle">SMS and MMS settings</string>
+
     <string name="MessagingScreenSummary"></string>
     <string name="enableHideSMSBadgeSummary">only for SMS and MMS listings</string>
     <string name="enableHideSMSBadgeTitle">Hide photo badge in dialogs</string>
@@ -219,6 +219,10 @@
     <string name="google_play"><b>Google Play Market</b></string>
     <string name="xda_support"><b>Support on XDA</b></string>
     <string name="change_log_text">
+<big><b>Version 4.0.0 Beta</b></big>\n
+<font fgcolor="#FF009000"><b>*</b></font> (imp) Menu refactoring \n
+<font fgcolor="#FF009000"><b>*</b></font> (new) Android BUGs fixing \n
+\n
 <big><b>Version 3.3.7</b></big>\n
 <font fgcolor="#FFFF0000"><b>*</b></font> (fix) Anormal screen width calculation for QS swipe in landscape mode \n
 <font fgcolor="#FFFF0000"><b>*</b></font> (fix) Message highlight broken on M7\n
@@ -419,7 +423,7 @@ Manual records stored as default to My Recordings directory.\n
 </string>
     <string name="enableSIPTitle">SIP Telephone on Dual SIM</string>
     <string name="enableSIPSummary">Just enables it</string>
-    <string name="enablePhotoPrefixTitle">Prefix to Camera shots</string>
+    <string name="enablePhotoPrefixTitle">Add date/time to camera shots</string>
     <string name="enablePhotoPrefixSummary">IMAG0001.jpg</string>
     <string name="source_code">Source Code</string>
     <string name="disableRoamingDataNotification">Data roaming</string>
@@ -459,7 +463,7 @@ Manual records stored as default to My Recordings directory.\n
     <string name="enableColoredBatterySummary">From green to red depends on current charge level</string>
     <string name="StatusBarCategory">Status bar</string>
     <string name="statusbarCondensedSummary">Narrow font for time and battery level to reduce occupied space</string>
-    <string name="statusbarCondensedTitle">Condensed font face</string>
+    <string name="statusbarCondensedTitle">Condensed font</string>
     <string name="enableMIUIBatteryTitle">MIUI battery indicator</string>
     <string name="enableMIUIBatterySummary">Colored line on top of status bar</string>
     <string name="logcatFilterTitle">Logcat filter</string>
@@ -469,7 +473,7 @@ Manual records stored as default to My Recordings directory.\n
     <string name="logcat_info">Info</string>
     <string name="logcat_verbose">Verbose</string>
     <string name="logcat_warn">Warn</string>
-    <string name="prefix_option_0">No prefix</string>
+    <string name="prefix_option_0">Disabled</string>
     <string name="prefix_option_1">2014</string>
     <string name="prefix_option_2">2014-52</string>
     <string name="prefix_option_3">2014-12</string>
@@ -488,7 +492,7 @@ Manual records stored as default to My Recordings directory.\n
     <string name="prefix_option_val7">yyyyMMdd</string>
     <string name="prefix_option_val8">yyyyMMdd-HHmm</string>
     <string name="prefix_option_val9">yyyyMMdd-HHmmss</string>
-    <string name="swipe_option_0">QS by swiping side of screen is disabled</string>
+    <string name="swipe_option_0">Disabled</string>
     <string name="swipe_option_1">Swipe on 1/2 of screen</string>
     <string name="swipe_option_2">Swipe on 1/3 of screen</string>
     <string name="swipe_option_3">Swipe on 1/6 of screen</string>
@@ -537,8 +541,33 @@ Manual records stored as default to My Recordings directory.\n
     <string name="slot2">Slot 2</string>
     <string name="debugOnTitle">Enable system full logcat debug</string>
     <string name="debugOnSummary">This will drain battery. Useful for developers. Do not switch it ON if you do not need it.</string>
-    <string name="PhotoPrefixPositionTitle">Camera file prefix position</string>
+    <string name="PhotoPrefixPositionTitle">Append position</string>
     <string name="prefix_begin">At the beginning</string>
     <string name="prefix_end">At the end</string>
+    
+    <string name="screen_call_dial">Call &amp; Dialer</string>
+    <string name="screen_messaging">Messaging</string>
+    <string name="screen_notifications">Notifications</string>
+    <string name="screen_statusbar">Status bar</string>
+    <string name="screen_battery">Battery and charging</string>
+    <string name="screen_icons_coloring">Icons coloring</string>
+    <string name="screen_media">Media &amp; controls</string>
+    <string name="screen_miscellaneous">Miscellaneous</string>
+    <string name="screen_global">System / Global</string>
+    <string name="screen_dual">Dual SIM</string>
+    <string name="screen_bugs">BUGs fixes</string>
+    <string name="screen_advanced">Advanced</string>
+    <string name="screen_tweaks">Tweaks</string>
+    
+    <string name="callRecordingCat">Call recording</string>
+    <string name="otherSettingsCat">Other settings</string>
+    <string name="summary81970">All service returning START_STICKY do not restart after it is being killed.</string>
+    <string name="title81970">Fix 81970</string>
+    <string name="summary98918">If all activities of a given stack were finishing, no activity was marked as front-of-task.</string>
+    <string name="title98918">Fix 98918</string>
+   
+    <string name="thanks_title">Special thanks to</string>
+    <string name="thanks_summary"><b>J_M_V_S</b>, <b>Talon</b>, <b>bgcngm</b> and many other great people from XDA and 4PDA</string>
+    
     
 </resources>

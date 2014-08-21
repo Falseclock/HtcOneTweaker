@@ -98,7 +98,7 @@ public class Main extends HtcPreferenceActivity implements HtcPreference.OnPrefe
 
 		addPreferencesFromResource(R.xml.settings);
 
-		// If Xposed not installet, let's do not confuse
+		// If Xposed not installed, let's do not confuse
 		// users with working application and non working tweaks
 		if (!Misc.isPackageInstalled("de.robv.android.xposed.installer", this)) {
 			new HtcAlertDialog.Builder(this).setTitle(R.string.app_error).setMessage(R.string.no_xposed).setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener()
@@ -165,8 +165,8 @@ public class Main extends HtcPreferenceActivity implements HtcPreference.OnPrefe
 		setupDUAL();
 		setupCamera();
 		setupSlotSaturation();
-		setupMediaKey();
-		setupLogact();
+		//setupMediaKey();
+		//setupLogact();
 		setupBattery();
 		setupQS();
 		if (Misc.isDual())
@@ -180,7 +180,6 @@ public class Main extends HtcPreferenceActivity implements HtcPreference.OnPrefe
 			setupForceActivity(Const.SIM_CARD_FORCE_MESS_CAT, Const.TWEAK_FORCE_MESS, Const.TWEAK_FORCE_MESS_ACTION, Const.TWEAK_SHOW_SIM_CARD_MESS, Const.TWEAK_SHOW_SIM_CARD_MESS_ACTION);
 			setupForceActivity(Const.SIM_CARD_FORCE_DIAL_CAT, Const.TWEAK_FORCE_DIAL, Const.TWEAK_FORCE_DIAL_ACTION, Const.TWEAK_SHOW_SIM_CARD_DIAL, Const.TWEAK_SHOW_SIM_CARD_DIAL_ACTION);
 		}
-		removeSettings();
 	}
 
 	private void setupForceActivity(String category_key, final String force_key, final String action_key, String multi_key, final String multi_key_action)
@@ -350,13 +349,6 @@ public class Main extends HtcPreferenceActivity implements HtcPreference.OnPrefe
 	{
 		HtcSwitchPreference colorBat = (HtcSwitchPreference) findPreference(Const.TWEAK_COLORED_BATTERY);
 		colorBat.setDependency(Const.TWEAK_STOCK_BATTERY);
-	}
-
-	private void removeSettings()
-	{
-		HtcPreferenceScreen screen = (HtcPreferenceScreen) findPreference(Const.OTHER_SETTINGS_SCREEN_KEY);
-		screen.removePreference(findPreference(Const.TWEAK_LOGCAT_FILTER));
-		screen.removePreference(findPreference(Const.MEDIA_CONTROL_CAT));
 	}
 
 	private void setupLogact()
