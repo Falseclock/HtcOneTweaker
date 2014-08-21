@@ -546,30 +546,30 @@ Manual records stored as default to My Recordings directory.\n
     <string name="debugOnTitle">Activar registro de depuración del sistema completo</string>
     <string name="debugOnSummary">Esta opción consumirá batería. Útil para desarrolladores. No activar si no es realmente necesario.</string>
     
-    <string name="PhotoPrefixPositionTitle">Camera file prefix position</string>
-    <string name="prefix_begin">At the beginning</string>
-    <string name="prefix_end">At the end</string>
-    <string name="screen_call_dial">Call &amp; Dialer</string>
-    <string name="screen_messaging">Messaging</string>
-    <string name="screen_notifications">Notifications</string>
-    <string name="screen_statusbar">Status bar</string>
-    <string name="screen_battery">Battery and charging</string>
-    <string name="screen_icons_coloring">Icons coloring</string>
-    <string name="screen_media">Media &amp; controls</string>
-    <string name="screen_miscellaneous">Miscellaneous</string>
-    <string name="screen_global">System / Global</string>
-    <string name="screen_dual">Dual SIM</string>
-    <string name="screen_bugs">BUGs fixes</string>
-    <string name="screen_advanced">Advanced</string>
-    <string name="screen_tweaks">Tweaks</string>
+    <string name="PhotoPrefixPositionTitle">Position de nombre de archivo</string>
+    <string name="prefix_begin">Al principio</string>
+    <string name="prefix_end">Al final</string>
+    <string name="screen_call_dial">Llamadas y discador</string>
+    <string name="screen_messaging">Mensajería</string>
+    <string name="screen_notifications">Notificaciones</string>
+    <string name="screen_statusbar">Barra de estado</string>
+    <string name="screen_battery">Batería y carga</string>
+    <string name="screen_icons_coloring">Color de los íconos</string>
+    <string name="screen_media">Multimedia y controles</string>
+    <string name="screen_miscellaneous">Varios</string>
+    <string name="screen_global">Sistema / Global</string>
+    <string name="screen_dual">SIM Dual</string>
+    <string name="screen_bugs">Correción de errores</string>
+    <string name="screen_advanced">Avanzado</string>
+    <string name="screen_tweaks">Ajustes</string>
     
-    <string name="callRecordingCat">Call recording</string>
-    <string name="otherSettingsCat">Other settings</string>
-    <string name="summary81970">All service returning START_STICKY do not restart after it is being killed.</string>
-    <string name="title81970">Fix 81970</string>
-    <string name="summary98918">If all activities of a given stack were finishing, no activity was marked as front-of-task.</string>
-    <string name="title98918">Fix 98918</string>
-    <string name="thanks_title">Special thanks to</string>
-    <string name="thanks_summary"><b>J_M_V_S</b>, <b>Talon</b>, <b>bgcngm</b> and many other great people from XDA and 4PDA</string>
+    <string name="callRecordingCat">Grabación de llamadas</string>
+    <string name="otherSettingsCat">Otros ajustes</string>
+    <string name="summary81970">Todo servicio que retorna START_STICKY no vuelve a iniciar luego de haberlo cerrado forzosamente.</string>
+    <string name="title81970">Arreglo 81970</string>
+    <string name="summary98918">Si todas las actividades de una determianda fila se encuentran finalizando, ninguna actividad se marca como tarea-al-frente.</string>
+    <string name="title98918">Arreglo 98918</string>
+    <string name="thanks_title">Agradecimientos especiales a:</string>
+    <string name="thanks_summary"><b>J_M_V_S</b>, <b>Talon</b>, <b>bgcngm</b> y mucha gente genial de XDA y 4DA</string>
    
 </resources>
