@@ -107,6 +107,13 @@ public class XMain implements IXposedHookInitPackageResources, IXposedHookZygote
 		if (pref.getBoolean(Const.TWEAK_FIX_98918, false))
 			Bugs.tweak_fix98918();
 		
+		//if (!pref.getString("spn_1_user_text", "").isEmpty() || !pref.getString("spn_2_user_text", "").isEmpty())
+		//{
+		//	Phone.hookServiceProviderName();
+		//}
+		//Phone.hookOperatorName();
+		//Phone.hookServiceState();
+		//Phone.hookServiceState2();
 		
 		//Recorder.hookAudioRecord();
 	}
@@ -151,11 +158,16 @@ public class XMain implements IXposedHookInitPackageResources, IXposedHookZygote
 
 		if (packageName.equals("com.android.phone"))
 		{
+			//Phone.hookOperatorName(paramLoadPackageParam);
+			
 			if (Misc.isDual())
 				Phone.hookCopyDialExtra(paramLoadPackageParam);
 			
 			if (pref.getBoolean(Const.TWEAK_ENABLE_SIP, false))
 				Phone.hookSIP(paramLoadPackageParam);
+			
+			if (pref.getBoolean(Const.TWEAK_DISABLE_NS, false))
+				Phone.disableNoiseSuppression(paramLoadPackageParam);
 
 			if (pref.getBoolean(Const.TWEAK_DISABLE_DATA_ROAM_NOTIFY, false))
 				Phone.hookShowDataDisconnectedRoaming(paramLoadPackageParam);
@@ -177,8 +189,8 @@ public class XMain implements IXposedHookInitPackageResources, IXposedHookZygote
 			Recorder.hookPausableAudioRecorderStart(paramLoadPackageParam);
 			//Recorder.hookIsEnableAudioRecord(paramLoadPackageParam);
 		}
-
-		if (packageName.equals("com.htc.htcdialer"))
+			
+		if (packageName.equals("com.htc.htcdialer") || packageName.equals("com.htc.contacts"))
 		{
 			if (XMain.pref.getInt(Const.TWEAK_SLOT1_COLOR, 0) != 0 || XMain.pref.getInt(Const.TWEAK_SLOT2_COLOR, 0) != 0)
 				Dialer.hookCallButtons(paramLoadPackageParam);
@@ -194,11 +206,12 @@ public class XMain implements IXposedHookInitPackageResources, IXposedHookZygote
 
 			if (Misc.isDual())
 				Dialer.hookSimCallButton(paramLoadPackageParam);
+			
+			//Dialer.hookBigDialKeypad(paramLoadPackageParam);
 		}
 
 		if (packageName.equals("com.android.mms") || packageName.equals("com.htc.sense.mms"))
 		{
-			
 			if (Misc.isDual())
 				Messaging.hookSendSMSButton(paramLoadPackageParam, packageName);
 
@@ -312,9 +325,8 @@ public class XMain implements IXposedHookInitPackageResources, IXposedHookZygote
 				Phone.handleSlotIndicator2(resparam, MODULE_PATH, pref.getInt(Const.TWEAK_SLOT2_COLOR, 0));
 		}
 
-		if (resparam.packageName.equals("com.htc.htcdialer"))
+		if (resparam.packageName.equals("com.htc.htcdialer") || resparam.packageName.equals("com.htc.contacts"))
 		{
-
 			if (pref.getBoolean(Const.TWEAK_COLOR_CALL_INDICATOR, false))
 				Dialer.handleCallDirections(resparam, MODULE_PATH);
 
@@ -323,6 +335,8 @@ public class XMain implements IXposedHookInitPackageResources, IXposedHookZygote
 
 			if (pref.getInt(Const.TWEAK_SLOT2_COLOR, 0) != 0)
 				Phone.handleSlotIndicator2(resparam, MODULE_PATH, pref.getInt(Const.TWEAK_SLOT2_COLOR, 0));
+			
+			//Dialer.hookBigDialKeypad(resparam, MODULE_PATH);
 		}
 
 		if (resparam.packageName.equals("com.htc.contacts"))

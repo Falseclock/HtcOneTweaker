@@ -214,9 +214,12 @@
     <string name="google_play"><b>Google Play Market</b></string>
     <string name="xda_support"><b>Поддержка на XDA</b></string>
     <string name="change_log_text">
-<big><b>Версия 4.0.0 Beta</b></big>\n
+<big><b>Версия 4.0.0</b></big>\n
 <font fgcolor="#FF009000"><b>*</b></font> (imp) Обновленное меню настроек \n
 <font fgcolor="#FF009000"><b>*</b></font> (new) Исправление ошибок Android \n
+<font fgcolor="#FF009000"><b>*</b></font> (new) Отключение шумоподавления \n
+<font fgcolor="#FF009000"><b>*</b></font> (new) Изменение имени оператора (только Dual SIM 802w) \n
+<font fgcolor="#FF009000"><b>*</b></font> (new) Фильтрация автозаписи по слотам (только Dual SIM) \n
 \n
 <big><b>Версия 3.3.7</b></big>\n
 <font fgcolor="#FFFF0000"><b>*</b></font> (fix) Неправильный расчет стороны экрана для быстрых настроек в ландшафтном режиме \n
@@ -412,7 +415,7 @@
     <string name="screen_statusbar">Статус строка</string>
     <string name="screen_battery">Батарея и зарядка</string>
     <string name="screen_icons_coloring">Цвета иконок</string>
-    <string name="screen_media">Медия &amp; управление</string>
+    <string name="screen_media">Медия &amp; Управление</string>
     <string name="screen_miscellaneous">Разное</string>
     <string name="screen_global">Системные</string>
     <string name="screen_dual">Dual SIM</string>
@@ -427,6 +430,13 @@
     <string name="summary98918">Быстрое нажатие кнопки "назад" может повлечь вывод на экран приложения</string>
     <string name="title98918">Фикс 98918</string>
     <string name="thanks_title">Отдельное спасибо</string>
-    <string name="thanks_summary"><b>J_M_V_S</b>, <b>Talon</b>, <b>bgcngm</b> и другим замечательным людям с XDA и 4PDA</string>
-   
+    <string name="thanks_summary"><b>J_M_V_S</b>, <b>Talon</b>, <b>bgcngm</b>, <b>vern19</b> и другим замечательным людям с XDA и 4PDA</string>
+    <string name="disableNSTitle">Отключить шумоподавление</string>
+    <string name="disableNSSummary">Ваш собеседник будет слышать звуки, которые окружают вас во время разговора</string>
+    <string name="both_slots">Оба слота</string>
+    <string name="RecordingSlotTitle">Выберите слот для записи</string>
+    <string name="screen_operator">Названия провайдеров</string>
+    <string name="spn1_name_title">Имя оператора в слоте 1</string>
+    <string name="spn2_name_title">Имя оператора в слоте 2</string>
+    <string name="spn_default">стандартное имя согласно сети или SIM карты</string>
 </resources>

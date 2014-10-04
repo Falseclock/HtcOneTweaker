@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.htc.preference.HtcPreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" xmlns:settings="http://schemas.android.com/apk/res/com.android.settings" xmlns:tweaker="http://schemas.android.com/apk/res/kz.virtex.htc.tweaker" android:key="SettingsKey" android:title="@string/app_name">
-	<com.htc.preference.HtcPreferenceCategory android:title="@string/screen_tweaks">
+	<com.htc.preference.HtcPreferenceCategory android:title="@string/screen_tweaks" android:key="SettingsKeyCat">
 
 		<com.htc.preference.HtcPreferenceScreen android:key="screen_call_dial" android:title="@string/screen_call_dial">
 			<com.htc.preference.HtcPreferenceCategory android:title="@string/callRecordingCat">
@@ -10,7 +10,8 @@
 					<com.htc.preference.HtcPreferenceCategory android:title="@string/RecordingSaveCat">
 						<com.htc.preference.HtcListPreference android:defaultValue="1" android:entries="@array/RecordingStorage" android:entryValues="@array/RecordingStorageVal" android:key="tweak_call_recording_auto_storage" android:summary="@string/RecordingStorageSummary" android:title="@string/RecordingStorageTitle" />
 					</com.htc.preference.HtcPreferenceCategory>
-					<com.htc.preference.HtcPreferenceCategory android:title="@string/RecordingFilterCat">
+					<com.htc.preference.HtcPreferenceCategory android:title="@string/RecordingFilterCat" android:key="recording_filter_cat">
+						<com.htc.preference.HtcListPreference android:defaultValue="0" android:entries="@array/RecordingSlot" android:entryValues="@array/RecordingSlotVal" android:key="tweak_call_recording_auto_slot" android:title="@string/RecordingSlotTitle" />
 						<kz.virtex.htc.tweaker.preference.MultiCheckPreference android:key="tweak_call_recording_auto_filter" android:title="@string/RecordingFilterTitle" tweaker:entryKeys="@array/RecordingFilterKeys" tweaker:entrySummaries="@array/RecordingFilterSums" tweaker:entryTitles="@array/RecordingFilterTitles" />
 						<com.htc.preference.HtcListPreference android:entries="@array/RecordingCaller" android:entryValues="@array/RecordingCallerVal" android:key="tweak_call_recording_auto_caller" android:title="@string/RecordingCallerTitle" />
 					</com.htc.preference.HtcPreferenceCategory>
@@ -21,11 +22,12 @@
 					</com.htc.preference.HtcPreferenceCategory>
 				</com.htc.preference.HtcPreferenceScreen>
 			</com.htc.preference.HtcPreferenceCategory>
-			<com.htc.preference.HtcPreferenceCategory android:title="@string/otherSettingsCat">
+			<com.htc.preference.HtcPreferenceCategory android:title="@string/otherSettingsCat" android:key="other_settings_screen">
 				<com.htc.preference.HtcSwitchPreference android:key="tweak_old_sense_dialer" android:summary="@string/enableOldSenseDialerSummary" android:title="@string/enableOldSenseDialerTitle" />
 				<kz.virtex.htc.tweaker.preference.DialerButtonPreference android:key="tweak_dialer_btn" android:summary="@string/enableDialerHighLightSummary" android:title="@string/enableDialerHighLightTitle" />
 				<com.htc.preference.HtcSwitchPreference android:icon="@drawable/icon_indicator_incoming_light_s" android:key="tweak_color_call_indicator" android:summary="@string/enableColorCallIndicatorSummary" android:title="@string/enableColorCallIndicatorTitle" />
 				<com.htc.preference.HtcSwitchPreference android:key="tweak_enable_SIP" android:summary="@string/enableSIPSummary" android:title="@string/enableSIPTitle" />
+				<com.htc.preference.HtcSwitchPreference android:key="tweak_disable_NS" android:summary="@string/disableNSSummary" android:title="@string/disableNSTitle" />
 			</com.htc.preference.HtcPreferenceCategory>
 		</com.htc.preference.HtcPreferenceScreen>
 
@@ -67,8 +69,8 @@
 
 		<com.htc.preference.HtcPreferenceScreen android:key="screen_statusbar" android:title="@string/screen_statusbar">
 			<com.htc.preference.HtcPreferenceCategory android:title="@string/screen_statusbar">
-				<com.htc.preference.HtcPreferenceScreen android:key="screen_icons_coloring" android:title="@string/screen_icons_coloring">
-					<com.htc.preference.HtcPreferenceCategory android:title="@string/screen_icons_coloring">
+				<com.htc.preference.HtcPreferenceScreen android:title="@string/screen_icons_coloring">
+					<com.htc.preference.HtcPreferenceCategory android:key="screen_icons_coloring" android:title="@string/screen_icons_coloring">
 						<com.htc.preference.HtcSwitchPreference android:key="tweak_colored_wifi" android:summary="@string/enableColoredWiFiSummary" android:title="@string/enableColoredWiFiTitle" />
 						<kz.virtex.htc.tweaker.preference.IconsColorPreference android:icon="@drawable/stat_sys_wifi_signal_4" android:key="tweak_colored_wifi_color" android:summary="@string/ColoredWiFiIconsColorSummary" android:title="@string/ColoredWiFiIconsColorTitle" />
 						<com.htc.preference.HtcSwitchPreference android:key="tweak_data_icons" android:summary="@string/ColoredDataIconsSummary" android:title="@string/ColoredDataIconsTitle" />
@@ -96,8 +98,8 @@
 		</com.htc.preference.HtcPreferenceScreen>
 
 
-		<com.htc.preference.HtcPreferenceScreen android:key="screen_media" android:title="@string/screen_media">
-			<com.htc.preference.HtcPreferenceCategory android:title="@string/screen_media">
+		<com.htc.preference.HtcPreferenceScreen android:title="@string/screen_media">
+			<com.htc.preference.HtcPreferenceCategory android:key="screen_media" android:title="@string/screen_media">
 				<com.htc.preference.HtcListPreference android:defaultValue="0" android:entries="@array/prefix_option" android:entryValues="@array/prefix_option_val" android:key="tweak_photo_prefix" android:title="@string/enablePhotoPrefixTitle" />
 				<com.htc.preference.HtcListPreference android:defaultValue="0" android:entries="@array/prefix_position" android:entryValues="@array/prefix_position_val" android:key="tweak_photo_prefix_position" android:title="@string/PhotoPrefixPositionTitle" />
 			</com.htc.preference.HtcPreferenceCategory>
@@ -116,6 +118,12 @@
 				<com.htc.preference.HtcEditTextPreference android:key="slot_1_user_text" android:summary="" android:title="@string/slot1_name_title" />
 				<com.htc.preference.HtcEditTextPreference android:key="slot_2_user_text" android:summary="" android:title="@string/slot2_name_title" />
 			</com.htc.preference.HtcPreferenceCategory>
+			<!-- 
+			<com.htc.preference.HtcPreferenceCategory android:title="@string/screen_operator">
+				<com.htc.preference.HtcEditTextPreference android:key="spn_1_user_text" android:summary="" android:title="@string/spn1_name_title" />
+				<com.htc.preference.HtcEditTextPreference android:key="spn_2_user_text" android:summary="" android:title="@string/spn2_name_title" />
+			</com.htc.preference.HtcPreferenceCategory>
+			-->
 			<com.htc.preference.HtcPreferenceCategory android:key="icon_indicator_slot_screen" android:title="@string/SlotIconIndicator">
 				<kz.virtex.htc.tweaker.preference.SeekBarPreference android:icon="@drawable/icon_indicator_slot_1" android:key="tweak_slot1_color" android:max="360" android:title="@string/hue_settings">
 				</kz.virtex.htc.tweaker.preference.SeekBarPreference>
@@ -176,6 +184,6 @@
 	<com.htc.preference.HtcPreferenceCategory android:title="@string/screen_miscellaneous">
 		<com.htc.preference.HtcPreference android:summary="@string/thanks_summary" android:title="@string/thanks_title" />
 	</com.htc.preference.HtcPreferenceCategory>
-	
-	
+
+
 </com.htc.preference.HtcPreferenceScreen>

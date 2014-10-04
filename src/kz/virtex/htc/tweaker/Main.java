@@ -3,7 +3,6 @@ package kz.virtex.htc.tweaker;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-
 import kz.virtex.htc.tweaker.preference.IconsColorPreference;
 import kz.virtex.htc.tweaker.preference.MultiCheckPreference;
 import kz.virtex.htc.tweaker.preference.MultiCheckPreference.Row;
@@ -55,8 +54,6 @@ public class Main extends HtcPreferenceActivity implements HtcPreference.OnPrefe
 	@SuppressWarnings("unused")
 	private void test()
 	{
-		Log.d(DEBUG, "test");
-
 		IntentFilter intentFilter = new IntentFilter();
 		intentFilter.addAction(TweakerBroadcastReceiver.ACTION_DELETE_MESSAGE);
 		intentFilter.addAction(TweakerBroadcastReceiver.ACTION_CALL_TO_CONTACT);
@@ -87,7 +84,6 @@ public class Main extends HtcPreferenceActivity implements HtcPreference.OnPrefe
 	{ "WorldReadableFiles", "WorldWriteableFiles", "DefaultLocale" })
 	public void onCreate(Bundle paramBundle)
 	{
-		Log.d(DEBUG, "onCreate");
 		super.onCreate(paramBundle);
 
 		mNotifyMgr = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
@@ -152,6 +148,7 @@ public class Main extends HtcPreferenceActivity implements HtcPreference.OnPrefe
 		setupCallRecording();
 		setupRecordingTypeFilter();
 		setupRecordingAutoCaller();
+		setupRecordingAutoSlot();
 		setupRecordingDelete();
 
 		setupSimSettings();
@@ -161,22 +158,23 @@ public class Main extends HtcPreferenceActivity implements HtcPreference.OnPrefe
 		storeWeatherApkPath();
 		setupNetworkManager("slot_1_user_text", R.string.preferred_network_1);
 		setupNetworkManager("slot_2_user_text", R.string.preferred_network_2);
+		//setupNetworkManager("spn_1_user_text", R.string.spn_default);
+		//setupNetworkManager("spn_2_user_text", R.string.spn_default);
 		setupSense6();
 		setupDUAL();
 		setupCamera();
 		setupSlotSaturation();
-		//setupMediaKey();
-		//setupLogact();
+		// setupMediaKey();
+		// setupLogact();
 		setupBattery();
 		setupQS();
-		if (Misc.isDual())
-		{
+		if (Misc.isDual()) {
 			catchSimShowAction(Const.TWEAK_SHOW_SIM_CARD_DIAL_ACTION);
 			catchSimShowAction(Const.TWEAK_SHOW_SIM_CARD_MESS_ACTION);
-			
+
 			setupSimShow(Const.TWEAK_SHOW_SIM_CARD_DIAL, Const.SIM_CARD_SEL_DIAL_SCREEN, Const.TWEAK_SHOW_SIM_CARD_DIAL_ACTION);
 			setupSimShow(Const.TWEAK_SHOW_SIM_CARD_MESS, Const.SIM_CARD_SEL_MESS_SCREEN, Const.TWEAK_SHOW_SIM_CARD_MESS_ACTION);
-			
+
 			setupForceActivity(Const.SIM_CARD_FORCE_MESS_CAT, Const.TWEAK_FORCE_MESS, Const.TWEAK_FORCE_MESS_ACTION, Const.TWEAK_SHOW_SIM_CARD_MESS, Const.TWEAK_SHOW_SIM_CARD_MESS_ACTION);
 			setupForceActivity(Const.SIM_CARD_FORCE_DIAL_CAT, Const.TWEAK_FORCE_DIAL, Const.TWEAK_FORCE_DIAL_ACTION, Const.TWEAK_SHOW_SIM_CARD_DIAL, Const.TWEAK_SHOW_SIM_CARD_DIAL_ACTION);
 		}
@@ -425,10 +423,10 @@ public class Main extends HtcPreferenceActivity implements HtcPreference.OnPrefe
 	@SuppressLint("SimpleDateFormat")
 	private void setupCamera()
 	{
-		final HtcPreferenceScreen screen = (HtcPreferenceScreen) findPreference(Const.OTHER_SETTINGS_SCREEN_KEY);
+		final HtcPreferenceCategory screen = (HtcPreferenceCategory) findPreference(Const.SCREEN_MEDIA);
 		final HtcListPreference tweak = (HtcListPreference) findPreference(Const.TWEAK_PHOTO_PREFIX);
 		final HtcListPreference position = (HtcListPreference) findPreference(Const.TWEAK_PHOTO_PREFIX_POSITION);
-				
+
 		tweak.setOnPreferenceChangeListener(new HtcPreference.OnPreferenceChangeListener()
 		{
 			public boolean onPreferenceChange(HtcPreference preference, Object object)
@@ -442,11 +440,11 @@ public class Main extends HtcPreferenceActivity implements HtcPreference.OnPrefe
 					String[] tokens = getResources().getString(R.string.enablePhotoPrefixSummary).split("\\.(?=[^\\.]+$)");
 					String ext = tokens[1];
 					String file = tokens[0];
-					
+
 					if (posVal == 0) {
 						tweak.setSummary(date + "_" + file + "." + ext);
 					} else {
-						tweak.setSummary(file + "_" + date + "." + ext);						
+						tweak.setSummary(file + "_" + date + "." + ext);
 					}
 				} else {
 					tweak.setSummary(getResources().getString(R.string.prefix_option_0));
@@ -463,20 +461,20 @@ public class Main extends HtcPreferenceActivity implements HtcPreference.OnPrefe
 			{
 				int posVal = Integer.parseInt(object.toString());
 				String date = new SimpleDateFormat(tweak.getValue()).format(new Date());
-				
+
 				String[] tokens = getResources().getString(R.string.enablePhotoPrefixSummary).split("\\.(?=[^\\.]+$)");
 				String ext = tokens[1];
 				String file = tokens[0];
-				
+
 				if (posVal == 0) {
 					tweak.setSummary(date + "_" + file + "." + ext);
 				} else {
-					tweak.setSummary(file + "_" + date + "." + ext);						
+					tweak.setSummary(file + "_" + date + "." + ext);
 				}
 				return true;
 			}
 		});
-		
+
 		String value = preferences.getString(Const.TWEAK_PHOTO_PREFIX, "0");
 		if (!value.equals("0")) {
 			String date = new SimpleDateFormat(value).format(new Date());
@@ -484,11 +482,11 @@ public class Main extends HtcPreferenceActivity implements HtcPreference.OnPrefe
 			String[] tokens = getResources().getString(R.string.enablePhotoPrefixSummary).split("\\.(?=[^\\.]+$)");
 			String ext = tokens[1];
 			String file = tokens[0];
-			
+
 			if (posVal == 0) {
 				tweak.setSummary(date + "_" + file + "." + ext);
 			} else {
-				tweak.setSummary(file + "_" + date + "." + ext);						
+				tweak.setSummary(file + "_" + date + "." + ext);
 			}
 		} else {
 			screen.removePreference(position);
@@ -501,19 +499,19 @@ public class Main extends HtcPreferenceActivity implements HtcPreference.OnPrefe
 			HtcPreferenceScreen preferenceScreen = (HtcPreferenceScreen) findPreference(Const.DUAL_SETTINGS_SCREEN_KEY);
 			preferenceScreen.removePreference(findPreference(Const.ICON_INDICATOR_SLOT_SCREEN));
 
-			preferenceScreen = (HtcPreferenceScreen) findPreference(Const.CONTACT_DATA_SCREEN_KEY);
-			preferenceScreen.removePreference(findPreference(Const.TWEAK_OLD_SENSE_DIALER));
+			HtcPreferenceCategory preferenceCat = (HtcPreferenceCategory) findPreference(Const.OTHER_SETTINGS_SCREEN_KEY);
+			preferenceCat.removePreference(findPreference(Const.TWEAK_OLD_SENSE_DIALER));
 		}
 	}
 
 	private void setupDUAL()
 	{
 		if (!Misc.isDual()) {
-			HtcPreferenceScreen preferenceScreen = (HtcPreferenceScreen) findPreference(Const.OTHER_SETTINGS_SCREEN_KEY);
-			preferenceScreen.removePreference(findPreference(Const.TWEAK_ENABLE_SIP));
+			HtcPreferenceCategory preferenceCat = (HtcPreferenceCategory) findPreference(Const.OTHER_SETTINGS_SCREEN_KEY);
+			preferenceCat.removePreference(findPreference(Const.TWEAK_ENABLE_SIP));
 
-			preferenceScreen = (HtcPreferenceScreen) findPreference(Const.SYSTEM_SETTINGS_SCREEN_KEY);
-			preferenceScreen.removePreference(findPreference(Const.DUAL_SETTINGS_SCREEN_KEY));
+			preferenceCat = (HtcPreferenceCategory) findPreference(Const.SETTINGS_KEY_CAT);
+			preferenceCat.removePreference(findPreference(Const.DUAL_SETTINGS_SCREEN_KEY));
 		}
 	}
 
@@ -639,7 +637,7 @@ public class Main extends HtcPreferenceActivity implements HtcPreference.OnPrefe
 		Misc.applyTheme(findPreference(Const.TWEAK_COLORED_WIFI_COLOR).getIcon(), Const.TWEAK_COLORED_WIFI_COLOR, preferences);
 		Misc.applyTheme(findPreference(Const.TWEAK_COLORED_WIFI_COLOR).getIcon(), Const.TWEAK_COLORED_WIFI_COLOR, preferences);
 
-		final HtcPreferenceScreen preferenceScreen = (HtcPreferenceScreen) findPreference(Const.DATA_SCREEN_KEY);
+		final HtcPreferenceCategory preferenceCategory = (HtcPreferenceCategory) findPreference(Const.SCREEN_ICONS_COLORING);
 
 		HtcSwitchPreference wifiTweak = (HtcSwitchPreference) findPreference(Const.TWEAK_COLORED_WIFI);
 		final IconsColorPreference wifiTweakColor = (IconsColorPreference) findPreference(Const.TWEAK_COLORED_WIFI_COLOR);
@@ -647,7 +645,7 @@ public class Main extends HtcPreferenceActivity implements HtcPreference.OnPrefe
 		wifiTweakColor.setColor("#FFFFFF");
 
 		if (!wifiTweak.isChecked()) {
-			preferenceScreen.removePreference(wifiTweakColor);
+			preferenceCategory.removePreference(wifiTweakColor);
 		}
 
 		wifiTweak.setOnPreferenceChangeListener(new HtcPreference.OnPreferenceChangeListener()
@@ -659,9 +657,9 @@ public class Main extends HtcPreferenceActivity implements HtcPreference.OnPrefe
 					value = 1;
 
 				if (value == 1) {
-					preferenceScreen.addPreference(wifiTweakColor);
+					preferenceCategory.addPreference(wifiTweakColor);
 				} else {
-					preferenceScreen.removePreference(wifiTweakColor);
+					preferenceCategory.removePreference(wifiTweakColor);
 				}
 				return true;
 			}
@@ -670,13 +668,13 @@ public class Main extends HtcPreferenceActivity implements HtcPreference.OnPrefe
 
 	private void setupSimSettings()
 	{
-		final HtcPreferenceScreen preferenceScreen = (HtcPreferenceScreen) findPreference(Const.DATA_SCREEN_KEY);
+		final HtcPreferenceCategory preferenceCategory = (HtcPreferenceCategory) findPreference(Const.SCREEN_ICONS_COLORING);
 
 		final HtcPreferenceScreen colorSimScreen = (HtcPreferenceScreen) findPreference(Const.COLOR_SIM_SCREEN);
 		HtcSwitchPreference tweakColorSim = (HtcSwitchPreference) findPreference(Const.TWEAK_COLORED_SIM);
 
 		if (!tweakColorSim.isChecked()) {
-			preferenceScreen.removePreference(colorSimScreen);
+			preferenceCategory.removePreference(colorSimScreen);
 		} else {
 			Misc.applyTheme(findPreference(Const.COLOR_SIM_SCREEN).getIcon(), Const.TWEAK_COLOR_SIM1, preferences);
 			Misc.applyTheme(findPreference(Const.TWEAK_COLOR_SIM1).getIcon(), Const.TWEAK_COLOR_SIM1, preferences);
@@ -700,9 +698,9 @@ public class Main extends HtcPreferenceActivity implements HtcPreference.OnPrefe
 					value = 1;
 
 				if (value == 1) {
-					preferenceScreen.addPreference(colorSimScreen);
+					preferenceCategory.addPreference(colorSimScreen);
 				} else {
-					preferenceScreen.removePreference(colorSimScreen);
+					preferenceCategory.removePreference(colorSimScreen);
 				}
 				return true;
 			}
@@ -713,7 +711,7 @@ public class Main extends HtcPreferenceActivity implements HtcPreference.OnPrefe
 	{
 		Misc.applyTheme(findPreference(Const.TWEAK_DATA_ICONS_COLOR).getIcon(), Const.TWEAK_DATA_ICONS_COLOR, preferences);
 
-		final HtcPreferenceScreen preferenceScreen = (HtcPreferenceScreen) findPreference(Const.DATA_SCREEN_KEY);
+		final HtcPreferenceCategory preferenceCategory = (HtcPreferenceCategory) findPreference(Const.SCREEN_ICONS_COLORING);
 
 		HtcSwitchPreference dataTweak = (HtcSwitchPreference) findPreference(Const.TWEAK_DATA_ICONS);
 		final IconsColorPreference dataTweakColor = (IconsColorPreference) findPreference(Const.TWEAK_DATA_ICONS_COLOR);
@@ -721,7 +719,7 @@ public class Main extends HtcPreferenceActivity implements HtcPreference.OnPrefe
 		dataTweakColor.setColor("#FFFFFF");
 
 		if (!dataTweak.isChecked()) {
-			preferenceScreen.removePreference(dataTweakColor);
+			preferenceCategory.removePreference(dataTweakColor);
 		}
 
 		dataTweak.setOnPreferenceChangeListener(new HtcPreference.OnPreferenceChangeListener()
@@ -733,9 +731,9 @@ public class Main extends HtcPreferenceActivity implements HtcPreference.OnPrefe
 					value = 1;
 
 				if (value == 1) {
-					preferenceScreen.addPreference(dataTweakColor);
+					preferenceCategory.addPreference(dataTweakColor);
 				} else {
-					preferenceScreen.removePreference(dataTweakColor);
+					preferenceCategory.removePreference(dataTweakColor);
 				}
 				return true;
 			}
@@ -803,20 +801,33 @@ public class Main extends HtcPreferenceActivity implements HtcPreference.OnPrefe
 
 	private void setupRecordingAutoCaller()
 	{
-		int caller = Integer.parseInt(preferences.getString(Const.TWEAK_CALL_REC_AUTO_CALLER, "0"));
-		final String[] RecordingCaller = getResources().getStringArray(R.array.RecordingCaller);
-		findPreference(Const.TWEAK_CALL_REC_AUTO_CALLER).setSummary(RecordingCaller[caller]);
-
 		findPreference(Const.TWEAK_CALL_REC_AUTO_CALLER).setOnPreferenceChangeListener(new HtcPreference.OnPreferenceChangeListener()
 		{
 			public boolean onPreferenceChange(HtcPreference preference, Object object)
 			{
 				int index = Integer.parseInt(object.toString());
-				preference.setSummary(RecordingCaller[index]);
 				Settings.System.putInt(preference.getContext().getContentResolver(), Const.TWEAK_CALL_REC_AUTO_CALLER, index);
 				return true;
 			}
 		});
+	}
+
+	private void setupRecordingAutoSlot()
+	{
+		if (Misc.isDual()) {
+			findPreference(Const.TWEAK_CALL_REC_AUTO_SLOT).setOnPreferenceChangeListener(new HtcPreference.OnPreferenceChangeListener()
+			{
+				public boolean onPreferenceChange(HtcPreference preference, Object object)
+				{
+					int index = Integer.parseInt(object.toString());
+					Settings.System.putInt(preference.getContext().getContentResolver(), Const.TWEAK_CALL_REC_AUTO_SLOT, index);
+					return true;
+				}
+			});
+		} else {
+			HtcPreferenceCategory preferenceCategory = (HtcPreferenceCategory) findPreference(Const.RECORDING_FILTER_CAT);
+			preferenceCategory.removePreference(findPreference(Const.TWEAK_CALL_REC_AUTO_SLOT));
+		}
 	}
 
 	private void setupCallRecording()
@@ -924,7 +935,7 @@ public class Main extends HtcPreferenceActivity implements HtcPreference.OnPrefe
 		return total;
 	}
 
-	private void setupNetworkManager(final String key, int standart)
+	private void setupNetworkManager(final String key, final int standart)
 	{
 		HtcEditTextPreference slot = (HtcEditTextPreference) findPreference(key);
 
@@ -944,9 +955,15 @@ public class Main extends HtcPreferenceActivity implements HtcPreference.OnPrefe
 			public boolean onPreferenceChange(HtcPreference preference, Object object)
 			{
 				String name = object.toString();
-				preference.setSummary(name);
-				Settings.System.putString(getContentResolver(), key, name);
-				putString(key, name);
+				if (name.length() > 0) {
+					preference.setSummary(name);
+					Settings.System.putString(getContentResolver(), key, name);
+					putString(key, name);
+				} else {
+					preference.setSummary(standart);
+					Settings.System.putString(getContentResolver(), key, null);
+					preferences.edit().remove(name);
+				}
 				return true;
 			}
 		});
@@ -997,7 +1014,8 @@ public class Main extends HtcPreferenceActivity implements HtcPreference.OnPrefe
 	public void onSharedPreferenceChanged(SharedPreferences pref, String key)
 	{
 		// Call recording works on the fly
-		if (!key.contains("tweak_call_rec") && !key.contains("tweak_show_sim")) { //&& !key.contains("tweak_force")
+		if (!key.contains("tweak_call_rec") && !key.contains("tweak_show_sim")) { // &&
+																					// !key.contains("tweak_force")
 			// let's remove cause we are switched back
 			if (mSettingsChanges.contains(key)) {
 				// before removing we should check if it is not integer

@@ -4,14 +4,20 @@ import static de.robv.android.xposed.XposedHelpers.findAndHookMethod;
 import kz.virtex.htc.tweaker.Const;
 import kz.virtex.htc.tweaker.Misc;
 import kz.virtex.htc.tweaker.R;
+import kz.virtex.htc.tweaker.XMain;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.XModuleResources;
 import android.content.res.XResources;
 import android.graphics.drawable.Drawable;
+import android.provider.Settings;
+import android.telephony.TelephonyManager;
 import de.robv.android.xposed.XC_MethodHook;
 import de.robv.android.xposed.XC_MethodReplacement;
+import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.XposedHelpers;
+import de.robv.android.xposed.XC_MethodHook.MethodHookParam;
 import de.robv.android.xposed.callbacks.XC_InitPackageResources.InitPackageResourcesParam;
 import de.robv.android.xposed.callbacks.XC_LoadPackage.LoadPackageParam;
 
@@ -20,6 +26,125 @@ public class Phone
 	private static Object DualCallSettingsPreference;
 	private static Object CallFeaturesSetting;
 
+	public static void hookServiceState()
+	{
+		final Class<?> IccRecords = XposedHelpers.findClass("android.telephony.ServiceState", null);
+
+		XposedHelpers.findAndHookConstructor(IccRecords, "android.os.Parcel", new XC_MethodHook()
+		{
+			@Override
+			protected void afterHookedMethod(MethodHookParam param) throws Throwable
+			{
+				//XposedBridge.log("--------------");
+				//XposedBridge.log("mOperatorAlphaLong: " + XposedHelpers.getObjectField(param.thisObject, "mOperatorAlphaLong"));
+				//XposedBridge.log("mOperatorAlphaShort: " + XposedHelpers.getObjectField(param.thisObject, "mOperatorAlphaShort"));
+				//XposedBridge.log("mOperatorNumeric: " + XposedHelpers.getObjectField(param.thisObject, "mOperatorNumeric"));
+				//XposedBridge.log("mPhoneType: " + XposedHelpers.getObjectField(param.thisObject, "mPhoneType"));
+				
+				//XposedHelpers.setObjectField(param.thisObject, "mOperatorAlphaLong", "Long " + XposedHelpers.getObjectField(param.thisObject, "mPhoneType"));
+				//XposedHelpers.setObjectField(param.thisObject, "mOperatorAlphaShort", "Short " + XposedHelpers.getObjectField(param.thisObject, "mPhoneType"));
+				//XposedHelpers.setObjectField(param.thisObject, "mOperatorNumeric", "Number " + XposedHelpers.getObjectField(param.thisObject, "mPhoneType"));
+			}
+		});
+	}
+	/*
+	public static void hookServiceState2()
+	{
+		final Class<?> IccRecords = XposedHelpers.findClass("com.android.internal.telephony.cdma.HtcCdmaOperatorName", null);
+
+		XposedHelpers.findAndHookMethod(IccRecords, "getOperatorInfo", new XC_MethodHook()
+		{
+			@Override
+			protected void afterHookedMethod(MethodHookParam param) throws Throwable
+			{
+				Object OperatorInfo = param.getResult();
+				XposedHelpers.setObjectField(OperatorInfo, "showSpn", true);
+				XposedHelpers.setObjectField(OperatorInfo, "showPlmn", false);
+				XposedHelpers.setObjectField(OperatorInfo, "spn", XMain.pref.getString("spn_1_user_text", (String) XposedHelpers.getObjectField(OperatorInfo, "spn")));
+			}
+		});
+	}
+	*/
+	public static void hookServiceProviderName()
+	{
+		final Class<?> IccRecords = XposedHelpers.findClass("com.android.internal.telephony.uicc.IccRecords", null);
+
+		findAndHookMethod(IccRecords, "getServiceProviderName", new XC_MethodReplacement()
+		{
+			@Override
+			protected Object replaceHookedMethod(MethodHookParam param) throws Throwable
+			{
+					int getIccPhoneSlot = (Integer) XposedHelpers.callMethod(param.thisObject, "getIccPhoneSlot");
+					// int getIccPhoneType = (Integer)
+					// XposedHelpers.callMethod(param.thisObject,
+					// "getIccPhoneType");
+
+					if (TelephonyManager.PHONE_SLOT1 == getIccPhoneSlot)
+						return XMain.pref.getString("spn_1_user_text", (String) XposedHelpers.getObjectField(param.thisObject, "mSpn"));
+
+					if (TelephonyManager.PHONE_SLOT2 == getIccPhoneSlot)
+						return XMain.pref.getString("spn_2_user_text", (String) XposedHelpers.getObjectField(param.thisObject, "mSpn"));
+
+					// XposedBridge.log("PhoneSlot: " + getIccPhoneSlot);
+					// XposedBridge.log("PhoneType: " + getIccPhoneType);
+					return "Unknown";
+
+			}
+		});
+	}
+/*
+	public static void hookOperatorName()
+	{
+		final Class<?> TelephonyManagerClass = XposedHelpers.findClass("android.telephony.TelephonyManager", null);
+
+		findAndHookMethod(TelephonyManagerClass, "getNetworkOperatorNameExt", int.class, new XC_MethodReplacement()
+		{
+			@Override
+			protected Object replaceHookedMethod(MethodHookParam param) throws Throwable
+			{
+				int PhoneType = (Integer) param.args[0];
+
+				// XposedBridge.log("PhoneType = " + PhoneType);
+
+				if (TelephonyManager.getMainPhoneType() == PhoneType)
+					return "Sloooooooooot 1";
+				else if (TelephonyManager.getSubPhoneType() == PhoneType)
+					return "Sloooooooooot 2";
+				else
+					return "Wazzzzzzzzzzzup!";
+			}
+		});
+	}
+*/
+	/*
+	public static void hookOperatorName(final LoadPackageParam paramLoadPackageParam)
+	{
+
+		findAndHookMethod("com.android.phone.InCallScreen", paramLoadPackageParam.classLoader, "getOperatorName", int.class, new XC_MethodReplacement()
+		{
+			@Override
+			protected Object replaceHookedMethod(MethodHookParam param) throws Throwable
+			{
+				int PhoneType = (Integer) param.args[0];
+				Class<?> PhoneUtils = XposedHelpers.findClass("com.android.phone.PhoneUtils", paramLoadPackageParam.classLoader);
+
+				if (PhoneType == 0)
+					PhoneType = (Integer) XposedHelpers.callStaticMethod(PhoneUtils, "getCurrPhoneType");
+
+				int slot = (Integer) XposedHelpers.callStaticMethod(PhoneUtils, "getSimSlotTypeByPhoneType", PhoneType);
+				ContentResolver cr = (ContentResolver) XposedHelpers.callMethod(param.thisObject, "getContentResolver");
+				String operator;
+
+				if (slot == 1)
+					operator = Settings.System.getString(cr, "spn_1_user_text");
+				else
+					operator = Settings.System.getString(cr, "spn_2_user_text");
+
+				return operator;
+			}
+		});
+	}
+*/
 	public static void hookCopyDialExtra(final LoadPackageParam paramLoadPackageParam)
 	{
 		findAndHookMethod("com.android.phone.PhoneUtils", paramLoadPackageParam.classLoader, "copyDialExtra", Intent.class, Intent.class, new XC_MethodHook()
@@ -28,7 +153,7 @@ public class Phone
 			protected void afterHookedMethod(MethodHookParam param) throws Throwable
 			{
 				Intent paramIntent2 = (Intent) param.args[1];
-				
+
 				Class<?> PhoneGlobals = XposedHelpers.findClass("com.android.phone.PhoneGlobals", paramLoadPackageParam.classLoader);
 				Object getInstance = XposedHelpers.callStaticMethod(PhoneGlobals, "getInstance");
 				Context mContext = (Context) XposedHelpers.callMethod(getInstance, "getApplicationContext");
@@ -36,10 +161,10 @@ public class Phone
 				int force = Misc.getSystemSettingsInt(mContext, Const.TWEAK_FORCE_DIAL, 0);
 
 				Misc.x("Force dialing");
-				
+
 				if (force != 0) {
 					Class<?> PhoneUtils = XposedHelpers.findClass("com.android.phone.PhoneUtils", paramLoadPackageParam.classLoader);
-					
+
 					int action = Misc.getSystemSettingsInt(mContext, Const.TWEAK_FORCE_DIAL_ACTION, 0);
 					int phoneType;
 
@@ -59,16 +184,16 @@ public class Phone
 							paramIntent2.putExtra("phone_type", phoneType);
 						} else {
 							Misc.x("Desired slot NOT available");
-							// slot not available, so lets get state of another slot
+							// slot not available, so lets get state of another
+							// slot
 							int anotherSlot;
 							if (force == 1)
 								anotherSlot = (Integer) XposedHelpers.callStaticMethod(PhoneUtils, "getSlot2PhoneType");
 							else
 								anotherSlot = (Integer) XposedHelpers.callStaticMethod(PhoneUtils, "getSlot1PhoneType");
-							
+
 							// If another slot is ready
-							if ((Boolean) XposedHelpers.callStaticMethod(PhoneUtils, "isSimReady", anotherSlot))
-							{
+							if ((Boolean) XposedHelpers.callStaticMethod(PhoneUtils, "isSimReady", anotherSlot)) {
 								Misc.x("Another slot is available");
 								Misc.x(" - dialing will be through slot " + anotherSlot);
 								// then dial through another
@@ -248,8 +373,38 @@ public class Phone
 		});
 	}
 
+	public static void disableNoiseSuppression(final LoadPackageParam paramLoadPackageParam)
+	{
+		findAndHookMethod("com.android.phone.PhoneUtils", paramLoadPackageParam.classLoader, "turnOnNoiseSuppression", Context.class, boolean.class, boolean.class, new XC_MethodHook()
+		{
+			@Override
+			protected void beforeHookedMethod(MethodHookParam param) throws Throwable
+			{
+				param.args[1] = Boolean.valueOf(false);
+				param.args[2] = Boolean.valueOf(true);
+			}
+		});
+		findAndHookMethod("com.android.phone.PhoneUtils", paramLoadPackageParam.classLoader, "isNoiseSuppressionOn", Context.class, new XC_MethodReplacement()
+		{
+			@Override
+			protected Object replaceHookedMethod(MethodHookParam param) throws Throwable
+			{
+				return Boolean.valueOf(false);
+			}
+		});
+	}
+
 	public static void hookSIP(final LoadPackageParam paramLoadPackageParam)
 	{
+		findAndHookMethod("com.android.phone.PhoneUtils", paramLoadPackageParam.classLoader, "isVoipSupported", new XC_MethodReplacement()
+		{
+			@Override
+			protected Object replaceHookedMethod(MethodHookParam param) throws Throwable
+			{
+				return Boolean.valueOf(true);
+			}
+		});
+
 		Class<?> Features = XposedHelpers.findClass("com.android.phone.HtcFeatureList", paramLoadPackageParam.classLoader);
 		XposedHelpers.setStaticBooleanField(Features, "FEATURE_SUPPORT_SIP_CALL_SETTINGS", true);
 

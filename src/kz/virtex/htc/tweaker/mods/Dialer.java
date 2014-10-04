@@ -16,13 +16,18 @@ import android.content.IntentFilter;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.res.TypedArray;
 import android.content.res.XModuleResources;
+import android.content.res.XmlResourceParser;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.text.TextPaint;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.View;
+import android.view.ViewGroup.LayoutParams;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import de.robv.android.xposed.XC_MethodHook;
+import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.XposedHelpers;
 import de.robv.android.xposed.callbacks.XC_InitPackageResources.InitPackageResourcesParam;
 import de.robv.android.xposed.callbacks.XC_LoadPackage.LoadPackageParam;
@@ -38,7 +43,7 @@ public class Dialer
 	{
 		public void onReceive(Context context, Intent intent)
 		{
-			// TODO: sfsdf
+			// TODO: 
 		}
 	};
 
@@ -67,8 +72,44 @@ public class Dialer
 
 		return longer;
 	}
+	/*
+	public static void hookBigDialKeypad(InitPackageResourcesParam resparam, String path)
+	{
+		XmlResourceParser specific_htc_keypad = resparam.res.getLayout(resparam.res.getIdentifier("specific_htc_keypad", "layout", resparam.packageName));
+		resparam.res.setReplacement(resparam.packageName, "layout", "specific_htc_keypad_big", specific_htc_keypad);
 
+		int keypad_btn_layout = resparam.res.getInteger(resparam.res.getIdentifier("keypad_btn_layout", "id", resparam.packageName));
+		resparam.res.setReplacement(resparam.packageName, "id", "keypad_btn_layout_big", keypad_btn_layout);
 
+		XposedBridge.log(resparam.packageName);
+	}
+	
+	public static void hookBigDialKeypad(final LoadPackageParam paramLoadPackageParam)
+	{
+		
+		findAndHookMethod("com.htc.htcdialer.widget.DialerKeypad", paramLoadPackageParam.classLoader, "initKeypadButton", View.class, int.class, int.class, new XC_MethodHook()
+		{
+			@Override
+			protected void afterHookedMethod(MethodHookParam param) throws Throwable
+			{
+				View sss = (View) param.args[0];
+				LayoutParams params = sss.getLayoutParams();
+				params.height = 150;
+
+				sss.setLayoutParams(params);
+			}
+		});
+		
+		XposedHelpers.findAndHookConstructor("com.htc.htcdialer.widget.keypadbtn.MeasureUtils", paramLoadPackageParam.classLoader, boolean.class, new XC_MethodHook()
+		{
+			@Override
+			protected void beforeHookedMethod(MethodHookParam param) throws Throwable
+			{
+				param.args[0] = Boolean.valueOf(false);
+			}
+		});
+	}
+*/
 	public static void hookSimCallButton(final LoadPackageParam paramLoadPackageParam)
 	{
 		findAndHookMethod("com.htc.htcdialer.Dialer", paramLoadPackageParam.classLoader, "updateDMDSCallButton", boolean.class, boolean.class, new XC_MethodHook()
@@ -85,16 +126,15 @@ public class Dialer
 				boolean sim2hide = (Boolean) param.args[0];
 
 				// If user choosed to hide SIM 1 (Kcell)
-				if (!showSim1)
-				{
-					// if SIM 2 (Beeline) also going to be disabled by the system
-					if (sim2hide)
-					{
+				if (!showSim1) {
+					// if SIM 2 (Beeline) also going to be disabled by the
+					// system
+					if (sim2hide) {
 						// Let's get what we should do
 						int action = Misc.getSystemSettingsInt(mContext, Const.TWEAK_SHOW_SIM_CARD_DIAL_ACTION, 0);
 						switch (action)
 						{
-							// show another sim
+						// show another sim
 							case 0:
 							default:
 								// if SIM 1 also not available
@@ -107,24 +147,20 @@ public class Dialer
 							case 1:
 								param.args[0] = Boolean.valueOf(true);
 						}
-					}
-					else
-					{
+					} else {
 						param.args[0] = Boolean.valueOf(true);
 					}
 				}
-				
+
 				// If user choosed to hide SIM 2 (Beeline)
-				if (!showSim2)
-				{
+				if (!showSim2) {
 					// if SIM 1 (Kcell) also going to be disabled by the system
-					if (sim1hide)
-					{
+					if (sim1hide) {
 						// Let's get what we should do
 						int action = Misc.getSystemSettingsInt(mContext, "tweak_show_sim_card_dial_action", 0);
 						switch (action)
 						{
-							// show another sim
+						// show another sim
 							case 0:
 							default:
 								// if SIM 2 also not available
@@ -137,9 +173,7 @@ public class Dialer
 							case 1:
 								param.args[1] = Boolean.valueOf(true);
 						}
-					}
-					else
-					{
+					} else {
 						param.args[1] = Boolean.valueOf(true);
 					}
 				}
@@ -147,6 +181,9 @@ public class Dialer
 		});
 	}
 
+	// ----------------------------------------------------
+	// Replaces background on Dialer
+	// ----------------------------------------------------
 	public static void hookSpecificHtcShowKeypad(final LoadPackageParam paramLoadPackageParam)
 	{
 		findAndHookMethod("com.htc.htcdialer.widget.keypadbtn.HtcKeypadBgBtn", paramLoadPackageParam.classLoader, "setEnabled", "boolean", new XC_MethodHook()
@@ -187,8 +224,7 @@ public class Dialer
 				int[] mColorValue = (int[]) XposedHelpers.getObjectField(param.thisObject, "mColorValue");
 				int index = (Integer) param.args[0];
 
-				if ((Integer) param.args[1] == Color.parseColor("#2f2f2f"))
-				{
+				if ((Integer) param.args[1] == Color.parseColor("#2f2f2f")) {
 					mColorValue[index] = Color.parseColor("#444444");
 					XposedHelpers.setObjectField(param.thisObject, "mColorValue", mColorValue);
 				}
@@ -205,8 +241,7 @@ public class Dialer
 				int paramInt1 = (Integer) param.args[0];
 				int paramInt2 = (Integer) param.args[1];
 
-				if (paramInt1 == 4)
-				{
+				if (paramInt1 == 4) {
 					if (paramInt2 == -13388315) // #FF33B5E5 FIXME: get color
 												// from resources
 						param.args[1] = Misc.colorTransform(paramInt2, Misc.getHueValue(XMain.pref.getInt(Const.TWEAK_SLOT1_COLOR, 0)));
@@ -234,12 +269,10 @@ public class Dialer
 				String slot1 = XMain.pref.getString("slot_1_user_text", "");
 				String slot2 = XMain.pref.getString("slot_2_user_text", "");
 
-				if (text.toLowerCase().contains(slot1.toLowerCase()) || text.toLowerCase().contains(slot2.toLowerCase()))
-				{
+				if (text.toLowerCase().contains(slot1.toLowerCase()) || text.toLowerCase().contains(slot2.toLowerCase())) {
 					String pref = Const.TWEAK_SLOT1_COLOR;
 					int color = -13388315; // FIXME:
-					if (text.toLowerCase().contains(slot2.toLowerCase()))
-					{
+					if (text.toLowerCase().contains(slot2.toLowerCase())) {
 						pref = Const.TWEAK_SLOT2_COLOR;
 						color = Color.parseColor("#33e5b1"); // FIXME:
 					}
@@ -274,17 +307,13 @@ public class Dialer
 				String phonetic = dialer.getString(5);
 				String latin = dialer.getString(3);
 
-				if (!TextUtils.isEmpty(phonetic))
-				{
-					if (!Arrays.asList(Btn).contains(phonetic))
-					{
+				if (!TextUtils.isEmpty(phonetic)) {
+					if (!Arrays.asList(Btn).contains(phonetic)) {
 						Btn = push(Btn, phonetic);
 					}
 				}
-				if (!TextUtils.isEmpty(latin))
-				{
-					if (!Arrays.asList(Lat).contains(latin))
-					{
+				if (!TextUtils.isEmpty(latin)) {
+					if (!Arrays.asList(Lat).contains(latin)) {
 						Lat = push(Lat, latin);
 					}
 				}
@@ -297,14 +326,12 @@ public class Dialer
 			protected void afterHookedMethod(MethodHookParam param) throws Throwable
 			{
 				String paramString = (String) param.args[1];
-				if (Arrays.asList(Btn).contains(paramString))
-				{
+				if (Arrays.asList(Btn).contains(paramString)) {
 					Object TextPaint = XposedHelpers.getObjectField(param.thisObject, "mTextPaint");
 					XposedHelpers.callMethod(TextPaint, "setColor", XMain.pref.getInt(Const.TWEAK_DIALER_BUTTON_COLOR, Const.DIALER_BUTTON_STOCK_COLOR));
 					XposedHelpers.callMethod(TextPaint, "setTextSize", XMain.pref.getFloat(Const.TWEAK_DIALER_BUTTON_SIZE, Const.DIALER_BUTTON_STOCK_SIZE));
 				}
-				if (Arrays.asList(Lat).contains(paramString))
-				{
+				if (Arrays.asList(Lat).contains(paramString)) {
 					Object TextPaint = XposedHelpers.getObjectField(param.thisObject, "mTextPaint");
 					XposedHelpers.callMethod(TextPaint, "setColor", XMain.pref.getInt(Const.TWEAK_DIALER_BUTTON_COLOR_LAT, Const.DIALER_BUTTON_STOCK_COLOR));
 					XposedHelpers.callMethod(TextPaint, "setTextSize", XMain.pref.getFloat(Const.TWEAK_DIALER_BUTTON_SIZE_LAT, Const.DIALER_BUTTON_STOCK_SIZE));
@@ -318,14 +345,12 @@ public class Dialer
 			{
 				CharSequence mString = (CharSequence) XposedHelpers.getObjectField(param.thisObject, "mString");
 
-				if (Arrays.asList(Btn).contains(mString.toString()))
-				{
+				if (Arrays.asList(Btn).contains(mString.toString())) {
 					Object TextPaint = XposedHelpers.getObjectField(param.thisObject, "mTextPaint");
 					XposedHelpers.callMethod(TextPaint, "setColor", XMain.pref.getInt(Const.TWEAK_DIALER_BUTTON_COLOR, Const.DIALER_BUTTON_STOCK_COLOR));
 					XposedHelpers.callMethod(TextPaint, "setTextSize", XMain.pref.getFloat(Const.TWEAK_DIALER_BUTTON_SIZE, Const.DIALER_BUTTON_STOCK_SIZE));
 				}
-				if (Arrays.asList(Lat).contains(mString.toString()))
-				{
+				if (Arrays.asList(Lat).contains(mString.toString())) {
 					Object TextPaint = XposedHelpers.getObjectField(param.thisObject, "mTextPaint");
 					XposedHelpers.callMethod(TextPaint, "setColor", XMain.pref.getInt(Const.TWEAK_DIALER_BUTTON_COLOR_LAT, Const.DIALER_BUTTON_STOCK_COLOR));
 					XposedHelpers.callMethod(TextPaint, "setTextSize", XMain.pref.getFloat(Const.TWEAK_DIALER_BUTTON_SIZE_LAT, Const.DIALER_BUTTON_STOCK_SIZE));

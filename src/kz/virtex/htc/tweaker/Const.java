@@ -2,7 +2,7 @@ package kz.virtex.htc.tweaker;
 
 public class Const
 {
-	public static final boolean DEBUG = false;
+	public static final boolean DEBUG = true;
 	public static final String TAG = "HTC_Tweaker";
 	
 	public static final String PACKAGE_NAME = "kz.virtex.htc.tweaker";
@@ -24,7 +24,9 @@ public class Const
 	public static final String TWEAK_CALL_REC_AUTO_DELETE_INTERVAL = "tweak_call_recording_auto_delete_interval"; 
 	public static final String TWEAK_CALL_REC_AUTO_DELETE_COUNT = "tweak_call_recording_auto_delete_count"; 
 	public static final String TWEAK_CALL_REC_AUTO_LAST_DELETE = "tweak_call_recording_auto_last_delete"; 
+	public static final String TWEAK_CALL_REC_AUTO_SLOT = "tweak_call_recording_auto_slot"; 
 
+	
 	// TODO: make without restart
 	public static final String TWEAK_SHOW_SIM_CARD_DIAL = "tweak_show_sim_card_dial";
 	public static final String TWEAK_SHOW_SIM_CARD_MESS = "tweak_show_sim_card_mess";
@@ -93,11 +95,13 @@ public class Const
 	public static final String TWEAK_QUICK_SETTINGS_SIDE = "tweak_quick_settings_side";
 	public static final String TWEAK_FIX_81970 = "tweak_fix81970";
 	public static final String TWEAK_FIX_98918 = "tweak_fix98918";
+	public static final String TWEAK_DISABLE_NS = "tweak_disable_NS";
+	
 	
 	public static final String GUI_SCREEN_KEY = "gui_screen_key";
 	public static final String DATA_SCREEN_KEY = "data_screen_key";
 	public static final String CONTACT_DATA_SCREEN_KEY = "contact_data_screen_key";
-	public static final String DUAL_SETTINGS_SCREEN_KEY = "dual_settings_screen";
+	public static final String DUAL_SETTINGS_SCREEN_KEY = "screen_dual";
 	public static final String SYSTEM_SETTINGS_SCREEN_KEY = "system_settings_screen";
 	public static final String TWEAK_CALL_REC_AUTO_SCREEN = "autorecording_settings_screen"; 
 	public static final String TWEAK_CALL_REC_AUTO_DELETE_CAT = "autorecording_delete_cat"; 
@@ -105,7 +109,12 @@ public class Const
 	public static final String QUICK_SETTINGS_CAT = "qs_category"; 
 	public static final String SIM_CARD_FORCE_DIAL_CAT = "sim_card_force_dial_cat"; 
 	public static final String SIM_CARD_FORCE_MESS_CAT = "sim_card_force_mess_cat"; 
-
+	public static final String RECORDING_FILTER_CAT = "recording_filter_cat"; 
+	public static final String SETTINGS_KEY = "SettingsKey";
+	public static final String SETTINGS_KEY_CAT = "SettingsKeyCat";
+	
+	
+	
 	public static final String SIM_CARD_SEL_DIAL_SCREEN = "sim_card_selector_dial_screen"; 
 	public static final String SIM_CARD_SEL_MESS_SCREEN = "sim_card_selector_mess_screen"; 
 	
@@ -117,6 +126,8 @@ public class Const
 	public static final String COLOR_SIM_SCREEN = "color_sim_screen";
 	public static final String OTHER_SETTINGS_SCREEN_KEY = "other_settings_screen";
 	public static final String ICON_INDICATOR_SLOT_SCREEN= "icon_indicator_slot_screen";
+	public static final String SCREEN_ICONS_COLORING = "screen_icons_coloring";
+	public static final String SCREEN_MEDIA = "screen_media";
 	
 		
 	public static final String AUTO_REC_MAIN = "Automatic records/";

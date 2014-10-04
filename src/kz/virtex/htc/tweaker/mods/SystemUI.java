@@ -424,8 +424,6 @@ public class SystemUI
 			{
 				MotionEvent paramMotionEvent = (MotionEvent) param.args[0];
 
-				// TODO: landscape mode
-
 				Context context = (Context) XposedHelpers.callMethod(param.thisObject, "getContext");
 				int screenWidth = getScreenWidth(context, true);
 
@@ -1970,14 +1968,16 @@ public class SystemUI
 					"stat_sys_ev1_1x4signal2", "stat_sys_ev1_1x4signal3", "stat_sys_ev1_1x4signal4", "stat_sys_ev1_r_1x4signal0", "stat_sys_ev1_r_1x4signal1", "stat_sys_ev1_r_1x4signal2", "stat_sys_ev1_r_1x4signal3", "stat_sys_ev1_r_1x4signal4", "stat_sys_ev2_1x4signal0", "stat_sys_ev2_1x4signal1", "stat_sys_ev2_1x4signal2", "stat_sys_ev2_1x4signal3",
 					"stat_sys_ev2_1x4signal4", "stat_sys_ev2_r_1x4signal0", "stat_sys_ev2_r_1x4signal1", "stat_sys_ev2_r_1x4signal2", "stat_sys_ev2_r_1x4signal3", "stat_sys_ev2_r_1x4signal4", "stat_sys_ev3_1x4signal0", "stat_sys_ev3_1x4signal1", "stat_sys_ev3_1x4signal2", "stat_sys_ev3_1x4signal3", "stat_sys_ev3_1x4signal4", "stat_sys_ev3_r_1x4signal0",
 					"stat_sys_ev3_r_1x4signal1", "stat_sys_ev3_r_1x4signal2", "stat_sys_ev3_r_1x4signal3", "stat_sys_ev3_r_1x4signal4", "stat_sys_ev4_1x4signal0", "stat_sys_ev4_1x4signal1", "stat_sys_ev4_1x4signal2", "stat_sys_ev4_1x4signal3", "stat_sys_ev4_1x4signal4", "stat_sys_ev4_r_1x4signal0", "stat_sys_ev4_r_1x4signal1", "stat_sys_ev4_r_1x4signal2",
-					"stat_sys_ev4_r_1x4signal3", "stat_sys_ev4_r_1x4signal4", };
+					"stat_sys_ev4_r_1x4signal3", "stat_sys_ev4_r_1x4signal4" };
 
 			for (index = 0; index < ev.length; index++) {
 				resparam.res.setReplacement(resparam.packageName, "drawable", ev[index], new XResources.DrawableLoader()
 				{
+					Drawable drwbl = modRes.getDrawable(modRes.getIdentifier(ev[index], "drawable", Const.PACKAGE_NAME));
+				
 					public Drawable newDrawable(XResources paramAnonymousXResources, int paramAnonymousInt) throws Throwable
 					{
-						return Misc.applyTheme(modRes.getDrawable(modRes.getIdentifier(ev[index], "drawable", Const.PACKAGE_NAME)), Const.TWEAK_COLOR_SIM1, XMain.pref);
+						return Misc.applyTheme(drwbl, Const.TWEAK_COLOR_SIM1, XMain.pref);
 					}
 				});
 			}

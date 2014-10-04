@@ -217,12 +217,15 @@
     <string name="google_play"><b>Google Play Market</b></string>
     <string name="xda_support"><b>Support on XDA</b></string>
     <string name="change_log_text">
-<big><b>Version 4.0.0 Beta</b></big>\n
+<big><b>Version 4.0.0</b></big>\n
 <font fgcolor="#FF009000"><b>*</b></font> (imp) Menu refactoring \n
 <font fgcolor="#FF009000"><b>*</b></font> (new) Android BUGs fixing \n
+<font fgcolor="#FF009000"><b>*</b></font> (new) Noise suppression disabler \n
+<font fgcolor="#FF009000"><b>*</b></font> (new) Service Provider Name change (802w Dual SIM only) \n
+<font fgcolor="#FF009000"><b>*</b></font> (new) Auto recording filtering by slot (Dual SIM only) \n
 \n
 <big><b>Version 3.3.7</b></big>\n
-<font fgcolor="#FFFF0000"><b>*</b></font> (fix) Anormal screen width calculation for QS swipe in landscape mode \n
+<font fgcolor="#FFFF0000"><b>*</b></font> (fix) Abnormal screen width calculation for QS swipe in landscape mode \n
 <font fgcolor="#FFFF0000"><b>*</b></font> (fix) Message highlight broken on M7\n
 <font fgcolor="#FFFF0000"><b>*</b></font> (fix) Battery bar-line crash SystemUI on 97% while charging\n
 <font fgcolor="#FF009000"><b>*</b></font> (imp) Battery bar-line less battery consumption \n
@@ -429,6 +432,13 @@ Manual records stored as default to My Recordings directory.\n<font fgcolor="#F
     <string name="summary98918">If all activities of a given stack were finishing, no activity was marked as front-of-task.</string>
     <string name="title98918">Fix 98918</string>
     <string name="thanks_title">Special thanks to</string>
-    <string name="thanks_summary"><b>J_M_V_S</b>, <b>Talon</b>, <b>bgcngm</b> and many other great people from XDA and 4PDA</string>
-   
+    <string name="thanks_summary"><b>J_M_V_S</b>, <b>Talon</b>, <b>bgcngm</b>, <b>vern19</b> and many other great people from XDA and 4PDA</string>
+    <string name="disableNSTitle">Disable noise suppression</string>
+    <string name="disableNSSummary">Other party during call conversation will hear sound around you</string>
+    <string name="both_slots">Both slots</string>
+    <string name="RecordingSlotTitle">Select slot to record</string>
+    <string name="screen_operator">Service Provider Name</string>
+    <string name="spn1_name_title">Slot 1 operator name</string>
+    <string name="spn2_name_title">Slot 2 operator name</string>
+    <string name="spn_default">provided my operator or SIM card</string>
 </resources>

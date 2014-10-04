@@ -9,10 +9,10 @@
 	<classpathentry kind="lib" path="D:/Android/SDK/workspace/HTCTweaker/libs/HTCExtension_dex2jar.jar"/>
 	<classpathentry kind="lib" path="D:/Android/SDK/workspace/HTCTweaker/libs/telephony-common_dex2jar.jar"/>
 	<classpathentry kind="lib" path="D:/Android/SDK/workspace/HTCTweaker/libs/XposedBridgeApi-54.jar"/>
-	<classpathentry exported="true" kind="lib" path="D:/Android/SDK/workspace/HTCTweaker/libs/android-support-v4.jar"/>
+	<classpathentry kind="lib" path="D:/Android/SDK/workspace/HTCTweaker/libs/android-support-v4.jar"/>
 	<classpathentry kind="con" path="com.android.ide.eclipse.adt.ANDROID_FRAMEWORK"/>
-	<classpathentry kind="con" path="com.android.ide.eclipse.adt.DEPENDENCIES"/>
 	<classpathentry kind="lib" path="D:/Android/SDK/workspace/HTCTweaker/libs/framework2-dex2jar.jar"/>
 	<classpathentry kind="lib" path="D:/Android/SDK/workspace/HTCTweaker/libs/services-dex2jar.jar"/>
+	<classpathentry exported="true" kind="lib" path="D:/Android/SDK/sdk/extras/android/support/v4/android-support-v4.jar"/>
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>
