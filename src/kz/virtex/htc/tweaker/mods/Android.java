@@ -1,27 +1,17 @@
 package kz.virtex.htc.tweaker.mods;
 
-import java.util.HashMap;
-
-import com.android.internal.util.ArrayUtils;
-
 import kz.virtex.htc.tweaker.Const;
 import kz.virtex.htc.tweaker.XMain;
-import android.annotation.SuppressLint;
-import android.content.res.XModuleResources;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.media.AudioManager;
+import com.android.internal.util.ArrayUtils;
 import de.robv.android.xposed.XC_MethodHook;
 import de.robv.android.xposed.XC_MethodReplacement;
 import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.XposedHelpers;
 
-@SuppressLint("UseSparseArrays")
+
 public class Android
 {
-	private static HashMap<String, Integer> mapTweak;
-	private static HashMap<Integer, String> mapWeather;
-
 	public static void hookDebugFlag()
 	{
 		final Class<?> PowerManagerService = XposedHelpers.findClass("com.htc.htcjavaflag.HtcDebugFlag", null);
@@ -201,71 +191,5 @@ public class Android
 				}
 			}
 		});
-	}
-
-	public static boolean hookWeatherBitmapPreload()
-	{
-		if (!XMain.pref.getBoolean(Const.TWEAK_COLORED_WEATHER, false))
-			return false;
-
-		if (XMain.weather_apk == null)
-			return false;
-
-		try
-		{
-			mapTweak = new HashMap<String, Integer>();
-			mapWeather = new HashMap<Integer, String>();
-
-			XModuleResources weatherRes = XModuleResources.createInstance("/system/framework/com.htc.android.home.res.apk", null);
-			XModuleResources tweakRes = XModuleResources.createInstance(XMain.weather_apk, null);
-
-			for (String item : Const.weather)
-			{
-				mapTweak.put(item, tweakRes.getIdentifier(item, "drawable", Const.WEATHER_PACKAGE_NAME));
-				mapWeather.put(weatherRes.getIdentifier(item, "drawable", "com.htc.android.home.res"), item);
-			}
-		}
-		catch (Throwable t)
-		{
-			return false;
-		}
-
-		return true;
-	}
-
-	public static void hookWeatherBitmap()
-	{
-		final XModuleResources tweakRes = XModuleResources.createInstance(XMain.weather_apk, null);
-
-		final Class<?> traceClass = XposedHelpers.findClass("android.graphics.BitmapFactory", null);
-
-		XposedHelpers.findAndHookMethod(traceClass, "decodeResource", "android.content.res.Resources", "int", "android.graphics.BitmapFactory.Options", new XC_MethodHook()
-		{
-			@Override
-			protected void afterHookedMethod(MethodHookParam param) throws Throwable
-			{
-				try
-				{
-					int drwbl = (Integer) param.args[1];
-
-					if (mapWeather.containsKey(drwbl))
-					{
-						StackTraceElement[] stacktrace = Thread.currentThread().getStackTrace();
-
-						if (stacktrace[6].getClassName().contains("com.htc.android.animation.timeline.weather"))
-						{
-							Drawable replace = tweakRes.getDrawable(mapTweak.get(mapWeather.get(drwbl)));
-							if (replace != null)
-								param.setResult(((BitmapDrawable) replace).getBitmap());
-						}
-					}
-				}
-				catch (Throwable t)
-				{
-					// XposedBridge.log(t);
-				}
-			}
-		});
-
 	}
 }

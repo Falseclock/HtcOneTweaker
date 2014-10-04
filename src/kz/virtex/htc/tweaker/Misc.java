@@ -94,6 +94,12 @@ public class Misc
 		}
 	}
 
+	public static void x(Throwable t)
+	{
+		if (Const.DEBUG)
+			XposedBridge.log(t);
+		
+	}
 	public static void x(String string)
 	{
 		if (Const.DEBUG)

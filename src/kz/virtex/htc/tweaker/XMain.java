@@ -76,8 +76,8 @@ public class XMain implements IXposedHookInitPackageResources, IXposedHookZygote
 
 		// Android.hookAndroidLog();
 
-		if (Android.hookWeatherBitmapPreload())
-			Android.hookWeatherBitmap();
+		if (Weather.hookWeatherBitmapPreload())
+			Weather.hookWeatherBitmap();
 
 		if (pref.getBoolean(Const.TWEAK_FIX_SDCARD_PERMISSION, false))
 			Android.hookSDcardPermission();
@@ -351,7 +351,7 @@ public class XMain implements IXposedHookInitPackageResources, IXposedHookZygote
 				Contacts.handleCallDirections(resparam, MODULE_PATH);
 		}
 
-		if (resparam.packageName.equals("com.htc.weather.res"))
+		if (resparam.packageName.equals("com.htc.weather.res") || resparam.packageName.equals("com.htc.Weather"))
 		{
 			if (pref.getBoolean(Const.TWEAK_COLORED_WEATHER, false))
 				Weather.handleColorWeather(resparam, weather_apk);

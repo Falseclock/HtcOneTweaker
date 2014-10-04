@@ -214,7 +214,11 @@
     <string name="google_play"><b>Google Play Market</b></string>
     <string name="xda_support"><b>Поддержка на XDA</b></string>
     <string name="change_log_text">
-<big><b>Версия 4.0.0</b></big>\n
+<big><b>Версия 4.0.4</b></big>\n
+<font fgcolor="#FFFF0000"><b>*</b></font> (fix) Неработающие твики номеронабирателя на Android 4.4.3 \n
+<font fgcolor="#FFFF0000"><b>*</b></font> (fix) Наработающая цветная погода на Android 4.4.3 \n
+\n
+<big><b>Версия 4.0.3</b></big>\nn
 <font fgcolor="#FF009000"><b>*</b></font> (imp) Обновленное меню настроек \n
 <font fgcolor="#FF009000"><b>*</b></font> (new) Исправление ошибок Android \n
 <font fgcolor="#FF009000"><b>*</b></font> (new) Отключение шумоподавления \n

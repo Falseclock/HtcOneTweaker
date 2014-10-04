@@ -217,7 +217,11 @@
     <string name="google_play"><b>Google Play Market</b></string>
     <string name="xda_support"><b>Support on XDA</b></string>
     <string name="change_log_text">
-<big><b>Version 4.0.0</b></big>\n
+<big><b>Version 4.0.4</b></big>\n
+<font fgcolor="#FFFF0000"><b>*</b></font> (fix) Android 4.4.3 Dialer tweaks disfunction \n
+<font fgcolor="#FFFF0000"><b>*</b></font> (fix) Android 4.4.3 Colored weather disfunction \n
+\n
+<big><b>Version 4.0.3</b></big>\n
 <font fgcolor="#FF009000"><b>*</b></font> (imp) Menu refactoring \n
 <font fgcolor="#FF009000"><b>*</b></font> (new) Android BUGs fixing \n
 <font fgcolor="#FF009000"><b>*</b></font> (new) Noise suppression disabler \n
